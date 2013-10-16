@@ -44,7 +44,7 @@ public class Model2Logic {
 	private static final RulesFactory rFactory = RulesFactory.eINSTANCE;
 
 	/**
-	 * transform a feature tree to a predicate
+	 * Transform a feature tree to a predicate.
 	 */
 	private static Predicate transform(FeatureTree tree) {
 		if (tree.getRoot() == null)
@@ -211,7 +211,7 @@ public class Model2Logic {
 	}
 
 	/**
-	 * resolves a feature domain to a real set of features
+	 * Resolves a feature domain to a real set of features.
 	 */
 	private static Set<IFeature> normalize(IFeatureDomain domain) {
 		if (domain instanceof FeatureTree) {
@@ -225,7 +225,7 @@ public class Model2Logic {
 	}
 
 	/**
-	 * resolves set predicates to a real set of features
+	 * Resolves set predicates to a real set of features.
 	 */
 	private static Set<IFeature> normalize(FeatureSet featureSet) {
 		Set<IFeature> tempResult = new HashSet<>();
@@ -275,7 +275,7 @@ public class Model2Logic {
 	}
 
 	/**
-	 * breaks down all predicates to a and-or-not logic
+	 * Breaks down all predicates to a and-or-not logic.
 	 */
 	public static Predicate normalize(Predicate pred,
 			Collection<IFeature> base, Map<String, Object> context) {

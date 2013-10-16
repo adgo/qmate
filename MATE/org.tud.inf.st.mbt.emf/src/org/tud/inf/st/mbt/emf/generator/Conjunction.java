@@ -15,18 +15,19 @@ public class Conjunction extends LinkedList<Clause> {
 	public Conjunction(Conjunction conjunction) {
 		super(conjunction);
 	}
-	
-	public Conjunction concat(Conjunction o){
+
+	public Conjunction concat(Conjunction o) {
 		Conjunction out = new Conjunction(this);
 		out.addAll(o);
 		return out;
 	}
-	
-	public void reduce(){
-		for(Clause c:this.toArray(new Clause[0])){
+
+	public void reduce() {
+		for (Clause c : this.toArray(new Clause[0])) {
 			c.reduce();
-			if(c.size()==1 && c.get(0) instanceof True)this.remove(c);
-		}		
+			if (c.size() == 1 && c.get(0) instanceof True)
+				this.remove(c);
+		}
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import java.util.List;
 import org.tud.inf.st.mbt.emf.util.ModelUtil;
 import org.tud.inf.st.mbt.rules.Predicate;
 
-public class PredicateList implements Iterable<Predicate>{
+public class PredicateList implements Iterable<Predicate> {
 
 	private List<Predicate> list = new ArrayList<Predicate>();
 
@@ -16,7 +16,8 @@ public class PredicateList implements Iterable<Predicate>{
 	}
 
 	public PredicateList(PredicateList pl) {
-		for(Predicate p:pl)add(p);
+		for (Predicate p : pl)
+			add(p);
 	}
 
 	public String toString(PredicateList before) {
@@ -45,15 +46,13 @@ public class PredicateList implements Iterable<Predicate>{
 		}
 		return false;
 	}
-	
-	
 
 	@Override
 	public String toString() {
 		Iterator<Predicate> i = iterator();
 		String str = "[";
 		while (i.hasNext()) {
-			str += ""+i.next();
+			str += "" + i.next();
 			if (i.hasNext())
 				str += ",";
 		}
@@ -69,33 +68,34 @@ public class PredicateList implements Iterable<Predicate>{
 		return hc;
 	}
 
-
 	@Override
 	public Iterator<Predicate> iterator() {
 		return list.iterator();
 	}
 
-	public void add(Predicate p){
-		if(!contains(p))list.add(p);
+	public void add(Predicate p) {
+		if (!contains(p))
+			list.add(p);
 	}
-	
-	public void addAll(Iterable<? extends Predicate> from){
-		for(Predicate p:from)add(p);
+
+	public void addAll(Iterable<? extends Predicate> from) {
+		for (Predicate p : from)
+			add(p);
 	}
-	
-	public int size(){
+
+	public int size() {
 		return list.size();
 	}
-	
-	public Predicate[] toArray(){
+
+	public Predicate[] toArray() {
 		return list.toArray(new Predicate[0]);
 	}
-	
-	public Predicate get(int index){
+
+	public Predicate get(int index) {
 		return list.get(index);
 	}
-	
-	public void remove(Predicate p){
+
+	public void remove(Predicate p) {
 		list.remove(p);
 	}
 }

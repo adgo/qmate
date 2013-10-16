@@ -100,34 +100,36 @@ public class ActionProcessor {
 					.setIndex((IArithmetricFunction) FunctionProcessor
 							.normalize(((RemoveBagAction) a).getIndex(),
 									features, context));
-		} else if (a instanceof TermAction){
-			((TermAction) a).setTerm(normalize(((TermAction) a).getTerm(), features, context));
+		} else if (a instanceof TermAction) {
+			((TermAction) a).setTerm(normalize(((TermAction) a).getTerm(),
+					features, context));
 		}
 
 		return a;
 	}
 
-	public static Term normalize(Term t, Collection<IFeature> features, Map<String, Object> context) {
+	public static Term normalize(Term t, Collection<IFeature> features,
+			Map<String, Object> context) {
 		t = EcoreUtil.copy(t);
 
 		if (t instanceof FunctionTerm) {
 			((FunctionTerm) t).setFunction(FunctionProcessor.normalize(
-					((FunctionTerm) t).getFunction(),
-					features, context));
+					((FunctionTerm) t).getFunction(), features, context));
 		} else if (t instanceof FunctorTerm) {
 			for (int i = 0; i < ((FunctorTerm) t).getArguments().size(); i++) {
 				((FunctorTerm) t).getArguments().set(
 						i,
-						normalize(((FunctorTerm) t).getArguments().get(i),features,
-								context));
+						normalize(((FunctorTerm) t).getArguments().get(i),
+								features, context));
 			}
 		} else if (t instanceof TermVariable) {
 			t = (Term) context.get(((TermVariable) t).getId());
 		} else if (t instanceof ListTerm) {
 			for (int i = 0; i < ((ListTerm) t).getElements().size(); i++) {
 				((ListTerm) t).getElements().set(
-						i,normalize(((ListTerm) t).getElements().get(i),features,
-								context));
+						i,
+						normalize(((ListTerm) t).getElements().get(i),
+								features, context));
 			}
 		}
 
@@ -182,27 +184,26 @@ public class ActionProcessor {
 			FunctorTerm result = (FunctorTerm) EcoreUtil.copy(t);
 			result.getArguments().clear();
 			for (Term arg : ((FunctorTerm) t).getArguments()) {
-				result.getArguments().add(
-						evaluateFunctions(s, arg, context));
+				result.getArguments().add(evaluateFunctions(s, arg, context));
 			}
 			return result;
 		} else if (t instanceof TermVariable) {
 			return (Term) context.get(((TermVariable) t).getId());
-		} else if(t instanceof ListTerm){
+		} else if (t instanceof ListTerm) {
 			ListTerm result = (ListTerm) EcoreUtil.copy(t);
 			result.getElements().clear();
 			for (Term arg : ((ListTerm) t).getElements()) {
-				result.getElements().add(
-						evaluateFunctions(s, arg, context));
+				result.getElements().add(evaluateFunctions(s, arg, context));
 			}
 			return result;
 		}
-			return EcoreUtil.copy(t);
+		return EcoreUtil.copy(t);
 	}
 
 	public List<State> executeAction(State s, PreGenerationAction a,
 			Map<String, Object> context, AbstractModelElement... traceableTo) {
-		if (traceableTo == null || traceableTo.length == 0 && s.getParent()!=null)
+		if (traceableTo == null || traceableTo.length == 0
+				&& s.getParent() != null)
 			traceableTo = s.getParent().getTraceableTo();
 
 		FunctionProcessor fproc = new FunctionProcessor(satFoundation, s);
@@ -241,8 +242,8 @@ public class ActionProcessor {
 			State n = new State(s,
 					Collections.<PostGenerationAction> emptyList(), false,
 					new PredicateList(s.getPropositions()), traceableTo);
-			Term postGenTerm = evaluateFunctions(s,
-					((TermAction) a).getTerm(), context);
+			Term postGenTerm = evaluateFunctions(s, ((TermAction) a).getTerm(),
+					context);
 			TermAction postAction = fActions.createTermAction();
 			postAction.setTerm(postGenTerm);
 			n.addActions(postAction);
@@ -328,13 +329,14 @@ public class ActionProcessor {
 			}
 			next.addAll(this.executeAction(s, ((ActionReference) a).getAction()
 					.getAction(), nextContext, traceableTo));
-		} else if(a instanceof PostGenerationAction){
+		} else if (a instanceof PostGenerationAction) {
 			State n = new State(s,
 					Collections.<PostGenerationAction> emptyList(), false,
 					new PredicateList(s.getPropositions()), traceableTo);
-			n.getActions().getActions().add((PostGenerationAction) EcoreUtil.copy(a));
+			n.getActions().getActions()
+					.add((PostGenerationAction) EcoreUtil.copy(a));
 			next.add(n);
-		} else{
+		} else {
 			throw new UnsupportedOperationException("Action: " + a);
 		}
 		return next;

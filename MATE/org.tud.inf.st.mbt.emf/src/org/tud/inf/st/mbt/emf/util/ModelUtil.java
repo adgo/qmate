@@ -105,13 +105,13 @@ import org.tud.inf.st.mbt.test.TestStep;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 
 public class ModelUtil {
-	public static ActionsFactory aFactory = ActionsFactory.eINSTANCE;
-	public static TermsFactory termsFactory = TermsFactory.eINSTANCE;
-	public static FeaturesFactory fFactory = FeaturesFactory.eINSTANCE;
-	public static RulesFactory rFactory = RulesFactory.eINSTANCE;
-	public static FeaturetreeFactory tFactory = FeaturetreeFactory.eINSTANCE;
-	public static TestFactory testFactory = TestFactory.eINSTANCE;
-	public static DataFactory dFactory = DataFactory.eINSTANCE;
+	public static final ActionsFactory aFactory = ActionsFactory.eINSTANCE;
+	public static final TermsFactory termsFactory = TermsFactory.eINSTANCE;
+	public static final FeaturesFactory fFactory = FeaturesFactory.eINSTANCE;
+	public static final RulesFactory rFactory = RulesFactory.eINSTANCE;
+	public static final FeaturetreeFactory tFactory = FeaturetreeFactory.eINSTANCE;
+	public static final TestFactory testFactory = TestFactory.eINSTANCE;
+	public static final DataFactory dFactory = DataFactory.eINSTANCE;
 
 	public static IFeature feature(String id) {
 		Feature f = fFactory.createFeature();
@@ -244,7 +244,7 @@ public class ModelUtil {
 		a.setVersion(v);
 		return a;
 	}
-	
+
 	public static LogicFunctionAtom atom(ILogicFunction lf) {
 		LogicFunctionAtom a = rFactory.createLogicFunctionAtom();
 		a.setFunction(lf);
@@ -412,7 +412,7 @@ public class ModelUtil {
 				hc += hashCode(((LogicFunctionAtom) p).getFunction());
 			} else if (p instanceof TokenAtom) {
 				hc += ((TokenAtom) p).getPlace().hashCode();
-				hc += ((TokenAtom) p).getCount() * 123;
+				hc *= ((TokenAtom) p).getCount();
 			} else if (p instanceof ConfigurationAtom) {
 				hc += ((ConfigurationAtom) p).getConfiguration().hashCode();
 			} else if (p instanceof InstructionPointerAtom) {
@@ -421,7 +421,7 @@ public class ModelUtil {
 				hc += ((InstructionPointerAtom) p).getSequence().hashCode();
 				for (ContextEntry ce : ((InstructionPointerAtom) p)
 						.getContext()) {
-					hc += ce.getId().hashCode()*ce.getValue().hashCode();
+					hc += ce.getId().hashCode() * ce.getValue().hashCode();
 				}
 			} else if (p instanceof TimeAtom) {
 				hc += Math.pow(((TimeAtom) p).getTime(), 2);
@@ -487,22 +487,22 @@ public class ModelUtil {
 		} else if (f instanceof BagElementFunction) {
 			hc += ((BagElementFunction) f).getData().hashCode();
 			hc += hashCode(((BagElementFunction) f).getIdx());
-		} else if (f instanceof ArithmetricCaseFunction){
+		} else if (f instanceof ArithmetricCaseFunction) {
 			int i = 0;
-			for(ArithmetricCase c:((ArithmetricCaseFunction) f).getCases()){
-				hc += i+hashCode(c.getCondition())*hashCode(c.getThen());
+			for (ArithmetricCase c : ((ArithmetricCaseFunction) f).getCases()) {
+				hc += i + hashCode(c.getCondition()) * hashCode(c.getThen());
 				i++;
 			}
-		} else if (f instanceof ValueCaseFunction){
+		} else if (f instanceof ValueCaseFunction) {
 			int i = 0;
-			for(ValueCase c:((ValueCaseFunction) f).getCases()){
-				hc += i+hashCode(c.getCondition())*hashCode(c.getThen());
+			for (ValueCase c : ((ValueCaseFunction) f).getCases()) {
+				hc += i + hashCode(c.getCondition()) * hashCode(c.getThen());
 				i++;
 			}
-		} else if (f instanceof DataNodeCaseFunction){
+		} else if (f instanceof DataNodeCaseFunction) {
 			int i = 0;
-			for(DataNodeCase c:((DataNodeCaseFunction) f).getCases()){
-				hc += i+hashCode(c.getCondition())*hashCode(c.getThen());
+			for (DataNodeCase c : ((DataNodeCaseFunction) f).getCases()) {
+				hc += i + hashCode(c.getCondition()) * hashCode(c.getThen());
 				i++;
 			}
 		}
@@ -512,8 +512,9 @@ public class ModelUtil {
 
 	public static int hashCode(Term t) {
 		if (t instanceof TermVariable)
-			throw new UnsupportedOperationException("Cannot hash non-finalized term: "+t);
-		
+			throw new UnsupportedOperationException(
+					"Cannot hash non-finalized term: " + t);
+
 		int hc = t.getClass().hashCode();
 
 		if (t instanceof FloatTerm)

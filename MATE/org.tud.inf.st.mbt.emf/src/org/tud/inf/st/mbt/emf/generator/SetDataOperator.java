@@ -90,18 +90,18 @@ public class SetDataOperator extends AbstractOperator {
 		Set<DataElement> leafs = ModelUtil
 				.getAllLeafElements(select.getValue());
 		List<List<DataAtom>> result = new ArrayList<List<DataAtom>>();
-		
+
 		List<DataAtom> tail = new LinkedList<DataAtom>(input);
 		tail.remove(0);
 		List<List<DataAtom>> tailResult = combineData(tail);
 
-		if(tailResult.isEmpty()){
+		if (tailResult.isEmpty()) {
 			tailResult.add(new ArrayList<DataAtom>(1));
 		}
-		
+
 		for (DataElement l : leafs) {
 			DataAtom selectAtom = ModelUtil.atom(select.getLeaf(), l);
-			for(List<DataAtom> tr:tailResult){
+			for (List<DataAtom> tr : tailResult) {
 				List<DataAtom> r = new ArrayList<>(tr);
 				r.add(selectAtom);
 				result.add(r);

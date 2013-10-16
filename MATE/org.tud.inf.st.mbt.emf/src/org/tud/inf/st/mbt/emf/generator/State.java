@@ -47,7 +47,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.Transition;
 public class State {
 	private static final ActionsFactory fActions = ActionsFactory.eINSTANCE;
 
-	public static interface IStateActivationListener {
+	public interface IStateActivationListener {
 		void stateActivated(State s);
 	}
 
@@ -472,8 +472,8 @@ public class State {
 						.getClass())) {
 					Transition t = (Transition) rta.getConsumer();
 					if (rta.getTime() >= t.getTimeMin()
-							&& (rta.getTime() <= t.getTimeMax() 
-								|| t.getTimeMax()<t.getTimeMin()))
+							&& (rta.getTime() <= t.getTimeMax() || t
+									.getTimeMax() < t.getTimeMin()))
 						result.add(t);
 				}
 			}

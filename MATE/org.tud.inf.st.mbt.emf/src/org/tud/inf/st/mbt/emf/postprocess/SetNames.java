@@ -8,8 +8,10 @@ public class SetNames implements IPostProcessor {
 
 	@Override
 	public void process(ResourceSet rs) {
-		for(AbstractModelElement ame:ModelUtil.getAllEObjectsOfSuperType(rs, AbstractModelElement.class)){
-			if(ame.getName()==null)ame.setName(ame.getId());
+		for (AbstractModelElement ame : ModelUtil.getAllEObjectsOfSuperType(rs,
+				AbstractModelElement.class)) {
+			if (ame.getName() == null)
+				ame.setName(ame.getId());
 		}
 	}
 

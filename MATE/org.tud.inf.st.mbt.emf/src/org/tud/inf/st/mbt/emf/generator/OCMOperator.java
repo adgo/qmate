@@ -243,7 +243,7 @@ public class OCMOperator extends TransitionOperator {
 		return next.toArray(new State[0]);
 	}
 
-	private static final List<Atom> produceAtoms(StandardConfigurationNode pc) {
+	private static List<Atom> produceAtoms(StandardConfigurationNode pc) {
 		List<Atom> atoms = new ArrayList<>();
 		for (IFeature f : pc.getConfiguration().getFeatures()) {
 			FeatureAtom fa = RulesFactory.eINSTANCE.createFeatureAtom();

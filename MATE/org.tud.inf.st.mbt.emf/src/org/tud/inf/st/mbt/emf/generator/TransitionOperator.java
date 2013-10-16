@@ -27,18 +27,18 @@ import org.tud.inf.st.mbt.ulang.guigraph.StandardArc;
 import org.tud.inf.st.mbt.ulang.guigraph.Transition;
 
 public abstract class TransitionOperator extends AbstractOperator {
-	
-	private static class PlaceWeight{
+
+	private static class PlaceWeight {
 		public int weight = 0;
 		public Place place;
-		
+
 		public PlaceWeight(Place p) {
 			this.place = p;
 		}
-		
+
 		@Override
 		public String toString() {
-			return "("+place+","+weight+")";
+			return "(" + place + "," + weight + ")";
 		}
 	}
 
@@ -55,10 +55,10 @@ public abstract class TransitionOperator extends AbstractOperator {
 
 		this.sat = satFoundation.buildSAT();
 
-		Collection<Place> places = getAllEObjectsOfSuperType(satFoundation.getResourceSet(),
-				Place.class);
-		Collection<Arc> arcs = getAllEObjectsOfSuperType(satFoundation.getResourceSet(),
-						Arc.class);
+		Collection<Place> places = getAllEObjectsOfSuperType(
+				satFoundation.getResourceSet(), Place.class);
+		Collection<Arc> arcs = getAllEObjectsOfSuperType(
+				satFoundation.getResourceSet(), Arc.class);
 		transitions = getAllEObjectsOfSuperType(satFoundation.getResourceSet(),
 				Transition.class);
 
@@ -66,26 +66,26 @@ public abstract class TransitionOperator extends AbstractOperator {
 			List<PlaceWeight> consumed = new ArrayList<>(2);
 			List<PlaceWeight> produced = new ArrayList<>(2);
 			List<Place> inhibited = new ArrayList<>(1);
-	
-			for(Place p:places){
+
+			for (Place p : places) {
 				PlaceWeight wConsumed = new PlaceWeight(p);
 				PlaceWeight wProduced = new PlaceWeight(p);
-				
+
 				for (Arc e : arcs) {
 					if (e.getTarget().equals(t) && e.getSource().equals(p)) {
 						if (e instanceof InhibitorArc)
 							inhibited.add(p);
 						else
-							wConsumed.weight+=((StandardArc) e).getWeight();
+							wConsumed.weight += ((StandardArc) e).getWeight();
 					}
 					if (e.getSource().equals(t) && e.getTarget().equals(p)) {
-						wProduced.weight+=((StandardArc) e).getWeight();
+						wProduced.weight += ((StandardArc) e).getWeight();
 					}
 				}
 				consumed.add(wConsumed);
 				produced.add(wProduced);
 			}
-			
+
 			trans2consumed.put(t, consumed);
 			trans2inhibited.put(t, inhibited);
 			trans2produced.put(t, produced);
@@ -101,9 +101,9 @@ public abstract class TransitionOperator extends AbstractOperator {
 	}
 
 	protected void consumeAndProduce(Transition t, State s) {
-		for(PlaceWeight w:trans2consumed.get(t))
+		for (PlaceWeight w : trans2consumed.get(t))
 			changeTokenCount(s, w.place, -w.weight);
-		for(PlaceWeight w:trans2produced.get(t))
+		for (PlaceWeight w : trans2produced.get(t))
 			changeTokenCount(s, w.place, w.weight);
 		s.deconfigureProposition(ModelUtil.atom((IRealTimeConsumer) t, 0L));
 	}
@@ -137,7 +137,7 @@ public abstract class TransitionOperator extends AbstractOperator {
 	}
 
 	/**
-	 * to be overriden
+	 * To be overriden.
 	 */
 	protected boolean isEnabled(State s, Transition t) {
 		return isTokenEnabled(s, t);
@@ -154,9 +154,10 @@ public abstract class TransitionOperator extends AbstractOperator {
 
 		for (PlaceWeight wp : trans2produced.get(t)) {
 			int c = s.getTokenCount(wp.place);
-			for(PlaceWeight wc:trans2consumed.get(t))
-				if(wc.place.equals(wp.place))c-=wc.weight;
-			c+= wp.weight;
+			for (PlaceWeight wc : trans2consumed.get(t))
+				if (wc.place.equals(wp.place))
+					c -= wc.weight;
+			c += wp.weight;
 			if (c > satFoundation.getMaxTokens())
 				return false;
 		}

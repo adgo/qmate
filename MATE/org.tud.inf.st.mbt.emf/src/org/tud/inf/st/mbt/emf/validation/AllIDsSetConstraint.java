@@ -14,9 +14,10 @@ public class AllIDsSetConstraint implements IValidationConstraint {
 				AbstractModelElement ame = (AbstractModelElement) target;
 				if (ame.getId() != null && ame.getName() == null)
 					ame.setName(ame.getId());
-				if (ame.getId() == null || ame.getId().length()==0)
-					mgr.setProblem("\""+ame + "\" has no ID.", IMarker.SEVERITY_ERROR,
-							target.eResource().getURI() + "/" + ame + "", ame.hashCode()+"");
+				if (ame.getId() == null || ame.getId().length() == 0)
+					mgr.setProblem("\"" + ame + "\" has no ID.",
+							IMarker.SEVERITY_ERROR, target.eResource().getURI()
+									+ "/" + ame + "", ame.hashCode() + "");
 			}
 
 	}

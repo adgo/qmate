@@ -27,7 +27,7 @@ public class CnfBuilder {
 		public boolean hasNext() {
 			return clausesChecked < temp.size();
 		}
-		
+
 		public Conjunction getCurrent() {
 			return out;
 		}
@@ -48,16 +48,16 @@ public class CnfBuilder {
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
-		
-		public Conjunction complete(){
+
+		public Conjunction complete() {
 			Conjunction result = out;
-			while(hasNext()){
+			while (hasNext()) {
 				result = next();
 			}
 			return result;
 		}
 	}
-	
+
 	public static CnfIterator buildCnf(final Predicate predicate) {
 		return new CnfIterator(predicate);
 	}
@@ -77,7 +77,7 @@ public class CnfBuilder {
 		c.add(p);
 		return c;
 	}
-	
+
 	@SafeVarargs
 	private static Conjunction conjunct(Clause... clauses) {
 		Conjunction out = new Conjunction();
@@ -85,7 +85,7 @@ public class CnfBuilder {
 			out.add(ps);
 		return out;
 	}
-	
+
 	private static Clause clause(Predicate... preds) {
 		Clause out = new Clause();
 		for (Predicate p : preds)

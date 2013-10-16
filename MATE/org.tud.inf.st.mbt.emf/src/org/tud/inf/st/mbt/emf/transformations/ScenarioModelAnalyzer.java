@@ -16,7 +16,7 @@ import org.tud.inf.st.mbt.scenario.Scenario;
 import org.tud.inf.st.mbt.scenario.ScenarioModel;
 import org.tud.inf.st.mbt.scenario.SpatialBase;
 
-public class ScenarioModelAnalyzer {
+public final class ScenarioModelAnalyzer {
 	private static Map<ScenarioModel, ScenarioModelAnalyzer> instances = new HashMap<>();
 
 	public static ScenarioModelAnalyzer getInstance(ScenarioModel sm) {
@@ -114,38 +114,38 @@ public class ScenarioModelAnalyzer {
 
 		return l.toArray(new Integer[0]);
 	}
-	
+
 	public void generateData(ScenarioModel sm, SpatialBase sb) {
 		DataFactory df = DataFactory.eINSTANCE;
-		
+
 		DataClass dcOuter = df.createDataClass();
 		dcOuter.setId("outer");
 		dcOuter.setName(dcOuter.getId());
-		
+
 		Integer[] hborders = getHorizontalBorders(sb);
 		Integer[] vborders = getVerticalBorders(sb);
 
 		// invalid out-of-room positions
 		DataValue out = df.createDataValue();
-		name(out,-1,-1);
+		name(out, -1, -1);
 		dcOuter.getChildren().add(out);
 		out = df.createDataValue();
-		name(out,hborders.length,vborders.length);
+		name(out, hborders.length, vborders.length);
 		dcOuter.getChildren().add(out);
 		for (int xi = 0; xi < hborders.length - 1; xi++) {
 			out = df.createDataValue();
-			name(out,xi,-1);
+			name(out, xi, -1);
 			dcOuter.getChildren().add(out);
 			out = df.createDataValue();
-			name(out,xi,vborders.length-1);
+			name(out, xi, vborders.length - 1);
 			dcOuter.getChildren().add(out);
 		}
 		for (int yi = 0; yi < vborders.length - 1; yi++) {
 			out = df.createDataValue();
-			name(out,-1,yi);
+			name(out, -1, yi);
 			dcOuter.getChildren().add(out);
 			out = df.createDataValue();
-			name(out,hborders.length-1,yi);
+			name(out, hborders.length - 1, yi);
 			dcOuter.getChildren().add(out);
 		}
 
@@ -156,7 +156,7 @@ public class ScenarioModelAnalyzer {
 			dc.setName(dc.getId());
 
 			dc.getChildren().add(dcOuter);
-			
+
 			DataClass dcNeg = df.createDataClass();
 			dcNeg.setId("negative");
 			dcNeg.setName(dcNeg.getId());
@@ -168,32 +168,32 @@ public class ScenarioModelAnalyzer {
 			dcPos.setName(dcPos.getId());
 
 			dc.getChildren().add(dcPos);
-			
+
 			s.setGeneratedDomain(dc);
-			
-			for(int xi=0;xi<hborders.length-1;xi++){
+
+			for (int xi = 0; xi < hborders.length - 1; xi++) {
 				int x = hborders[xi];
 
-				for(int yi=0;yi<vborders.length-1;yi++){
+				for (int yi = 0; yi < vborders.length - 1; yi++) {
 					int y = vborders[yi];
 
 					DataValue dv = df.createDataValue();
-					name(dv,xi,yi);
+					name(dv, xi, yi);
 
-					if (isPositive(s, x+1, y+1)) {
+					if (isPositive(s, x + 1, y + 1)) {
 						dcPos.getChildren().add(dv);
 					} else {
 						dcNeg.getChildren().add(dv);
 					}
 				}
 			}
-			
-			
+
 		}
 	}
-	
-	private static void name(DataValue dv, int x, int y){
-		dv.setName(x+"|"+y);
-		dv.setId("pos_"+(x<0 ? "m" : "")+Math.abs(x)+"_"+(y<0 ? "m" : "")+Math.abs(y));
+
+	private static void name(DataValue dv, int x, int y) {
+		dv.setName(x + "|" + y);
+		dv.setId("pos_" + (x < 0 ? "m" : "") + Math.abs(x) + "_"
+				+ (y < 0 ? "m" : "") + Math.abs(y));
 	}
 }

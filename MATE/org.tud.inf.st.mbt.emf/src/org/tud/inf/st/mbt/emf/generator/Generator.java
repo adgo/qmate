@@ -19,6 +19,12 @@ import org.tud.inf.st.mbt.test.TestFactory;
 import org.tud.inf.st.mbt.test.TestStep;
 import org.tud.inf.st.mbt.test.TestSuite;
 
+/**
+ * Generates offline test cases. Does not work with downlink variables and
+ * realtime.
+ * 
+ * @author gpue
+ */
 public class Generator implements Iterator<GeneratorState> {
 	private LinkedList<State> queue = new LinkedList<>();
 	private List<AbstractOperator> operators = new ArrayList<>(3);
@@ -42,18 +48,19 @@ public class Generator implements Iterator<GeneratorState> {
 		suite.setConfiguration(config);
 
 		// init
-		for (AbstractOperator o : operators)
+		for (AbstractOperator o : operators) {
 			o.contributeToInitialState(initial);
-		for (IFeature f : config.getFeatures())
-			for (Atom p : ModelUtil.atoms(f))
+		}
+		for (IFeature f : config.getFeatures()) {
+			for (Atom p : ModelUtil.atoms(f)) {
 				initial.configureProposition(p);
+			}
+		}
 		for (DataBinding db : config.getBindings()) {
 			DataAtom da = ModelUtil.atom(db.getLeaf(), db.getValue());
 			initial.configureProposition(da);
 		}
-		
-		
-		
+
 		queue.add(initial);
 	}
 
@@ -64,15 +71,16 @@ public class Generator implements Iterator<GeneratorState> {
 	}
 
 	@Override
-	public boolean hasNext() {
+	public final boolean hasNext() {
 		return !operators.isEmpty() && !queue.isEmpty()
 				&& !(current != null && current.isFailed());
 	}
 
 	@Override
 	public GeneratorState next() {
-		if (!hasNext())
+		if (!hasNext()) {
 			return null;
+		}
 
 		current = queue.poll();
 

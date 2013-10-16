@@ -93,47 +93,46 @@ public class SATFoundation {
 			}
 		}
 
-//		Collection<Place> places = getAllEObjectsOfSuperType(rs, Place.class);
-//		for (Place p : places) {
-//			for (int i = 1; i <= getMaxTokens(); i++) {
-//				base.add(atom(p, i));
-//			}
-//		}
+		// Collection<Place> places = getAllEObjectsOfSuperType(rs,
+		// Place.class);
+		// for (Place p : places) {
+		// for (int i = 1; i <= getMaxTokens(); i++) {
+		// base.add(atom(p, i));
+		// }
+		// }
 
 		features = getAllEObjectsOfSuperType(rs, IFeature.class);
 		for (IFeature f : features) {
 			base.addAll(atoms(f));
 		}
 
-//		Collection<ConfigurationNode> pcs = getAllEObjectsOfSuperType(rs,
-//				ConfigurationNode.class);
-//		for (ConfigurationNode pc : pcs) {
-//			base.add(atom(pc));
-//		}
+		// Collection<ConfigurationNode> pcs = getAllEObjectsOfSuperType(rs,
+		// ConfigurationNode.class);
+		// for (ConfigurationNode pc : pcs) {
+		// base.add(atom(pc));
+		// }
 
-		//generate logic function atoms
+		// generate logic function atoms
 		logicFunctionAtoms = new PredicateList();
 		Set<LogicFunctionAtom> logicFunctionAtoms_unNormalized = new HashSet<LogicFunctionAtom>();
 		Set<IFunction> actionFunctionsNormalized = new HashSet<IFunction>();
 
-		Collection<GuiGraph> ggs = getAllEObjectsOfSuperType(
-				rs, GuiGraph.class);
-		for(GuiGraph gg:ggs){
+		Collection<GuiGraph> ggs = getAllEObjectsOfSuperType(rs, GuiGraph.class);
+		for (GuiGraph gg : ggs) {
 			logicFunctionAtoms_unNormalized.addAll(getAllEObjectsOfSuperType(
-					gg.getInvariant(), LogicFunctionAtom.class,
-					false));
+					gg.getInvariant(), LogicFunctionAtom.class, false));
 		}
-		
+
 		Collection<ConditionActionTransition> cats = getAllEObjectsOfSuperType(
 				rs, ConditionActionTransition.class);
 		for (ConditionActionTransition cat : cats) {
-//			if (cat.getActions() != null
-//					&& !cat.getActions().getActions().isEmpty()) {
-//				int instructions = cat.getActions().getActions().size();
-//				for (int i = 0; i < instructions; i++) {
-//					base.add(atom(cat.getActions(), i));
-//				}
-//			}
+			// if (cat.getActions() != null
+			// && !cat.getActions().getActions().isEmpty()) {
+			// int instructions = cat.getActions().getActions().size();
+			// for (int i = 0; i < instructions; i++) {
+			// base.add(atom(cat.getActions(), i));
+			// }
+			// }
 
 			logicFunctionAtoms_unNormalized.addAll(getAllEObjectsOfSuperType(
 					cat.getApplicationCondition(), LogicFunctionAtom.class,
@@ -161,7 +160,9 @@ public class SATFoundation {
 					tca.getAction(), features, new HashMap<String, Object>());
 			actionFunctionsNormalized.addAll(getAllEObjectsOfSuperType(
 					pga_normalized, ILogicFunction.class, false));
-			ILogicFunction pNormal = (ILogicFunction) FunctionProcessor.normalize(tca.getCondition(), features, new HashMap<String, Object>());
+			ILogicFunction pNormal = (ILogicFunction) FunctionProcessor
+					.normalize(tca.getCondition(), features,
+							new HashMap<String, Object>());
 			LogicFunctionAtom lfa_normal = RulesFactory.eINSTANCE
 					.createLogicFunctionAtom();
 			lfa_normal.setFunction(pNormal);
@@ -177,20 +178,20 @@ public class SATFoundation {
 			logicFunctionAtoms.add(lfa_normal);
 		}
 
-		for(IFunction f:actionFunctionsNormalized){
+		for (IFunction f : actionFunctionsNormalized) {
 			LogicFunctionAtom lfa_normal = RulesFactory.eINSTANCE
 					.createLogicFunctionAtom();
 			lfa_normal.setFunction((ILogicFunction) f);
 			logicFunctionAtoms.add(lfa_normal);
 		}
 
-//		Collection<ITimeConsumer> cs = getAllEObjectsOfSuperType(rs,
-//				ITimeConsumer.class);
-//		for (ITimeConsumer c : cs) {
-//			for (int t = 0; t <= maxTime; t++) {
-//				base.add(atom(c, t));
-//			}
-//		}
+		// Collection<ITimeConsumer> cs = getAllEObjectsOfSuperType(rs,
+		// ITimeConsumer.class);
+		// for (ITimeConsumer c : cs) {
+		// for (int t = 0; t <= maxTime; t++) {
+		// base.add(atom(c, t));
+		// }
+		// }
 
 		buildInvariants();
 

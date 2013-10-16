@@ -1,14 +1,9 @@
 package org.tud.inf.st.mbt.emf.postprocess;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.resources.IResource;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public final class PostProcessorManager {
 	private static PostProcessorManager instance;
@@ -20,7 +15,7 @@ public final class PostProcessorManager {
 		}
 		return instance;
 	}
-	
+
 	private PostProcessorManager() {
 		init();
 	}
@@ -41,9 +36,9 @@ public final class PostProcessorManager {
 
 	public void processAll(ResourceSet rs) {
 		for (IPostProcessor c : processors)
-			try{
+			try {
 				c.process(rs);
-			} catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 	}

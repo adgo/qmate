@@ -54,9 +54,9 @@ public final class ValidationManager {
 	public boolean validateAll(ResourceSet rs) {
 		reset();
 		for (IValidationConstraint c : constraints)
-			try{
+			try {
 				c.validate(this, rs);
-			} catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		return !hasErrors;
@@ -82,7 +82,8 @@ public final class ValidationManager {
 			marker.setAttribute(IMarker.SEVERITY, severity);
 			marker.setAttribute(IMarker.LOCATION, location);
 			marker.setAttribute(IMarker.SOURCE_ID, objID);
-			if(severity == IMarker.SEVERITY_ERROR)hasErrors = true;
+			if (severity == IMarker.SEVERITY_ERROR)
+				hasErrors = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

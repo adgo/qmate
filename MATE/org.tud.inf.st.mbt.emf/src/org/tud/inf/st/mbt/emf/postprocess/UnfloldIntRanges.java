@@ -15,11 +15,11 @@ public class UnfloldIntRanges implements IPostProcessor {
 				rs, SubstitutableIntRange.class)) {
 			TypedDataClass c = (TypedDataClass) sir.eContainer();
 			c.getChildren().remove(sir);
-			for(int i=sir.getFrom();i<=sir.getTo();i++){
+			for (int i = sir.getFrom(); i <= sir.getTo(); i++) {
 				IntDataValue v = DataFactory.eINSTANCE.createIntDataValue();
 				v.setValue(i);
-				v.setId("_"+i);
-				v.setName(""+i);
+				v.setId("_" + i);
+				v.setName("" + i);
 				c.getChildren().add(v);
 			}
 		}

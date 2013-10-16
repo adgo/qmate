@@ -108,7 +108,9 @@ public class ParsingConstraint implements IValidationConstraint {
 							mgr.setProblem("Action-based Configuration  \""
 									+ ran.getActionsText().replaceAll(
 											"\n", " ") + "\" of " + ran
-									+ ": " + e.getMessage() + ".", IMarker.SEVERITY_ERROR, ran + "", ran.hashCode()+"");
+											+ ": " + e.getMessage() + ".",
+								IMarker.SEVERITY_ERROR, ran + "",
+								ran.hashCode() + "");
 						}
 					}
 			}	
