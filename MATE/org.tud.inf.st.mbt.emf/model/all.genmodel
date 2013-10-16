@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.tud.inf.st.mbt.emf/src-gen" editDirectory="/org.tud.inf.st.mbt.emf.edit/src-gen"
+    modelPluginID="org.tud.inf.st.mbt.emf" modelName="All" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>actions.ecore</foreignModel>
+  <foreignModel>featuretree.ecore</foreignModel>
+  <foreignModel>guigraph.ecore</foreignModel>
+  <foreignModel>mbt.ecore</foreignModel>
+  <foreignModel>ocm.ecore</foreignModel>
+  <foreignModel>scenario.ecore</foreignModel>
+  <foreignModel>terms.ecore</foreignModel>
+  <genPackages prefix="Actions" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+      ecorePackage="actions.ecore#/">
+    <genClasses image="false" ecoreClass="actions.ecore#//Action"/>
+    <genClasses ecoreClass="actions.ecore#//ActionReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference actions.ecore#//ActionReference/action"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//ActionReference/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//StandAloneAction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//StandAloneAction/action"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//StandAloneAction/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//TimedConditionAction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//TimedConditionAction/action"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute actions.ecore#//TimedConditionAction/frequency"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//TimedConditionAction/condition"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="actions.ecore#//PreGenerationAction"/>
+    <genClasses image="false" ecoreClass="actions.ecore#//PostGenerationAction"/>
+    <genClasses ecoreClass="actions.ecore#//PreGenerationSequence">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//PreGenerationSequence/actions"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//PostGenerationSequence">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//PostGenerationSequence/actions"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//ThrowAction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute actions.ecore#//ThrowAction/eventID"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//TermAction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//TermAction/term"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="actions.ecore#//ReconfigurationAction"/>
+    <genClasses ecoreClass="actions.ecore#//SetDataAction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//SetDataAction/values"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference actions.ecore#//SetDataAction/node"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//GetDataAction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//GetDataAction/node"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//RemoveBagAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference actions.ecore#//RemoveBagAction/bag"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//RemoveBagAction/index"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//ActivateFeatureAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference actions.ecore#//ActivateFeatureAction/feature"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference actions.ecore#//ActivateFeatureAction/version"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//DeactivateFeatureAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference actions.ecore#//DeactivateFeatureAction/feature"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//SetPropertyAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference actions.ecore#//SetPropertyAction/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference actions.ecore#//SetPropertyAction/value"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//FailAction"/>
+    <genClasses ecoreClass="actions.ecore#//TimeAction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute actions.ecore#//TimeAction/time"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference actions.ecore#//TimeAction/consumer"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="actions.ecore#//DependentAction"/>
+    <genClasses ecoreClass="actions.ecore#//GetPropertyAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference actions.ecore#//GetPropertyAction/property"/>
+    </genClasses>
+    <genClasses ecoreClass="actions.ecore#//GetRealTimeAction"/>
+    <genClasses ecoreClass="actions.ecore#//GetFeatureStateAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference actions.ecore#//GetFeatureStateAction/feature"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Featuretree" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+      ecorePackage="featuretree.ecore#/">
+    <genClasses ecoreClass="featuretree.ecore#//FeatureTree">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featuretree.ecore#//FeatureTree/root"/>
+    </genClasses>
+    <genClasses ecoreClass="featuretree.ecore#//TreeFeature">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featuretree.ecore#//TreeFeature/children"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featuretree.ecore#//TreeFeature/mandatory"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Guigraph" basePackage="org.tud.inf.st.mbt.ulang" disposableProviderFactory="true"
+      ecorePackage="guigraph.ecore#/">
+    <genClasses ecoreClass="guigraph.ecore#//GuiGraph">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//GuiGraph/arcs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//GuiGraph/nodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference guigraph.ecore#//GuiGraph/invariant"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//GuiGraph/invariantText"/>
+    </genClasses>
+    <genClasses ecoreClass="guigraph.ecore#//Widget">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//Widget/children"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Widget/image"/>
+    </genClasses>
+    <genClasses ecoreClass="guigraph.ecore#//Form"/>
+    <genClasses ecoreClass="guigraph.ecore#//Transition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/rate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/faultImpact"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/faultProbability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/terminates"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/timeMin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/timeMax"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="guigraph.ecore#//GuiGraphNode"/>
+    <genClasses ecoreClass="guigraph.ecore#//NoWidgetNode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//NoWidgetNode/initialTokens"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="guigraph.ecore#//Place"/>
+    <genClasses ecoreClass="guigraph.ecore#//ConditionActionTransition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//ConditionActionTransition/applicationCondition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//ConditionActionTransition/actions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//ConditionActionTransition/applicationConditionText"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//ConditionActionTransition/actionsText"/>
+    </genClasses>
+    <genClasses ecoreClass="guigraph.ecore#//TimerTransition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//TimerTransition/duration"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference guigraph.ecore#//TimerTransition/consumer"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="guigraph.ecore#//Arc">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference guigraph.ecore#//Arc/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference guigraph.ecore#//Arc/target"/>
+    </genClasses>
+    <genClasses ecoreClass="guigraph.ecore#//StandardArc">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//StandardArc/weight"/>
+    </genClasses>
+    <genClasses ecoreClass="guigraph.ecore#//InhibitorArc"/>
+  </genPackages>
+  <genPackages prefix="Mbt" basePackage="org.tud.inf.st" disposableProviderFactory="true"
+      ecorePackage="mbt.ecore#/">
+    <nestedGenPackages prefix="Core" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+        ecorePackage="mbt.ecore#//core">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="mbt.ecore#//core/CausalLinkType">
+        <genEnumLiterals ecoreEnumLiteral="mbt.ecore#//core/CausalLinkType/Uplink"/>
+        <genEnumLiterals ecoreEnumLiteral="mbt.ecore#//core/CausalLinkType/Downlink"/>
+        <genEnumLiterals ecoreEnumLiteral="mbt.ecore#//core/CausalLinkType/Virtual"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="mbt.ecore#//core/AbstractModelElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//core/AbstractModelElement/note"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//core/AbstractModelElement/id"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//core/AbstractModelElement/traceableTo"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//core/AbstractModelElement/name"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//core/GenericModelContainer">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//core/GenericModelContainer/elements"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//core/ITopLevelElement"/>
+      <genClasses image="false" ecoreClass="mbt.ecore#//core/IContextVariable"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Test" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+        ecorePackage="mbt.ecore#//test">
+      <genClasses ecoreClass="mbt.ecore#//test/TestSuite">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestSuite/cases"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestSuite/configuration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//test/TestSuite/riskReduction"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//test/TestCase">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestCase/steps"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//test/TestCase/riskReduction"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//test/TestStep">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestStep/action"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//test/TestReport">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestReport/runs"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//test/TestRun">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestRun/stepRuns"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestRun/verdict"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//test/TestStepRun">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//test/TestStepRun/step"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestStepRun/state"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//test/Verdict">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//test/Verdict/name"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Rules" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+        ecorePackage="mbt.ecore#//rules">
+      <genClasses image="false" ecoreClass="mbt.ecore#//rules/Predicate"/>
+      <genClasses image="false" ecoreClass="mbt.ecore#//rules/UnaryOperator">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//rules/UnaryOperator/operand"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//rules/BinaryOperator">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//rules/BinaryOperator/operand1"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//rules/BinaryOperator/operand2"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//rules/SubPredicate">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//rules/SubPredicate/operand"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//rules/Atom"/>
+      <genClasses ecoreClass="mbt.ecore#//rules/ReasonableAtom"/>
+      <genClasses ecoreClass="mbt.ecore#//rules/Not"/>
+      <genClasses ecoreClass="mbt.ecore#//rules/And"/>
+      <genClasses ecoreClass="mbt.ecore#//rules/Or"/>
+      <genClasses ecoreClass="mbt.ecore#//rules/Xor"/>
+      <genClasses ecoreClass="mbt.ecore#//rules/Implication"/>
+      <genClasses ecoreClass="mbt.ecore#//rules/True"/>
+      <genClasses ecoreClass="mbt.ecore#//rules/FeatureAtom">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/FeatureAtom/feature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/FeatureAtom/version"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//rules/DataAtom">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/DataAtom/leaf"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/DataAtom/value"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//rules/LogicFunctionAtom">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//rules/LogicFunctionAtom/function"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//rules/TokenAtom">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/TokenAtom/count"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/TokenAtom/place"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//rules/InstructionPointerAtom">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/InstructionPointerAtom/sequence"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/InstructionPointerAtom/instruction"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/InstructionPointerAtom/stackLevel"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//rules/InstructionPointerAtom/context"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//rules/ConfigurationAtom">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/ConfigurationAtom/configuration"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//rules/BagElementAssignedAtom">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/BagElementAssignedAtom/bag"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/BagElementAssignedAtom/idx"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//rules/ITimeConsumer"/>
+      <genClasses ecoreClass="mbt.ecore#//rules/TimeAtom">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/TimeAtom/time"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/TimeAtom/consumer"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//rules/IRealTimeConsumer"/>
+      <genClasses ecoreClass="mbt.ecore#//rules/RealTimeAtom">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/RealTimeAtom/time"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/RealTimeAtom/consumer"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//rules/ContextEntry">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/ContextEntry/id"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//rules/ContextEntry/value"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Features" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+        ecorePackage="mbt.ecore#//features">
+      <genClasses ecoreClass="mbt.ecore#//features/Feature">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/Feature/attributes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/Feature/versions"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//features/FeatureSet"/>
+      <genClasses ecoreClass="mbt.ecore#//features/ExplicitSet">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/ExplicitSet/features"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//features/Union"/>
+      <genClasses ecoreClass="mbt.ecore#//features/Intersection"/>
+      <genClasses image="false" ecoreClass="mbt.ecore#//features/BinarySetOperator">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/BinarySetOperator/operand1"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/BinarySetOperator/operand2"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//features/Without"/>
+      <genClasses ecoreClass="mbt.ecore#//features/SetReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//features/SetReference/features"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//features/StandaloneFeatureSet">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/StandaloneFeatureSet/features"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//features/SubSet">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/SubSet/operand"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//features/IFeature"/>
+      <genClasses ecoreClass="mbt.ecore#//features/FeatureReference">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//features/FeatureReference/feature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//features/FeatureReference/version"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//features/IFeatureDomain"/>
+      <genClasses ecoreClass="mbt.ecore#//features/FeatureAttribute">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/FeatureAttribute/data"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//features/Configuration">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/Configuration/features"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/Configuration/bindings"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//features/FeatureVersion"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Data" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+        ecorePackage="mbt.ecore#//data">
+      <genClasses ecoreClass="mbt.ecore#//data/DataStructure">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//data/DataStructure/children"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/DataLeaf">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//data/DataLeaf/domain"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/DataLeaf/causalLinkType"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/DataClass">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//data/DataClass/children"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/DataClass/ordered"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//data/DataStructureNode"/>
+      <genClasses image="false" ecoreClass="mbt.ecore#//data/DataElement"/>
+      <genClasses ecoreClass="mbt.ecore#//data/DataValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/DataValue/valueLiteral"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/DataBinding">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//data/DataBinding/leaf"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//data/DataBinding/value"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/StepDataBinding">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/StepDataBinding/step"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/DataScenario">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//data/DataScenario/stepDataBindings"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/DataScenario/length"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//data/DataScenario/ranges"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/DataRange">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//data/DataRange/values"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/DataRange/eventID"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//data/DataRange/leaf"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/DataBag">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//data/DataBag/singleElementPrototype"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/DataBag/maxSize"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//data/DataBag/generatedElements"/>
+        <genOperations ecoreOperation="mbt.ecore#//data/DataBag/organize"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//data/TypedDataElement"/>
+      <genClasses ecoreClass="mbt.ecore#//data/TypedDataClass">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//data/TypedDataClass/children"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/IntDataValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/IntDataValue/value"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/SubstitutableIntRange">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/SubstitutableIntRange/from"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/SubstitutableIntRange/to"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/LongDataValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/LongDataValue/value"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/BoolDataValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/BoolDataValue/value"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//data/FloatDataValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//data/FloatDataValue/value"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Functions" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+        ecorePackage="mbt.ecore#//functions">
+      <genClasses image="false" ecoreClass="mbt.ecore#//functions/IFunction"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/FunctionVariable">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//functions/FunctionVariable/id"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//functions/ReferenceFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ReferenceFunction/parameters"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//functions/StandAloneFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/StandAloneFunction/parameters"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/ArithmetricStandAloneFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ArithmetricStandAloneFunction/function"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/ArithmetricReferenceFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/ArithmetricReferenceFunction/function"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/ArithmetricFunctionVariable"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/DataNodeStandAloneFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/DataNodeStandAloneFunction/function"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/DataNodeReferenceFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/DataNodeReferenceFunction/function"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/DataNodeFunctionVariable"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/ValueStandAloneFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ValueStandAloneFunction/function"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/ValueReferenceFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/ValueReferenceFunction/function"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/ValueFunctionVariable"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/LogicStandAloneFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/LogicStandAloneFunction/function"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/LogicReferenceFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/LogicReferenceFunction/function"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/LogicFunctionVariable"/>
+      <genClasses image="false" ecoreClass="mbt.ecore#//functions/IValueFunction"/>
+      <genClasses image="false" ecoreClass="mbt.ecore#//functions/ILogicFunction"/>
+      <genClasses image="false" ecoreClass="mbt.ecore#//functions/ArithmetricLogicBinaryFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ArithmetricLogicBinaryFunction/left"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ArithmetricLogicBinaryFunction/right"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/SubClassFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/SubClassFunction/sub"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/SubClassFunction/in"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/PredicateFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/PredicateFunction/predicate"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/FeatureTreeValidFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/FeatureTreeValidFunction/tree"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/EqualFunction"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/LargerThanFunction"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/LowerThanFunction"/>
+      <genClasses image="false" ecoreClass="mbt.ecore#//functions/IArithmetricFunction"/>
+      <genClasses image="false" ecoreClass="mbt.ecore#//functions/UnaryFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/UnaryFunction/operand"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//functions/BinaryFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/BinaryFunction/left"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/BinaryFunction/right"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/PlusFunction"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/SubFunction"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/MinusFunction"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/MultiplyFunction"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/DivisionFunction"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/FloatFunction">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//functions/FloatFunction/value"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/IntFunction">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//functions/IntFunction/value"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/LongFunction">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//functions/LongFunction/value"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/BagCountFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/BagCountFunction/bag"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/BagCountFunction/needle"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/BagIdxFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/BagIdxFunction/bag"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/BagIdxFunction/needle"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/BagSizeFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/BagSizeFunction/bag"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/BagNextFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/BagNextFunction/bag"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/BagFirstFreeFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/BagFirstFreeFunction/bag"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/TimeFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/TimeFunction/consumer"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/TokenFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/TokenFunction/place"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="mbt.ecore#//functions/IDataNodeFunction"/>
+      <genClasses ecoreClass="mbt.ecore#//functions/DataNodeFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/DataNodeFunction/data"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/BagElementFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/BagElementFunction/data"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/BagElementFunction/idx"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/DataNodeValueFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/DataNodeValueFunction/node"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/DataValueFunction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference mbt.ecore#//functions/DataValueFunction/value"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/ArithmetricCaseFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ArithmetricCaseFunction/cases"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/ArithmetricCase">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ArithmetricCase/condition"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ArithmetricCase/then"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/ValueCaseFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ValueCaseFunction/cases"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/ValueCase">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ValueCase/condition"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/ValueCase/then"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/DataNodeCaseFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/DataNodeCaseFunction/cases"/>
+      </genClasses>
+      <genClasses ecoreClass="mbt.ecore#//functions/DataNodeCase">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/DataNodeCase/condition"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//functions/DataNodeCase/then"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+  <genPackages prefix="Ocm" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+      ecorePackage="ocm.ecore#/">
+    <genClasses ecoreClass="ocm.ecore#//OperationalConfigurationModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ocm.ecore#//OperationalConfigurationModel/edges"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ocm.ecore#//OperationalConfigurationModel/nodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ocm.ecore#//OperationalConfigurationModel/start"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ocm.ecore#//ConfigurationNode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ocm.ecore#//ConfigurationNode/postConfEventID"/>
+    </genClasses>
+    <genClasses ecoreClass="ocm.ecore#//OperationalEdge">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ocm.ecore#//OperationalEdge/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ocm.ecore#//OperationalEdge/target"/>
+    </genClasses>
+    <genClasses ecoreClass="ocm.ecore#//StandardConfigurationNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ocm.ecore#//StandardConfigurationNode/configuration"/>
+    </genClasses>
+    <genClasses ecoreClass="ocm.ecore#//ReconfigurationActionNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ocm.ecore#//ReconfigurationActionNode/actions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ocm.ecore#//ReconfigurationActionNode/actionsText"/>
+    </genClasses>
+    <genClasses ecoreClass="ocm.ecore#//ComposedConfigurationNode"/>
+    <genClasses image="false" ecoreClass="ocm.ecore#//Edge"/>
+    <genClasses ecoreClass="ocm.ecore#//CompositionEdge">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ocm.ecore#//CompositionEdge/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ocm.ecore#//CompositionEdge/target"/>
+    </genClasses>
+    <genClasses ecoreClass="ocm.ecore#//TimedEdge">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ocm.ecore#//TimedEdge/duration"/>
+    </genClasses>
+    <genClasses ecoreClass="ocm.ecore#//EventGuardedEdge">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ocm.ecore#//EventGuardedEdge/guardEventID"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Scenario" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+      ecorePackage="scenario.ecore#/">
+    <genClasses ecoreClass="scenario.ecore#//ScenarioModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scenario.ecore#//ScenarioModel/inventory"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scenario.ecore#//ScenarioModel/bases"/>
+    </genClasses>
+    <genClasses ecoreClass="scenario.ecore#//ScenarioEntity"/>
+    <genClasses ecoreClass="scenario.ecore#//SpatialBase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scenario.ecore#//SpatialBase/scenarios"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scenario.ecore#//SpatialBase/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scenario.ecore#//SpatialBase/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scenario.ecore#//SpatialBase/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scenario.ecore#//SpatialBase/height"/>
+    </genClasses>
+    <genClasses ecoreClass="scenario.ecore#//Scenario">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scenario.ecore#//Scenario/placements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scenario.ecore#//Scenario/generatedDomain"/>
+    </genClasses>
+    <genClasses ecoreClass="scenario.ecore#//Placement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference scenario.ecore#//Placement/entity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scenario.ecore#//Placement/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scenario.ecore#//Placement/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scenario.ecore#//Placement/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scenario.ecore#//Placement/height"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Terms" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+      ecorePackage="terms.ecore#/">
+    <genClasses image="false" ecoreClass="terms.ecore#//Term"/>
+    <genClasses ecoreClass="terms.ecore#//FunctorTerm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute terms.ecore#//FunctorTerm/functor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference terms.ecore#//FunctorTerm/arguments"/>
+    </genClasses>
+    <genClasses ecoreClass="terms.ecore#//StringTerm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute terms.ecore#//StringTerm/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="terms.ecore#//NumberTerm"/>
+    <genClasses ecoreClass="terms.ecore#//FloatTerm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute terms.ecore#//FloatTerm/value"/>
+    </genClasses>
+    <genClasses ecoreClass="terms.ecore#//IntegerTerm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute terms.ecore#//IntegerTerm/value"/>
+    </genClasses>
+    <genClasses ecoreClass="terms.ecore#//LongTerm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute terms.ecore#//LongTerm/value"/>
+    </genClasses>
+    <genClasses ecoreClass="terms.ecore#//ListTerm">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference terms.ecore#//ListTerm/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="terms.ecore#//FunctionTerm">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference terms.ecore#//FunctionTerm/function"/>
+    </genClasses>
+    <genClasses ecoreClass="terms.ecore#//ReferenceTerm">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference terms.ecore#//ReferenceTerm/reference"/>
+    </genClasses>
+    <genClasses ecoreClass="terms.ecore#//ContainerTerm">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference terms.ecore#//ContainerTerm/containment"/>
+    </genClasses>
+    <genClasses ecoreClass="terms.ecore#//BoolTerm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute terms.ecore#//BoolTerm/value"/>
+    </genClasses>
+    <genClasses ecoreClass="terms.ecore#//TermVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute terms.ecore#//TermVariable/id"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

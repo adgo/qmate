@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.tud.inf.st.pceditor.ui.DSLEditor"
+            default="false"
+            id="org.tud.inf.st.pceditor.ui.dsleditor"
+            name="DSL Editor">
+      </editor>
+      <editor
+            class="org.tud.inf.st.pceditor.ui.PCEditor"
+            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+            default="true"
+            extensions="pccs"
+            id="org.tud.inf.st.pceditor.pceditor"
+            name="PC Editor">
+      </editor>
+   </extension>
+   <extension
+         id="pccsmarker"
+         name="PCCS Marker"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <super
+            type="org.eclipse.core.resources.textmarker">
+      </super>
+   </extension>
+</plugin>

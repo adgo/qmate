@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="icons.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="456.43927"
+     inkscape:cy="852.0926"
+     inkscape:document-units="px"
+     inkscape:current-layer="g4100"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3836" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:5.2278266;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985"
+       width="154.77217"
+       height="154.77217"
+       x="97.106773"
+       y="280.48325"
+       ry="40"
+       rx="40"
+       inkscape:export-filename="C:\Users\Georg\Dropbox\workspace\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\widget.png"
+       inkscape:export-xdpi="5.1245551"
+       inkscape:export-ydpi="5.1245551" />
+    <rect
+       style="opacity:0.98999999000000005;fill:none;stroke:#000000;stroke-width:4.635;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2985-1"
+       width="276.37888"
+       height="276.37888"
+       x="81.81057"
+       y="182.74417"
+       ry="40"
+       rx="40"
+       inkscape:export-filename="C:\Users\Georg\Dropbox\workspace\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\widget.png"
+       inkscape:export-xdpi="5.1245551"
+       inkscape:export-ydpi="5.1245551" />
+    <rect
+       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:2.29235101;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3773"
+       width="157.70764"
+       height="77.435722"
+       x="81.146179"
+       y="610.11157"
+       rx="0"
+       ry="0"
+       inkscape:export-filename="C:\Users\Georg\Dropbox\workspace\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\trans.png"
+       inkscape:export-xdpi="9.3014698"
+       inkscape:export-ydpi="9.3014698" />
+    <rect
+       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:2.29235101;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3773-4"
+       width="157.70764"
+       height="77.435722"
+       x="81.146179"
+       y="685.20886"
+       rx="0"
+       ry="0"
+       inkscape:export-filename="C:\Users\Georg\Dropbox\workspace\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\trans.png"
+       inkscape:export-xdpi="9.3014698"
+       inkscape:export-ydpi="9.3014698" />
+    <path
+       sodipodi:type="arc"
+       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:4.63500023;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3811"
+       sodipodi:cx="531.34021"
+       sodipodi:cy="593.24786"
+       sodipodi:rx="82.832512"
+       sodipodi:ry="81.317284"
+       d="m 614.17272,593.24786 a 82.832512,81.317284 0 1 1 -165.66502,0 82.832512,81.317284 0 1 1 165.66502,0 z"
+       transform="matrix(0.93928129,0,0,0.95678342,27.112281,29.272896)"
+       inkscape:export-filename="C:\Users\Georg\Dropbox\workspace\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\nwn.png"
+       inkscape:export-xdpi="8.9987621"
+       inkscape:export-ydpi="8.9987621" />
+    <rect
+       style="opacity:0.98999999;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:8.83515167;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3005"
+       width="162.20844"
+       height="35.840584"
+       x="339.9072"
+       y="802.44672"
+       inkscape:export-filename="C:\Users\Georg\Dropbox\workspace\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\edge.png"
+       inkscape:export-xdpi="6.6285162"
+       inkscape:export-ydpi="6.6285162" />
+    <path
+       style="opacity:0.98999999;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:3.38015628;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 454.9357,720.67882 78.92883,98.89906 -78.92882,98.89903 z"
+       id="rect3007"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Georg\Dropbox\workspace\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\edge.png"
+       inkscape:export-xdpi="6.6285162"
+       inkscape:export-ydpi="6.6285162" />
+    <g
+       id="g4100"
+       inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+       inkscape:export-xdpi="56.26099"
+       inkscape:export-ydpi="56.26099">
+      <path
+         id="path3811-4"
+         d="M 568.5625 120.28125 C 525.59307 120.28125 490.78125 155.09307 490.78125 198.0625 C 490.78125 241.03193 525.59307 275.875 568.5625 275.875 C 611.53193 275.875 646.375 241.03193 646.375 198.0625 C 646.375 155.09307 611.53193 120.28125 568.5625 120.28125 z "
+         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:4.39394283;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82"
+         d="m 567.70573,156.73568 c 0,-12.58027 0,-33.39919 0,-37.62818"
+         style="fill:none;stroke:#000000;stroke-width:3.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-8-4"
+         d="m 567.20065,275.93367 c 0,-12.58027 0,-33.39919 0,-37.62818"
+         style="fill:none;stroke:#000000;stroke-width:3.9000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5"
+         d="m 530.00401,160.65528 c -5.86102,-5.86101 -15.56035,-15.56034 -17.53058,-17.53057"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-5"
+         d="M 620.41265,253.51051 C 614.55163,247.6495 604.8523,237.95017 602.88207,235.97994"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-1"
+         d="m 624.45327,145.0662 c -5.86102,5.86103 -15.56034,15.56035 -17.53058,17.53059"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-1-7"
+         d="m 531.87463,236.19138 c -5.86102,5.86103 -15.56034,15.56036 -17.53058,17.5306"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         inkscape:transform-center-y="3.0304576"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-1-7-1-1-5"
+         d="m 596.10571,270.37354 c -3.11691,-7.68038 -8.27504,-20.39053 -9.3228,-22.97236"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         inkscape:transform-center-y="3.0304576"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-1-7-1-1-5-2"
+         d="m 538.80067,269.36339 c 3.11691,-7.68038 8.27504,-20.39053 9.3228,-22.97236"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         inkscape:transform-center-y="-3.0304576"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-1-7-1-1-5-2-7"
+         d="m 539.15607,126.39433 c 3.11691,7.68038 8.27504,20.39053 9.3228,22.97236"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         inkscape:transform-center-y="-3.0304576"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-1-7-1-1-5-2-7-6"
+         d="m 600.50172,128.41463 c -3.11691,7.68038 -8.27504,20.39053 -9.3228,22.97236"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         inkscape:transform-center-x="-2.27537"
+         inkscape:transform-center-y="-2.0015926"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-1-7-1-1-5-2-7-6-1"
+         d="m 639.26283,170.47176 c -7.82539,2.73254 -20.77549,7.25457 -23.40606,8.17315"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         inkscape:transform-center-x="-2.27537"
+         inkscape:transform-center-y="2.0015974"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-1-7-1-1-5-2-7-6-1-4"
+         d="m 639.51283,231.62179 c -7.82539,-2.73254 -20.77549,-7.25457 -23.40606,-8.17315"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         inkscape:transform-center-x="2.27537"
+         inkscape:transform-center-y="2.0015974"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-1-7-1-1-5-2-7-6-1-4-2"
+         d="m 498.41896,229.6389 c 7.82539,-2.73254 20.77549,-7.25457 23.40606,-8.17315"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+      <path
+         inkscape:transform-center-x="21.468268"
+         inkscape:transform-center-y="40.929891"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3048-82-5-1-7-1-1-5-2-7-6-1-4-2-3"
+         d="m 497.91893,167.96508 c 7.82539,2.73254 20.77549,7.25457 23.40606,8.17315"
+         style="fill:none;stroke:#000000;stroke-width:3.16565585;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:export-filename="C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ulang.guigraph.ui\icons\clock_100.png"
+         inkscape:export-xdpi="56.26099"
+         inkscape:export-ydpi="56.26099" />
+    </g>
+  </g>
+</svg>

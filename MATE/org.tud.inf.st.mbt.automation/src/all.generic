@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:GenericModelContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://st.inf.tud.org/mbt/core" xmlns:features="http://st.inf.tud.org/mbt/features">
+  <elements xsi:type="features:Configuration" id="empty" name="empty"/>
+</core:GenericModelContainer>

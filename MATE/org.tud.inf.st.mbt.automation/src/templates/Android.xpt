@@ -1,0 +1,65 @@
+«DEFINE suite(String activity,String keywordProvider) FOR test::TestSuite»
+«FOREACH cases AS c ITERATOR ic»
+«FILE activity + "TestCase" + ic.counter1 + ".java"»
+package test;
+
+import «keywordProvider»; 
+
+import android.test.ActivityInstrumentationTestCase2;
+
+import com.jayway.android.robotium.solo.Solo;
+
+public class «activity»TestCase«ic.counter1» extends ActivityInstrumentationTestCase2<«activity»> {
+	private static final String ID = "«c.name»";
+	private static final String NAME = "«c.id»";
+	private static final String NOTE = "«c.note»";
+	private static final int NUM = "«ic.counter1»";
+	private static final String SUITE = "«this.id»";
+
+	private Solo solo;	
+		
+	private «keywordProvider» T;
+		
+	public «activity»TestCase«ic.counter1»() {
+		super(«activity».class);
+	}
+	
+	@Override
+	protected void setUp() throws Exception {
+		solo = new Solo(getInstrumentation(),getActivity());
+		this.T = new «keywordProvider»(solo,getActivity());
+	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		solo.finishOpenedActivities();
+	}
+	
+	public void runTest(){
+	
+		«FOREACH c.steps AS s ITERATOR is»«EXPAND action FOR s.action»;//step «is.counter1»
+		«ENDFOREACH»
+	}
+}
+«ENDFILE»
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE action FOR actions::PostGenerationAction»«EXPAND action FOR this»«ENDDEFINE»
+
+«DEFINE action FOR actions::TermAction»«EXPAND term FOR this.term»«ENDDEFINE»
+
+«DEFINE term FOR terms::Term»«EXPAND term FOR this»«ENDDEFINE»
+
+«DEFINE term FOR terms::ReferenceTerm»new Data("«this.reference»")«ENDDEFINE»
+
+«DEFINE term FOR terms::IntegerTerm»«this.value»«ENDDEFINE»
+
+«DEFINE term FOR terms::FloatTerm»«this.value»«ENDDEFINE»
+
+«DEFINE term FOR terms::StringTerm»"«this.value»"«ENDDEFINE»
+
+«DEFINE term FOR terms::FunctorTerm»T.«this.functor»(«FOREACH arguments AS a SEPARATOR ","»«EXPAND term FOR a»«ENDFOREACH»)«ENDDEFINE»
+
+«DEFINE term FOR terms::ListTerm»new Object[]{«FOREACH elements AS e SEPARATOR ","»«EXPAND term FOR e»«ENDFOREACH»}«ENDDEFINE»
+

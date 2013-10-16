@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:data="http://st.inf.tud.org/mbt/data">
+  <data:DataStructure id="struct" name="struct">
+    <children xsi:type="data:DataLeaf" id="l1" name="l1" domain="dc"/>
+    <children xsi:type="data:DataLeaf" id="l2" name="l2" domain="dc"/>
+    <children xsi:type="data:DataLeaf" note="" id="l3" name="l3" domain="dc"/>
+    <children xsi:type="data:DataLeaf" id="l4" name="l4" domain="dc"/>
+    <children xsi:type="data:DataLeaf" id="l5" name="l5" domain="dc"/>
+    <children xsi:type="data:DataLeaf" id="l6" name="l6" domain="dc"/>
+  </data:DataStructure>
+  <data:DataClass id="dc" name="dc">
+    <children xsi:type="data:DataValue" id="v1" name="1" valueLiteral="1"/>
+    <children xsi:type="data:DataValue" id="v2" name="2" valueLiteral="2"/>
+    <children xsi:type="data:DataValue" id="v3" name="3" valueLiteral="3"/>
+    <children xsi:type="data:DataValue" id="v4" name="4" valueLiteral="4"/>
+    <children xsi:type="data:DataValue" id="v5" name="5" valueLiteral="5"/>
+    <children xsi:type="data:DataValue" id="v6" name="6" valueLiteral="6"/>
+    <children xsi:type="data:DataValue" id="v7" name="7" valueLiteral="7"/>
+  </data:DataClass>
+</xmi:XMI>

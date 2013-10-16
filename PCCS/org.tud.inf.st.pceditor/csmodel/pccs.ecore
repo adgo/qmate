@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmi:id="_K5BOIIZiEeGNk5Cc5qDbjA" name="pccs" nsURI="http://st.inf.tud.org/pccs"
+    nsPrefix="pccs">
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5BOIYZiEeGNk5Cc5qDbjA" name="AbstractParser"
+      abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_K5BOIoZiEeGNk5Cc5qDbjA"
+        name="multiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_K5B1MIZiEeGNk5Cc5qDbjA"
+        name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5B1MoZiEeGNk5Cc5qDbjA"
+        name="mapping" eType="#//Mapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5B1NIZiEeGNk5Cc5qDbjA" name="OrParser"
+      eSuperTypes="#_K5BOIYZiEeGNk5Cc5qDbjA">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5B1NoZiEeGNk5Cc5qDbjA"
+        name="parsers" lowerBound="1" upperBound="-1" eType="#_K5BOIYZiEeGNk5Cc5qDbjA"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5B1OIZiEeGNk5Cc5qDbjA" name="SequenceParser"
+      eSuperTypes="#_K5BOIYZiEeGNk5Cc5qDbjA">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5B1OoZiEeGNk5Cc5qDbjA"
+        name="parsers" lowerBound="1" upperBound="-1" eType="#_K5BOIYZiEeGNk5Cc5qDbjA"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5B1PIZiEeGNk5Cc5qDbjA" name="ConcreteSyntax">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5B1PYZiEeGNk5Cc5qDbjA"
+        name="startwith" lowerBound="1" eType="#_K5DqZ4ZiEeGNk5Cc5qDbjA"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5B1PoZiEeGNk5Cc5qDbjA"
+        name="operators" upperBound="-1" eType="#_K5CcR4ZiEeGNk5Cc5qDbjA" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5CcQIZiEeGNk5Cc5qDbjA"
+        name="keywords" upperBound="-1" eType="#_K5CcR4ZiEeGNk5Cc5qDbjA" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5CcQYZiEeGNk5Cc5qDbjA"
+        name="parsers" upperBound="-1" eType="#_K5DqZ4ZiEeGNk5Cc5qDbjA" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metamodels" lowerBound="1"
+        upperBound="-1" eType="#//MetaModel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regex" upperBound="-1"
+        eType="#//RegularExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiLineCommentIndicationStart"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiLineCommentIndicationEnd"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="singleLineCommentIndicationStart"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5CcRIZiEeGNk5Cc5qDbjA" name="TerminalParser"
+      eSuperTypes="#_K5BOIYZiEeGNk5Cc5qDbjA">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5CcRoZiEeGNk5Cc5qDbjA"
+        name="terminal" lowerBound="1" eType="#_K5CcR4ZiEeGNk5Cc5qDbjA"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5CcR4ZiEeGNk5Cc5qDbjA" name="Terminal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_K5DqYIZiEeGNk5Cc5qDbjA"
+        name="terminal" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5DqYoZiEeGNk5Cc5qDbjA" name="RefParser"
+      eSuperTypes="#_K5BOIYZiEeGNk5Cc5qDbjA">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5DqZIZiEeGNk5Cc5qDbjA"
+        name="ref" lowerBound="1" eType="#_K5DqZ4ZiEeGNk5Cc5qDbjA"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5DqZYZiEeGNk5Cc5qDbjA" name="LiteralParser"
+      abstract="true" eSuperTypes="#_K5BOIYZiEeGNk5Cc5qDbjA">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regex" eType="#//RegularExpression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5DqZ4ZiEeGNk5Cc5qDbjA" name="ParserDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_K5DqaIZiEeGNk5Cc5qDbjA"
+        name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5ERcYZiEeGNk5Cc5qDbjA"
+        name="rule" lowerBound="1" eType="#_K5BOIYZiEeGNk5Cc5qDbjA" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5ERc4ZiEeGNk5Cc5qDbjA" name="IdentifierParser"
+      eSuperTypes="#_K5DqZYZiEeGNk5Cc5qDbjA"/>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5ERdYZiEeGNk5Cc5qDbjA" name="StringParser"
+      eSuperTypes="#_K5DqZYZiEeGNk5Cc5qDbjA"/>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5ERd4ZiEeGNk5Cc5qDbjA" name="EcoreMapping"
+      eSuperTypes="#//ComposableMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5EReoZiEeGNk5Cc5qDbjA"
+        name="assignments" upperBound="-1" eType="#_K5ERe4ZiEeGNk5Cc5qDbjA" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" lowerBound="1"
+        eType="#//MetaModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
+        eType="#//QualifiedName" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5ERe4ZiEeGNk5Cc5qDbjA" name="Assignment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_K5E4gIZiEeGNk5Cc5qDbjA"
+        name="to" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//ComposableMapping"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5E4goZiEeGNk5Cc5qDbjA" name="AsQName"
+      eSuperTypes="#//Mapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_K5E4g4ZiEeGNk5Cc5qDbjA"
+        name="delim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5E4hYZiEeGNk5Cc5qDbjA" name="IdentityParser"
+      eSuperTypes="#_K5BOIYZiEeGNk5Cc5qDbjA">
+    <eStructuralFeatures xsi:type="ecore:EReference" xmi:id="_K5E4h4ZiEeGNk5Cc5qDbjA"
+        name="parser" lowerBound="1" eType="#_K5BOIYZiEeGNk5Cc5qDbjA" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5E4iYZiEeGNk5Cc5qDbjA" name="NumberParser"
+      abstract="true" eSuperTypes="#_K5DqZYZiEeGNk5Cc5qDbjA"/>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5FfkIZiEeGNk5Cc5qDbjA" name="IntParser"
+      eSuperTypes="#_K5E4iYZiEeGNk5Cc5qDbjA"/>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5FfkoZiEeGNk5Cc5qDbjA" name="DoubleParser"
+      eSuperTypes="#_K5E4iYZiEeGNk5Cc5qDbjA"/>
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_K5FflIZiEeGNk5Cc5qDbjA" name="FloatParser"
+      eSuperTypes="#_K5E4iYZiEeGNk5Cc5qDbjA"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mapping" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferenceMapping" eSuperTypes="#//ComposableMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qName" lowerBound="1" eType="#//QualifiedName"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperatorTableParser" eSuperTypes="#_K5BOIYZiEeGNk5Cc5qDbjA">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
+        eType="#//OperatorTableEntry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperatorTableEntry" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parser" lowerBound="1"
+        eType="#_K5BOIYZiEeGNk5Cc5qDbjA" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InfixOperator" abstract="true" eSuperTypes="#//PrecedenceOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryOperator" abstract="true" eSuperTypes="#//PrecedenceOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrefixOperator" eSuperTypes="#//UnaryOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PostfixOperator" eSuperTypes="#//UnaryOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Unit" eSuperTypes="#//OperatorTableEntry"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LeftAssociativeOperator" eSuperTypes="#//InfixOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RightAssociativeOperator" eSuperTypes="#//InfixOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NonAssociativeOperator" eSuperTypes="#//InfixOperator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MetaModel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_K5CcQoZiEeGNk5Cc5qDbjA"
+        name="modelURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="default" iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringValueMapping" eSuperTypes="#//ComposableMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComposableMapping" abstract="true" interface="true"
+      eSuperTypes="#//Mapping"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PrecedenceOperator" abstract="true"
+      eSuperTypes="#//OperatorTableEntry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precedence" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" eType="#//Mapping"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegularExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sections" unique="false"
+        lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LongParser" eSuperTypes="#_K5E4iYZiEeGNk5Cc5qDbjA"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BoolParser" eSuperTypes="#_K5DqZYZiEeGNk5Cc5qDbjA">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trueLit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="falseLit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportParser" eSuperTypes="#_K5BOIYZiEeGNk5Cc5qDbjA">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parser" lowerBound="1"
+        eType="#_K5BOIYZiEeGNk5Cc5qDbjA" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

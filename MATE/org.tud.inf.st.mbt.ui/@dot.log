@@ -1,0 +1,110 @@
+# 18.04.13 21:27:24 MESZ
+# Eclipse Compiler for Java(TM) bundle_qualifier, 3.8.3, Copyright IBM Corp 2000, 2012. All rights reserved.
+----------
+1. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\Activator.java (at line 3)
+	import org.eclipse.core.runtime.FileLocator;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.core.runtime.FileLocator is never used
+----------
+2. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\Activator.java (at line 4)
+	import org.eclipse.core.runtime.Path;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.core.runtime.Path is never used
+----------
+3. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\Activator.java (at line 5)
+	import org.eclipse.jface.resource.ImageDescriptor;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.resource.ImageDescriptor is never used
+----------
+----------
+4. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\util\SourceViewerUtil.java (at line 28)
+	import org.eclipse.ui.internal.editors.text.EditorsPlugin;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The type EditorsPlugin is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.editors_3.8.0.v20120523-1540.jar
+----------
+5. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\util\SourceViewerUtil.java (at line 60)
+	ISharedTextColors colors = EditorsPlugin.getDefault()
+	                           ^^^^^^^^^^^^^
+Discouraged access: The type EditorsPlugin is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.editors_3.8.0.v20120523-1540.jar
+----------
+6. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\util\SourceViewerUtil.java (at line 60)
+	ISharedTextColors colors = EditorsPlugin.getDefault()
+	                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The method getDefault() from the type EditorsPlugin is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.editors_3.8.0.v20120523-1540.jar
+----------
+7. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\util\SourceViewerUtil.java (at line 60)
+	ISharedTextColors colors = EditorsPlugin.getDefault()
+				.getSharedTextColors();
+	                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The method getSharedTextColors() from the type EditorsPlugin is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.editors_3.8.0.v20120523-1540.jar
+----------
+----------
+8. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewDataSpaceWizard.java (at line 15)
+	import org.eclipse.ui.internal.ide.DialogUtil;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The type DialogUtil is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+9. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewDataSpaceWizard.java (at line 16)
+	import org.eclipse.ui.internal.wizards.newresource.ResourceMessages;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The type ResourceMessages is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+10. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewDataSpaceWizard.java (at line 19)
+	import org.tud.inf.st.mbt.featuretree.FeaturetreeFactory;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.tud.inf.st.mbt.featuretree.FeaturetreeFactory is never used
+----------
+11. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewDataSpaceWizard.java (at line 61)
+	DialogUtil.openError(dw.getShell(), ResourceMessages.FileResource_errorMessage, 
+	^^^^^^^^^^
+Discouraged access: The type DialogUtil is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+12. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewDataSpaceWizard.java (at line 61)
+	DialogUtil.openError(dw.getShell(), ResourceMessages.FileResource_errorMessage, 
+                    e.getMessage(), e);
+	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The method openError(Shell, String, String, PartInitException) from the type DialogUtil is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+13. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewDataSpaceWizard.java (at line 61)
+	DialogUtil.openError(dw.getShell(), ResourceMessages.FileResource_errorMessage, 
+	                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The type ResourceMessages is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+14. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewDataSpaceWizard.java (at line 61)
+	DialogUtil.openError(dw.getShell(), ResourceMessages.FileResource_errorMessage, 
+	                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The field FileResource_errorMessage from the type ResourceMessages is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+----------
+15. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewFeatureTreeWizard.java (at line 15)
+	import org.eclipse.ui.internal.ide.DialogUtil;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The type DialogUtil is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+16. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewFeatureTreeWizard.java (at line 16)
+	import org.eclipse.ui.internal.wizards.newresource.ResourceMessages;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The type ResourceMessages is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+17. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewFeatureTreeWizard.java (at line 58)
+	DialogUtil.openError(dw.getShell(), ResourceMessages.FileResource_errorMessage, 
+	^^^^^^^^^^
+Discouraged access: The type DialogUtil is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+18. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewFeatureTreeWizard.java (at line 58)
+	DialogUtil.openError(dw.getShell(), ResourceMessages.FileResource_errorMessage, 
+                    e.getMessage(), e);
+	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The method openError(Shell, String, String, PartInitException) from the type DialogUtil is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+19. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewFeatureTreeWizard.java (at line 58)
+	DialogUtil.openError(dw.getShell(), ResourceMessages.FileResource_errorMessage, 
+	                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The type ResourceMessages is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+20. WARNING in C:\Users\Georg\Dropbox\git-diss\MATE\org.tud.inf.st.mbt.ui\src\org\tud\inf\st\mbt\emf\ui\wizards\NewFeatureTreeWizard.java (at line 58)
+	DialogUtil.openError(dw.getShell(), ResourceMessages.FileResource_errorMessage, 
+	                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+Discouraged access: The field FileResource_errorMessage from the type ResourceMessages is not accessible due to restriction on classpath entry C:\Users\Georg\Google Drive\Eclipse_Juno_x64\plugins\org.eclipse.ui.ide_3.8.0.v20120521-2329.jar
+----------
+20 problems (20 warnings)

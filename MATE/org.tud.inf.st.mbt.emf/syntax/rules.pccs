@@ -1,0 +1,23 @@
+import "platform:/plugin/org.tud.inf.st.mbt.emf/syntax/functions.pccs"; 
+
+syntax rules r:"http://st.inf.tud.org/mbt/rules";
+operators{"->" "<->" "&" "(" ")" "." "[" "]"}
+keywords{"and" "or" "not" "true" "otherwise"}   
+parsers{     
+	rule ::= {
+		pfeat pfunc
+		or("otherwise" "true") => r:True()
+		"not" unary 10 prefix => r:Not(operand = this)
+		"and" binary 5 left => r:And(operand1= _left operand2=_right)
+		"or" binary 4 left => r:Or(operand1= _left operand2=_right)
+		"->" binary 3 left => r:Implication(operand1 =_left operande2=_right)
+		"<->" binary 3 left => r:And(operand1 = r:Implication(operand1 =_left operand2=_right)
+									operand1 = r:Implication(operand2 =_left operand1=_right))
+		("(" rule^r ")") => r:SubPredicate(operand=r)
+	};
+	
+	pfeat ::= ((# ("."#)*)/"."^f pversion?=>v) => r:FeatureAtom(feature = f version = v);
+	pversion ::= ((# ("."#)*)/"."^v )=> v;
+		
+	pfunc ::= ("[" functions.pflog^f "]") => r:LogicFunctionAtom(function = f);
+} start rule 

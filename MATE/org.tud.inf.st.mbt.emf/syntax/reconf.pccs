@@ -1,0 +1,9 @@
+import "platform:/plugin/org.tud.inf.st.mbt.emf/syntax/actions.pccs";
+
+syntax reconfigurations;
+operators{}
+keywords{}
+parsers{
+	sequence ::= ((reconf^a ";")*=>a) => a:PreGenerationSequence(actions = this);
+    reconf ::= or(("{" sequence^s "}")=>s psetdata pgetdata prembag pactivate pdeactivate);
+} start sequence

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.tud.inf.st.pceditor/src-gen" modelPluginID="org.tud.inf.st.pceditor"
+    modelName="Pccs" importerID="org.eclipse.emf.importer.ecore" copyrightFields="false">
+  <foreignModel>pccs.ecore</foreignModel>
+  <genPackages prefix="Pccs" basePackage="org.tud.inf.st" disposableProviderFactory="true"
+      ecorePackage="pccs.ecore#_K5BOIIZiEeGNk5Cc5qDbjA">
+    <genClasses image="false" ecoreClass="pccs.ecore#_K5BOIYZiEeGNk5Cc5qDbjA">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#_K5BOIoZiEeGNk5Cc5qDbjA"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#_K5B1MIZiEeGNk5Cc5qDbjA"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#_K5B1MoZiEeGNk5Cc5qDbjA"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#_K5B1NIZiEeGNk5Cc5qDbjA">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#_K5B1NoZiEeGNk5Cc5qDbjA"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#_K5B1OIZiEeGNk5Cc5qDbjA">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#_K5B1OoZiEeGNk5Cc5qDbjA"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#_K5B1PIZiEeGNk5Cc5qDbjA">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pccs.ecore#_K5B1PYZiEeGNk5Cc5qDbjA"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#_K5B1PoZiEeGNk5Cc5qDbjA"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#_K5CcQIZiEeGNk5Cc5qDbjA"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#_K5CcQYZiEeGNk5Cc5qDbjA"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#//ConcreteSyntax/metamodels"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#//ConcreteSyntax/regex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//ConcreteSyntax/multiLineCommentIndicationStart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//ConcreteSyntax/multiLineCommentIndicationEnd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//ConcreteSyntax/singleLineCommentIndicationStart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//ConcreteSyntax/id"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#_K5CcRIZiEeGNk5Cc5qDbjA">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#_K5CcRoZiEeGNk5Cc5qDbjA"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#_K5CcR4ZiEeGNk5Cc5qDbjA">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#_K5DqYIZiEeGNk5Cc5qDbjA"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#_K5DqYoZiEeGNk5Cc5qDbjA">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pccs.ecore#_K5DqZIZiEeGNk5Cc5qDbjA"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="pccs.ecore#_K5DqZYZiEeGNk5Cc5qDbjA">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pccs.ecore#//LiteralParser/regex"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#_K5DqZ4ZiEeGNk5Cc5qDbjA">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#_K5DqaIZiEeGNk5Cc5qDbjA"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#_K5ERcYZiEeGNk5Cc5qDbjA"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#_K5ERc4ZiEeGNk5Cc5qDbjA"/>
+    <genClasses ecoreClass="pccs.ecore#_K5ERdYZiEeGNk5Cc5qDbjA"/>
+    <genClasses ecoreClass="pccs.ecore#_K5ERd4ZiEeGNk5Cc5qDbjA">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#_K5EReoZiEeGNk5Cc5qDbjA"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pccs.ecore#//EcoreMapping/metamodel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#//EcoreMapping/eClass"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="pccs.ecore#_K5ERe4ZiEeGNk5Cc5qDbjA">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#_K5E4gIZiEeGNk5Cc5qDbjA"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#//Assignment/from"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#_K5E4goZiEeGNk5Cc5qDbjA">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#_K5E4g4ZiEeGNk5Cc5qDbjA"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#_K5E4hYZiEeGNk5Cc5qDbjA">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#_K5E4h4ZiEeGNk5Cc5qDbjA"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="pccs.ecore#_K5E4iYZiEeGNk5Cc5qDbjA"/>
+    <genClasses ecoreClass="pccs.ecore#_K5FfkIZiEeGNk5Cc5qDbjA"/>
+    <genClasses ecoreClass="pccs.ecore#_K5FfkoZiEeGNk5Cc5qDbjA"/>
+    <genClasses ecoreClass="pccs.ecore#_K5FflIZiEeGNk5Cc5qDbjA"/>
+    <genClasses image="false" ecoreClass="pccs.ecore#//Mapping"/>
+    <genClasses ecoreClass="pccs.ecore#//ReferenceMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference pccs.ecore#//ReferenceMapping/qName"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#//OperatorTableParser">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#//OperatorTableParser/entries"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="pccs.ecore#//OperatorTableEntry">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#//OperatorTableEntry/parser"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="pccs.ecore#//InfixOperator"/>
+    <genClasses image="false" ecoreClass="pccs.ecore#//UnaryOperator"/>
+    <genClasses ecoreClass="pccs.ecore#//PrefixOperator"/>
+    <genClasses ecoreClass="pccs.ecore#//PostfixOperator"/>
+    <genClasses ecoreClass="pccs.ecore#//Unit"/>
+    <genClasses ecoreClass="pccs.ecore#//LeftAssociativeOperator"/>
+    <genClasses ecoreClass="pccs.ecore#//RightAssociativeOperator"/>
+    <genClasses ecoreClass="pccs.ecore#//NonAssociativeOperator"/>
+    <genClasses ecoreClass="pccs.ecore#//MetaModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#_K5CcQoZiEeGNk5Cc5qDbjA"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//MetaModel/prefix"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#//StringValueMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//StringValueMapping/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="pccs.ecore#//ComposableMapping"/>
+    <genClasses image="false" ecoreClass="pccs.ecore#//PrecedenceOperator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//PrecedenceOperator/precedence"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#//PrecedenceOperator/mapping"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#//RegularExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//RegularExpression/regex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//RegularExpression/name"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#//QualifiedName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//QualifiedName/sections"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#//LongParser"/>
+    <genClasses ecoreClass="pccs.ecore#//BoolParser">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//BoolParser/trueLit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pccs.ecore#//BoolParser/falseLit"/>
+    </genClasses>
+    <genClasses ecoreClass="pccs.ecore#//ImportParser">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pccs.ecore#//ImportParser/parser"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

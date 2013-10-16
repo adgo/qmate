@@ -1,0 +1,21 @@
+import "platform:/plugin/org.tud.inf.st.mbt.emf/syntax/functions.pccs";
+
+syntax terms t:"http://st.inf.tud.org/mbt/terms";
+operators{"(" ")"  "." "&" "[" "]"  "," "?"}
+keywords{"object" "Term" "true" "false"}   
+parsers{     
+	term ::= or(string functor long int float list ref function);
+  	string ::= % => t:StringTerm(value=this);
+  	functor ::= (or(# %)?^func ("(" term^op ("," term^op)*=>op^op  ")")?=>op^op) => t:FunctorTerm(functor=func arguments=op);
+  	
+	int ::= ($i^i) => t:IntegerTerm(value=i);
+	long ::= ($l^l) => t:LongTerm(value=l);
+	float ::= ($f^f) => t:FloatTerm(value=f);
+	bool ::= $b => t:Boolterm(value=this);
+	
+  	list ::= ("[" (term^op ("," term^op)*=>op^op)?=>op^op "]") => t:ListTerm(elements=op);
+  	ref ::= 	("&" "object" "(" (# ("."#)*)/"."^r ")" ) => t:ReferenceTerm(reference=r);	  
+  	function ::= ("&" functions.func^f) => t:FunctionTerm(function=f); 
+  	
+  	var_term ::= ("Term" "?" #^id) => t:TermVariable(id=id);
+} start term  

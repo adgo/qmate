@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui
+Bundle-SymbolicName: org.tud.inf.st.mbt.ocm.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.tud.inf.st.mbt.ocm.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.tud.inf.st.mbt.emf.graphicaleditor;bundle-version="1.0.0",
+ org.tud.inf.st.mbt.emf;bundle-version="1.0.0",
+ org.tud.inf.st.mbt.emf.edit;bundle-version="1.0.0",
+ org.eclipse.core.resources;bundle-version="3.8.0",
+ org.eclipse.gef;bundle-version="3.8.0",
+ org.tud.inf.st.mbt.ui;bundle-version="1.0.0",
+ org.tud.inf.st.pceditor;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.tud.inf.st.mbt.ocm.ui.OCMEditor"
+            contributorClass="org.tud.inf.st.mbt.emf.graphicaleditor.EMFActionBarContributor"
+            default="true"
+            extensions="ocm"
+            icon="icons/conf.png"
+            id="org.tud.inf.st.mbt.ocm.ui.editor"
+            name="OCM Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.tud.inf.st.mbt.ui.matecategory"
+            class="org.tud.inf.st.mbt.ocm.ui.NewOCMWizard"
+            descriptionImage="icons/mate16.png"
+            icon="icons/conf.png"
+            id="org.tud.inf.st.mbt.ui.wizards.ocm"
+            name="OCM"
+            preferredPerspectives="org.tud.inf.st.mbt.emf.ui.perspective"
+            project="false">
+      </wizard>
+   </extension>
+
+</plugin>

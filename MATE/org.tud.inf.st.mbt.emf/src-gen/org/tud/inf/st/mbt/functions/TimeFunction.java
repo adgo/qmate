@@ -1,0 +1,50 @@
+/**
+ */
+package org.tud.inf.st.mbt.functions;
+
+import org.tud.inf.st.mbt.rules.ITimeConsumer;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Time Function</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.tud.inf.st.mbt.functions.TimeFunction#getConsumer <em>Consumer</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.tud.inf.st.mbt.functions.FunctionsPackage#getTimeFunction()
+ * @model
+ * @generated
+ */
+public interface TimeFunction extends IArithmetricFunction {
+	/**
+	 * Returns the value of the '<em><b>Consumer</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Consumer</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Consumer</em>' reference.
+	 * @see #setConsumer(ITimeConsumer)
+	 * @see org.tud.inf.st.mbt.functions.FunctionsPackage#getTimeFunction_Consumer()
+	 * @model required="true"
+	 * @generated
+	 */
+	ITimeConsumer getConsumer();
+
+	/**
+	 * Sets the value of the '{@link org.tud.inf.st.mbt.functions.TimeFunction#getConsumer <em>Consumer</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Consumer</em>' reference.
+	 * @see #getConsumer()
+	 * @generated
+	 */
+	void setConsumer(ITimeConsumer value);
+
+} // TimeFunction

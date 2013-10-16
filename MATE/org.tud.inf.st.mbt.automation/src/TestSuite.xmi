@@ -1,0 +1,2520 @@
+<?xml version="1.0" encoding="ASCII"?>
+<test:TestSuite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:data="http://st.inf.tud.org/mbt/data" xmlns:terms="http://st.int.tud.org/mbt/terms" xmlns:test="http://st.inf.tud.org.de/mbt/test" id="empty-test-suite" name="empty-test-suite">
+  <cases id="empty-test-suite-case-01">
+    <steps note="" id="empty-test-suite-case-01-step-01">
+      <term xsi:type="terms:FunctorTerm" functor="init"/>
+    </steps>
+    <steps note="" id="empty-test-suite-case-01-step-11">
+      <term xsi:type="terms:StringTerm" value="Los gehts"/>
+    </steps>
+    <steps id="empty-test-suite-case-01-step-21">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-01-step-31">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-01-step-41">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-01-step-51">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-01-step-61">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-01-step-71">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-01-step-81">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-01-step-91">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-01-step-101">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-01-step-111">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-01-step-121">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-01-step-131">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-01-step-141">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-01-step-151">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-01-step-161">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+  </cases>
+  <cases id="empty-test-suite-case-11">
+    <steps note="" id="empty-test-suite-case-11-step-01">
+      <term xsi:type="terms:FunctorTerm" functor="init"/>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-11">
+      <term xsi:type="terms:StringTerm" value="Los gehts"/>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-21">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-31">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-41">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-51">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-61">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-71">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-81">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-91">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-101">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-111">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-121">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-131">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-141">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-151">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-161">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-171">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-181">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-191">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-201">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-211">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-221">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-231">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-241">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v4"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v6"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-251">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-261">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v5"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v3"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-271">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-281">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v2"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v7"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-291">
+      <term xsi:type="terms:FunctorTerm" functor="validate">
+        <arguments xsi:type="terms:FunctorTerm" functor="formular"/>
+      </term>
+    </steps>
+    <steps id="empty-test-suite-case-11-step-301">
+      <term xsi:type="terms:ListTerm">
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+        <elements xsi:type="terms:ListTerm">
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l4"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l1"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l2"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l5"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l3"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+          <elements xsi:type="terms:FunctorTerm" functor="set">
+            <arguments xsi:type="terms:LeafTerm">
+              <leaf href="input.data#l6"/>
+            </arguments>
+            <arguments xsi:type="terms:DataTerm">
+              <value xsi:type="data:DataValue" href="input.data#v1"/>
+            </arguments>
+          </elements>
+        </elements>
+      </term>
+    </steps>
+    <steps note="" id="empty-test-suite-case-11-step-311">
+      <term xsi:type="terms:FunctorTerm" functor="quit"/>
+    </steps>
+  </cases>
+  <configuration href="all.generic#empty"/>
+</test:TestSuite>

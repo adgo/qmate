@@ -1,0 +1,413 @@
+/**
+ */
+package org.tud.inf.st.mbt.ulang.guigraph.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.tud.inf.st.mbt.core.impl.AbstractModelElementImpl;
+import org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage;
+import org.tud.inf.st.mbt.ulang.guigraph.Transition;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Transition</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getRate <em>Rate</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getFaultImpact <em>Fault Impact</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getFaultProbability <em>Fault Probability</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#isTerminates <em>Terminates</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getTimeMin <em>Time Min</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getTimeMax <em>Time Max</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public abstract class TransitionImpl extends AbstractModelElementImpl implements Transition {
+	/**
+	 * The default value of the '{@link #getRate() <em>Rate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int RATE_EDEFAULT = 1;
+
+	/**
+	 * The cached value of the '{@link #getRate() <em>Rate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRate()
+	 * @generated
+	 * @ordered
+	 */
+	protected int rate = RATE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFaultImpact() <em>Fault Impact</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFaultImpact()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double FAULT_IMPACT_EDEFAULT = 1.0;
+
+	/**
+	 * The cached value of the '{@link #getFaultImpact() <em>Fault Impact</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFaultImpact()
+	 * @generated
+	 * @ordered
+	 */
+	protected double faultImpact = FAULT_IMPACT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFaultProbability() <em>Fault Probability</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFaultProbability()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double FAULT_PROBABILITY_EDEFAULT = 1.0;
+
+	/**
+	 * The cached value of the '{@link #getFaultProbability() <em>Fault Probability</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFaultProbability()
+	 * @generated
+	 * @ordered
+	 */
+	protected double faultProbability = FAULT_PROBABILITY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isTerminates() <em>Terminates</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTerminates()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean TERMINATES_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isTerminates() <em>Terminates</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTerminates()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean terminates = TERMINATES_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTimeMin() <em>Time Min</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeMin()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long TIME_MIN_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getTimeMin() <em>Time Min</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeMin()
+	 * @generated
+	 * @ordered
+	 */
+	protected long timeMin = TIME_MIN_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTimeMax() <em>Time Max</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeMax()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long TIME_MAX_EDEFAULT = -1L;
+
+	/**
+	 * The cached value of the '{@link #getTimeMax() <em>Time Max</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimeMax()
+	 * @generated
+	 * @ordered
+	 */
+	protected long timeMax = TIME_MAX_EDEFAULT;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TransitionImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return GuigraphPackage.Literals.TRANSITION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getRate() {
+		return rate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRate(int newRate) {
+		int oldRate = rate;
+		rate = newRate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__RATE, oldRate, rate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getFaultImpact() {
+		return faultImpact;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFaultImpact(double newFaultImpact) {
+		double oldFaultImpact = faultImpact;
+		faultImpact = newFaultImpact;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__FAULT_IMPACT, oldFaultImpact, faultImpact));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getFaultProbability() {
+		return faultProbability;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFaultProbability(double newFaultProbability) {
+		double oldFaultProbability = faultProbability;
+		faultProbability = newFaultProbability;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__FAULT_PROBABILITY, oldFaultProbability, faultProbability));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isTerminates() {
+		return terminates;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTerminates(boolean newTerminates) {
+		boolean oldTerminates = terminates;
+		terminates = newTerminates;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__TERMINATES, oldTerminates, terminates));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getTimeMin() {
+		return timeMin;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimeMin(long newTimeMin) {
+		long oldTimeMin = timeMin;
+		timeMin = newTimeMin;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__TIME_MIN, oldTimeMin, timeMin));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getTimeMax() {
+		return timeMax;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimeMax(long newTimeMax) {
+		long oldTimeMax = timeMax;
+		timeMax = newTimeMax;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__TIME_MAX, oldTimeMax, timeMax));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case GuigraphPackage.TRANSITION__RATE:
+				return getRate();
+			case GuigraphPackage.TRANSITION__FAULT_IMPACT:
+				return getFaultImpact();
+			case GuigraphPackage.TRANSITION__FAULT_PROBABILITY:
+				return getFaultProbability();
+			case GuigraphPackage.TRANSITION__TERMINATES:
+				return isTerminates();
+			case GuigraphPackage.TRANSITION__TIME_MIN:
+				return getTimeMin();
+			case GuigraphPackage.TRANSITION__TIME_MAX:
+				return getTimeMax();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case GuigraphPackage.TRANSITION__RATE:
+				setRate((Integer)newValue);
+				return;
+			case GuigraphPackage.TRANSITION__FAULT_IMPACT:
+				setFaultImpact((Double)newValue);
+				return;
+			case GuigraphPackage.TRANSITION__FAULT_PROBABILITY:
+				setFaultProbability((Double)newValue);
+				return;
+			case GuigraphPackage.TRANSITION__TERMINATES:
+				setTerminates((Boolean)newValue);
+				return;
+			case GuigraphPackage.TRANSITION__TIME_MIN:
+				setTimeMin((Long)newValue);
+				return;
+			case GuigraphPackage.TRANSITION__TIME_MAX:
+				setTimeMax((Long)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case GuigraphPackage.TRANSITION__RATE:
+				setRate(RATE_EDEFAULT);
+				return;
+			case GuigraphPackage.TRANSITION__FAULT_IMPACT:
+				setFaultImpact(FAULT_IMPACT_EDEFAULT);
+				return;
+			case GuigraphPackage.TRANSITION__FAULT_PROBABILITY:
+				setFaultProbability(FAULT_PROBABILITY_EDEFAULT);
+				return;
+			case GuigraphPackage.TRANSITION__TERMINATES:
+				setTerminates(TERMINATES_EDEFAULT);
+				return;
+			case GuigraphPackage.TRANSITION__TIME_MIN:
+				setTimeMin(TIME_MIN_EDEFAULT);
+				return;
+			case GuigraphPackage.TRANSITION__TIME_MAX:
+				setTimeMax(TIME_MAX_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case GuigraphPackage.TRANSITION__RATE:
+				return rate != RATE_EDEFAULT;
+			case GuigraphPackage.TRANSITION__FAULT_IMPACT:
+				return faultImpact != FAULT_IMPACT_EDEFAULT;
+			case GuigraphPackage.TRANSITION__FAULT_PROBABILITY:
+				return faultProbability != FAULT_PROBABILITY_EDEFAULT;
+			case GuigraphPackage.TRANSITION__TERMINATES:
+				return terminates != TERMINATES_EDEFAULT;
+			case GuigraphPackage.TRANSITION__TIME_MIN:
+				return timeMin != TIME_MIN_EDEFAULT;
+			case GuigraphPackage.TRANSITION__TIME_MAX:
+				return timeMax != TIME_MAX_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
+} //TransitionImpl

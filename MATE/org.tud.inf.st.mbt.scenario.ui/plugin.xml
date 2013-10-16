@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.tud.inf.st.mbt.scenario.ui.ScenarioEditor"
+            contributorClass="org.tud.inf.st.mbt.emf.graphicaleditor.EMFActionBarContributor"
+            default="true"
+            extensions="sscen"
+            icon="icons/scen.png"
+            id="org.tud.inf.st.mbt.scenario.ui.editor"
+            name="Scenario Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.tud.inf.st.mbt.ui.matecategory"
+            class="org.tud.inf.st.mbt.scenario.ui.NewScenarioWizard"
+            descriptionImage="icons/mate16.png"
+            icon="icons/scen.png"
+            id="org.tud.inf.st.mbt.ui.wizards.sscen"
+            name="Senario Model"
+            preferredPerspectives="org.tud.inf.st.mbt.emf.ui.perspective"
+            project="false">
+      </wizard>
+   </extension>
+
+</plugin>

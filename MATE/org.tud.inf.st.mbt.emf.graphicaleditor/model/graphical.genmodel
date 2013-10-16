@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.tud.inf.st.mbt.emf.graphicaleditor/src-gen"
+    modelPluginID="org.tud.inf.st.mbt.graphicaleditor" modelName="Graphical" importerID="org.eclipse.emf.importer.ecore"
+    copyrightFields="false" language="">
+  <foreignModel>graphical.ecore</foreignModel>
+  <genPackages prefix="Graphical" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
+      ecorePackage="graphical.ecore#/">
+    <genClasses ecoreClass="graphical.ecore#//GraphicalDescription">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphical.ecore#//GraphicalDescription/nodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphical.ecore#//GraphicalDescription/connections"/>
+    </genClasses>
+    <genClasses ecoreClass="graphical.ecore#//GraphicalNodeDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphical.ecore#//GraphicalNodeDefinition/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphical.ecore#//GraphicalNodeDefinition/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphical.ecore#//GraphicalNodeDefinition/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphical.ecore#//GraphicalNodeDefinition/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphical.ecore#//GraphicalNodeDefinition/referenceId"/>
+    </genClasses>
+    <genClasses ecoreClass="graphical.ecore#//GraphicalConnectionDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphical.ecore#//GraphicalConnectionDefinition/referenceId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference graphical.ecore#//GraphicalConnectionDefinition/bendpoints"/>
+    </genClasses>
+    <genClasses ecoreClass="graphical.ecore#//Bendpoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphical.ecore#//Bendpoint/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphical.ecore#//Bendpoint/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute graphical.ecore#//Bendpoint/index"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,83 @@
+syntax "http://st.inf.tud.org/pccs";
+operators{"=>" "(" ")" "." ";" "::=" "%" "#" "^" "/" "{" "}" "*" "+" "?" "=" "!" ":" "$i" "$d" "$f" "$l"} 
+keywords{ "regex" "keywords" "syntax" "operators" "parsers" "start" "or" "binary" 
+	"unary" "left" "right" "prefix" "postfix" "comments" "import"}
+parsers{
+	psyntax ::=  ("syntax" or(pmetamodel pmetamodel_nopfx)*^mms ";" 
+					("comments" %?^s (%^s %^e)?^m ";")?^comm
+					poperators?^ops pkeywords?^keys pregex?^rx
+					pparsers?^_parsers)
+			=> ConcreteSyntax(_regex=rx _operators=ops _keywords=keys metamodels=mms 
+					_parsers=_parsers._parsers _startwith=_parsers._start 
+					singleLineCommentIndicationStart=comm.s
+					multiLineCommentIndicationStart=comm.m.s
+					multiLineCommentIndicationEnd=comm.m.e); 
+	 
+	pmetamodel ::= (#^_prefix ":" %^uri) => MetaModel(_prefix=_prefix modelURI=uri);
+	pmetamodel_nopfx ::= % => MetaModel(_prefix="default" modelURI=this);		
+			 
+	poperators ::= ("operators" pterminals^terms) => terms;
+	pkeywords ::= ("keywords" pterminals^terms) => terms;
+	pterminals ::= ("{" %* => Terminal(terminal = this)^terms "}") => terms;
+	 
+	pregex ::= ("regex" "{" (#^name "=" %^ex)* => RegularExpression(name=name _regex=ex)^_regex "}") => _regex;
+	
+	pparsers ::= ("parsers" "{" pdef*^_parsers "}"  "start" #^_start);  
+	
+	pdef ::= (#^id "::=" pabstract^rule ";") => ParserDefinition(name=id rule=rule);
+	
+	pabstract ::= (or(pstr pid pint plong pdouble pfloat pseq por pref pterm pident pimport poptable)^parser pmult^mult pmapping^mapping plabel^label) 
+			=> IdentityParser(parser=parser multiplicity=mult label=label mapping=mapping);
+						
+	pmult ::= or("*" "+" "?")?;
+	plabel ::= ("^" #^id)? => id;
+	prxref ::= (":" #^ref)? => ref;
+	
+	pmapping ::= or(pasqname ("=>" pcmapping^m) => m)?;
+	pcmapping ::= or(pstrmapping prefmapping pecoremapping pecoremapping_nopfx);
+	
+	prefmapping ::= pqname => ReferenceMapping(qName=this); 
+	pstrmapping ::= % => StringValueMapping(value = this) ;	
+	
+	pasqname ::= ("/" %^delim) => AsQName(delim=delim);
+	
+	passignment ::= (#^to "=" pcmapping^from) => Assignment(to=to from=from);
+	
+	pecoremapping ::= (#^pfx ":" pqname^eclass "(" passignment*^asgs ")") 
+		=> EcoreMapping(metamodel=pfx eClass=eclass assignments=asgs);
+	pecoremapping_nopfx	::= (pqname^eclass "(" passignment*^asgs ")") 
+		=> EcoreMapping(metamodel="default" eClass=eclass assignments=asgs);
+	
+	pqnameasg ::= (#^to "=" pqname^from) => QNameAssignment(to = to qName=from);
+	pmappingasg ::= pecoremapping => MappingAssignment(mapping = this);
+	pstrvalueasg ::= % => StringValueAssignment(value=this);
+	
+	por ::= ("or" "(" pabstract*^_parsers ")") => OrParser(_parsers = _parsers); 
+		
+	pstr ::= ("%" prxref?^rx) => StringParser(_regex = rx); 
+	pid ::= ("#" prxref?^rx) => IdentifierParser(_regex = rx);
+	pint ::= ("$i" prxref?^rx)=> IntParser(_regex = rx);
+	plong ::= ("$l" prxref?^rx)=> LongParser(_regex = rx);
+	pdouble ::= ("$d" prxref?^rx) => DoubleParser(_regex = rx);
+	pfloat ::= ("$f" prxref?^rx) => FloatParser(_regex = rx);	
+	
+	pseq ::= ("(" pabstract*^_parsers ")") => SequenceParser(_parsers = _parsers);
+	
+	pident ::= ("!" pabstract^p) => IdentityParser(parser=p);  
+	
+	pimport ::= ("import" "(" pabstract^p ")") => ImportParser(parser=p);	
+	
+	pref ::= # => RefParser(ref = this);
+	pterm ::= % => TerminalParser(terminal = this);
+	
+	pqname ::= (# ("." #)*)/".";
+	
+	poptable ::= ("{" or(pinfix_na pinfix_la pinfix_ra pprefix ppostfix punit)*^e "}") => OperatorTableParser(entries = e) ;
+	pinfix_na ::= (pabstract^p "binary" $i^prec pmapping?^m) => NonAssociativeOperator(parser =p precedence=prec mapping=m);
+	pinfix_la ::= (pabstract^p "binary" $i^prec "left" pmapping?^m) => LeftAssociativeOperator(parser = p precedence=prec mapping=m);
+	pinfix_ra ::= (pabstract^p "binary" $i^prec "right" pmapping?^m) => RightAssociativeOperator(parser = p precedence=prec mapping=m);
+	pprefix ::= (pabstract^p "unary" $i^prec "prefix" pmapping?^m) => PrefixOperator(parser = p precedence=prec mapping=m);
+	ppostfix ::= (pabstract^p "unary" $i^prec "postfix" pmapping?^m) => PostfixOperator(parser = p precedence=prec mapping=m);
+	punit ::= pabstract => Unit(parser = this);
+}  start psyntax  
+            

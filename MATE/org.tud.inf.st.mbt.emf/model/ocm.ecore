@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ocm" nsURI="http://st.inf.tud.org/mbt/ocm" nsPrefix="ocm">
+  <eClassifiers xsi:type="ecore:EClass" name="OperationalConfigurationModel" eSuperTypes="mbt.ecore#//core/AbstractModelElement mbt.ecore#//rules/ITimeConsumer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
+        eType="#//Edge" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+        eType="#//ConfigurationNode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="start" lowerBound="1" eType="#//ConfigurationNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationNode" abstract="true" eSuperTypes="mbt.ecore#//core/AbstractModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="postConfEventID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationalEdge" abstract="true" eSuperTypes="#//Edge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//ConfigurationNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//ConfigurationNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StandardConfigurationNode" eSuperTypes="#//ConfigurationNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
+        eType="ecore:EClass mbt.ecore#//features/Configuration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReconfigurationActionNode" eSuperTypes="#//ConfigurationNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
+        eType="ecore:EClass actions.ecore#//ReconfigurationAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actionsText" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComposedConfigurationNode" eSuperTypes="#//ConfigurationNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Edge" abstract="true" eSuperTypes="mbt.ecore#//core/AbstractModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositionEdge" eSuperTypes="#//Edge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//ConfigurationNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//ComposedConfigurationNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimedEdge" eSuperTypes="#//OperationalEdge">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventGuardedEdge" eSuperTypes="#//OperationalEdge">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guardEventID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

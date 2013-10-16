@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.tud.inf.st.mbt.ulang.guigraph.GUIGraphEditor"
+            contributorClass="org.tud.inf.st.mbt.emf.graphicaleditor.EMFActionBarContributor"
+            default="true"
+            extensions="gg"
+            icon="icons/gg.png"
+            id="org.tud.inf.st.mbt.guigrapheditor"
+            name="GUI Graph Editor">
+      </editor>
+      <editor
+            class="org.tud.inf.st.mbt.ulang.guigraph.defs.DefinitionsEdtior"
+            default="true"
+            extensions="defs"
+            icon="icons/defs.png"
+            id="org.tud.inf.st.mbt.defseditor"
+            name="Definitons Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.tud.inf.st.mbt.emf.ui.perspective">
+         <newWizardShortcut
+               id="org.tud.inf.st.mbt.ui.wizards.guimm">
+         </newWizardShortcut>
+         <newWizardShortcut
+               id="org.tud.inf.st.mbt.ui.wizards.guigraph">
+         </newWizardShortcut>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.tud.inf.st.mbt.ui.matecategory"
+            class="org.tud.inf.st.mbt.ulang.guigraph.wizards.NewGUIGraphWizard"
+            descriptionImage="icons/mate16.png"
+            icon="icons/gg.png"
+            id="org.tud.inf.st.mbt.ui.wizards.guigraph"
+            name="GUI Graph"
+            preferredPerspectives="org.tud.inf.st.mbt.emf.ui.perspective"
+            project="false">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.tud.inf.st.mbt.ulang.guigraph.ggcontrib"
+            nameFilter="*.gg"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.tud.inf.st.mbt.ulang.guigraph.actions.GenerateAction"
+               icon="icons/mate16.png"
+               id="org.tud.inf.st.mbt.ulang.guigraph.actions.generate"
+               label="Generate test suite..."
+               menubarPath="group.generate">
+         </action>
+         <action
+               class="org.tud.inf.st.mbt.ulang.guigraph.actions.SimulateAction"
+               icon="icons/mate16.png"
+               id="org.tud.inf.st.mbt.ulang.guigraph.views.simulation"
+               label="Simulate..."
+               menubarPath="group.generate">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.tud.inf.st.mbt.ulang.guigraph.ui.testcontrib"
+            nameFilter="*.test"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.tud.inf.st.mbt.ulang.guigraph.actions.AutomationAction"
+               icon="icons/mate16.png"
+               id="org.tud.inf.st.mbt.ulang.guigraph.ui.automationaction"
+               label="Automate..."
+               menubarPath="group.generate">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            category="org.tud.inf.st.mbt.category"
+            class="org.tud.inf.st.mbt.ulang.guigraph.views.SimulationView"
+            icon="icons/mate16.png"
+            id="org.tud.inf.st.mbt.ulang.guigraph.views.simulation"
+            name="Simulation View"
+            restorable="false">
+      </view>
+   </extension>
+
+</plugin>

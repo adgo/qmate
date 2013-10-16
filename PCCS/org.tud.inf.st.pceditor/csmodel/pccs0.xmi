@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pccs:ConcreteSyntax xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pccs="http://st.inf.tud.org/pccs" xmi:id="_hzIVtoNZEeGSxfYZUuyuLQ"
+	startwith="_hzOcQYNZEeGSxfYZUuyuLQ">
+	<operators xmi:id="_hzIVt4NZEeGSxfYZUuyuLQ" terminal="?" />
+	<operators xmi:id="_hzIVuINZEeGSxfYZUuyuLQ" terminal="*" />
+	<operators xmi:id="_hzIVuYNZEeGSxfYZUuyuLQ" terminal="+" />
+	<operators xmi:id="_hzIVuoNZEeGSxfYZUuyuLQ" terminal="#" />
+	<operators xmi:id="_hzIVu4NZEeGSxfYZUuyuLQ" terminal=")" />
+	<operators xmi:id="_hzIVvINZEeGSxfYZUuyuLQ" terminal="(" />
+	<operators xmi:id="_hzIVvYNZEeGSxfYZUuyuLQ" terminal="::=" />
+	<operators xmi:id="_hzIVvoNZEeGSxfYZUuyuLQ" terminal=";" />
+	<operators xmi:id="_hzIVv4NZEeGSxfYZUuyuLQ" terminal="{" />
+	<operators xmi:id="_hzIVwINZEeGSxfYZUuyuLQ" terminal="}" />
+	<operators xmi:id="_hzOcIINZEeGSxfYZUuyuLQ" terminal="%" />
+	<operators xmi:id="_mpJZ4IO0EeGRlpFYUl_o6g" terminal="^" />
+	<operators xmi:id="_basF8IPLEeGRlpFYUl_o6g" terminal="=>" />
+	<operators xmi:id="_tDtjYIPREeGRlpFYUl_o6g" terminal="." />
+	<operators xmi:id="_pt96IIPSEeGRlpFYUl_o6g" terminal="=" />
+	<operators xmi:id="_slashop" terminal="/" />
+	<operators xmi:id="_dollar_i" terminal="$i" />
+	<keywords xmi:id="_hzOcIYNZEeGSxfYZUuyuLQ" terminal="or" />
+	<keywords xmi:id="_hzOcIoNZEeGSxfYZUuyuLQ" terminal="operators" />
+	<keywords xmi:id="_hzOcI4NZEeGSxfYZUuyuLQ" terminal="keywords" />
+	<keywords xmi:id="_hzOcJINZEeGSxfYZUuyuLQ" terminal="parsers" />
+	<keywords xmi:id="_hzOcJYNZEeGSxfYZUuyuLQ" terminal="start" />
+	<keywords xmi:id="_cv0SYIO2EeGRlpFYUl_o6g" terminal="syntax" />
+	<parsers xmi:id="_hzOcJoNZEeGSxfYZUuyuLQ" name="identifier">
+		<rule xsi:type="pccs:TerminalParser" xmi:id="_hzOcJ4NZEeGSxfYZUuyuLQ"
+			terminal="_hzIVuoNZEeGSxfYZUuyuLQ">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_id_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>IdentifierParser</sections>
+				</eClass>
+			</mapping>
+		</rule>
+	</parsers>
+	<parsers xmi:id="_int" name="int">
+		<rule xsi:type="pccs:TerminalParser" xmi:id="_hzOcJ4NZEeGSxfYZUuyuLQ"
+			terminal="_dollar_i">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_int_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>IntParser</sections>
+				</eClass>
+			</mapping>
+		</rule>
+	</parsers>
+	<parsers xmi:id="_term" name="term">
+		<rule xsi:type="pccs:StringParser" xmi:id="_termstr">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_term_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>TerminalParser</sections>
+				</eClass>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_term_term"
+					to="terminal">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_term_term_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>this</sections>
+						</qName>
+					</from>
+				</assignments>
+			</mapping>
+		</rule>
+	</parsers>
+	<parsers xmi:id="_hzOcKINZEeGSxfYZUuyuLQ" name="ref">
+		<rule xsi:type="pccs:IdentifierParser" xmi:id="_hzOcKYNZEeGSxfYZUuyuLQ">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_ref_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>RefParser</sections>
+				</eClass>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_ref_ref"
+					to="ref">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_ref_ref_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>this</sections>
+						</qName>
+					</from>
+				</assignments>
+			</mapping>
+		</rule>
+	</parsers>
+	<parsers xmi:id="_hzOcKoNZEeGSxfYZUuyuLQ" name="or">
+		<rule xsi:type="pccs:SequenceParser" xmi:id="_hzOcK4NZEeGSxfYZUuyuLQ">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_or_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>OrParser</sections>
+				</eClass>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_or_alts"
+					to="parsers">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_alt_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>alt</sections>
+						</qName>
+					</from>
+				</assignments>
+			</mapping>
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcLINZEeGSxfYZUuyuLQ"
+				terminal="_hzOcIYNZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcLYNZEeGSxfYZUuyuLQ"
+				terminal="_hzIVvINZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:RefParser" xmi:id="_hzOcLoNZEeGSxfYZUuyuLQ"
+				multiplicity="*" label="alt" ref="_hzOcMINZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcL4NZEeGSxfYZUuyuLQ"
+				terminal="_hzIVu4NZEeGSxfYZUuyuLQ" />
+		</rule>
+	</parsers>
+	<parsers xmi:id="_hzOcMINZEeGSxfYZUuyuLQ" name="abstractparser">
+		<rule xsi:type="pccs:SequenceParser" xmi:id="_abstract_rule">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_abstract_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>IdentityParser</sections>
+				</eClass>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_abstract_alts"
+					to="parser">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_alt_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>parser</sections>
+						</qName>
+					</from>
+				</assignments>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_or_mult"
+					to="multiplicity">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_mult_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>props</sections>
+							<sections>multiplicity</sections>
+						</qName>
+					</from>
+				</assignments>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_or_label"
+					to="label">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_label_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>props</sections>
+							<sections>parserlabel</sections>
+							<sections>label</sections>
+						</qName>
+					</from>
+				</assignments>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_or_map"
+					to="mapping">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_map_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>props</sections>
+							<sections>parsermapping</sections>
+						</qName>
+					</from>
+				</assignments>
+			</mapping>
+			<parsers xsi:type="pccs:OrParser" xmi:id="_hzOcMoNZEeGSxfYZUuyuLQ"
+				label="parser">
+				<parsers xsi:type="pccs:RefParser" xmi:id="_hzOcM4NZEeGSxfYZUuyuLQ"
+					label="parser" ref="_hzOcJoNZEeGSxfYZUuyuLQ" />
+				<parsers xsi:type="pccs:RefParser" xmi:id="_hzOcNINZEeGSxfYZUuyuLQ"
+					label="parser" ref="_hzOcKoNZEeGSxfYZUuyuLQ" />
+				<parsers xsi:type="pccs:RefParser" xmi:id="_hzOcNYNZEeGSxfYZUuyuLQ"
+					label="parser" ref="_hzOcKINZEeGSxfYZUuyuLQ" />
+				<parsers xsi:type="pccs:RefParser" xmi:id="_hzOcNoNZEeGSxfYZUuyuLQ"
+					label="parser" ref="_hzOcUYNZEeGSxfYZUuyuLQ" />
+				<parsers xsi:type="pccs:RefParser" xmi:id="_G7nmQIO2EeGRlpFYUl_o6g"
+					label="parser" ref="_7yPeEIO1EeGRlpFYUl_o6g" />
+				<parsers xsi:type="pccs:RefParser" xmi:id="_term_" label="parser"
+					ref="_term" />
+				<parsers xsi:type="pccs:RefParser" xmi:id="_int_" label="parser"
+					ref="_int" />
+			</parsers>
+			<parsers xsi:type="pccs:RefParser" xmi:id="_abstract_props"
+				label="props" ref="_parserprops" />
+		</rule>
+	</parsers>
+	<parsers xmi:id="_parserprops" name="parserprops">
+		<rule xsi:type="pccs:SequenceParser" xmi:id="_hzOcMYNZEeGSxfYZUuyuLQ"
+			label="props">
+			<parsers xsi:type="pccs:OrParser" xmi:id="_hzOcN4NZEeGSxfYZUuyuLQ"
+				multiplicity="?" label="multiplicity">
+				<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcOINZEeGSxfYZUuyuLQ"
+					terminal="_hzIVt4NZEeGSxfYZUuyuLQ" />
+				<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcOYNZEeGSxfYZUuyuLQ"
+					terminal="_hzIVuYNZEeGSxfYZUuyuLQ" />
+				<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcOoNZEeGSxfYZUuyuLQ"
+					terminal="_hzIVuINZEeGSxfYZUuyuLQ" />
+			</parsers>
+			<parsers xsi:type="pccs:OrParser" xmi:id="_hzOcN4NZEeGSxfYZUuyuLQ_map"
+				multiplicity="?" label="parsermapping">
+				<parsers xsi:type="pccs:SequenceParser" xmi:id="_fYSbYIO0EeGRlpFYUl_o6g"
+					label="mapping">
+					<mapping xsi:type="pccs:ReferenceMapping" xmi:id="_ecoremap_value">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>mapping</sections>
+						</qName>
+					</mapping>
+					<parsers xsi:type="pccs:TerminalParser" xmi:id="_lQC48IO0EeGRlpFYUl_o6g"
+						terminal="_basF8IPLEeGRlpFYUl_o6g" />
+					<parsers xsi:type="pccs:RefParser" xmi:id="_YwW3kIPUEeGRlpFYUl_o6g"
+						label="mapping" ref="_ICdBwIPSEeGRlpFYUl_o6g" />
+				</parsers>
+				<parsers xsi:type="pccs:SequenceParser" xmi:id="parsers_qname">
+					<mapping xsi:type="pccs:EcoreMapping" xmi:id="_asqname_mapping"
+						metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+						<eClass xsi:type="pccs:QualifiedName">
+							<sections>AsQName</sections>
+						</eClass>
+						<assignments xsi:type="pccs:Assignment" xmi:id="_aqn_delim"
+							to="delim">
+							<from xsi:type="pccs:ReferenceMapping" xmi:id="_delim_ref">
+								<qName xsi:type="pccs:QualifiedName">
+									<sections>delim</sections>
+								</qName>
+							</from>
+						</assignments>
+					</mapping>
+					<parsers xsi:type="pccs:TerminalParser" xmi:id="parser_qname_slash"
+						terminal="_slashop" />
+					<parsers xsi:type="pccs:StringParser" xmi:id="_asqnamedelim"
+						label="delim" />
+				</parsers>
+				<parsers xsi:type="pccs:SequenceParser" xmi:id="parsers_refmapping">
+					<mapping xsi:type="pccs:ReferenceMapping" xmi:id="_refmap_value">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>mapping</sections>
+						</qName>
+					</mapping>
+					<parsers xsi:type="pccs:TerminalParser" xmi:id="_lQC48IO0EeGRlpFYUl_o6g"
+						terminal="_basF8IPLEeGRlpFYUl_o6g" />
+					<parsers xsi:type="pccs:RefParser" xmi:id="_mappings_ref"
+						label="mapping" ref="_refmapping" />
+				</parsers>
+				<parsers xsi:type="pccs:SequenceParser" xmi:id="parsers_strmapping">
+					<mapping xsi:type="pccs:ReferenceMapping" xmi:id="_strmap_value">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>mapping</sections>
+						</qName>
+					</mapping>
+					<parsers xsi:type="pccs:TerminalParser" xmi:id="_strmap_init"
+						terminal="_basF8IPLEeGRlpFYUl_o6g" />
+					<parsers xsi:type="pccs:RefParser" xmi:id="_mappings_str"
+						label="mapping" ref="_strmapping" />
+				</parsers>
+			</parsers>
+			<parsers xsi:type="pccs:SequenceParser" xmi:id="_Fj3NgIPUEeGRlpFYUl_o6g"
+				multiplicity="?" label="parserlabel">
+				<parsers xsi:type="pccs:TerminalParser" xmi:id="_Fj3NgYPUEeGRlpFYUl_o6g"
+					terminal="_mpJZ4IO0EeGRlpFYUl_o6g" />
+				<parsers xsi:type="pccs:IdentifierParser" xmi:id="_Fj3NgoPUEeGRlpFYUl_o6g"
+					label="label" />
+			</parsers>
+		</rule>
+	</parsers>
+	<parsers xmi:id="_hzOcO4NZEeGSxfYZUuyuLQ" name="parserdef">
+		<rule xsi:type="pccs:SequenceParser" xmi:id="_hzOcPINZEeGSxfYZUuyuLQ"
+			label="def">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_def_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>ParserDefinition</sections>
+				</eClass>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_def_map_name"
+					to="name">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_def_map_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>name</sections>
+						</qName>
+					</from>
+				</assignments>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_def_map_rule"
+					to="rule">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_def_map_rule_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>rule</sections>
+						</qName>
+					</from>
+				</assignments>
+			</mapping>
+			<parsers xsi:type="pccs:IdentifierParser" xmi:id="_hzOcPYNZEeGSxfYZUuyuLQ"
+				label="name" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcPoNZEeGSxfYZUuyuLQ"
+				terminal="_hzIVvYNZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:RefParser" xmi:id="_hzOcP4NZEeGSxfYZUuyuLQ"
+				label="rule" ref="_hzOcMINZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcQINZEeGSxfYZUuyuLQ"
+				terminal="_hzIVvoNZEeGSxfYZUuyuLQ" />
+		</rule>
+	</parsers>
+	<parsers xmi:id="_hzOcQYNZEeGSxfYZUuyuLQ" name="concretesyntax">
+		<rule xsi:type="pccs:SequenceParser" xmi:id="_hzOcQoNZEeGSxfYZUuyuLQ">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_cs_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>ConcreteSyntax</sections>
+				</eClass>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_cs_map_uri"
+					to="metamodels">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_cs_map_uri_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>metamodel</sections>
+						</qName>
+					</from>
+				</assignments>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_cs_map_ops"
+					to="operators">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_cs_map_ops_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>operators</sections>
+						</qName>
+					</from>
+				</assignments>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_cs_map_kw"
+					to="keywords">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_cs_map_kw_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>keywords</sections>
+						</qName>
+					</from>
+				</assignments>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_cs_map_defs"
+					to="parsers">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_cs_map_defs_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>defs</sections>
+						</qName>
+					</from>
+				</assignments>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_cs_map_start"
+					to="startwith">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_cs_map_start_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>start</sections>
+						</qName>
+					</from>
+				</assignments>
+			</mapping>
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hPpTsIO2EeGRlpFYUl_o6g"
+				terminal="_cv0SYIO2EeGRlpFYUl_o6g" />
+			<parsers xsi:type="pccs:StringParser" xmi:id="_lJnO4IO2EeGRlpFYUl_o6g"
+				label="metamodel">
+				<mapping xsi:type="pccs:EcoreMapping" xmi:id="_aoFeIIjKEeGVc6sQ18XggA"
+					metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+					<eClass xsi:type="pccs:QualifiedName">
+						<sections>MetaModel</sections>
+					</eClass>
+					<assignments xsi:type="pccs:Assignment" xmi:id="_r7EB0IjKEeGVc6sQ18XggA"
+						to="modelURI">
+						<from xsi:type="pccs:ReferenceMapping" xmi:id="_map_uri_ref">
+							<qName xsi:type="pccs:QualifiedName">
+								<sections>this</sections>
+							</qName>
+						</from>
+					</assignments>
+					<assignments xsi:type="pccs:Assignment" xmi:id="_r7EB0IjKEeGVc6sQ18XggA"
+						to="prefix">
+						<from xsi:type="pccs:StringValueMapping" xmi:id="_mmprefixasg"
+							value="default" />
+					</assignments>
+				</mapping>
+			</parsers>
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_mB13YIO2EeGRlpFYUl_o6g"
+				terminal="_hzIVvoNZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcQ4NZEeGSxfYZUuyuLQ"
+				terminal="_hzOcIoNZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcRINZEeGSxfYZUuyuLQ"
+				terminal="_hzIVv4NZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:StringParser" xmi:id="_hzOcRYNZEeGSxfYZUuyuLQ"
+				multiplicity="*" label="operators">
+				<mapping xsi:type="pccs:EcoreMapping" xmi:id="_cs_term_mapping"
+					metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+					<eClass xsi:type="pccs:QualifiedName">
+						<sections>Terminal</sections>
+					</eClass>
+					<assignments xsi:type="pccs:Assignment" xmi:id="_cs_map_term"
+						to="terminal">
+						<from xsi:type="pccs:ReferenceMapping" xmi:id="_cs_map_term_ref">
+							<qName xsi:type="pccs:QualifiedName">
+								<sections>this</sections>
+							</qName>
+						</from>
+					</assignments>
+				</mapping>
+			</parsers>
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcRoNZEeGSxfYZUuyuLQ"
+				terminal="_hzIVwINZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcR4NZEeGSxfYZUuyuLQ"
+				terminal="_hzOcI4NZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcSINZEeGSxfYZUuyuLQ"
+				terminal="_hzIVv4NZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:StringParser" xmi:id="_hzOcSYNZEeGSxfYZUuyuLQ"
+				multiplicity="*" label="keywords">
+				<mapping xsi:type="pccs:EcoreMapping" xmi:id="_cs_kw_mapping"
+					metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+					<eClass xsi:type="pccs:QualifiedName">
+						<sections>Terminal</sections>
+					</eClass>
+					<assignments xsi:type="pccs:Assignment" xmi:id="_cs_map_kw"
+						to="terminal">
+						<from xsi:type="pccs:ReferenceMapping" xmi:id="_cs_map_kw_ref">
+							<qName xsi:type="pccs:QualifiedName">
+								<sections>this</sections>
+							</qName>
+						</from>
+					</assignments>
+				</mapping>
+			</parsers>
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcSoNZEeGSxfYZUuyuLQ"
+				terminal="_hzIVwINZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcS4NZEeGSxfYZUuyuLQ"
+				terminal="_hzOcJINZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcTINZEeGSxfYZUuyuLQ"
+				terminal="_hzIVv4NZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:RefParser" xmi:id="_hzOcTYNZEeGSxfYZUuyuLQ"
+				multiplicity="*" label="defs" ref="_hzOcO4NZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcToNZEeGSxfYZUuyuLQ"
+				terminal="_hzIVwINZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_hzOcT4NZEeGSxfYZUuyuLQ"
+				terminal="_hzOcJYNZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:IdentifierParser" xmi:id="_hzOcUINZEeGSxfYZUuyuLQ"
+				label="start" />
+		</rule>
+	</parsers>
+	<parsers xmi:id="_hzOcUYNZEeGSxfYZUuyuLQ" name="string">
+		<rule xsi:type="pccs:TerminalParser" xmi:id="_hzOcUoNZEeGSxfYZUuyuLQ"
+			terminal="_hzOcIINZEeGSxfYZUuyuLQ">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_str_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>StringParser</sections>
+				</eClass>
+			</mapping>
+		</rule>
+	</parsers>
+	<parsers xmi:id="_7yPeEIO1EeGRlpFYUl_o6g" name="sequence">
+		<rule xsi:type="pccs:SequenceParser" xmi:id="_9e9ekIO1EeGRlpFYUl_o6g">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_seq_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>SequenceParser</sections>
+				</eClass>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_seq_steps"
+					to="parsers">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_seq_steps_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>sequence</sections>
+						</qName>
+					</from>
+				</assignments>
+			</mapping>
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_-YJwYIO1EeGRlpFYUl_o6g"
+				terminal="_hzIVvINZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:RefParser" xmi:id="_AYURUIO2EeGRlpFYUl_o6g"
+				multiplicity="*" label="sequence" ref="_hzOcMINZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_BDacwIO2EeGRlpFYUl_o6g"
+				terminal="_hzIVu4NZEeGSxfYZUuyuLQ" />
+		</rule>
+	</parsers>
+	<parsers xmi:id="_qaEAkIPREeGRlpFYUl_o6g" name="qname">
+		<rule xsi:type="pccs:SequenceParser" xmi:id="_vVpJwIPREeGRlpFYUl_o6g"
+			label="qname">
+			<mapping xsi:type="pccs:AsQName" xmi:id="_qname_as_qname"
+				delim="." />
+			<parsers xsi:type="pccs:IdentifierParser" xmi:id="_v_wdwIPREeGRlpFYUl_o6g" />
+			<parsers xsi:type="pccs:SequenceParser" xmi:id="_yti5sIPREeGRlpFYUl_o6g"
+				multiplicity="*">
+				<parsers xsi:type="pccs:TerminalParser" xmi:id="_01DYwIPREeGRlpFYUl_o6g"
+					terminal="_tDtjYIPREeGRlpFYUl_o6g" />
+				<parsers xsi:type="pccs:RefParser" xmi:id="_5U6PQIPREeGRlpFYUl_o6g"
+					ref="_qaEAkIPREeGRlpFYUl_o6g" />
+			</parsers>
+		</rule>
+	</parsers>
+	<parsers xmi:id="_refmapping" name="refmapping">
+		<rule xsi:type="pccs:RefParser" xmi:id="_valueref" ref="_qaEAkIPREeGRlpFYUl_o6g">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_valuemapping_map"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>ReferenceMapping</sections>
+				</eClass>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_valuemap_qname"
+					to="qName">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_valuemap_qname_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>this</sections>
+						</qName>
+					</from>
+				</assignments>
+			</mapping>
+		</rule>
+	</parsers>
+	<parsers xmi:id="_strmapping" name="strmapping">
+		<rule xsi:type="pccs:StringParser" xmi:id="_strmapstr">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_strmapping_map"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>StringValueMapping</sections>
+				</eClass>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_strmap_qname"
+					to="value">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_strmap_qname_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>this</sections>
+						</qName>
+					</from>
+				</assignments>
+			</mapping>
+		</rule>
+	</parsers>
+	<parsers xmi:id="_ICdBwIPSEeGRlpFYUl_o6g" name="ecoremapping">
+		<rule xsi:type="pccs:SequenceParser" xmi:id="_UHgvEIPSEeGRlpFYUl_o6g">
+			<mapping xsi:type="pccs:EcoreMapping" xmi:id="_map_mapping"
+				metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+				<eClass xsi:type="pccs:QualifiedName">
+					<sections>EcoreMapping</sections>
+				</eClass>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_map_eclass"
+					to="eClass">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_elcass_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>eclass</sections>
+						</qName>
+					</from>
+				</assignments>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_map_asgs"
+					to="assignments">
+					<from xsi:type="pccs:ReferenceMapping" xmi:id="_asgs_ref">
+						<qName xsi:type="pccs:QualifiedName">
+							<sections>assignments</sections>
+						</qName>
+					</from>
+				</assignments>
+				<assignments xsi:type="pccs:Assignment" xmi:id="_map_mm"
+					to="metamodel">
+					<from xsi:type="pccs:StringValueMapping" xmi:id="_mm_default" value="default"/>
+				</assignments>
+			</mapping>
+			<parsers xsi:type="pccs:RefParser" xmi:id="_Z8K1UIPSEeGRlpFYUl_o6g"
+				label="eclass" ref="_qaEAkIPREeGRlpFYUl_o6g" />
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_jQ1eoIPSEeGRlpFYUl_o6g"
+				terminal="_hzIVvINZEeGSxfYZUuyuLQ" />
+			<parsers xsi:type="pccs:SequenceParser" xmi:id="_asg_seq"
+				multiplicity="*" label="assignments">
+				<mapping xsi:type="pccs:EcoreMapping" xmi:id="_map_assignments"
+					metamodel="_XHYUUIjGEeGVc6sQ18XggA">
+					<eClass xsi:type="pccs:QualifiedName">
+						<sections>Assignment</sections>
+					</eClass>
+					<assignments xsi:type="pccs:Assignment" xmi:id="_cs_mapping_uri"
+						to="to">
+						<from xsi:type="pccs:ReferenceMapping" xmi:id="_asg_to_ref">
+							<qName xsi:type="pccs:QualifiedName">
+								<sections>to</sections>
+							</qName>
+						</from>
+					</assignments>
+					<assignments xsi:type="pccs:Assignment" xmi:id="_cs_mapping_uri"
+						to="from">
+						<from xsi:type="pccs:ReferenceMapping" xmi:id="_asg_from_ref">
+							<qName xsi:type="pccs:QualifiedName">
+								<sections>from</sections>
+							</qName>
+						</from>
+					</assignments>
+				</mapping>
+				<parsers xsi:type="pccs:IdentifierParser" xmi:id="_w4kDIIPTEeGRlpFYUl_o6g"
+					label="to" />
+				<parsers xsi:type="pccs:TerminalParser" xmi:id="_x_tRYIPTEeGRlpFYUl_o6g"
+					terminal="_pt96IIPSEeGRlpFYUl_o6g" />
+				<parsers xsi:type="pccs:OrParser" xmi:id="_asg_from_or"
+					label="from">
+					<parsers xsi:type="pccs:RefParser" xmi:id="_refmapping_ref"
+						ref="_refmapping" />
+					<parsers xsi:type="pccs:RefParser" xmi:id="_strmapping_ref"
+						ref="_strmapping" />
+					<parsers xsi:type="pccs:RefParser" xmi:id="_ecoremapping_ref"
+						ref="_ICdBwIPSEeGRlpFYUl_o6g" />
+				</parsers>
+			</parsers>
+			<parsers xsi:type="pccs:TerminalParser" xmi:id="_4TaEEIPTEeGRlpFYUl_o6g"
+				terminal="_hzIVu4NZEeGSxfYZUuyuLQ" />
+		</rule>
+	</parsers>
+	<metamodels xmi:id="_XHYUUIjGEeGVc6sQ18XggA" modelURI="http://st.inf.tud.org/pccs" />
+</pccs:ConcreteSyntax>

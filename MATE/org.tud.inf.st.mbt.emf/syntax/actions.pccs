@@ -1,0 +1,24 @@
+import "platform:/plugin/org.tud.inf.st.mbt.emf/syntax/terms.pccs";
+
+syntax actions a:"http://st.inf.tud.org/mbt/actions";
+operators{"." "&" "=" "+" "-" ";" "{" "}" "[" "]"}
+keywords{"time" "fail" "get" "unset" "throw" "activate" "deactivate" "value" "state"}
+parsers{
+	psequence ::= ((paction^a ";")*=>a) => a:PreGenerationSequence(actions = this);
+	paction ::= or(("{" psequence^s "}")=>s pfail psetdata pgetdata ptermaction pthrow pactivate pdeactivate prembag getfstate);
+	
+	pactionref ::= ((# ("."#)*)/"."^r) => a:ActionReference(action = r);
+	
+	pfail ::= ("&" "fail") => a:FailAction();
+	psetdata ::= (pfnode^n "=" pfdata^v) => a:SetDataAction(node = n values=v);
+	pgetdata ::= ("&" "get" "value" pfnode^n) => a:GetDataAction(node = n);
+	pthrow ::= ("&" "throw" #^e) => a:ThrowAction(eventID=e);
+	ptermaction ::= terms.term => a:TermAction(term = this);
+	pactivate ::= ("&" "activate" (# ("."#)*)?/"."^r (# ("."#)*)?/"."^v) => a:ActivateFeatureAction(feature=r version=v);
+	pdeactivate ::= ("&" "deactivate" (# ("."#)*)/"."^r) => a:DeactivateFeatureAction(feature=r);
+	prembag ::= ("&" "unset" (# ("."#)*)/"."^b "[" pfarith^i "]") => a:RemoveBagAction(bag = b idx =i);
+	timeaction ::= ("&" "time" (# ("."#)*)?/"."^c "+" $i^time) => a:TimeAction(time=time consumer=c); 
+	
+	getfstate ::= ("&" "get" "state" (# ("."#)*)/"."^f) => a:GetFeatureStateAction(feature = f);
+	     
+} start psequence

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://st.inf.tud.org/mbt/featuretree"
+            class="org.tud.inf.st.mbt.featuretree.FeaturetreePackage"
+            genModel="model/all.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://st.inf.tud.org/mbt/core"
+            class="org.tud.inf.st.mbt.core.CorePackage"
+            genModel="model/all.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://st.inf.tud.org.de/mbt/test"
+            class="org.tud.inf.st.mbt.test.TestPackage"
+            genModel="model/all.genmodel"/>
+   </extension>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://st.inf.tud.org/mbt/rules"
+            class="org.tud.inf.st.mbt.rules.RulesPackage"
+            genModel="model/all.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://st.inf.tud.org/mbt/features"
+            class="org.tud.inf.st.mbt.features.FeaturesPackage"
+            genModel="model/all.genmodel"/>
+   </extension>
+
+
+
+
+
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.tud.inf.st.mbt.data.DataPackage"
+            genModel="model/all.genmodel"
+            uri="http://st.inf.tud.org/mbt/data">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.tud.inf.st.mbt.terms.TermsPackage"
+            genModel="model/all.genmodel"
+            uri="http://st.inf.tud.org/mbt/terms">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.tud.inf.st.mbt.actions.ActionsPackage"
+            genModel="model/all.genmodel"
+            uri="http://st.inf.tud.org/mbt/actions">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage"
+            genModel="model/all.genmodel"
+            uri="http://st.inf.tud.org/mbt/guigraph">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.tud.inf.st.mbt.ocm.OcmPackage"
+            genModel="model/all.genmodel"
+            uri="http://st.inf.tud.org/mbt/ocm">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.tud.inf.st.mbt.scenario.ScenarioPackage"
+            genModel="model/all.genmodel"
+            uri="http://st.inf.tud.org/mbt/scenario">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.tud.inf.st.mbt.functions.FunctionsPackage"
+            genModel="model/all.genmodel"
+            uri="http://st.inf.tud.org/mbt/functions">
+      </package>
+   </extension>
+
+</plugin>

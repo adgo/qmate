@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="guigraph" nsURI="http://st.inf.tud.org/mbt/guigraph" nsPrefix="gg">
+  <eClassifiers xsi:type="ecore:EClass" name="GuiGraph" eSuperTypes="mbt.ecore#//core/AbstractModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arcs" upperBound="-1" eType="#//Arc"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
+        eType="#//GuiGraphNode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invariant" eType="ecore:EClass mbt.ecore#//rules/Predicate"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="invariantText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Widget" eSuperTypes="mbt.ecore#//core/AbstractModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//Widget" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="foo" value="bar"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="image" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Form" eSuperTypes="#//Widget #//Place"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition" abstract="true" eSuperTypes="#//GuiGraphNode mbt.ecore#//rules/IRealTimeConsumer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rate" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="faultImpact" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="faultProbability" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="terminates" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeMin" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeMax" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="-1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GuiGraphNode" abstract="true" interface="true"
+      eSuperTypes="mbt.ecore#//core/AbstractModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NoWidgetNode" eSuperTypes="#//Place">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialTokens" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Place" abstract="true" eSuperTypes="#//GuiGraphNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionActionTransition" eSuperTypes="#//Transition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="applicationCondition" lowerBound="1"
+        eType="ecore:EClass mbt.ecore#//rules/Predicate" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" eType="ecore:EClass actions.ecore#//PreGenerationSequence"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="applicationConditionText"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actionsText" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimerTransition" eSuperTypes="#//Transition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consumer" lowerBound="1"
+        eType="ecore:EClass mbt.ecore#//rules/ITimeConsumer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Arc" abstract="true" eSuperTypes="mbt.ecore#//core/AbstractModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//GuiGraphNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//GuiGraphNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StandardArc" eSuperTypes="#//Arc">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="weight" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InhibitorArc" eSuperTypes="#//Arc"/>
+</ecore:EPackage>

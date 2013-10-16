@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.tud.inf.st.mbt.datascen.ui.DataScenarioEditor"
+            default="false"
+            extensions="scen"
+            icon="icons/data.png"
+            id="org.tud.inf.st.mbt.ctxdesigner.editor"
+            name="Data Scenario Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.tud.inf.st.mbt.ui.matecategory"
+            class="org.tud.inf.st.mbt.datascen.ui.NewDataScenarioWizard"
+            descriptionImage="icons/mate16.png"
+            icon="icons/data.png"
+            id="org.tud.inf.st.mbt.ui.wizards.scenario"
+            name="Data Scenario"
+            preferredPerspectives="org.tud.inf.st.mbt.emf.ui.perspective"
+            project="false">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.tud.inf.st.mbt.emf.ui.perspective">
+         <newWizardShortcut
+               id="org.tud.inf.st.mbt.ui.wizards.scenario">
+         </newWizardShortcut>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.tud.inf.st.mbt.ctxdesigner.contrib"
+            nameFilter="*.kml"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.tud.inf.st.mbt.datascem.helpers.KML2DataAction"
+               id="org.tud.inf.st.mbt.ctxdesigner.kml"
+               label="Convert to MBT data"
+               menubarPath="group.generate">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
