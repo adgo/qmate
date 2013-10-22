@@ -37,8 +37,7 @@ public class RecordAction extends EMFSelectionAction {
 					dialog.getConnection());
 
 			new RecordingDialog(getWorkbenchPart().getSite().getShell(),
-					recorder, ged, dialog.getImgContainer(),
-					dialog.getImgContainerRelative()).open();
+					recorder, ged, dialog.getImgContainer()).open();
 		}
 
 		ged.validate();

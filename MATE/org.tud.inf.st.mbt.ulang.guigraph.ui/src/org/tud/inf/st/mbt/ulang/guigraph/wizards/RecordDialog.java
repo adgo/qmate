@@ -33,13 +33,12 @@ public class RecordDialog extends TitleAreaDialog {
 	private ComboViewer cbConnector,cbConnection;
 	private String connection;
 	private AbstractRecorderType connector;
-	private String imgContainer, imgContainerRelative;
-	private IPath resourceContainerPath;
+	private IPath imgContainer;
 
 	public RecordDialog(Shell parentShell, IPath resourceContainerPath) {
 		super(parentShell);
 		setTitle("Record from device");
-		this.resourceContainerPath = resourceContainerPath;
+		imgContainer = resourceContainerPath; 
 	}
 
 	@Override
@@ -123,7 +122,7 @@ public class RecordDialog extends TitleAreaDialog {
 		l = new Label(parent, SWT.None);
 		l.setText("Image container:");
 		final Button b = new Button(parent, SWT.None);
-		b.setText("Browse...");
+		b.setText("Browse... | "+shorten(""+imgContainer));
 		b.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		b.addSelectionListener(new SelectionListener() {
 
@@ -134,14 +133,9 @@ public class RecordDialog extends TitleAreaDialog {
 								.getWorkspace().getRoot(), false,
 						"Select container for images!");
 				if (dialog.open() == Window.OK) {
-					IPath container = (IPath) dialog.getResult()[0];
-					imgContainerRelative = container.makeRelativeTo(resourceContainerPath).toPortableString();
-					
-					imgContainer = ResourcesPlugin.getWorkspace().getRoot()
-							.getLocation().toPortableString()+container.toPortableString();
-					b.setText("Browse... | "
-							+ (container.toPortableString().length() > 15 ? container.toPortableString()
-									.substring(0, 15) : container.toPortableString()));
+					imgContainer = (IPath) dialog.getResult()[0];
+
+					b.setText("Browse... | "+shorten(""+imgContainer));
 				}
 			}
 
@@ -153,6 +147,10 @@ public class RecordDialog extends TitleAreaDialog {
 		setMessage("Select device and client application for recording a test model!");
 
 		return parent;
+	}
+	
+	private static String shorten(String str){
+		return str.length()>15 ? str.substring(0, 14) : str;
 	}
 
 	@Override
@@ -178,12 +176,8 @@ public class RecordDialog extends TitleAreaDialog {
 		return connector;
 	}
 
-	public String getImgContainer() {
+	public IPath getImgContainer() {
 		return imgContainer;
-	}
-
-	public String getImgContainerRelative() {
-		return imgContainerRelative;
 	}
 
 }

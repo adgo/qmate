@@ -42,7 +42,8 @@ public class AndroidRecorder extends AbstractRecorder {
 		super(connection);
 	}
 
-	protected void start() {
+	@Override
+	public void start() {
 		try {
 			executor.submit(new Runnable() {
 				public void run() {

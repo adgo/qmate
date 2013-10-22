@@ -4,6 +4,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.tud.inf.st.mbt.automation.AutomationManager;
 import org.tud.inf.st.mbt.automation.android.AndroidAutomationType;
+import org.tud.inf.st.mbt.automation.android.record.AndroidRecorderBridge;
 import org.tud.inf.st.mbt.automation.android.record.AndroidRecorderType;
 import org.tud.inf.st.mbt.automation.record.RecorderManager;
 
@@ -13,7 +14,7 @@ import org.tud.inf.st.mbt.automation.record.RecorderManager;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.tud.inf.st.mbt.ulang.guigraph.record"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.tud.inf.st.mbt.android"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -44,6 +45,7 @@ public class Activator extends AbstractUIPlugin {
 		plugin = null;
 		super.stop(context);
 		RecorderManager.terminate();
+		AndroidRecorderBridge.terminateADB();
 	}
 
 	/**

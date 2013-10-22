@@ -31,6 +31,7 @@
       </win>
    </launcher>
 
+
    <vm>
       <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5</windows>
    </vm>
@@ -92,6 +93,7 @@
       <plugin id="org.eclipse.core.net"/>
       <plugin id="org.eclipse.core.net.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.resources"/>
+      <plugin id="org.eclipse.core.resources.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.runtime"/>
       <plugin id="org.eclipse.core.runtime.compatibility.auth"/>
       <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
@@ -106,12 +108,10 @@
       <plugin id="org.eclipse.e4.core.services"/>
       <plugin id="org.eclipse.e4.ui.bindings"/>
       <plugin id="org.eclipse.e4.ui.css.core"/>
-      <plugin id="org.eclipse.e4.ui.css.jface"/>
       <plugin id="org.eclipse.e4.ui.css.swt"/>
       <plugin id="org.eclipse.e4.ui.css.swt.theme"/>
       <plugin id="org.eclipse.e4.ui.di"/>
       <plugin id="org.eclipse.e4.ui.model.workbench"/>
-      <plugin id="org.eclipse.e4.ui.model.workbench.edit"/>
       <plugin id="org.eclipse.e4.ui.services"/>
       <plugin id="org.eclipse.e4.ui.widgets"/>
       <plugin id="org.eclipse.e4.ui.workbench"/>
@@ -136,6 +136,7 @@
       <plugin id="org.eclipse.emf.mwe2.runtime"/>
       <plugin id="org.eclipse.emf.validation"/>
       <plugin id="org.eclipse.equinox.app"/>
+      <plugin id="org.eclipse.equinox.bidi"/>
       <plugin id="org.eclipse.equinox.common"/>
       <plugin id="org.eclipse.equinox.ds"/>
       <plugin id="org.eclipse.equinox.event"/>
@@ -152,12 +153,9 @@
       <plugin id="org.eclipse.equinox.registry"/>
       <plugin id="org.eclipse.equinox.security"/>
       <plugin id="org.eclipse.equinox.security.win32.x86_64" fragment="true"/>
-      <plugin id="org.eclipse.equinox.servletbridge.extensionbundle" fragment="true"/>
       <plugin id="org.eclipse.equinox.simpleconfigurator"/>
       <plugin id="org.eclipse.equinox.simpleconfigurator.manipulator"/>
-      <plugin id="org.eclipse.equinox.transforms.hook" fragment="true"/>
       <plugin id="org.eclipse.equinox.util"/>
-      <plugin id="org.eclipse.equinox.weaving.hook" fragment="true"/>
       <plugin id="org.eclipse.gef"/>
       <plugin id="org.eclipse.gmf.runtime.common.core"/>
       <plugin id="org.eclipse.gmf.runtime.common.ui"/>
@@ -228,12 +226,14 @@
       <plugin id="org.eclipse.wst.common.emfworkbench.integration"/>
       <plugin id="org.eclipse.wst.common.environment"/>
       <plugin id="org.eclipse.wst.common.frameworks"/>
+      <plugin id="org.eclipse.wst.common.frameworks.ui"/>
       <plugin id="org.eclipse.wst.common.project.facet.core"/>
       <plugin id="org.eclipse.wst.common.ui"/>
       <plugin id="org.eclipse.wst.common.uriresolver"/>
       <plugin id="org.eclipse.wst.sse.core"/>
       <plugin id="org.eclipse.wst.sse.ui"/>
       <plugin id="org.eclipse.wst.validation"/>
+      <plugin id="org.eclipse.wst.validation.ui"/>
       <plugin id="org.eclipse.wst.xml.core"/>
       <plugin id="org.eclipse.wst.xml.ui"/>
       <plugin id="org.eclipse.wst.xsd.core"/>
@@ -249,22 +249,22 @@
       <plugin id="org.jboss.netty"/>
       <plugin id="org.junit"/>
       <plugin id="org.slf4j.api"/>
-      <plugin id="org.slf4j.jcl"/>
+      <plugin id="org.tud.inf.st.mbt.android"/>
       <plugin id="org.tud.inf.st.mbt.android.scraper"/>
       <plugin id="org.tud.inf.st.mbt.automation"/>
-      <plugin id="org.tud.inf.st.mbt.ctxdesigner"/>
+      <plugin id="org.tud.inf.st.mbt.datascen.ui"/>
       <plugin id="org.tud.inf.st.mbt.emf"/>
       <plugin id="org.tud.inf.st.mbt.emf.edit"/>
       <plugin id="org.tud.inf.st.mbt.emf.graphicaleditor"/>
       <plugin id="org.tud.inf.st.mbt.ocm.ui"/>
       <plugin id="org.tud.inf.st.mbt.scenario.ui"/>
       <plugin id="org.tud.inf.st.mbt.ui"/>
-      <plugin id="org.tud.inf.st.mbt.ulang.guigraph.record"/>
       <plugin id="org.tud.inf.st.mbt.ulang.guigraph.ui"/>
       <plugin id="org.tud.inf.st.pceditor"/>
       <plugin id="org.tud.inf.st.pceditor.edit"/>
       <plugin id="org.tud.inf.st.pceditor.ui"/>
       <plugin id="org.w3c.css.sac"/>
+      <plugin id="org.w3c.dom.events"/>
       <plugin id="org.w3c.dom.smil"/>
       <plugin id="org.w3c.dom.svg"/>
    </plugins>

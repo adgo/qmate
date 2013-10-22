@@ -1,16 +1,17 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Record
+Bundle-Name: Android Automation
 Bundle-SymbolicName: org.tud.inf.st.mbt.android
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.tud.inf.st.mbt.android.Activator
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.tud.inf.st.mbt.emf;bundle-version="1.0.0",
- com.android.ide.eclipse.adt;bundle-version="21.1.0",
- com.android.ide.eclipse.base;bundle-version="21.1.0",
- com.android.ide.eclipse.ddms;bundle-version="21.1.0",
- org.tud.inf.st.mbt.automation;bundle-version="1.0.0"
+Require-Bundle: org.eclipse.ui;bundle-version="3.105.0",
+ com.android.ide.eclipse.adt;bundle-version="22.2.1",
+ org.tud.inf.st.mbt.automation;bundle-version="1.0.0",
+ org.eclipse.core.resources;bundle-version="3.8.101",
+ org.eclipse.core.runtime;bundle-version="3.9.0",
+ org.eclipse.xpand;bundle-version="1.4.0",
+ com.android.ide.eclipse.ddms;bundle-version="22.2.1",
+ org.tud.inf.st.mbt.emf
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ClassPath: .,

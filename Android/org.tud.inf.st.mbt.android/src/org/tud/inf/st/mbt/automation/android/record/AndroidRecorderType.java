@@ -43,7 +43,6 @@ public final class AndroidRecorderType extends AbstractRecorderType{
 		}
 		
 		AndroidRecorder r = new AndroidRecorder(connection);
-		r.start();
 		recorders.add(r);
 		return r;
 	}

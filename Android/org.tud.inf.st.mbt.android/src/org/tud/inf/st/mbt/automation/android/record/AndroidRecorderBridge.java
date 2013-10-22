@@ -13,7 +13,6 @@ import java.util.Random;
 
 import com.android.ddmlib.AndroidDebugBridge;
 import com.android.ddmlib.IDevice;
-import com.android.ddmlib.RawImage;
 import com.android.ide.eclipse.adt.AdtPlugin;
 
 /**
@@ -40,6 +39,7 @@ public final class AndroidRecorderBridge {
 	}
 	
 	public static void terminateADB(){
+		AndroidDebugBridge.disconnectBridge();
 		AndroidDebugBridge.terminate();
 		adb = null;
 	}

@@ -2,20 +2,18 @@ package org.tud.inf.st.mbt.automation.record;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.swt.graphics.Image;
 import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
 import org.tud.inf.st.mbt.ulang.guigraph.GuigraphFactory;
 
 public abstract class AbstractRecorderListener {
 
-	private String imgFolder;
-	private String relativeImgFolder;
+	private IPath imgFolder;
 	private GuiGraph graph = GuigraphFactory.eINSTANCE.createGuiGraph();
 
-	public AbstractRecorderListener(GuiGraph graph, String imgFolder,
-			String relativeImgFolder) {
+	public AbstractRecorderListener(GuiGraph graph, IPath imgFolder) {
 		this.imgFolder = imgFolder;
-		this.relativeImgFolder = relativeImgFolder;
 		this.graph = graph;
 	}
 
@@ -38,12 +36,8 @@ public abstract class AbstractRecorderListener {
 	public void terminate() {
 	}
 
-	public String getImgFolder() {
+	public IPath getImgFolder() {
 		return imgFolder;
-	}
-
-	public String getRelativeImgFolder() {
-		return relativeImgFolder;
 	}
 	
 	public GuiGraph getGraph() {

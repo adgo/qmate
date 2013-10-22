@@ -31,7 +31,12 @@ public abstract class AbstractRecorder {
 	
 	public abstract void buildState(AbstractRecorderListener l, String actionText);
 	public abstract void identifyState(AbstractRecorderListener l,UIState state, String actionText);
+	
+	
+	public abstract void start();
 	public abstract void terminate();
+	
+	
 	public abstract File screenshot();
 	
 	public void simulateTap(Point at){

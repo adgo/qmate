@@ -25,6 +25,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.Form;
 import org.tud.inf.st.mbt.ulang.guigraph.GuigraphFactory;
 import org.tud.inf.st.mbt.ulang.guigraph.NoWidgetNode;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
+import org.eclipse.core.resources.*;
 
 import android.view.accessibility.AccessibilityEvent;
 
@@ -148,8 +149,7 @@ public class ListenerSupplier {
 										.get(RecorderConstants.EVENT_TOP) + ""));
 
 				if (bounds != null) {
-					boundsStr.append(bounds.x + "," + bounds.y + ","
-							+ bounds.getMaxX() + "," + bounds.getMaxY());
+					boundsStr.append(bounds.getCenterX()+","+bounds.getCenterY());
 				}
 			}
 
@@ -202,14 +202,16 @@ public class ListenerSupplier {
 	}
 
 	private String manifestImg(String id) {
-		if (listener.getImgFolder() == null
-				|| listener.getRelativeImgFolder() == null)
+		if (listener.getImgFolder() == null)
 			return null;
 
 		try {
-			Files.copy(currentImgTmpFile.toPath(),
-					Paths.get(listener.getImgFolder(), id + ".png"));
-			return listener.getRelativeImgFolder() + id + ".png";
+			Files.copy(
+					currentImgTmpFile.toPath(),
+					Paths.get(ResourcesPlugin.getWorkspace().getRoot()
+							.getRawLocation()
+							+ "" + listener.getImgFolder() + "/" + id + ".png"));
+			return listener.getImgFolder() + "/" + id + ".png";
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

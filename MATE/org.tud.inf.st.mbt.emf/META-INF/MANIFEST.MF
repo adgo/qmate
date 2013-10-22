@@ -53,7 +53,7 @@ Export-Package: org.tud.inf.st.mbt.actions,
  org.tud.inf.st.mbt.ulang.guigraph.impl,
  org.tud.inf.st.mbt.ulang.guigraph.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore,
  org.eclipse.core.resources;bundle-version="3.7.101",
  org.tud.inf.st.pceditor;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy

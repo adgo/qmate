@@ -13,7 +13,9 @@ import java.util.Map.Entry;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.gef.editparts.ZoomManager;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -33,6 +35,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.graphics.PaletteData;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -93,9 +96,12 @@ public class RecordingDialog extends TitleAreaDialog {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			if(e.keyCode == SWT.F1)buildState();
-			else if(e.keyCode == SWT.F2)identifyState();
-			else recorder.simulateTextInput(e.character + "");
+			if (e.keyCode == SWT.F1)
+				buildState();
+			else if (e.keyCode == SWT.F2)
+				identifyState();
+			else
+				recorder.simulateTextInput(e.character + "");
 		}
 
 		@Override
@@ -108,25 +114,26 @@ public class RecordingDialog extends TitleAreaDialog {
 	private AbstractRecorder recorder;
 	private AbstractRecorderListener builderListener, automationListener;
 	private GraphicalEMFEditor ged;
-	private String imgFolder, relativeImgFolder;
+	private IPath imgFolder;
 	private boolean automationFlag = false;
 	private float screenScale = 1;
 	private MouseMonitor mouseMonitor = new MouseMonitor();
 	private ListViewer lstEvents;
 	private ListViewer lstValidations;
 	private TreeViewer tvStates;
+	private Button startBtn, stopBtn;
+	private ProgressBar bar;
 
 	public RecordingDialog(Shell parentShell, AbstractRecorder recorder,
-			GraphicalEMFEditor ged, String imgFolder, String relativeImgFolder) {
+			GraphicalEMFEditor ged, IPath imageFolder) {
 		super(parentShell);
 		setTitle("Recording from " + recorder.getConnection());
 		this.recorder = recorder;
 		this.ged = ged;
-		this.imgFolder = imgFolder;
-		this.relativeImgFolder = relativeImgFolder;
+		this.imgFolder = imageFolder;
 
 		automationListener = new AbstractRecorderListener(
-				(GuiGraph) ged.getGraph(), null, null) {
+				(GuiGraph) ged.getGraph(), null) {
 			@Override
 			public void updateModel() {
 				if (automationFlag) {
@@ -138,6 +145,7 @@ public class RecordingDialog extends TitleAreaDialog {
 			}
 		};
 		this.recorder.registerListener(automationListener);
+		this.recorder.start();
 	}
 
 	@Override
@@ -150,7 +158,13 @@ public class RecordingDialog extends TitleAreaDialog {
 		parent.setLayout(new GridLayout(4, true));
 
 		final Canvas canvas = new Canvas(parent, SWT.None);
-		ImageData data = new ImageData(recorder.screenshot().toString());
+		ImageData data = null;
+		try {
+			data = new ImageData(recorder.screenshot().toString());
+		} catch (Exception e) {
+			System.err.println(e);
+			data = new ImageData(1, 200, 500, new PaletteData(0,0,0));
+		}
 		final Dimension desiredSize = new Dimension(200, 500);
 
 		canvas.setBackgroundImage(ImageTool.resize(new Image(this.getShell()
@@ -342,7 +356,7 @@ public class RecordingDialog extends TitleAreaDialog {
 		});
 
 		recorder.registerListener(builderListener = new AbstractRecorderListener(
-				(GuiGraph) ged.getGraph(), imgFolder, relativeImgFolder) {
+				(GuiGraph) ged.getGraph(), imgFolder) {
 			@Override
 			public void updateScreen(Image img) {
 				if (img != null) {
@@ -371,9 +385,11 @@ public class RecordingDialog extends TitleAreaDialog {
 					e.printStackTrace();
 				}
 				ged.executeCommand(new LayoutCommand(ged));
-				ZoomManager zoom = (ZoomManager) ged.getAdapter(ZoomManager.class);
+				ZoomManager zoom = (ZoomManager) ged
+						.getAdapter(ZoomManager.class);
 				zoom.setZoomAsText(ZoomManager.FIT_ALL);
-				if(zoom.getZoom()>1d)zoom.setZoom(1d);
+				if (zoom.getZoom() > 1d)
+					zoom.setZoom(1d);
 			}
 
 			@Override
@@ -490,7 +506,7 @@ public class RecordingDialog extends TitleAreaDialog {
 			}
 		});
 
-		ProgressBar bar = new ProgressBar(parent, SWT.INDETERMINATE);
+		bar = new ProgressBar(parent, SWT.INDETERMINATE);
 		bar.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 4, 1));
 
 		setMessage("Recording from " + recorder.getConnection());
@@ -500,23 +516,36 @@ public class RecordingDialog extends TitleAreaDialog {
 
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		GridData gridData = new GridData();
-		gridData.verticalAlignment = GridData.FILL;
-		gridData.horizontalSpan = 3;
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace = true;
-		gridData.horizontalAlignment = SWT.CENTER;
-
-		// Create Cancel button
-		Button stopBtn = createButton(parent, OK, "Stop", true);
-		// Add a SelectionListener
-		stopBtn.addSelectionListener(new SelectionAdapter() {
+		startBtn = createButton(parent, IDialogConstants.NO_ID, "Start", false);
+		startBtn.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				setReturnCode(CANCEL);
-				recorder.unregisterListener(builderListener);
-				close();
+				recorder.start();
+				startBtn.setEnabled(false);
+				stopBtn.setEnabled(true);
+				bar.setEnabled(true);
 			}
 		});
+		startBtn.setEnabled(false);
+
+		stopBtn = createButton(parent, IDialogConstants.NO_ID, "Stop", true);
+		stopBtn.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				recorder.terminate();
+				startBtn.setEnabled(true);
+				stopBtn.setEnabled(false);
+				bar.setEnabled(false);
+			}
+		});
+
+		createButton(parent, IDialogConstants.NO_ID, "Close", false)
+				.addSelectionListener(new SelectionAdapter() {
+					public void widgetSelected(SelectionEvent e) {
+						setReturnCode(CANCEL);
+						recorder.unregisterListener(builderListener);
+						recorder.terminate();
+						close();
+					}
+				});
 	}
 
 	private String compileActionText() {
@@ -532,8 +561,8 @@ public class RecordingDialog extends TitleAreaDialog {
 
 		return result.toString();
 	}
-	
-	private void buildState(){
+
+	private void buildState() {
 		recorder.buildState(builderListener, compileActionText());
 	}
 
