@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+
+
+
+
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.tud.inf.st.mbt.core.presentation.CoreEditor"
+            contributorClass="org.tud.inf.st.mbt.core.presentation.CoreActionBarContributor"
+            default="true"
+            extensions="mbt,generic,tree,data,report,test"
+            icon="icons/mate16.png"
+            id="org.tud.inf.st.mbt.emf.editor"
+            name="MATE Editor">
+      </editor>
+   </extension>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.actions.presentation.ActionsModelWizardID"
+            name="%_UI_ActionsModelWizard_label"
+            class="org.tud.inf.st.mbt.actions.presentation.ActionsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ActionsModelFile.gif">
+         <description>%_UI_ActionsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.terms.presentation.TermsEditorID"
+            name="%_UI_TermsEditor_label"
+            icon="icons/full/obj16/TermsModelFile.gif"
+            extensions="terms"
+            class="org.tud.inf.st.mbt.terms.presentation.TermsEditor"
+            contributorClass="org.tud.inf.st.mbt.terms.presentation.TermsActionBarContributor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.scenario.presentation.ScenarioEditorID"
+            name="%_UI_ScenarioEditor_label"
+            icon="icons/full/obj16/ScenarioModelFile.gif"
+            extensions="scenario"
+            class="org.tud.inf.st.mbt.scenario.presentation.ScenarioEditor"
+            contributorClass="org.tud.inf.st.mbt.scenario.presentation.ScenarioActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.terms.presentation.TermsModelWizardID"
+            name="%_UI_TermsModelWizard_label"
+            class="org.tud.inf.st.mbt.terms.presentation.TermsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TermsModelFile.gif">
+         <description>%_UI_TermsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.ocm.presentation.OcmEditorID"
+            name="%_UI_OcmEditor_label"
+            icon="icons/full/obj16/OcmModelFile.gif"
+            extensions="ocm"
+            class="org.tud.inf.st.mbt.ocm.presentation.OcmEditor"
+            contributorClass="org.tud.inf.st.mbt.ocm.presentation.OcmActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.scenario.presentation.ScenarioModelWizardID"
+            name="%_UI_ScenarioModelWizard_label"
+            class="org.tud.inf.st.mbt.scenario.presentation.ScenarioModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ScenarioModelFile.gif">
+         <description>%_UI_ScenarioModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.functions.presentation.FunctionsEditorID"
+            name="%_UI_FunctionsEditor_label"
+            icon="icons/full/obj16/FunctionsModelFile.gif"
+            extensions="functions"
+            class="org.tud.inf.st.mbt.functions.presentation.FunctionsEditor"
+            contributorClass="org.tud.inf.st.mbt.functions.presentation.FunctionsActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.ocm.presentation.OcmModelWizardID"
+            name="%_UI_OcmModelWizard_label"
+            class="org.tud.inf.st.mbt.ocm.presentation.OcmModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/OcmModelFile.gif">
+         <description>%_UI_OcmModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.data.presentation.DataEditorID"
+            name="%_UI_DataEditor_label"
+            icon="icons/full/obj16/DataModelFile.gif"
+            extensions="data"
+            class="org.tud.inf.st.mbt.data.presentation.DataEditor"
+            contributorClass="org.tud.inf.st.mbt.data.presentation.DataActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.functions.presentation.FunctionsModelWizardID"
+            name="%_UI_FunctionsModelWizard_label"
+            class="org.tud.inf.st.mbt.functions.presentation.FunctionsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FunctionsModelFile.gif">
+         <description>%_UI_FunctionsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.features.presentation.FeaturesEditorID"
+            name="%_UI_FeaturesEditor_label"
+            icon="icons/full/obj16/FeaturesModelFile.gif"
+            extensions="features"
+            class="org.tud.inf.st.mbt.features.presentation.FeaturesEditor"
+            contributorClass="org.tud.inf.st.mbt.features.presentation.FeaturesActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.data.presentation.DataModelWizardID"
+            name="%_UI_DataModelWizard_label"
+            class="org.tud.inf.st.mbt.data.presentation.DataModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DataModelFile.gif">
+         <description>%_UI_DataModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.rules.presentation.RulesEditorID"
+            name="%_UI_RulesEditor_label"
+            icon="icons/full/obj16/RulesModelFile.gif"
+            extensions="rules"
+            class="org.tud.inf.st.mbt.rules.presentation.RulesEditor"
+            contributorClass="org.tud.inf.st.mbt.rules.presentation.RulesActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.features.presentation.FeaturesModelWizardID"
+            name="%_UI_FeaturesModelWizard_label"
+            class="org.tud.inf.st.mbt.features.presentation.FeaturesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FeaturesModelFile.gif">
+         <description>%_UI_FeaturesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.test.presentation.TestEditorID"
+            name="%_UI_TestEditor_label"
+            icon="icons/full/obj16/TestModelFile.gif"
+            extensions="test"
+            class="org.tud.inf.st.mbt.test.presentation.TestEditor"
+            contributorClass="org.tud.inf.st.mbt.test.presentation.TestActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.rules.presentation.RulesModelWizardID"
+            name="%_UI_RulesModelWizard_label"
+            class="org.tud.inf.st.mbt.rules.presentation.RulesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/RulesModelFile.gif">
+         <description>%_UI_RulesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.core.presentation.CoreEditorID"
+            name="%_UI_CoreEditor_label"
+            icon="icons/full/obj16/CoreModelFile.gif"
+            extensions="core"
+            class="org.tud.inf.st.mbt.core.presentation.CoreEditor"
+            contributorClass="org.tud.inf.st.mbt.core.presentation.CoreActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.test.presentation.TestModelWizardID"
+            name="%_UI_TestModelWizard_label"
+            class="org.tud.inf.st.mbt.test.presentation.TestModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TestModelFile.gif">
+         <description>%_UI_TestModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.ulang.guigraph.presentation.GuigraphEditorID"
+            name="%_UI_GuigraphEditor_label"
+            icon="icons/full/obj16/GuigraphModelFile.gif"
+            extensions="guigraph"
+            class="org.tud.inf.st.mbt.ulang.guigraph.presentation.GuigraphEditor"
+            contributorClass="org.tud.inf.st.mbt.ulang.guigraph.presentation.GuigraphActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.core.presentation.CoreModelWizardID"
+            name="%_UI_CoreModelWizard_label"
+            class="org.tud.inf.st.mbt.core.presentation.CoreModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/CoreModelFile.gif">
+         <description>%_UI_CoreModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.featuretree.presentation.FeaturetreeEditorID"
+            name="%_UI_FeaturetreeEditor_label"
+            icon="icons/full/obj16/FeaturetreeModelFile.gif"
+            extensions="featuretree"
+            class="org.tud.inf.st.mbt.featuretree.presentation.FeaturetreeEditor"
+            contributorClass="org.tud.inf.st.mbt.featuretree.presentation.FeaturetreeActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.ulang.guigraph.presentation.GuigraphModelWizardID"
+            name="%_UI_GuigraphModelWizard_label"
+            class="org.tud.inf.st.mbt.ulang.guigraph.presentation.GuigraphModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/GuigraphModelFile.gif">
+         <description>%_UI_GuigraphModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null   <extension point="org.eclipse.ui.editors">
+      <!-- @generated all -->
+      <editor
+            id="org.tud.inf.st.mbt.actions.presentation.ActionsEditorID"
+            name="%_UI_ActionsEditor_label"
+            icon="icons/full/obj16/ActionsModelFile.gif"
+            extensions="actions"
+            class="org.tud.inf.st.mbt.actions.presentation.ActionsEditor"
+            contributorClass="org.tud.inf.st.mbt.actions.presentation.ActionsActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated all -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.tud.inf.st.mbt.featuretree.presentation.FeaturetreeModelWizardID"
+            name="%_UI_FeaturetreeModelWizard_label"
+            class="org.tud.inf.st.mbt.featuretree.presentation.FeaturetreeModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FeaturetreeModelFile.gif">
+         <description>%_UI_FeaturetreeModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+null
+null</plugin>

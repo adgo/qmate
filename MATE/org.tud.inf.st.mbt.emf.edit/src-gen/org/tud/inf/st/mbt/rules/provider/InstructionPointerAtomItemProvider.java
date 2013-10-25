@@ -180,12 +180,10 @@ public class InstructionPointerAtomItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		InstructionPointerAtom instructionPointerAtom = (InstructionPointerAtom)object;
-		return getString("_UI_InstructionPointerAtom_type") + " " + instructionPointerAtom.getInstruction();
+		return object+"";
 	}
 
 	/**

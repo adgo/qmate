@@ -31,7 +31,7 @@ import org.tud.inf.st.mbt.test.TestStep;
  *
  * @generated
  */
-public class TestStepImpl extends AbstractModelElementImpl implements TestStep {
+public class TestStepImpl extends TestExecutableImpl implements TestStep {
 	/**
 	 * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference.
 	 * <!-- begin-user-doc -->

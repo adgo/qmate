@@ -33,8 +33,6 @@ import org.tud.inf.st.mbt.functions.FunctionsPackage;
 
 import org.tud.inf.st.mbt.functions.impl.FunctionsPackageImpl;
 
-import org.tud.inf.st.mbt.ocm.ComposedConfigurationNode;
-import org.tud.inf.st.mbt.ocm.CompositionEdge;
 import org.tud.inf.st.mbt.ocm.ConfigurationNode;
 import org.tud.inf.st.mbt.ocm.Edge;
 import org.tud.inf.st.mbt.ocm.EventGuardedEdge;
@@ -113,21 +111,7 @@ public class OcmPackageImpl extends EPackageImpl implements OcmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass composedConfigurationNodeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass edgeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass compositionEdgeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -370,44 +354,8 @@ public class OcmPackageImpl extends EPackageImpl implements OcmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getComposedConfigurationNode() {
-		return composedConfigurationNodeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getEdge() {
 		return edgeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompositionEdge() {
-		return compositionEdgeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompositionEdge_Source() {
-		return (EReference)compositionEdgeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompositionEdge_Target() {
-		return (EReference)compositionEdgeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -493,13 +441,7 @@ public class OcmPackageImpl extends EPackageImpl implements OcmPackage {
 		createEReference(reconfigurationActionNodeEClass, RECONFIGURATION_ACTION_NODE__ACTIONS);
 		createEAttribute(reconfigurationActionNodeEClass, RECONFIGURATION_ACTION_NODE__ACTIONS_TEXT);
 
-		composedConfigurationNodeEClass = createEClass(COMPOSED_CONFIGURATION_NODE);
-
 		edgeEClass = createEClass(EDGE);
-
-		compositionEdgeEClass = createEClass(COMPOSITION_EDGE);
-		createEReference(compositionEdgeEClass, COMPOSITION_EDGE__SOURCE);
-		createEReference(compositionEdgeEClass, COMPOSITION_EDGE__TARGET);
 
 		timedEdgeEClass = createEClass(TIMED_EDGE);
 		createEAttribute(timedEdgeEClass, TIMED_EDGE__DURATION);
@@ -548,9 +490,7 @@ public class OcmPackageImpl extends EPackageImpl implements OcmPackage {
 		operationalEdgeEClass.getESuperTypes().add(this.getEdge());
 		standardConfigurationNodeEClass.getESuperTypes().add(this.getConfigurationNode());
 		reconfigurationActionNodeEClass.getESuperTypes().add(this.getConfigurationNode());
-		composedConfigurationNodeEClass.getESuperTypes().add(this.getConfigurationNode());
 		edgeEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
-		compositionEdgeEClass.getESuperTypes().add(this.getEdge());
 		timedEdgeEClass.getESuperTypes().add(this.getOperationalEdge());
 		eventGuardedEdgeEClass.getESuperTypes().add(this.getOperationalEdge());
 
@@ -574,13 +514,7 @@ public class OcmPackageImpl extends EPackageImpl implements OcmPackage {
 		initEReference(getReconfigurationActionNode_Actions(), theActionsPackage.getReconfigurationAction(), null, "actions", null, 0, -1, ReconfigurationActionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getReconfigurationActionNode_ActionsText(), ecorePackage.getEString(), "actionsText", null, 1, 1, ReconfigurationActionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(composedConfigurationNodeEClass, ComposedConfigurationNode.class, "ComposedConfigurationNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(edgeEClass, Edge.class, "Edge", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(compositionEdgeEClass, CompositionEdge.class, "CompositionEdge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositionEdge_Source(), this.getConfigurationNode(), null, "source", null, 1, 1, CompositionEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompositionEdge_Target(), this.getComposedConfigurationNode(), null, "target", null, 1, 1, CompositionEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(timedEdgeEClass, TimedEdge.class, "TimedEdge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTimedEdge_Duration(), ecorePackage.getEInt(), "duration", "1", 1, 1, TimedEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

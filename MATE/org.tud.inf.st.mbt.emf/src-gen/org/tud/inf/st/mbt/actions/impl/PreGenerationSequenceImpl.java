@@ -151,7 +151,10 @@ public class PreGenerationSequenceImpl extends EObjectImpl implements PreGenerat
 	
 	@Override
 	public String toString() {
-		return ""+getActions();
+		StringBuffer buf = new StringBuffer();
+		for(PreGenerationAction pga:getActions())
+			buf.append(pga+";");
+		return buf.toString();
 	}
 
 } //PreGenerationSequenceImpl

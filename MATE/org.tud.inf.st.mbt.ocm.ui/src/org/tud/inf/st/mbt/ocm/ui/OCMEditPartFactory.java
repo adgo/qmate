@@ -10,7 +10,6 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.EMFEditPartFactory;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFGraphics;
 import org.tud.inf.st.mbt.emf.graphicaleditor.GraphicalEMFEditor;
 import org.tud.inf.st.mbt.emf.graphicaleditor.basics.LabeledRectangle;
-import org.tud.inf.st.mbt.ocm.ComposedConfigurationNode;
 import org.tud.inf.st.mbt.ocm.Edge;
 import org.tud.inf.st.mbt.ocm.OcmPackage;
 import org.tud.inf.st.mbt.ocm.OperationalConfigurationModel;
@@ -40,9 +39,6 @@ public class OCMEditPartFactory extends EMFEditPartFactory {
 				}
 
 			};
-		} else if (model instanceof ComposedConfigurationNode) {
-			result = new CompositionEditPart((EObject) model, graphics,
-					getEditedResource());
 		} else if (model instanceof StandardConfigurationNode) {
 			result = new BasicOCMNodeEditPart((EObject) model, graphics,
 					getEditedResource()) {

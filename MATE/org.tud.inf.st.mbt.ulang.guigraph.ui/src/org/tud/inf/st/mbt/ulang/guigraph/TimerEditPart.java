@@ -43,7 +43,7 @@ public class TimerEditPart extends BasicNodeEditPart implements NodeEditPart,
 					public boolean canConnect(EObject source, EObject target,
 							EClass connType) {
 						if(!(source instanceof Transition && !(target instanceof Transition))
-								|| (target instanceof Transition && !(source instanceof Transition)))return false;
+								&& !(target instanceof Transition && !(source instanceof Transition)))return false;
 						
 						for(Arc a:ModelUtil.getAllEObjectsOfSuperType(getModel().eContainer(), Arc.class)){
 							if(a.getSource().equals(source) && a.getTarget().equals(target)){

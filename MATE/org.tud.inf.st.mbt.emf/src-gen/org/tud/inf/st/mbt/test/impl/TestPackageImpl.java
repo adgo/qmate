@@ -50,6 +50,7 @@ import org.tud.inf.st.mbt.terms.TermsPackage;
 import org.tud.inf.st.mbt.terms.impl.TermsPackageImpl;
 
 import org.tud.inf.st.mbt.test.TestCase;
+import org.tud.inf.st.mbt.test.TestExecutable;
 import org.tud.inf.st.mbt.test.TestFactory;
 import org.tud.inf.st.mbt.test.TestPackage;
 import org.tud.inf.st.mbt.test.TestReport;
@@ -118,6 +119,13 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * @generated
 	 */
 	private EClass verdictEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass testExecutableEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -319,6 +327,15 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTestReport_Suite() {
+		return (EReference)testReportEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTestRun() {
 		return testRunEClass;
 	}
@@ -337,7 +354,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestRun_Verdict() {
+	public EReference getTestRun__case() {
 		return (EReference)testRunEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -373,6 +390,24 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTestStepRun_Verdict() {
+		return (EReference)testStepRunEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestStepRun_Action() {
+		return (EReference)testStepRunEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVerdict() {
 		return verdictEClass;
 	}
@@ -384,6 +419,15 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 */
 	public EAttribute getVerdict_Name() {
 		return (EAttribute)verdictEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTestExecutable() {
+		return testExecutableEClass;
 	}
 
 	/**
@@ -428,17 +472,22 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		testReportEClass = createEClass(TEST_REPORT);
 		createEReference(testReportEClass, TEST_REPORT__RUNS);
+		createEReference(testReportEClass, TEST_REPORT__SUITE);
 
 		testRunEClass = createEClass(TEST_RUN);
 		createEReference(testRunEClass, TEST_RUN__STEP_RUNS);
-		createEReference(testRunEClass, TEST_RUN__VERDICT);
+		createEReference(testRunEClass, TEST_RUN__CASE);
 
 		testStepRunEClass = createEClass(TEST_STEP_RUN);
 		createEReference(testStepRunEClass, TEST_STEP_RUN__STEP);
 		createEReference(testStepRunEClass, TEST_STEP_RUN__STATE);
+		createEReference(testStepRunEClass, TEST_STEP_RUN__VERDICT);
+		createEReference(testStepRunEClass, TEST_STEP_RUN__ACTION);
 
 		verdictEClass = createEClass(VERDICT);
 		createEAttribute(verdictEClass, VERDICT__NAME);
+
+		testExecutableEClass = createEClass(TEST_EXECUTABLE);
 	}
 
 	/**
@@ -475,14 +524,15 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		testSuiteEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
 		testSuiteEClass.getESuperTypes().add(theCorePackage.getITopLevelElement());
-		testCaseEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
-		testStepEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
-		testReportEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
+		testSuiteEClass.getESuperTypes().add(this.getTestExecutable());
+		testCaseEClass.getESuperTypes().add(this.getTestExecutable());
+		testStepEClass.getESuperTypes().add(this.getTestExecutable());
 		testReportEClass.getESuperTypes().add(theCorePackage.getITopLevelElement());
-		testRunEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
-		testStepRunEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
+		testReportEClass.getESuperTypes().add(this.getTestExecutable());
+		testRunEClass.getESuperTypes().add(this.getTestExecutable());
+		testStepRunEClass.getESuperTypes().add(this.getTestExecutable());
+		testExecutableEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(testSuiteEClass, TestSuite.class, "TestSuite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -499,17 +549,22 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
 		initEClass(testReportEClass, TestReport.class, "TestReport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTestReport_Runs(), this.getTestRun(), null, "runs", null, 0, -1, TestReport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestReport_Suite(), this.getTestSuite(), null, "suite", null, 0, 1, TestReport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testRunEClass, TestRun.class, "TestRun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTestRun_StepRuns(), this.getTestStepRun(), null, "stepRuns", null, 0, -1, TestRun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestRun_Verdict(), this.getVerdict(), null, "verdict", null, 0, 1, TestRun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestRun__case(), this.getTestCase(), null, "_case", null, 0, 1, TestRun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testStepRunEClass, TestStepRun.class, "TestStepRun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTestStepRun_Step(), this.getTestStep(), null, "step", null, 1, 1, TestStepRun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestStepRun_State(), theRulesPackage.getAtom(), null, "state", null, 0, -1, TestStepRun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestStepRun_Verdict(), this.getVerdict(), null, "verdict", null, 0, 1, TestStepRun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestStepRun_Action(), theActionsPackage.getPostGenerationAction(), null, "action", null, 0, 1, TestStepRun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(verdictEClass, Verdict.class, "Verdict", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVerdict_Name(), ecorePackage.getEString(), "name", null, 1, 1, Verdict.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(testExecutableEClass, TestExecutable.class, "TestExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -67,7 +67,11 @@ public class Generator implements Iterator<GeneratorState> {
 	private void configureOperators() {
 		operators.add(new CAOperator(satFoundation));
 		operators.add(new TimerOperator(satFoundation));
-		operators.add(new TimedCondtionActionOperator(satFoundation));
+		operators.add(new TimedConditionActionOperator(satFoundation));
+		
+		for(AbstractOperator op:operators)
+			if(op instanceof TransitionOperator)
+				((TransitionOperator) op).setIgnoreRealtime(true);
 	}
 
 	@Override

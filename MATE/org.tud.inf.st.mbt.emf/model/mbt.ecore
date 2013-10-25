@@ -25,7 +25,7 @@
         interface="true"/>
   </eSubpackages>
   <eSubpackages name="test" nsURI="http://st.inf.tud.org.de/mbt/test" nsPrefix="test">
-    <eClassifiers xsi:type="ecore:EClass" name="TestSuite" eSuperTypes="#//core/AbstractModelElement #//core/ITopLevelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="TestSuite" eSuperTypes="#//core/ITopLevelElement #//test/TestExecutable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="cases" upperBound="-1"
           eType="#//test/TestCase" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
@@ -33,36 +33,41 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="riskReduction" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TestCase" eSuperTypes="#//core/AbstractModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="TestCase" eSuperTypes="#//test/TestExecutable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="steps" upperBound="-1"
           eType="#//test/TestStep" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="riskReduction" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TestStep" eSuperTypes="#//core/AbstractModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="TestStep" eSuperTypes="#//test/TestExecutable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="action" lowerBound="1"
           eType="ecore:EClass actions.ecore#//PostGenerationAction" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TestReport" eSuperTypes="#//core/AbstractModelElement #//core/ITopLevelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="TestReport" eSuperTypes="#//core/ITopLevelElement #//test/TestExecutable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="runs" upperBound="-1"
           eType="#//test/TestRun" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="suite" eType="#//test/TestSuite"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TestRun" eSuperTypes="#//core/AbstractModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="TestRun" eSuperTypes="#//test/TestExecutable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="stepRuns" upperBound="-1"
           eType="#//test/TestStepRun" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="verdict" eType="#//test/Verdict"
-          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="_case" eType="#//test/TestCase"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TestStepRun" eSuperTypes="#//core/AbstractModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="TestStepRun" eSuperTypes="#//test/TestExecutable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="step" lowerBound="1"
           eType="#//test/TestStep"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="state" upperBound="-1"
           eType="#//rules/Atom" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="verdict" eType="#//test/Verdict"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="action" eType="ecore:EClass actions.ecore#//PostGenerationAction"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Verdict">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TestExecutable" abstract="true" eSuperTypes="#//core/AbstractModelElement"/>
   </eSubpackages>
   <eSubpackages name="rules" nsURI="http://st.inf.tud.org/mbt/rules" nsPrefix="rules">
     <eClassifiers xsi:type="ecore:EClass" name="Predicate" abstract="true" interface="true"/>
@@ -211,7 +216,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
           eType="#//data/DataClass"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="causalLinkType" lowerBound="1"
-          eType="#//core/CausalLinkType" defaultValueLiteral="3"/>
+          eType="#//core/CausalLinkType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataClass" eSuperTypes="#//data/DataElement #//core/ITopLevelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"

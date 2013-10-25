@@ -869,16 +869,6 @@ public class ContainerTermItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(TermsPackage.Literals.CONTAINER_TERM__CONTAINMENT,
-				 OcmFactory.eINSTANCE.createComposedConfigurationNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TermsPackage.Literals.CONTAINER_TERM__CONTAINMENT,
-				 OcmFactory.eINSTANCE.createCompositionEdge()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TermsPackage.Literals.CONTAINER_TERM__CONTAINMENT,
 				 OcmFactory.eINSTANCE.createTimedEdge()));
 
 		newChildDescriptors.add

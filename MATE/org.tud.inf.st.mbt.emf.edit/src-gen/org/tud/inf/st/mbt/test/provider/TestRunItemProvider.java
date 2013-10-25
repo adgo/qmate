@@ -8,11 +8,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -20,14 +18,13 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.tud.inf.st.mbt.actions.provider.AllEditPlugin;
-
 import org.tud.inf.st.mbt.core.provider.AbstractModelElementItemProvider;
-
+import org.tud.inf.st.mbt.emf.util.ReportUtil;
 import org.tud.inf.st.mbt.test.TestFactory;
 import org.tud.inf.st.mbt.test.TestPackage;
 import org.tud.inf.st.mbt.test.TestRun;
+import org.tud.inf.st.mbt.test.TestStepRun;
 
 /**
  * This is the item provider adapter for a {@link org.tud.inf.st.mbt.test.TestRun} object.
@@ -36,7 +33,7 @@ import org.tud.inf.st.mbt.test.TestRun;
  * @generated
  */
 public class TestRunItemProvider
-	extends AbstractModelElementItemProvider
+	extends TestExecutableItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -64,8 +61,31 @@ public class TestRunItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			add_casePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the case feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void add_casePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestRun__case_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestRun__case_feature", "_UI_TestRun_type"),
+				 TestPackage.Literals.TEST_RUN__CASE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -81,7 +101,6 @@ public class TestRunItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(TestPackage.Literals.TEST_RUN__STEP_RUNS);
-			childrenFeatures.add(TestPackage.Literals.TEST_RUN__VERDICT);
 		}
 		return childrenFeatures;
 	}
@@ -103,10 +122,17 @@ public class TestRunItemProvider
 	 * This returns TestRun.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
+		if(object instanceof TestRun){
+			if(ReportUtil.passed((TestRun) object)){
+				return overlayImage(object, getResourceLocator().getImage("pass.png"));
+			} else {
+				return overlayImage(object, getResourceLocator().getImage("fail.png"));
+			}
+		}
+		
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/TestRun"));
 	}
 
@@ -137,7 +163,6 @@ public class TestRunItemProvider
 
 		switch (notification.getFeatureID(TestRun.class)) {
 			case TestPackage.TEST_RUN__STEP_RUNS:
-			case TestPackage.TEST_RUN__VERDICT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -159,22 +184,6 @@ public class TestRunItemProvider
 			(createChildParameter
 				(TestPackage.Literals.TEST_RUN__STEP_RUNS,
 				 TestFactory.eINSTANCE.createTestStepRun()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TestPackage.Literals.TEST_RUN__VERDICT,
-				 TestFactory.eINSTANCE.createVerdict()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return AllEditPlugin.INSTANCE;
 	}
 
 }

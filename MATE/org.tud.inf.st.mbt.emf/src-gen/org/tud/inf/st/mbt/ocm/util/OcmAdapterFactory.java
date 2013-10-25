@@ -90,16 +90,8 @@ public class OcmAdapterFactory extends AdapterFactoryImpl {
 				return createReconfigurationActionNodeAdapter();
 			}
 			@Override
-			public Adapter caseComposedConfigurationNode(ComposedConfigurationNode object) {
-				return createComposedConfigurationNodeAdapter();
-			}
-			@Override
 			public Adapter caseEdge(Edge object) {
 				return createEdgeAdapter();
-			}
-			@Override
-			public Adapter caseCompositionEdge(CompositionEdge object) {
-				return createCompositionEdgeAdapter();
 			}
 			@Override
 			public Adapter caseTimedEdge(TimedEdge object) {
@@ -218,34 +210,6 @@ public class OcmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEdgeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.tud.inf.st.mbt.ocm.CompositionEdge <em>Composition Edge</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.tud.inf.st.mbt.ocm.CompositionEdge
-	 * @generated
-	 */
-	public Adapter createCompositionEdgeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.tud.inf.st.mbt.ocm.ComposedConfigurationNode <em>Composed Configuration Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.tud.inf.st.mbt.ocm.ComposedConfigurationNode
-	 * @generated
-	 */
-	public Adapter createComposedConfigurationNodeAdapter() {
 		return null;
 	}
 

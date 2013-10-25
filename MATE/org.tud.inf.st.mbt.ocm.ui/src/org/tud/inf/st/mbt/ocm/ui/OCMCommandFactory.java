@@ -13,8 +13,6 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.EMFGraphicsUtil;
 import org.tud.inf.st.mbt.emf.graphicaleditor.commands.EMFCommandFactory;
 import org.tud.inf.st.mbt.emf.graphicaleditor.commands.EMFConnectionCommand;
 import org.tud.inf.st.mbt.emf.graphicaleditor.commands.EMFReconnectCommand;
-import org.tud.inf.st.mbt.ocm.ComposedConfigurationNode;
-import org.tud.inf.st.mbt.ocm.CompositionEdge;
 import org.tud.inf.st.mbt.ocm.ConfigurationNode;
 import org.tud.inf.st.mbt.ocm.Edge;
 import org.tud.inf.st.mbt.ocm.OcmFactory;
@@ -43,26 +41,15 @@ public class OCMCommandFactory implements EMFCommandFactory {
 		return new EMFConnectionCommand(connType, parent) {
 			@Override
 			public void execute() {
-				if (getConnectionType().equals(
-						OcmPackage.eINSTANCE.getCompositionEdge())) {
-					CompositionEdge e = OcmFactory.eINSTANCE
-							.createCompositionEdge();
-					e.setSource((ConfigurationNode) getSource());
-					e.setTarget((ComposedConfigurationNode) getTarget());
-					((OperationalConfigurationModel) getParent()).getEdges()
-							.add(e);
-					setConnection(e);
-				} else {
-					OperationalEdge e = getConnectionType().equals(
-							OcmPackage.eINSTANCE.getTimedEdge()) ? OcmFactory.eINSTANCE
-							.createTimedEdge() : OcmFactory.eINSTANCE
-							.createEventGuardedEdge();
-					e.setSource((ConfigurationNode) getSource());
-					e.setTarget((ConfigurationNode) getTarget());
-					((OperationalConfigurationModel) getParent()).getEdges()
-							.add(e);
-					setConnection(e);
-				}
+				OperationalEdge e = getConnectionType().equals(
+						OcmPackage.eINSTANCE.getTimedEdge()) ? OcmFactory.eINSTANCE
+						.createTimedEdge() : OcmFactory.eINSTANCE
+						.createEventGuardedEdge();
+				e.setSource((ConfigurationNode) getSource());
+				e.setTarget((ConfigurationNode) getTarget());
+				((OperationalConfigurationModel) getParent()).getEdges().add(e);
+				setConnection(e);
+
 				notifyModel();
 			}
 
@@ -81,45 +68,27 @@ public class OCMCommandFactory implements EMFCommandFactory {
 		return new EMFReconnectCommand(connection, fromOld, toOld) {
 			@Override
 			public void execute() {
-				if (getConnectionType().equals(
-						OcmPackage.eINSTANCE.getCompositionEdge())) {
 
-					CompositionEdge e = (CompositionEdge) getConnection();
+				OperationalEdge e = (OperationalEdge) getConnection();
 
-					if (getSource() != null)
-						e.setSource((ConfigurationNode) getSource());
-					if (getTarget() != null)
-						e.setTarget((ComposedConfigurationNode) getTarget());
-				} else {
-					OperationalEdge e = (OperationalEdge) getConnection();
+				if (getSource() != null)
+					e.setSource((ConfigurationNode) getSource());
+				if (getTarget() != null)
+					e.setTarget((ConfigurationNode) getTarget());
 
-					if (getSource() != null)
-						e.setSource((ConfigurationNode) getSource());
-					if (getTarget() != null)
-						e.setTarget((ConfigurationNode) getTarget());
-				}
 				notifyModel();
 			}
 
 			@Override
 			public void undo() {
-				if (getConnectionType().equals(
-						OcmPackage.eINSTANCE.getCompositionEdge())) {
 
-					CompositionEdge e = (CompositionEdge) getConnection();
+				OperationalEdge e = (OperationalEdge) getConnection();
 
-					if (getSourceOld() != null)
-						e.setSource((ConfigurationNode) getSourceOld());
-					if (getTargetOld() != null)
-						e.setTarget((ComposedConfigurationNode) getTargetOld());
-				} else {
-					OperationalEdge e = (OperationalEdge) getConnection();
+				if (getSourceOld() != null)
+					e.setSource((ConfigurationNode) getSourceOld());
+				if (getTargetOld() != null)
+					e.setTarget((ConfigurationNode) getTargetOld());
 
-					if (getSourceOld() != null)
-						e.setSource((ConfigurationNode) getSourceOld());
-					if (getTargetOld() != null)
-						e.setTarget((ConfigurationNode) getTargetOld());
-				}
 				notifyModel();
 			}
 		};
@@ -136,17 +105,11 @@ public class OCMCommandFactory implements EMFCommandFactory {
 				@Override
 				public void execute() {
 					for (Edge e : graph.getEdges()) {
-						if (e instanceof CompositionEdge) {
-							CompositionEdge ce = (CompositionEdge) e;
-							if (ce.getSource().equals(toDelete)
-									|| ce.getTarget().equals(toDelete))
-								inouts.add(ce);
-						} else {
-							OperationalEdge oe = (OperationalEdge) e;
-							if (oe.getSource().equals(toDelete)
-									|| oe.getTarget().equals(toDelete))
-								inouts.add(oe);
-						}
+						OperationalEdge oe = (OperationalEdge) e;
+						if (oe.getSource().equals(toDelete)
+								|| oe.getTarget().equals(toDelete))
+							inouts.add(oe);
+
 					}
 
 					graph.getEdges().removeAll(inouts);
@@ -168,17 +131,12 @@ public class OCMCommandFactory implements EMFCommandFactory {
 					EMFGraphicsUtil.notifyNull(graph);
 					for (Edge e : inouts) {
 						EMFGraphicsUtil.notifyNull(e);
-						if (e instanceof CompositionEdge) {
-							EMFGraphicsUtil.notifyNull(((CompositionEdge) e)
-									.getSource());
-							EMFGraphicsUtil.notifyNull(((CompositionEdge) e)
-									.getTarget());
-						} else {
-							EMFGraphicsUtil.notifyNull(((OperationalEdge) e)
-									.getSource());
-							EMFGraphicsUtil.notifyNull(((OperationalEdge) e)
-									.getTarget());
-						}
+
+						EMFGraphicsUtil.notifyNull(((OperationalEdge) e)
+								.getSource());
+						EMFGraphicsUtil.notifyNull(((OperationalEdge) e)
+								.getTarget());
+
 					}
 				}
 			};
@@ -202,17 +160,11 @@ public class OCMCommandFactory implements EMFCommandFactory {
 				private void notifyModel() {
 					EMFGraphicsUtil.notifyNull(toDelete);
 					EMFGraphicsUtil.notifyNull(graph);
-					if (toDelete instanceof CompositionEdge) {
-						EMFGraphicsUtil.notifyNull(((CompositionEdge) toDelete)
-								.getSource());
-						EMFGraphicsUtil.notifyNull(((CompositionEdge) toDelete)
-								.getTarget());
-					} else {
-						EMFGraphicsUtil.notifyNull(((OperationalEdge) toDelete)
-								.getSource());
-						EMFGraphicsUtil.notifyNull(((OperationalEdge) toDelete)
-								.getTarget());
-					}
+					EMFGraphicsUtil.notifyNull(((OperationalEdge) toDelete)
+							.getSource());
+					EMFGraphicsUtil.notifyNull(((OperationalEdge) toDelete)
+							.getTarget());
+
 				}
 			};
 		}

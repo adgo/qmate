@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.tud.inf.st.mbt.actions.ActionsFactory;
+import org.tud.inf.st.mbt.actions.PreGenerationAction;
 import org.tud.inf.st.mbt.actions.PreGenerationSequence;
 import org.tud.inf.st.mbt.actions.TermAction;
 import org.tud.inf.st.mbt.core.IContextVariable;
@@ -100,8 +102,14 @@ import org.tud.inf.st.mbt.terms.StringTerm;
 import org.tud.inf.st.mbt.terms.Term;
 import org.tud.inf.st.mbt.terms.TermVariable;
 import org.tud.inf.st.mbt.terms.TermsFactory;
+import org.tud.inf.st.mbt.test.TestCase;
+import org.tud.inf.st.mbt.test.TestExecutable;
 import org.tud.inf.st.mbt.test.TestFactory;
+import org.tud.inf.st.mbt.test.TestReport;
+import org.tud.inf.st.mbt.test.TestRun;
 import org.tud.inf.st.mbt.test.TestStep;
+import org.tud.inf.st.mbt.test.TestStepRun;
+import org.tud.inf.st.mbt.test.TestSuite;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 
 public class ModelUtil {
@@ -543,6 +551,19 @@ public class ModelUtil {
 		return hc;
 	}
 
+	public static <T> Set<T> getAllEObjectsOfSuperType(Object o, Class<T> type,
+			boolean withCrossRefs) {
+		if (o instanceof ResourceSet)
+			return getAllEObjectsOfSuperType((ResourceSet) o, type,
+					withCrossRefs);
+		if (o instanceof Resource)
+			return getAllEObjectsOfSuperType((Resource) o, type, withCrossRefs);
+		if (o instanceof EObject)
+			return getAllEObjectsOfSuperType((EObject) o, type, withCrossRefs);
+
+		return null;
+	}
+
 	public static <T> Set<T> getAllEObjectsOfSuperType(ResourceSet rs,
 			Class<T> type) {
 		return getAllEObjectsOfSuperType(rs, type, true);
@@ -627,6 +648,60 @@ public class ModelUtil {
 		for (ContextEntry ce : ipa.getContext())
 			context.put(ce.getId(), ce.getValue());
 		return context;
+	}
+
+	public static PreGenerationAction functorAction(String functor,
+			Object... args) {
+		TermAction a = ActionsFactory.eINSTANCE.createTermAction();
+		FunctorTerm ft = TermsFactory.eINSTANCE.createFunctorTerm();
+		ft.setFunctor(functor);
+		for (Object arg : args) {
+			if (arg instanceof String) {
+				StringTerm st = TermsFactory.eINSTANCE.createStringTerm();
+				st.setValue((String) arg);
+				ft.getArguments().add(st);
+			} else if (arg instanceof Integer) {
+				IntegerTerm it = TermsFactory.eINSTANCE.createIntegerTerm();
+				it.setValue((int) arg);
+				ft.getArguments().add(it);
+			} else if (arg instanceof Float || arg instanceof Double) {
+				FloatTerm flt = TermsFactory.eINSTANCE.createFloatTerm();
+				flt.setValue(Float.parseFloat(arg + ""));
+				ft.getArguments().add(flt);
+			} else if (arg instanceof Long) {
+				LongTerm lt = TermsFactory.eINSTANCE.createLongTerm();
+				lt.setValue((long) arg);
+				ft.getArguments().add(lt);
+			}
+		}
+		a.setTerm(ft);
+		return a;
+	}
+
+	public static int countSteps(List<TestExecutable> executables) {
+		int steps = 0;
+		for (TestExecutable e : executables)
+			steps += countSteps(e);
+		return steps;
+	}
+
+	public static int countSteps(TestExecutable executable) {
+		if (executable instanceof TestStep || executable instanceof TestStepRun)return 1;
+		if(executable instanceof TestCase)return ((TestCase) executable).getSteps().size();
+		if(executable instanceof TestRun)return ((TestRun) executable).getStepRuns().size();
+		if(executable instanceof TestSuite){
+			int i =0;
+			for(TestCase c:((TestSuite) executable).getCases())
+				i+= countSteps(c);
+			return i;
+		}
+		if(executable instanceof TestReport){
+			int i =0;
+			for(TestRun c:((TestReport) executable).getRuns())
+				i+= countSteps(c);
+			return i;
+		}
+		return 0;
 	}
 
 }

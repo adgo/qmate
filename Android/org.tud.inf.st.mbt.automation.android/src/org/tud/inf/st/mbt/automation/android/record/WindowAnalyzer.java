@@ -8,9 +8,12 @@ import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.tud.inf.st.mbt.actions.PreGenerationAction;
 import org.tud.inf.st.mbt.android.recorder.RecorderConstants;
 
 import cern.colt.bitvector.BitMatrix;
+
+import static org.tud.inf.st.mbt.emf.util.ModelUtil.functorAction;
 
 public class WindowAnalyzer {
 
@@ -23,7 +26,7 @@ public class WindowAnalyzer {
 			this.id = id;
 		}
 
-		public abstract String toValidationActionString();
+		public abstract PreGenerationAction toValidationAction();
 
 	}
 
@@ -33,8 +36,8 @@ public class WindowAnalyzer {
 		}
 
 		@Override
-		public String toValidationActionString() {
-			return "validate_tree";
+		public PreGenerationAction toValidationAction() {
+			return functorAction("validate_tree");
 		}
 	}
 
@@ -45,8 +48,8 @@ public class WindowAnalyzer {
 		}
 
 		@Override
-		public String toValidationActionString() {
-			return "validate_appeared(" + id + ")";
+		public PreGenerationAction toValidationAction() {
+			return functorAction("validate_appeared", id);
 		}
 
 	}
@@ -58,8 +61,8 @@ public class WindowAnalyzer {
 		}
 
 		@Override
-		public String toValidationActionString() {
-			return "validate_disappeared(" + id + ")";
+		public PreGenerationAction toValidationAction() {
+			return functorAction("validate_disappeared", id);
 		}
 	}
 
@@ -72,8 +75,8 @@ public class WindowAnalyzer {
 		}
 
 		@Override
-		public String toValidationActionString() {
-			return "validate_text(" + id + ",\"" + text + "\")";
+		public PreGenerationAction toValidationAction() {
+			return functorAction("validate_text", id, text);
 		}
 	}
 
@@ -86,8 +89,8 @@ public class WindowAnalyzer {
 		}
 
 		@Override
-		public String toValidationActionString() {
-			return "validate_focus(" + id + "," + focused + ")";
+		public PreGenerationAction toValidationAction() {
+			return functorAction("validate_focus", id, focused);
 		}
 	}
 
@@ -100,8 +103,8 @@ public class WindowAnalyzer {
 		}
 
 		@Override
-		public String toValidationActionString() {
-			return "validate_select(" + id + "," + selected + ")";
+		public PreGenerationAction toValidationAction() {
+			return functorAction("validate_select", id, selected);
 		}
 	}
 
@@ -114,8 +117,8 @@ public class WindowAnalyzer {
 		}
 
 		@Override
-		public String toValidationActionString() {
-			return "validate_check(" + id + "," + checked + ")";
+		public PreGenerationAction toValidationAction() {
+			return functorAction("validate_check", id, checked);
 		}
 	}
 
@@ -126,19 +129,15 @@ public class WindowAnalyzer {
 		}
 
 		@Override
-		public String toValidationActionString() {
-			return "validate_bounds(" + id + "," + bounds2String(bounds) + ")";
+		public PreGenerationAction toValidationAction() {
+			return functorAction("validate_bounds", id, bounds.x, bounds.y,
+					bounds.width, bounds.height);
 		}
 	}
 
-	private static String bounds2String(Rectangle r) {
-		return (int) r.x + "," + (int) r.y + "," + (int) r.getMaxX() + ","
-				+ (int) r.getMaxY();
+	public static int measureSimilarity(JSONObject s1, JSONObject s2) {
+		return -diff(s1, s2).size();
 	}
-	
-	public static int measureSimilarity(JSONObject s1,JSONObject s2){
-		return -diff(s1,s2).size();
-	}	
 
 	public static List<WindowDiff> diff(JSONObject before, JSONObject after) {
 		List<WindowDiff> result = new ArrayList<>();

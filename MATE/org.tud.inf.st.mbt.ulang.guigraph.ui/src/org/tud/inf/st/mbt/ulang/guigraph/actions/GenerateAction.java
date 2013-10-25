@@ -53,26 +53,17 @@ public class GenerateAction extends ActionDelegate {
 			if(l.getCausalLinkType().equals(CausalLinkType.DOWNLINK)){
 				MessageBox mb = new MessageBox(Display.getCurrent()
 						.getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				mb.setText("Downlink variables found");
+				mb.setText("Downlink Variables Found");
 				mb.setMessage("No offline generation possible: resource contains downlink variables!");
 				mb.open();
 				return;
 			}
 		}
-		for(ConditionActionTransition cat:ModelUtil.getAllEObjectsOfSuperType(rs, ConditionActionTransition.class)){
-			if(cat.getTimeMax()!=0){
-				MessageBox mb = new MessageBox(Display.getCurrent()
-						.getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-				mb.setText("Realtime Simuatlation Model");
-				mb.setMessage("No offline generation possilbe: realtime-dependent behavior found!");
-				mb.open();
-				return;
-			}
-		}
+		
 		if (!ValidationManager.getInstance(selected).validateAll(rs)) {
 			MessageBox mb = new MessageBox(Display.getCurrent()
 					.getActiveShell(), SWT.ICON_ERROR | SWT.OK);
-			mb.setText("Validation failed");
+			mb.setText("Validation Failed");
 			mb.setMessage("This resource contains an error. Please check the Problems view!");
 			mb.open();
 			return;

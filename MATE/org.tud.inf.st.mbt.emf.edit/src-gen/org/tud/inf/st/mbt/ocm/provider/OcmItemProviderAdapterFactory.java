@@ -141,52 +141,6 @@ public class OcmItemProviderAdapterFactory extends OcmAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.tud.inf.st.mbt.ocm.ComposedConfigurationNode} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ComposedConfigurationNodeItemProvider composedConfigurationNodeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.tud.inf.st.mbt.ocm.ComposedConfigurationNode}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createComposedConfigurationNodeAdapter() {
-		if (composedConfigurationNodeItemProvider == null) {
-			composedConfigurationNodeItemProvider = new ComposedConfigurationNodeItemProvider(this);
-		}
-
-		return composedConfigurationNodeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.tud.inf.st.mbt.ocm.CompositionEdge} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CompositionEdgeItemProvider compositionEdgeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.tud.inf.st.mbt.ocm.CompositionEdge}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCompositionEdgeAdapter() {
-		if (compositionEdgeItemProvider == null) {
-			compositionEdgeItemProvider = new CompositionEdgeItemProvider(this);
-		}
-
-		return compositionEdgeItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.tud.inf.st.mbt.ocm.TimedEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -334,8 +288,6 @@ public class OcmItemProviderAdapterFactory extends OcmAdapterFactory implements 
 		if (operationalConfigurationModelItemProvider != null) operationalConfigurationModelItemProvider.dispose();
 		if (standardConfigurationNodeItemProvider != null) standardConfigurationNodeItemProvider.dispose();
 		if (reconfigurationActionNodeItemProvider != null) reconfigurationActionNodeItemProvider.dispose();
-		if (composedConfigurationNodeItemProvider != null) composedConfigurationNodeItemProvider.dispose();
-		if (compositionEdgeItemProvider != null) compositionEdgeItemProvider.dispose();
 		if (timedEdgeItemProvider != null) timedEdgeItemProvider.dispose();
 		if (eventGuardedEdgeItemProvider != null) eventGuardedEdgeItemProvider.dispose();
 	}

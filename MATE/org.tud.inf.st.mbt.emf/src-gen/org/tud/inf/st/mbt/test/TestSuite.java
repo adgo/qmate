@@ -28,7 +28,7 @@ import org.tud.inf.st.mbt.features.ExplicitSet;
  * @model
  * @generated
  */
-public interface TestSuite extends AbstractModelElement, ITopLevelElement {
+public interface TestSuite extends ITopLevelElement, TestExecutable {
 	/**
 	 * Returns the value of the '<em><b>Cases</b></em>' containment reference list.
 	 * The list contents are of type {@link org.tud.inf.st.mbt.test.TestCase}.

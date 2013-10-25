@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -44,7 +45,7 @@ public class WidgetEditPart extends PlaceEditPart {
 					public boolean canConnect(EObject source, EObject target,
 							EClass connType) {
 						if(!(source instanceof Transition && !(target instanceof Transition))
-								|| (target instanceof Transition && !(source instanceof Transition)))return false;
+								&& !(target instanceof Transition && !(source instanceof Transition)))return false;
 						
 						for(Arc a:ModelUtil.getAllEObjectsOfSuperType(getModel().eContainer(), Arc.class)){
 							if(a.getSource().equals(source) && a.getTarget().equals(target)){
@@ -121,7 +122,7 @@ public class WidgetEditPart extends PlaceEditPart {
 		setConstraint(new Rectangle(getGraphics().getObjectConstraint(
 				getModel())));
 
-		fig.setImagePath("platform:/resource/"+state.getImage());
+		fig.setImagePath(ResourcesPlugin.getWorkspace().getRoot().getLocation()+"/"+state.getImage());
 
 		refreshChildren();
 	}

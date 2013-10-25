@@ -49,6 +49,7 @@ public abstract class TransitionOperator extends AbstractOperator {
 
 	private SAT sat;
 	private SATFoundation satFoundation;
+	private boolean ignoreRealtime = false;
 
 	public TransitionOperator(SATFoundation satFoundation) {
 		this.satFoundation = satFoundation;
@@ -91,6 +92,14 @@ public abstract class TransitionOperator extends AbstractOperator {
 			trans2produced.put(t, produced);
 		}
 	}
+	
+	public void setIgnoreRealtime(boolean ignoreRealtime) {
+		this.ignoreRealtime = ignoreRealtime;
+	}
+	
+	public boolean isIgnoreRealtime() {
+		return ignoreRealtime;
+	}
 
 	protected Collection<Transition> getTransitions() {
 		return transitions;
@@ -132,7 +141,9 @@ public abstract class TransitionOperator extends AbstractOperator {
 
 	@SuppressWarnings("unchecked")
 	protected List<Transition> computeActivatedTransitions(State s) {
-		return (List<Transition>) s
+		List<Transition> enabled = computeEnabledTransitions(s);
+		if(ignoreRealtime)return enabled;
+		else return (List<Transition>) s
 				.getRealTimeEnabledConsumers(Transition.class);
 	}
 

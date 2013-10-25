@@ -14,15 +14,20 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.tud.inf.st.mbt.core.AbstractModelElement;
+import org.tud.inf.st.mbt.core.CorePackage;
 import org.tud.inf.st.mbt.core.impl.AbstractModelElementImpl;
 
 import org.tud.inf.st.mbt.features.Configuration;
 import org.tud.inf.st.mbt.features.ExplicitSet;
 
 import org.tud.inf.st.mbt.test.TestCase;
+import org.tud.inf.st.mbt.test.TestExecutable;
 import org.tud.inf.st.mbt.test.TestPackage;
 import org.tud.inf.st.mbt.test.TestSuite;
 
@@ -33,6 +38,10 @@ import org.tud.inf.st.mbt.test.TestSuite;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getNote <em>Note</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getTraceableTo <em>Traceable To</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getCases <em>Cases</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getConfiguration <em>Configuration</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getRiskReduction <em>Risk Reduction</em>}</li>
@@ -41,7 +50,77 @@ import org.tud.inf.st.mbt.test.TestSuite;
  *
  * @generated
  */
-public class TestSuiteImpl extends AbstractModelElementImpl implements TestSuite {
+public class TestSuiteImpl extends EObjectImpl implements TestSuite {
+	/**
+	 * The default value of the '{@link #getNote() <em>Note</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNote()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NOTE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getNote() <em>Note</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNote()
+	 * @generated
+	 * @ordered
+	 */
+	protected String note = NOTE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTraceableTo() <em>Traceable To</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTraceableTo()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AbstractModelElement> traceableTo;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getCases() <em>Cases</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -99,6 +178,81 @@ public class TestSuiteImpl extends AbstractModelElementImpl implements TestSuite
 	@Override
 	protected EClass eStaticClass() {
 		return TestPackage.Literals.TEST_SUITE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getNote() {
+		return note;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNote(String newNote) {
+		String oldNote = note;
+		note = newNote;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestPackage.TEST_SUITE__NOTE, oldNote, note));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestPackage.TEST_SUITE__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<AbstractModelElement> getTraceableTo() {
+		if (traceableTo == null) {
+			traceableTo = new EObjectResolvingEList<AbstractModelElement>(AbstractModelElement.class, this, TestPackage.TEST_SUITE__TRACEABLE_TO);
+		}
+		return traceableTo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestPackage.TEST_SUITE__NAME, oldName, name));
 	}
 
 	/**
@@ -194,6 +348,14 @@ public class TestSuiteImpl extends AbstractModelElementImpl implements TestSuite
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case TestPackage.TEST_SUITE__NOTE:
+				return getNote();
+			case TestPackage.TEST_SUITE__ID:
+				return getId();
+			case TestPackage.TEST_SUITE__TRACEABLE_TO:
+				return getTraceableTo();
+			case TestPackage.TEST_SUITE__NAME:
+				return getName();
 			case TestPackage.TEST_SUITE__CASES:
 				return getCases();
 			case TestPackage.TEST_SUITE__CONFIGURATION:
@@ -214,6 +376,19 @@ public class TestSuiteImpl extends AbstractModelElementImpl implements TestSuite
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case TestPackage.TEST_SUITE__NOTE:
+				setNote((String)newValue);
+				return;
+			case TestPackage.TEST_SUITE__ID:
+				setId((String)newValue);
+				return;
+			case TestPackage.TEST_SUITE__TRACEABLE_TO:
+				getTraceableTo().clear();
+				getTraceableTo().addAll((Collection<? extends AbstractModelElement>)newValue);
+				return;
+			case TestPackage.TEST_SUITE__NAME:
+				setName((String)newValue);
+				return;
 			case TestPackage.TEST_SUITE__CASES:
 				getCases().clear();
 				getCases().addAll((Collection<? extends TestCase>)newValue);
@@ -236,6 +411,18 @@ public class TestSuiteImpl extends AbstractModelElementImpl implements TestSuite
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case TestPackage.TEST_SUITE__NOTE:
+				setNote(NOTE_EDEFAULT);
+				return;
+			case TestPackage.TEST_SUITE__ID:
+				setId(ID_EDEFAULT);
+				return;
+			case TestPackage.TEST_SUITE__TRACEABLE_TO:
+				getTraceableTo().clear();
+				return;
+			case TestPackage.TEST_SUITE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case TestPackage.TEST_SUITE__CASES:
 				getCases().clear();
 				return;
@@ -257,6 +444,14 @@ public class TestSuiteImpl extends AbstractModelElementImpl implements TestSuite
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case TestPackage.TEST_SUITE__NOTE:
+				return NOTE_EDEFAULT == null ? note != null : !NOTE_EDEFAULT.equals(note);
+			case TestPackage.TEST_SUITE__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case TestPackage.TEST_SUITE__TRACEABLE_TO:
+				return traceableTo != null && !traceableTo.isEmpty();
+			case TestPackage.TEST_SUITE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case TestPackage.TEST_SUITE__CASES:
 				return cases != null && !cases.isEmpty();
 			case TestPackage.TEST_SUITE__CONFIGURATION:
@@ -273,11 +468,65 @@ public class TestSuiteImpl extends AbstractModelElementImpl implements TestSuite
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == AbstractModelElement.class) {
+			switch (derivedFeatureID) {
+				case TestPackage.TEST_SUITE__NOTE: return CorePackage.ABSTRACT_MODEL_ELEMENT__NOTE;
+				case TestPackage.TEST_SUITE__ID: return CorePackage.ABSTRACT_MODEL_ELEMENT__ID;
+				case TestPackage.TEST_SUITE__TRACEABLE_TO: return CorePackage.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO;
+				case TestPackage.TEST_SUITE__NAME: return CorePackage.ABSTRACT_MODEL_ELEMENT__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == TestExecutable.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == AbstractModelElement.class) {
+			switch (baseFeatureID) {
+				case CorePackage.ABSTRACT_MODEL_ELEMENT__NOTE: return TestPackage.TEST_SUITE__NOTE;
+				case CorePackage.ABSTRACT_MODEL_ELEMENT__ID: return TestPackage.TEST_SUITE__ID;
+				case CorePackage.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO: return TestPackage.TEST_SUITE__TRACEABLE_TO;
+				case CorePackage.ABSTRACT_MODEL_ELEMENT__NAME: return TestPackage.TEST_SUITE__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == TestExecutable.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (riskReduction: ");
+		result.append(" (note: ");
+		result.append(note);
+		result.append(", id: ");
+		result.append(id);
+		result.append(", name: ");
+		result.append(name);
+		result.append(", riskReduction: ");
 		result.append(riskReduction);
 		result.append(')');
 		return result.toString();

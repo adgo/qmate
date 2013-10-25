@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Help
+Bundle-SymbolicName: org.tud.inf.st.mbt.help;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.tud.inf.st.mbt.help.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.help.ui;bundle-version="4.0.1",
+ org.eclipse.help.webapp;bundle-version="3.6.200",
+ org.eclipse.equinox.http.jetty;bundle-version="3.0.100"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Export-Package: org.tud.inf.st.mbt.help

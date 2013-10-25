@@ -49,24 +49,6 @@ public interface OcmFactory extends EFactory {
 	ReconfigurationActionNode createReconfigurationActionNode();
 
 	/**
-	 * Returns a new object of class '<em>Composition Edge</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composition Edge</em>'.
-	 * @generated
-	 */
-	CompositionEdge createCompositionEdge();
-
-	/**
-	 * Returns a new object of class '<em>Composed Configuration Node</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composed Configuration Node</em>'.
-	 * @generated
-	 */
-	ComposedConfigurationNode createComposedConfigurationNode();
-
-	/**
 	 * Returns a new object of class '<em>Timed Edge</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

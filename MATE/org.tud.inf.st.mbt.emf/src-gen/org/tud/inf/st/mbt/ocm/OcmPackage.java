@@ -210,7 +210,7 @@ public interface OcmPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ocm.impl.OcmPackageImpl#getEdge()
 	 * @generated
 	 */
-	int EDGE = 6;
+	int EDGE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -486,143 +486,6 @@ public interface OcmPackage extends EPackage {
 	int RECONFIGURATION_ACTION_NODE_FEATURE_COUNT = CONFIGURATION_NODE_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.tud.inf.st.mbt.ocm.impl.CompositionEdgeImpl <em>Composition Edge</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.tud.inf.st.mbt.ocm.impl.CompositionEdgeImpl
-	 * @see org.tud.inf.st.mbt.ocm.impl.OcmPackageImpl#getCompositionEdge()
-	 * @generated
-	 */
-	int COMPOSITION_EDGE = 7;
-
-	/**
-	 * The meta object id for the '{@link org.tud.inf.st.mbt.ocm.impl.ComposedConfigurationNodeImpl <em>Composed Configuration Node</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.tud.inf.st.mbt.ocm.impl.ComposedConfigurationNodeImpl
-	 * @see org.tud.inf.st.mbt.ocm.impl.OcmPackageImpl#getComposedConfigurationNode()
-	 * @generated
-	 */
-	int COMPOSED_CONFIGURATION_NODE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Note</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_CONFIGURATION_NODE__NOTE = CONFIGURATION_NODE__NOTE;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_CONFIGURATION_NODE__ID = CONFIGURATION_NODE__ID;
-
-	/**
-	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_CONFIGURATION_NODE__TRACEABLE_TO = CONFIGURATION_NODE__TRACEABLE_TO;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_CONFIGURATION_NODE__NAME = CONFIGURATION_NODE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Post Conf Event ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_CONFIGURATION_NODE__POST_CONF_EVENT_ID = CONFIGURATION_NODE__POST_CONF_EVENT_ID;
-
-	/**
-	 * The number of structural features of the '<em>Composed Configuration Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_CONFIGURATION_NODE_FEATURE_COUNT = CONFIGURATION_NODE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Note</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITION_EDGE__NOTE = EDGE__NOTE;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITION_EDGE__ID = EDGE__ID;
-
-	/**
-	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITION_EDGE__TRACEABLE_TO = EDGE__TRACEABLE_TO;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITION_EDGE__NAME = EDGE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITION_EDGE__SOURCE = EDGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITION_EDGE__TARGET = EDGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Composition Edge</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITION_EDGE_FEATURE_COUNT = EDGE_FEATURE_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ocm.impl.TimedEdgeImpl <em>Timed Edge</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -630,7 +493,7 @@ public interface OcmPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ocm.impl.OcmPackageImpl#getTimedEdge()
 	 * @generated
 	 */
-	int TIMED_EDGE = 8;
+	int TIMED_EDGE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -712,7 +575,7 @@ public interface OcmPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ocm.impl.OcmPackageImpl#getEventGuardedEdge()
 	 * @generated
 	 */
-	int EVENT_GUARDED_EDGE = 9;
+	int EVENT_GUARDED_EDGE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -946,48 +809,6 @@ public interface OcmPackage extends EPackage {
 	EClass getEdge();
 
 	/**
-	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ocm.CompositionEdge <em>Composition Edge</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Composition Edge</em>'.
-	 * @see org.tud.inf.st.mbt.ocm.CompositionEdge
-	 * @generated
-	 */
-	EClass getCompositionEdge();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.tud.inf.st.mbt.ocm.CompositionEdge#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see org.tud.inf.st.mbt.ocm.CompositionEdge#getSource()
-	 * @see #getCompositionEdge()
-	 * @generated
-	 */
-	EReference getCompositionEdge_Source();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.tud.inf.st.mbt.ocm.CompositionEdge#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see org.tud.inf.st.mbt.ocm.CompositionEdge#getTarget()
-	 * @see #getCompositionEdge()
-	 * @generated
-	 */
-	EReference getCompositionEdge_Target();
-
-	/**
-	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ocm.ComposedConfigurationNode <em>Composed Configuration Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Composed Configuration Node</em>'.
-	 * @see org.tud.inf.st.mbt.ocm.ComposedConfigurationNode
-	 * @generated
-	 */
-	EClass getComposedConfigurationNode();
-
-	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ocm.TimedEdge <em>Timed Edge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1182,42 +1003,6 @@ public interface OcmPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EDGE = eINSTANCE.getEdge();
-
-		/**
-		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ocm.impl.CompositionEdgeImpl <em>Composition Edge</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.tud.inf.st.mbt.ocm.impl.CompositionEdgeImpl
-		 * @see org.tud.inf.st.mbt.ocm.impl.OcmPackageImpl#getCompositionEdge()
-		 * @generated
-		 */
-		EClass COMPOSITION_EDGE = eINSTANCE.getCompositionEdge();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSITION_EDGE__SOURCE = eINSTANCE.getCompositionEdge_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSITION_EDGE__TARGET = eINSTANCE.getCompositionEdge_Target();
-
-		/**
-		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ocm.impl.ComposedConfigurationNodeImpl <em>Composed Configuration Node</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.tud.inf.st.mbt.ocm.impl.ComposedConfigurationNodeImpl
-		 * @see org.tud.inf.st.mbt.ocm.impl.OcmPackageImpl#getComposedConfigurationNode()
-		 * @generated
-		 */
-		EClass COMPOSED_CONFIGURATION_NODE = eINSTANCE.getComposedConfigurationNode();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ocm.impl.TimedEdgeImpl <em>Timed Edge</em>}' class.

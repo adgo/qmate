@@ -462,7 +462,7 @@ public class State {
 		for (Predicate p : rtas) {
 			RealTimeAtom rta = (RealTimeAtom) p;
 			if (type.isAssignableFrom(rta.getConsumer().getClass())) {
-				if (TimedCondtionActionOperator.class.isAssignableFrom(rta
+				if (TimedConditionActionOperator.class.isAssignableFrom(rta
 						.getConsumer().getClass())) {
 					TimedConditionAction tca = (TimedConditionAction) rta
 							.getConsumer();

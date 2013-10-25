@@ -107,26 +107,10 @@ public class OcmSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OcmPackage.COMPOSED_CONFIGURATION_NODE: {
-				ComposedConfigurationNode composedConfigurationNode = (ComposedConfigurationNode)theEObject;
-				T result = caseComposedConfigurationNode(composedConfigurationNode);
-				if (result == null) result = caseConfigurationNode(composedConfigurationNode);
-				if (result == null) result = caseAbstractModelElement(composedConfigurationNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case OcmPackage.EDGE: {
 				Edge edge = (Edge)theEObject;
 				T result = caseEdge(edge);
 				if (result == null) result = caseAbstractModelElement(edge);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OcmPackage.COMPOSITION_EDGE: {
-				CompositionEdge compositionEdge = (CompositionEdge)theEObject;
-				T result = caseCompositionEdge(compositionEdge);
-				if (result == null) result = caseEdge(compositionEdge);
-				if (result == null) result = caseAbstractModelElement(compositionEdge);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -239,36 +223,6 @@ public class OcmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEdge(Edge object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composition Edge</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composition Edge</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompositionEdge(CompositionEdge object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composed Configuration Node</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composed Configuration Node</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseComposedConfigurationNode(ComposedConfigurationNode object) {
 		return null;
 	}
 

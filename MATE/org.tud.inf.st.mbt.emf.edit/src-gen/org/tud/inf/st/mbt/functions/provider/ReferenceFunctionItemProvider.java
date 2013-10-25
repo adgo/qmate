@@ -794,16 +794,6 @@ public class ReferenceFunctionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(FunctionsPackage.Literals.REFERENCE_FUNCTION__PARAMETERS,
-				 OcmFactory.eINSTANCE.createComposedConfigurationNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(FunctionsPackage.Literals.REFERENCE_FUNCTION__PARAMETERS,
-				 OcmFactory.eINSTANCE.createCompositionEdge()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(FunctionsPackage.Literals.REFERENCE_FUNCTION__PARAMETERS,
 				 OcmFactory.eINSTANCE.createTimedEdge()));
 
 		newChildDescriptors.add

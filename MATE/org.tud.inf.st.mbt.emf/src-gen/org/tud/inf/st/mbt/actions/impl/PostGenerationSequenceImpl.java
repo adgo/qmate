@@ -151,7 +151,9 @@ public class PostGenerationSequenceImpl extends EObjectImpl implements PostGener
 	
 	@Override
 	public String toString() {
-		return ""+getActions();
+		StringBuffer buf = new StringBuffer();
+		for(PostGenerationAction pga:getActions())buf.append(pga+";");
+		return buf.toString();
 	}
 
 } //PostGenerationSequenceImpl

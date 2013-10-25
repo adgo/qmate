@@ -7,44 +7,14 @@
             id="org.tud.inf.st.mbt.category"
             name="Model Based Testing">
       </category>
-   </extension>
-   <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            class="org.eclipse.emf.ecore.presentation.EcoreEditor"
-            default="true"
-            extensions="test"
+      <view
+            category="org.tud.inf.st.mbt.category"
+            class="org.tud.inf.st.mbt.emf.ui.views.StatisticsView"
             icon="icons/mate16.png"
-            id="org.tud.inf.st.mbt.ui.editors.testsuite"
-            name="Test Suite Editor">
-      </editor>
-      <editor
-            class="org.eclipse.emf.ecore.presentation.EcoreEditor"
-            contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor"
-            default="true"
-            extensions="tree"
-            icon="icons/mate16.png"
-            id="org.tud.inf.st.mbt.ui.editors.featuretree"
-            name="Feature tree editor">
-      </editor>
-      <editor
-            class="org.eclipse.emf.ecore.presentation.EcoreEditor"
-            contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor"
-            default="true"
-            extensions="data"
-            icon="icons/mate16.png"
-            id="org.tud.inf.st.mbt.ui.editors.dataspace"
-            name="Data Space editor">
-      </editor>
-      <editor
-            class="org.eclipse.emf.ecore.presentation.EcoreEditor"
-            contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor"
-            default="true"
-            extensions="generic"
-            icon="icons/mate16.png"
-            id="org.tud.inf.st.mbt.ui.editors.generic"
-            name="Generic model editor">
-      </editor>
+            id="org.tud.inf.st.mbt.ui.views.statistics"
+            name="Test Statistics View"
+            restorable="true">
+      </view>
    </extension>
    <extension
          id="nature"
@@ -189,6 +159,32 @@
                icon="icons/mate16.png"
                id="org.tud.inf.st.mbt.ui.validateaction"
                label="Post Process..."
+               menubarPath="group.generate">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.tud.inf.st.mbt.ui.statisticscontrib"
+            nameFilter="*.*"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.tud.inf.st.mbt.emf.ui.actions.ShowStatisticsAction"
+               icon="icons/mate16.png"
+               id="org.tud.inf.st.mbt.ui.actions.statistics"
+               label="Show test statistics..."
+               menubarPath="group.generate">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.tud.inf.st.mbt.ui.testcontrib"
+            nameFilter="*.*"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.tud.inf.st.mbt.emf.ui.actions.RunTestAction"
+               icon="icons/mate16.png"
+               id="org.tud.inf.st.mbt.ui.actions.test"
+               label="Test/Replay tests..."
                menubarPath="group.generate">
          </action>
       </objectContribution>

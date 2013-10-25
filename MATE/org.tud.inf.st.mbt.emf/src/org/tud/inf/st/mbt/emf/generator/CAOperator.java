@@ -70,14 +70,14 @@ public class CAOperator extends TransitionOperator {
 
 		new FunctionProcessor(getSatFoundation(), s).recomputeFunctionResults();
 
-		List<Transition> enabled = super.computeEnabledTransitions(s);
 		List<Transition> activated = super.computeActivatedTransitions(s);
 
-		if (!enabled.isEmpty()) {
+		if (!isIgnoreRealtime()) {
 			next.addAll(actionProcessor.executeAction(s,
 					ActionsFactory.eINSTANCE.createGetRealTimeAction(),
 					Collections.<String, Object> emptyMap()));
 		}
+		
 		for (Transition t : activated)
 			if (t instanceof ConditionActionTransition) {
 				ConditionActionTransition cat = (ConditionActionTransition) t;

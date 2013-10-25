@@ -27,14 +27,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="actionsText" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComposedConfigurationNode" eSuperTypes="#//ConfigurationNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="Edge" abstract="true" eSuperTypes="mbt.ecore#//core/AbstractModelElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CompositionEdge" eSuperTypes="#//Edge">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//ConfigurationNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//ComposedConfigurationNode"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TimedEdge" eSuperTypes="#//OperationalEdge">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>

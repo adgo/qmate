@@ -37,7 +37,7 @@ import org.tud.inf.st.mbt.test.TestStep;
  *
  * @generated
  */
-public class TestCaseImpl extends AbstractModelElementImpl implements TestCase {
+public class TestCaseImpl extends TestExecutableImpl implements TestCase {
 	/**
 	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

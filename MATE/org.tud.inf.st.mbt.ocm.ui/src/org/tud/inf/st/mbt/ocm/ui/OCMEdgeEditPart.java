@@ -11,13 +11,11 @@ import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
-import org.eclipse.swt.SWT;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFGraphics;
 import org.tud.inf.st.mbt.emf.graphicaleditor.basics.BasicEdgeEditPart;
 import org.tud.inf.st.mbt.emf.graphicaleditor.basics.Markable;
 import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFBendpointEditPolicy;
 import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFComponentEditPolicy;
-import org.tud.inf.st.mbt.ocm.CompositionEdge;
 import org.tud.inf.st.mbt.ocm.EventGuardedEdge;
 import org.tud.inf.st.mbt.ocm.TimedEdge;
 
@@ -50,10 +48,7 @@ public class OCMEdgeEditPart extends BasicEdgeEditPart implements Markable {
 		c.setLineWidth(2);
 		c.add(l = new Label(), new MidpointLocator(c, 0));
 		l.setForegroundColor(ColorConstants.black);
-		if (getModel() instanceof CompositionEdge) {
-			c.setLineStyle(SWT.LINE_DASH);
-			c.setForegroundColor(ColorConstants.orange);
-		} else if (getModel() instanceof EventGuardedEdge) {
+		if (getModel() instanceof EventGuardedEdge) {
 			c.setForegroundColor(ColorConstants.black);
 		} else {
 			c.setForegroundColor(ColorConstants.green);
@@ -84,10 +79,7 @@ public class OCMEdgeEditPart extends BasicEdgeEditPart implements Markable {
 
 		c.setAntialias(4);
 		c.setLineWidth(2);
-		if (getModel() instanceof CompositionEdge) {
-			c.setLineStyle(SWT.LINE_DASH);
-			c.setForegroundColor(ColorConstants.orange);
-		} else if (getModel() instanceof EventGuardedEdge) {
+		if (getModel() instanceof EventGuardedEdge) {
 			c.setForegroundColor(ColorConstants.black);
 		} else {
 			c.setForegroundColor(ColorConstants.green);

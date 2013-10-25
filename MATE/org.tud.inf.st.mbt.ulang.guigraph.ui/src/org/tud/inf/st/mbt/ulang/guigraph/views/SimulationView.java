@@ -1,5 +1,6 @@
 package org.tud.inf.st.mbt.ulang.guigraph.views;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,12 +9,18 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.action.IMenuListener;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -24,8 +31,10 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -42,10 +51,10 @@ import org.eclipse.ui.part.ViewPart;
 import org.tud.inf.st.mbt.actions.Action;
 import org.tud.inf.st.mbt.actions.DependentAction;
 import org.tud.inf.st.mbt.actions.PostGenerationAction;
-import org.tud.inf.st.mbt.automation.AbstractAutomationType;
-import org.tud.inf.st.mbt.automation.ActionAutomationType;
-import org.tud.inf.st.mbt.automation.AutomationManager;
-import org.tud.inf.st.mbt.automation.ISimulationResponder;
+import org.tud.inf.st.mbt.automation.AbstractConnectorType;
+import org.tud.inf.st.mbt.automation.IAutomationConstants;
+import org.tud.inf.st.mbt.automation.execute.ISimulationResponder;
+import org.tud.inf.st.mbt.automation.execute.ISimulationAutomation;
 import org.tud.inf.st.mbt.automation.traversal.AbstractTraversalType;
 import org.tud.inf.st.mbt.automation.traversal.TraversalManager;
 import org.tud.inf.st.mbt.core.AbstractModelElement;
@@ -58,15 +67,19 @@ import org.tud.inf.st.mbt.emf.generator.CAOperator;
 import org.tud.inf.st.mbt.emf.generator.PredicateList;
 import org.tud.inf.st.mbt.emf.generator.SATFoundation;
 import org.tud.inf.st.mbt.emf.generator.State;
-import org.tud.inf.st.mbt.emf.generator.TimedCondtionActionOperator;
+import org.tud.inf.st.mbt.emf.generator.TimedConditionActionOperator;
 import org.tud.inf.st.mbt.emf.generator.TimerOperator;
 import org.tud.inf.st.mbt.emf.ui.MATEImages;
+import org.tud.inf.st.mbt.emf.ui.dialogs.ExportReportDialog;
+import org.tud.inf.st.mbt.emf.ui.dialogs.SelectConnectorDialog;
 import org.tud.inf.st.mbt.emf.util.ModelUtil;
+import org.tud.inf.st.mbt.emf.util.ReportUtil;
 import org.tud.inf.st.mbt.features.Configuration;
 import org.tud.inf.st.mbt.features.FeatureVersion;
 import org.tud.inf.st.mbt.features.IFeature;
 import org.tud.inf.st.mbt.rules.DataAtom;
 import org.tud.inf.st.mbt.rules.InstructionPointerAtom;
+import org.tud.inf.st.pceditor.emf.PCCSResourceSetImpl;
 
 public class SimulationView extends ViewPart {
 
@@ -150,8 +163,9 @@ public class SimulationView extends ViewPart {
 			} else if (parentElement instanceof AbstractModelElement) {
 				return ((AbstractModelElement) parentElement).getTraceableTo()
 						.toArray();
-			} else if(parentElement instanceof InstructionPointerAtom){
-				return ((InstructionPointerAtom) parentElement).getContext().toArray();
+			} else if (parentElement instanceof InstructionPointerAtom) {
+				return ((InstructionPointerAtom) parentElement).getContext()
+						.toArray();
 			} else
 				return new Object[0];
 		}
@@ -225,7 +239,18 @@ public class SimulationView extends ViewPart {
 					operators = new AbstractOperator[] {
 							new CAOperator(satFoundation),
 							new TimerOperator(satFoundation),
-							new TimedCondtionActionOperator(satFoundation)};
+							new TimedConditionActionOperator(satFoundation) };
+
+					CAOperator caOp = new CAOperator(satFoundation);
+					TimerOperator tOp = new TimerOperator(satFoundation);
+					TimedConditionActionOperator tcaOp = new TimedConditionActionOperator(
+							satFoundation);
+
+					caOp.setIgnoreRealtime(ignoreRealtime);
+					tOp.setIgnoreRealtime(ignoreRealtime);
+
+					operators = new AbstractOperator[] { caOp, tOp, tcaOp };
+
 					for (AbstractOperator o : operators)
 						o.contributeToInitialState(initial);
 					for (IFeature f : config.getFeatures()) {
@@ -241,14 +266,14 @@ public class SimulationView extends ViewPart {
 				}
 			} catch (final Exception e) {
 				e.printStackTrace();
-				Display.getDefault().syncExec(new Runnable() {					
+				Display.getDefault().syncExec(new Runnable() {
 					@Override
 					public void run() {
 						MessageBox mb = new MessageBox(Display.getCurrent()
 								.getActiveShell(), SWT.ICON_ERROR | SWT.OK);
 						mb.setMessage("An exception was thrown: " + e);
 						mb.open();
-						e.printStackTrace();						
+						e.printStackTrace();
 					}
 				});
 			}
@@ -310,10 +335,13 @@ public class SimulationView extends ViewPart {
 	private boolean visualize = false;
 	private Button traverseBtn;
 	private ComboViewer traversalCombo;
-	private ComboViewer automationCombo;
+	private Label lblConnection;
 	private Object lock = new Object();
 	private boolean jobCancelled = false;
 	private Job traversationJob;
+	private boolean ignoreRealtime;
+	private AbstractConnectorType connectorType;
+	private Button btnConnection;
 
 	@Override
 	public void createPartControl(Composite outer) {
@@ -327,20 +355,26 @@ public class SimulationView extends ViewPart {
 		l.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 		l.setText("Select automation driver:");
 
-		automationCombo = new ComboViewer(parent);
-		automationCombo.getControl().setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
-		automationCombo.add("<no automation>");
-		for (AbstractAutomationType at : AutomationManager.getInstance()
-				.getActionAutomationTypes())
-			automationCombo.add(at);
-		automationCombo
-				.addSelectionChangedListener(new ISelectionChangedListener() {
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						checkTraversalEnabled();
-					}
-				});
+		lblConnection = new Label(parent, SWT.None);
+		lblConnection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+				false, 1, 1));
+		lblConnection.setText("<no connection selected>");
+
+		btnConnection = new Button(parent, SWT.NONE);
+		btnConnection.setText("Select...");
+		btnConnection.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				SelectConnectorDialog dialog = new SelectConnectorDialog(
+						SimulationView.this.getSite().getShell(),
+						IAutomationConstants.KIND_SIMULATION_AUTOMATION);
+				if (dialog.open() == Window.OK) {
+					lblConnection.setText(dialog.getConnection());
+					connectorType = dialog.getConnectorType();
+					checkTraversalEnabled();
+				}
+			}
+		});
 
 		l = new Label(parent, SWT.NONE);
 		l.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
@@ -443,6 +477,68 @@ public class SimulationView extends ViewPart {
 
 		});
 
+		final MenuManager menu = new MenuManager();
+		menu.setRemoveAllWhenShown(true);
+		menu.addMenuListener(new IMenuListener() {
+
+			@Override
+			public void menuAboutToShow(IMenuManager manager) {
+				IStructuredSelection selected = (IStructuredSelection) stepViewer
+						.getSelection();
+
+				if (!selected.isEmpty()
+						&& selected.getFirstElement() instanceof State) {
+					final State s = (State) selected.getFirstElement();
+					if (lastExecuted == null
+							|| getAllUpperStates(s).contains(lastExecuted)) {
+						menu.add(new org.eclipse.jface.action.Action(
+								"Run automation") {
+							public void run() {
+								if (!(traversationJob != null && traversationJob
+										.getResult() != null))
+									automate(s);
+							};
+						});
+					}
+					if (lastExecuted != null
+							&& getAllUpperStates(lastExecuted).contains(s)) {
+						menu.add(new org.eclipse.jface.action.Action(
+								"Export report...") {
+							public void run() {
+								ExportReportDialog d = new ExportReportDialog(
+										getSite().getShell());
+								if (d.open() == Window.OK) {
+									PCCSResourceSetImpl rs = new PCCSResourceSetImpl();
+									Resource r = null;
+									try {
+										r = rs.getResource(URI.createURI(d
+												.getTargetFile()),true);
+									} catch (Exception e) {
+										// ok
+									}
+									try {
+										r.getContents()
+												.add(ReportUtil.reportRun(
+														s,
+														"run"
+																+ Math.abs(new Random()
+																		.nextInt())));
+										r.save(new HashMap<>());
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
+							};
+						});
+					}
+				}
+
+			}
+		});
+
+		stepViewer.getControl().setMenu(
+				menu.createContextMenu(stepViewer.getControl()));
+
 		details = new TreeViewer(sash);
 		details.setContentProvider(new DetailContentProvider());
 		details.setLabelProvider(new DetailLabelProvider());
@@ -471,8 +567,10 @@ public class SimulationView extends ViewPart {
 	}
 
 	public void startSimulation(int maxTime, int maxTokens,
-			Collection<Configuration> confs, ResourceSet rs) {
+			Collection<Configuration> confs, ResourceSet rs,
+			boolean ignoreRealtime) {
 		lastExecuted = null;
+		this.ignoreRealtime = ignoreRealtime;
 		failed.clear();
 		conf2initial.clear();
 		stepViewer.setInput(confs);
@@ -490,12 +588,12 @@ public class SimulationView extends ViewPart {
 	private void checkTraversalEnabled() {
 		Object tsel = ((IStructuredSelection) traversalCombo.getSelection())
 				.getFirstElement();
-		Object asel = ((IStructuredSelection) automationCombo.getSelection())
-				.getFirstElement();
+		Object asel = connectorType == null ? null : connectorType
+				.getConnector(lblConnection.getText());
 
 		traverseBtn.setEnabled(stepViewer.getInput() != null
 				&& tsel instanceof AbstractTraversalType
-				&& asel instanceof ActionAutomationType);
+				&& asel instanceof ISimulationAutomation);
 	}
 
 	private void startTraversal() {
@@ -506,7 +604,7 @@ public class SimulationView extends ViewPart {
 		traverseBtn.setBackground(Display.getCurrent().getSystemColor(
 				SWT.COLOR_RED));
 		traversalCombo.getControl().setEnabled(false);
-		automationCombo.getControl().setEnabled(false);
+		lblConnection.setEnabled(false);
 
 		final AbstractTraversalType tt = (AbstractTraversalType) ((IStructuredSelection) traversalCombo
 				.getSelection()).getFirstElement();
@@ -621,50 +719,51 @@ public class SimulationView extends ViewPart {
 	}
 
 	private void automate(State selected) {
-		Object as = ((IStructuredSelection) automationCombo.getSelection())
-				.getFirstElement();
+		Object as = connectorType.getConnector(lblConnection.getText());
 
-		if (!(as instanceof ActionAutomationType))
+		if (!(as instanceof ISimulationAutomation))
 			return;
 
-		ActionAutomationType automation = (ActionAutomationType) as;
+		ISimulationAutomation automation = (ISimulationAutomation) as;
 
-		if (automation instanceof ActionAutomationType) {
-			if (lastExecuted != selected
-					&& (lastExecuted == null || getAllUpperStates(
-							(State) selected).contains((State) lastExecuted))) {
-				List<Action2State> toBeExecuted = calculateActions((State) selected);
-				for (final Action2State a2s : toBeExecuted) {
-					if (!((ActionAutomationType) automation).automate(
-							a2s.getAction(), new ISimulationResponder() {
-								@Override
-								public void setProperty(DataLeaf leaf, DataElement value) {
+		if (lastExecuted != selected
+				&& (lastExecuted == null || getAllUpperStates((State) selected)
+						.contains((State) lastExecuted))) {
+			List<Action2State> toBeExecuted = calculateActions((State) selected);
+			for (final Action2State a2s : toBeExecuted) {
+				if (!(automation.automate(a2s.getAction(),
+						new ISimulationResponder() {
+							@Override
+							public void setProperty(DataLeaf leaf,
+									DataElement value) {
+								a2s.getState().configureProposition(
+										ModelUtil.atom(leaf, value), false);
+							}
+
+							@Override
+							public void elapseRealTime(long realTime) {
+								a2s.getState().elapseRealTime(realTime);
+							}
+
+							@Override
+							public void setFeatureActivated(IFeature f,
+									FeatureVersion v, boolean activated) {
+								if (activated)
 									a2s.getState().configureProposition(
-											ModelUtil.atom(leaf, value), false);
-								}
-
-								@Override
-								public void elapseRealTime(long realTime) {
-									a2s.getState().elapseRealTime(realTime);
-								}
-
-								@Override
-								public void setFeatureActivated(IFeature f,
-										FeatureVersion v, boolean activated) {
-									if(activated)a2s.getState().configureProposition(ModelUtil.atom(f, v));
-									else a2s.getState().deconfigureProposition(ModelUtil.atom(f,v));									
-								}							
-							}))
-						setFailed(a2s.getState());
-				}
-				lastExecuted = (State) selected;
-
-				downloaded.add(lastExecuted);
-
-				stepViewer
-						.add(lastExecuted, ((ITreeContentProvider) stepViewer
-								.getContentProvider()).getChildren(selected));
+											ModelUtil.atom(f, v));
+								else
+									a2s.getState().deconfigureProposition(
+											ModelUtil.atom(f, v));
+							}
+						})))
+					setFailed(a2s.getState());
 			}
+			lastExecuted = (State) selected;
+
+			downloaded.add(lastExecuted);
+
+			stepViewer.add(lastExecuted, ((ITreeContentProvider) stepViewer
+					.getContentProvider()).getChildren(selected));
 		}
 
 		TreeItem selectedItem = (TreeItem) stepViewer.find(selected);
@@ -698,7 +797,7 @@ public class SimulationView extends ViewPart {
 		traverseBtn.setBackground(Display.getCurrent().getSystemColor(
 				SWT.COLOR_GREEN));
 		traversalCombo.getControl().setEnabled(true);
-		automationCombo.getControl().setEnabled(true);
+		btnConnection.setEnabled(true);
 	}
 
 }

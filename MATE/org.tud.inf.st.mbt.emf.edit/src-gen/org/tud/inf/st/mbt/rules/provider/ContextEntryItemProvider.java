@@ -845,16 +845,6 @@ public class ContextEntryItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RulesPackage.Literals.CONTEXT_ENTRY__VALUE,
-				 OcmFactory.eINSTANCE.createComposedConfigurationNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RulesPackage.Literals.CONTEXT_ENTRY__VALUE,
-				 OcmFactory.eINSTANCE.createCompositionEdge()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(RulesPackage.Literals.CONTEXT_ENTRY__VALUE,
 				 OcmFactory.eINSTANCE.createTimedEdge()));
 
 		newChildDescriptors.add

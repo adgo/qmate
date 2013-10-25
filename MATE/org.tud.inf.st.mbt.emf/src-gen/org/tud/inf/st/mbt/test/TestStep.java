@@ -23,7 +23,7 @@ import org.tud.inf.st.mbt.terms.Term;
  * @model
  * @generated
  */
-public interface TestStep extends AbstractModelElement {
+public interface TestStep extends TestExecutable {
 	/**
 	 * Returns the value of the '<em><b>Action</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

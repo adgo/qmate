@@ -21,10 +21,12 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.tud.inf.st.mbt.actions.provider.AllEditPlugin;
 
+import org.tud.inf.st.mbt.core.CorePackage;
 import org.tud.inf.st.mbt.core.provider.AbstractModelElementItemProvider;
 
 import org.tud.inf.st.mbt.features.FeaturesFactory;
@@ -40,7 +42,7 @@ import org.tud.inf.st.mbt.test.TestSuite;
  * @generated
  */
 public class TestSuiteItemProvider
-	extends AbstractModelElementItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -68,9 +70,101 @@ public class TestSuiteItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNotePropertyDescriptor(object);
+			addIdPropertyDescriptor(object);
+			addTraceableToPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addRiskReductionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Note feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNotePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractModelElement_note_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractModelElement_note_feature", "_UI_AbstractModelElement_type"),
+				 CorePackage.Literals.ABSTRACT_MODEL_ELEMENT__NOTE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractModelElement_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractModelElement_id_feature", "_UI_AbstractModelElement_type"),
+				 CorePackage.Literals.ABSTRACT_MODEL_ELEMENT__ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Traceable To feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceableToPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractModelElement_traceableTo_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractModelElement_traceableTo_feature", "_UI_AbstractModelElement_type"),
+				 CorePackage.Literals.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractModelElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractModelElement_name_feature", "_UI_AbstractModelElement_type"),
+				 CorePackage.Literals.ABSTRACT_MODEL_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -163,6 +257,9 @@ public class TestSuiteItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TestSuite.class)) {
+			case TestPackage.TEST_SUITE__NOTE:
+			case TestPackage.TEST_SUITE__ID:
+			case TestPackage.TEST_SUITE__NAME:
 			case TestPackage.TEST_SUITE__RISK_REDUCTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

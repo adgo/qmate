@@ -77,19 +77,6 @@
                menubarPath="group.generate">
          </action>
       </objectContribution>
-      <objectContribution
-            adaptable="false"
-            id="org.tud.inf.st.mbt.ulang.guigraph.ui.testcontrib"
-            nameFilter="*.test"
-            objectClass="org.eclipse.core.resources.IFile">
-         <action
-               class="org.tud.inf.st.mbt.ulang.guigraph.actions.AutomationAction"
-               icon="icons/mate16.png"
-               id="org.tud.inf.st.mbt.ulang.guigraph.ui.automationaction"
-               label="Automate..."
-               menubarPath="group.generate">
-         </action>
-      </objectContribution>
    </extension>
    <extension
          point="org.eclipse.ui.views">

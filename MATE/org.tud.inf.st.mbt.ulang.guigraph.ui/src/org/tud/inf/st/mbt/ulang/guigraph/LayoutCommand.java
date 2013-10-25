@@ -4,8 +4,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.swt.graphics.ImageData;
 import org.tud.inf.st.mbt.emf.graphicaleditor.GraphicalEMFEditor;
@@ -32,7 +34,7 @@ public class LayoutCommand extends Command {
 				id2node.put(node.getId(), node);
 				if (screenSize == null && node instanceof Form
 						&& ((Form) node).getImage() != null) {
-					String path = "platform:/resource/"+((Form) node).getImage();
+					String path = ResourcesPlugin.getWorkspace().getRoot().getLocation()+((Form) node).getImage();
 					ImageData img = new ImageData(path);
 					screenSize = new Dimension(img.width, img.height);
 

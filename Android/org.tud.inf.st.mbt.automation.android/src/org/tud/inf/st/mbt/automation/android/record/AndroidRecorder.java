@@ -17,6 +17,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.tud.inf.st.mbt.actions.PreGenerationAction;
 import org.tud.inf.st.mbt.android.recorder.RecorderConstants;
 import org.tud.inf.st.mbt.automation.record.AbstractRecorder;
 import org.tud.inf.st.mbt.automation.record.AbstractRecorderListener;
@@ -86,29 +87,38 @@ public class AndroidRecorder extends AbstractRecorder {
 				public void run() {
 					Image screen = null;
 					while (!isTerminated()) {
+						try{
+							process.exitValue();
+							break;
+						} catch(Exception e){
+							//everything OK
+						}
+						
 						try {
 							synchronized (screenLock) {
-								screenFile = AndroidRecorderBridge
+								screenFile = CustomizedAndroidBridge
 										.screenshot(getConnection());
 							}
-							
-							tempFiles.add(screenFile);
 
-							Image old = screen;
+							if (screenFile != null) {
+								tempFiles.add(screenFile);
 
-							screen = new Image(Display.getDefault(), screenFile
-									.toString());
+								Image old = screen;
 
-							for (ListenerSupplier s : suppliers.values()) {
-								s.setCurrentImg(screenFile, screen);
+								screen = new Image(Display.getDefault(),
+										screenFile.toString());
+
+								for (ListenerSupplier s : suppliers.values()) {
+									s.setCurrentImg(screenFile, screen);
+								}
+
+								if (old != null) {
+									old.dispose();
+								}
+
+								report();
 							}
 
-							if (old != null){
-								old.dispose();
-							}
-
-							report();
-							
 							Thread.sleep(200);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -125,7 +135,7 @@ public class AndroidRecorder extends AbstractRecorder {
 	@SuppressWarnings("unused")
 	private File savePNG(String encoded) {
 		try {
-			File tmp = AndroidRecorderBridge.getTmpFile();
+			File tmp = CustomizedAndroidBridge.getTmpFile();
 			FileOutputStream fos = new FileOutputStream(tmp);
 			for (String s : encoded.split(" ")) {
 				byte b = Byte.parseByte(s);
@@ -149,8 +159,8 @@ public class AndroidRecorder extends AbstractRecorder {
 			// "";
 			// screenFile = savePNG(post_png);
 
-			if ((event.get(RecorderConstants.EVENT_TYPE)+"").equals(
-					RecorderConstants.REPORT+"")) {
+			if ((event.get(RecorderConstants.EVENT_TYPE) + "")
+					.equals(RecorderConstants.REPORT + "")) {
 				System.err.println("event stream initiated");
 				init = true;
 				for (AbstractRecorderListener l : getListeners()) {
@@ -180,10 +190,11 @@ public class AndroidRecorder extends AbstractRecorder {
 		}
 		for (ListenerSupplier s : suppliers.values())
 			s.disposeImages();
-		for(File f:tempFiles){
-			try{
+		for (File f : tempFiles) {
+			try {
 				f.delete();
-			} catch(Exception e){}
+			} catch (Exception e) {
+			}
 		}
 	}
 
@@ -210,30 +221,31 @@ public class AndroidRecorder extends AbstractRecorder {
 	}
 
 	@Override
-	public void buildState(AbstractRecorderListener l, String actionText) {
-		suppliers.get(l).buildState(actionText);
+	public void buildState(AbstractRecorderListener l, PreGenerationAction action) {
+		suppliers.get(l).buildState(action);
 	}
 
 	@Override
-	public void identifyState(AbstractRecorderListener l, UIState state, String actionText) {
-		suppliers.get(l).identifyState(state,actionText);
+	public void identifyState(AbstractRecorderListener l, UIState state,
+			PreGenerationAction action) {
+		suppliers.get(l).identifyState(state, action);
 	}
 
 	@Override
 	public void simulateSwipe(Point from, Point to) {
-		AndroidRecorderBridge.swipe(getConnection(), from, to);
+		CustomizedAndroidBridge.swipe(getConnection(), from, to);
 		report();
 	}
 
 	@Override
 	public void simulateTap(Point at) {
-		AndroidRecorderBridge.tap(getConnection(), at);
+		CustomizedAndroidBridge.tap(getConnection(), at);
 		report();
 	}
 
 	@Override
 	public void simulateTextInput(String txt) {
-		AndroidRecorderBridge.text(getConnection(), txt);
+		CustomizedAndroidBridge.text(getConnection(), txt);
 		report();
 	}
 
@@ -263,5 +275,10 @@ public class AndroidRecorder extends AbstractRecorder {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public void reset() {
+		CustomizedAndroidBridge.initADB();
 	}
 }

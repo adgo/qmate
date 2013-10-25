@@ -8,11 +8,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,15 +18,15 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.tud.inf.st.mbt.actions.ActionsFactory;
 import org.tud.inf.st.mbt.actions.provider.AllEditPlugin;
-
 import org.tud.inf.st.mbt.core.provider.AbstractModelElementItemProvider;
-
+import org.tud.inf.st.mbt.emf.util.ReportUtil;
 import org.tud.inf.st.mbt.rules.RulesFactory;
-
+import org.tud.inf.st.mbt.test.TestFactory;
 import org.tud.inf.st.mbt.test.TestPackage;
 import org.tud.inf.st.mbt.test.TestStepRun;
+import org.tud.inf.st.mbt.test.Verdict;
 
 /**
  * This is the item provider adapter for a {@link org.tud.inf.st.mbt.test.TestStepRun} object.
@@ -38,7 +35,7 @@ import org.tud.inf.st.mbt.test.TestStepRun;
  * @generated
  */
 public class TestStepRunItemProvider
-	extends AbstractModelElementItemProvider
+	extends TestExecutableItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -106,6 +103,8 @@ public class TestStepRunItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(TestPackage.Literals.TEST_STEP_RUN__STATE);
+			childrenFeatures.add(TestPackage.Literals.TEST_STEP_RUN__VERDICT);
+			childrenFeatures.add(TestPackage.Literals.TEST_STEP_RUN__ACTION);
 		}
 		return childrenFeatures;
 	}
@@ -127,10 +126,17 @@ public class TestStepRunItemProvider
 	 * This returns TestStepRun.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
+		if(object instanceof TestStepRun){
+			if(ReportUtil.passed((TestStepRun) object)){
+				return overlayImage(object, getResourceLocator().getImage("pass.png"));
+			} else {
+				return overlayImage(object, getResourceLocator().getImage("fail.png"));
+			}
+		}
+		
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/TestStepRun"));
 	}
 
@@ -161,6 +167,8 @@ public class TestStepRunItemProvider
 
 		switch (notification.getFeatureID(TestStepRun.class)) {
 			case TestPackage.TEST_STEP_RUN__STATE:
+			case TestPackage.TEST_STEP_RUN__VERDICT:
+			case TestPackage.TEST_STEP_RUN__ACTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -232,17 +240,56 @@ public class TestStepRunItemProvider
 			(createChildParameter
 				(TestPackage.Literals.TEST_STEP_RUN__STATE,
 				 RulesFactory.eINSTANCE.createRealTimeAtom()));
-	}
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return AllEditPlugin.INSTANCE;
+		newChildDescriptors.add
+			(createChildParameter
+				(TestPackage.Literals.TEST_STEP_RUN__VERDICT,
+				 TestFactory.eINSTANCE.createVerdict()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TestPackage.Literals.TEST_STEP_RUN__ACTION,
+				 ActionsFactory.eINSTANCE.createPostGenerationSequence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TestPackage.Literals.TEST_STEP_RUN__ACTION,
+				 ActionsFactory.eINSTANCE.createTermAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TestPackage.Literals.TEST_STEP_RUN__ACTION,
+				 ActionsFactory.eINSTANCE.createActivateFeatureAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TestPackage.Literals.TEST_STEP_RUN__ACTION,
+				 ActionsFactory.eINSTANCE.createDeactivateFeatureAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TestPackage.Literals.TEST_STEP_RUN__ACTION,
+				 ActionsFactory.eINSTANCE.createSetPropertyAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TestPackage.Literals.TEST_STEP_RUN__ACTION,
+				 ActionsFactory.eINSTANCE.createFailAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TestPackage.Literals.TEST_STEP_RUN__ACTION,
+				 ActionsFactory.eINSTANCE.createGetPropertyAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TestPackage.Literals.TEST_STEP_RUN__ACTION,
+				 ActionsFactory.eINSTANCE.createGetRealTimeAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TestPackage.Literals.TEST_STEP_RUN__ACTION,
+				 ActionsFactory.eINSTANCE.createGetFeatureStateAction()));
 	}
 
 }

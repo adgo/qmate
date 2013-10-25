@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-public final class ValidationManager {
+public final class ValidationManager  {
 	private static Map<IResource, ValidationManager> instances = new HashMap<>();
 	private static List<IValidationConstraint> constraints = new ArrayList<IValidationConstraint>();
 
@@ -51,6 +51,9 @@ public final class ValidationManager {
 		constraints.remove(c);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.tud.inf.st.mbt.emf.validation.IValidationManager#validateAll(org.eclipse.emf.ecore.resource.ResourceSet)
+	 */
 	public boolean validateAll(ResourceSet rs) {
 		reset();
 		for (IValidationConstraint c : constraints)
@@ -62,6 +65,9 @@ public final class ValidationManager {
 		return !hasErrors;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.tud.inf.st.mbt.emf.validation.IValidationManager#reset()
+	 */
 	public void reset() {
 		try {
 			resource.deleteMarkers(IMarker.PROBLEM, true,
@@ -73,6 +79,9 @@ public final class ValidationManager {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.tud.inf.st.mbt.emf.validation.IValidationManager#setProblem(java.lang.String, int, java.lang.String, java.lang.String)
+	 */
 	public void setProblem(String msg, int severity, String location,
 			String objID) {
 		try {
@@ -89,6 +98,9 @@ public final class ValidationManager {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.tud.inf.st.mbt.emf.validation.IValidationManager#getAllElements(org.eclipse.emf.ecore.resource.ResourceSet)
+	 */
 	public List<EObject> getAllElements(ResourceSet rs) {
 		if (cache != null)
 			return cache;

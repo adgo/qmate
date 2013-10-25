@@ -2,12 +2,16 @@ package org.tud.inf.st.mbt.emf.graphicaleditor.layout;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import math.geom2d.Box2D;
 import math.geom2d.Point2D;
@@ -44,6 +48,147 @@ public class EMFGraphicalLayouter {
 		Dimension getSizeHint(String nodeID);
 	}
 
+	private static class DistanceComparator implements
+			Comparator<GraphicalNodeDefinition> {
+
+		private GraphicalNodeDefinition origin;
+		private GraphicalDescription desc;
+		private EndpointProvider endpoints;
+
+		public DistanceComparator(GraphicalNodeDefinition origin,
+				GraphicalDescription desc, EndpointProvider endpoints) {
+			this.origin = origin;
+			this.desc = desc;
+			this.endpoints = endpoints;
+		}
+
+		@Override
+		public int compare(GraphicalNodeDefinition a, GraphicalNodeDefinition b) {
+			return distance(a, new HashSet<GraphicalNodeDefinition>())
+					- distance(b, new HashSet<GraphicalNodeDefinition>());
+		}
+
+		public int distance(GraphicalNodeDefinition node,
+				Set<GraphicalNodeDefinition> done) {
+			if (node == origin)
+				return 0;
+			done = new HashSet<>(done);
+			if (!done.add(node))
+				return Integer.MAX_VALUE;
+
+			List<GraphicalNodeDefinition> neighbours = new ArrayList<>();
+
+			for (Object o : desc.getConnections())
+				if (o instanceof GraphicalConnectionDefinition) {
+					GraphicalConnectionDefinition cd = (GraphicalConnectionDefinition) o;
+					GraphicalNodeDefinition source = getGND(
+							endpoints.getSourceID(cd.getReferenceId()), desc);
+					GraphicalNodeDefinition target = getGND(
+							endpoints.getTargetID(cd.getReferenceId()), desc);
+					if (source == node || target == node) {
+						if (target == origin || source == origin) {
+							return 0;
+						}
+
+						if (source == node) {
+							neighbours.add(target);
+						} else {
+							neighbours.add(source);
+						}
+
+					}
+				}
+
+			if (neighbours.isEmpty())
+				return Integer.MAX_VALUE;
+
+			int min = Integer.MAX_VALUE;
+			for (GraphicalNodeDefinition n : neighbours) {
+				int nd = distance(n, done);
+				if (nd < min)
+					min = nd;
+			}
+
+			return min + 1;
+		}
+
+	}
+
+	private static GraphicalNodeDefinition getGND(String id,
+			GraphicalDescription desc) {
+		for (Object o : desc.getNodes())
+			if (o instanceof GraphicalNodeDefinition
+					&& ((GraphicalNodeDefinition) o).getReferenceId()
+							.equals(id))
+				return (GraphicalNodeDefinition) o;
+		return null;
+	}
+
+	private static Point nearestFreePosition(
+			GraphicalNodeDefinition[][] raster, Point pos) {
+		pos = new Point(pos);
+		int w = raster.length;
+		int h = raster[0].length;
+
+		if (pos.x < 0)
+			pos.x = 0;
+		if (pos.y < 0)
+			pos.y = 0;
+		if (pos.x > w - 1)
+			pos.x = w - 1;
+		if (pos.y > h - 1)
+			pos.y = h - 1;
+
+		if (raster[pos.x][pos.y] == null)
+			return pos;
+
+		int diff = 1;
+		while (diff < Math.max(h, w)) {
+			Point test = new Point(pos.x + diff, pos.y);
+			if (test.x >= 0 && test.x < w && test.y >= 0 && test.y < h
+					&& raster[test.x][test.y] == null)
+				return test;
+			test = new Point(pos.x - diff, pos.y);
+			if (test.x >= 0 && test.x < w && test.y >= 0 && test.y < h
+					&& raster[test.x][test.y] == null)
+				return test;
+			test = new Point(pos.x + diff, pos.y + diff);
+			if (test.x >= 0 && test.x < w && test.y >= 0 && test.y < h
+					&& raster[test.x][test.y] == null)
+				return test;
+			test = new Point(pos.x + diff, pos.y - diff);
+			if (test.x >= 0 && test.x < w && test.y >= 0 && test.y < h
+					&& raster[test.x][test.y] == null)
+				return test;
+			test = new Point(pos.x, pos.y - diff);
+			if (test.x >= 0 && test.x < w && test.y >= 0 && test.y < h
+					&& raster[test.x][test.y] == null)
+				return test;
+			test = new Point(pos.x, pos.y + diff);
+			if (test.x >= 0 && test.x < w && test.y >= 0 && test.y < h
+					&& raster[test.x][test.y] == null)
+				return test;
+			test = new Point(pos.x - diff, pos.y - diff);
+			if (test.x >= 0 && test.x < w && test.y >= 0 && test.y < h
+					&& raster[test.x][test.y] == null)
+				return test;
+			test = new Point(pos.x - diff, pos.y - diff);
+			if (test.x >= 0 && test.x < w && test.y >= 0 && test.y < h
+					&& raster[test.x][test.y] == null)
+				return test;
+
+			test = new Point(pos.x - diff, pos.y + diff);
+			if (test.x >= 0 && test.x < w && test.y >= 0 && test.y < h
+					&& raster[test.x][test.y] == null)
+				return test;
+			diff++;
+		}
+
+		throw new RuntimeException("No free position found!");
+	}
+
+	private static Random rand = new Random();
+
 	private SimpleNode getEntityByNodeID(List<SimpleNode> entities, String id) {
 		for (SimpleNode e : entities) {
 			if (((GraphicalNodeDefinition) e.getRealObject()).getReferenceId()
@@ -55,12 +200,32 @@ public class EMFGraphicalLayouter {
 
 	public void layoutGraphicalDesicription(GraphicalDescription gd,
 			EndpointProvider endpoints) {
-		final float marginScale = 1.3f;
+		if (gd.getNodes().isEmpty())
+			return;
+
+		// delete bendpoints
+		for (Object o : gd.getConnections()) {
+			GraphicalConnectionDefinition gcd = (GraphicalConnectionDefinition) o;
+			gcd.getBendpoints().clear();
+		}
+
+		// build raster
+		List<GraphicalNodeDefinition> todo = new ArrayList<>();
+		for (Object o : gd.getNodes())
+			if (o instanceof GraphicalNodeDefinition) {
+				int surface = (int) ((float) endpoints
+						.getSizeHint(((GraphicalNodeDefinition) o)
+								.getReferenceId()).width * (float) endpoints
+						.getSizeHint(((GraphicalNodeDefinition) o)
+								.getReferenceId()).height);
+				if (surface > 0)
+					todo.add((GraphicalNodeDefinition) o);
+			}
+
+		final float marginScale = 1.1f;
 		final float freePositionScale = 1.3f;
-		final int operations = 30;
-		final int tryOuts = 15;
-		
-		int nodeCount = (int) (gd.getNodes().size()*freePositionScale);
+
+		int nodeCount = (int) (gd.getNodes().size() * freePositionScale);
 		int rasterLength = 1;
 		while (rasterLength * rasterLength < nodeCount)
 			rasterLength++;
@@ -77,7 +242,55 @@ public class EMFGraphicalLayouter {
 				fieldSize = gnd.getHeight();
 		}
 
-		fieldSize *= marginScale; // add 10% margins
+		fieldSize *= marginScale; // add margins
+
+		GraphicalNodeDefinition[][] raster = new GraphicalNodeDefinition[rasterLength][rasterLength];
+
+		// place nodes
+		GraphicalNodeDefinition gnd = todo.remove(rand.nextInt(todo.size()));
+
+		// find free position
+		Point free = nearestFreePosition(raster, new Point(0, 0));
+		raster[free.x][free.y] = gnd;
+		gnd.setX(free.x * fieldSize);
+		gnd.setY(free.y * fieldSize);
+
+		// find nearest neighbour
+		while (!todo.isEmpty()) {
+			Collections.sort(todo, new DistanceComparator(gnd, gd, endpoints));
+			gnd = todo.remove(0);
+			free = nearestFreePosition(raster, free);
+			raster[free.x][free.y] = gnd;
+			gnd.setX(free.x * fieldSize);
+			gnd.setY(free.y * fieldSize);
+		}
+	}
+
+	public void layoutGraphicalDesicription_old3(GraphicalDescription gd,
+			EndpointProvider endpoints) {
+		final float marginScale = 1.3f;
+		final float freePositionScale = 1.3f;
+		final int operations = 30;
+		final int tryOuts = 15;
+
+		int nodeCount = (int) (gd.getNodes().size() * freePositionScale);
+		int rasterLength = 1;
+		while (rasterLength * rasterLength < nodeCount)
+			rasterLength++;
+		int fieldSize = 1;
+		for (Object o : gd.getNodes()) {
+			GraphicalNodeDefinition gnd = (GraphicalNodeDefinition) o;
+			Dimension hint = endpoints.getSizeHint(gnd.getReferenceId());
+			gnd.setWidth(hint.width);
+			gnd.setHeight(hint.height);
+
+			if (gnd.getWidth() > fieldSize)
+				fieldSize = gnd.getWidth();
+			if (gnd.getHeight() > fieldSize)
+				fieldSize = gnd.getHeight();
+		}
+
+		fieldSize *= marginScale; // add margins
 
 		// choose random distribution
 		Random rand = new Random();
@@ -91,14 +304,14 @@ public class EMFGraphicalLayouter {
 			} while (raster[x][y] != null);
 			raster[x][y] = gnd;
 		}
-		
-		//delete bendpoints
+
+		// delete bendpoints
 		for (Object o : gd.getConnections()) {
 			GraphicalConnectionDefinition gcd = (GraphicalConnectionDefinition) o;
 			gcd.getBendpoints().clear();
 		}
 
-		//run some improvements
+		// run some improvements
 		for (int operationsLeft = operations; operationsLeft > 0; operationsLeft--) {
 			Map<String, GraphicalNodeDefinition> byId = new HashMap<>();
 			Map<GraphicalNodeDefinition, Box2D> constraints = new HashMap<>();
@@ -107,34 +320,35 @@ public class EMFGraphicalLayouter {
 					GraphicalNodeDefinition gnd = raster[x][y];
 					if (gnd != null) {
 						byId.put(gnd.getReferenceId(), gnd);
-						constraints.put(
-								gnd,
-								new Box2D(new Point2D(x * fieldSize, y
-										* fieldSize), gnd.getWidth(), gnd
-										.getHeight()));
+						constraints.put(gnd, new Box2D(new Point2D(x
+								* fieldSize, y * fieldSize), gnd.getWidth(),
+								gnd.getHeight()));
 					}
 				}// x iter
 			}// y iter
-			
+
 			int before = measureCrossings(gd, endpoints, byId, constraints);
-			for(int tryOutsLeft=tryOuts;tryOutsLeft>0;tryOutsLeft--){
-				Point a = new Point(rand.nextInt(rasterLength), rand.nextInt(rasterLength));
-				Point b = new Point(rand.nextInt(rasterLength), rand.nextInt(rasterLength));
+			for (int tryOutsLeft = tryOuts; tryOutsLeft > 0; tryOutsLeft--) {
+				Point a = new Point(rand.nextInt(rasterLength),
+						rand.nextInt(rasterLength));
+				Point b = new Point(rand.nextInt(rasterLength),
+						rand.nextInt(rasterLength));
 				GraphicalNodeDefinition swap = raster[a.x][a.y];
 				raster[a.x][a.y] = raster[b.x][b.y];
 				raster[b.x][b.y] = swap;
 				int after = measureCrossings(gd, endpoints, byId, constraints);
-				if(after<before)break;
+				if (after < before)
+					break;
 			}
 		}
-		
-		//save
+
+		// save
 		for (int y = 0; y < rasterLength; y++) {
 			for (int x = 0; x < rasterLength; x++) {
 				GraphicalNodeDefinition gnd = raster[x][y];
 				if (gnd != null) {
 					gnd.setX(x * fieldSize);
-					gnd.setY(y*fieldSize);
+					gnd.setY(y * fieldSize);
 				}
 			}// x iter
 		}// y iter
@@ -158,26 +372,26 @@ public class EMFGraphicalLayouter {
 					+ rectSource.getHeight() / 2, rectTarget.getMinX()
 					+ rectTarget.getWidth() / 2, rectTarget.getMinY()
 					+ rectTarget.getHeight() / 2);
-			for(Box2D c:constraints.values()){
-				Point2D i1=null,i2=null;
+			for (Box2D c : constraints.values()) {
+				Point2D i1 = null, i2 = null;
 				Iterator<LinearShape2D> i = c.edges().iterator();
-				while(i.hasNext() && i1==null){
+				while (i.hasNext() && i1 == null) {
 					LinearShape2D l = i.next();
 					Point2D intersection = l.intersection(line);
-					if(intersection != null){
+					if (intersection != null) {
 						i1 = intersection;
 						break;
 					}
 				}
-				while(i.hasNext() && i2==null){
+				while (i.hasNext() && i2 == null) {
 					LinearShape2D l = i.next();
 					Point2D intersection = l.intersection(line);
-					if(intersection != null){
+					if (intersection != null) {
 						i2 = intersection;
 						break;
 					}
 				}
-				if(i1!=null && i2!=null){
+				if (i1 != null && i2 != null) {
 					crossings += i1.distance(i2);
 				}
 			}

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -48,6 +49,9 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
+import org.tud.inf.st.mbt.actions.ActionsFactory;
+import org.tud.inf.st.mbt.actions.PreGenerationAction;
+import org.tud.inf.st.mbt.actions.PreGenerationSequence;
 import org.tud.inf.st.mbt.automation.record.AbstractRecorder;
 import org.tud.inf.st.mbt.automation.record.AbstractRecorderListener;
 import org.tud.inf.st.mbt.automation.record.ImageTool;
@@ -121,7 +125,7 @@ public class RecordingDialog extends TitleAreaDialog {
 	private ListViewer lstEvents;
 	private ListViewer lstValidations;
 	private TreeViewer tvStates;
-	private Button startBtn, stopBtn;
+	private Button contBtn, pauseBtn;
 	private ProgressBar bar;
 
 	public RecordingDialog(Shell parentShell, AbstractRecorder recorder,
@@ -139,7 +143,7 @@ public class RecordingDialog extends TitleAreaDialog {
 				if (automationFlag) {
 					automationFlag = false;
 					RecordingDialog.this.recorder.buildState(builderListener,
-							compileActionText());
+							assembleActions());
 					automationFlag = true;
 				}
 			}
@@ -163,7 +167,7 @@ public class RecordingDialog extends TitleAreaDialog {
 			data = new ImageData(recorder.screenshot().toString());
 		} catch (Exception e) {
 			System.err.println(e);
-			data = new ImageData(1, 200, 500, new PaletteData(0,0,0));
+			data = new ImageData(200, 200, 32, new PaletteData(0, 0, 0));
 		}
 		final Dimension desiredSize = new Dimension(200, 500);
 
@@ -198,13 +202,13 @@ public class RecordingDialog extends TitleAreaDialog {
 			public Object[] getElements(Object inputElement) {
 				if (inputElement == null)
 					return new Object[0];
-				String s = inputElement + "";
-				s = s.trim();
-				if (s.length() > 0) {
-					return s.split("\n");
-				} else {
-					return new String[0];
+				if (inputElement instanceof Collection<?>) {
+					return ((Collection<?>) inputElement).toArray();
 				}
+				if (inputElement instanceof Object[]) {
+					return (Object[]) inputElement;
+				}
+				return new Object[] { inputElement };
 			}
 		};
 
@@ -393,7 +397,8 @@ public class RecordingDialog extends TitleAreaDialog {
 			}
 
 			@Override
-			public void updateEventActionsText(final String eat) {
+			public void updateEventActions(
+					final Collection<PreGenerationAction> actions) {
 				RecordingDialog.this.getShell().getDisplay()
 						.asyncExec(new Runnable() {
 							@SuppressWarnings("unchecked")
@@ -408,11 +413,11 @@ public class RecordingDialog extends TitleAreaDialog {
 										.getSelection()).toList();
 								nonSelectedBefore.removeAll(selectionBefore);
 
-								lstEvents.setInput(eat);
+								lstEvents.setInput(actions);
 								List<Object> allElements = new ArrayList<Object>(
 										Arrays.asList(((IStructuredContentProvider) lstEvents
 												.getContentProvider())
-												.getElements(eat)));
+												.getElements(actions)));
 								allElements.removeAll(nonSelectedBefore);
 								lstEvents.setSelection(new StructuredSelection(
 										allElements));
@@ -421,12 +426,13 @@ public class RecordingDialog extends TitleAreaDialog {
 			}
 
 			@Override
-			public void updateValidationActionsText(final String vat) {
+			public void updateValidationActions(
+					final Collection<PreGenerationAction> actions) {
 				RecordingDialog.this.getShell().getDisplay()
 						.asyncExec(new Runnable() {
 							@Override
 							public void run() {
-								lstValidations.setInput(vat);
+								lstValidations.setInput(actions);
 							}
 						});
 			}
@@ -516,24 +522,23 @@ public class RecordingDialog extends TitleAreaDialog {
 
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		startBtn = createButton(parent, IDialogConstants.NO_ID, "Start", false);
-		startBtn.addSelectionListener(new SelectionAdapter() {
+		contBtn = createButton(parent, IDialogConstants.NO_ID, "Continue",
+				false);
+		contBtn.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				recorder.start();
-				startBtn.setEnabled(false);
-				stopBtn.setEnabled(true);
-				bar.setEnabled(true);
+				contBtn.setEnabled(false);
+				pauseBtn.setEnabled(true);
+				bar.setState(SWT.NORMAL);
 			}
 		});
-		startBtn.setEnabled(false);
+		contBtn.setEnabled(false);
 
-		stopBtn = createButton(parent, IDialogConstants.NO_ID, "Stop", true);
-		stopBtn.addSelectionListener(new SelectionAdapter() {
+		pauseBtn = createButton(parent, IDialogConstants.NO_ID, "Pause", true);
+		pauseBtn.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				recorder.terminate();
-				startBtn.setEnabled(true);
-				stopBtn.setEnabled(false);
-				bar.setEnabled(false);
+				contBtn.setEnabled(true);
+				pauseBtn.setEnabled(false);
+				bar.setState(SWT.PAUSED);
 			}
 		});
 
@@ -542,28 +547,29 @@ public class RecordingDialog extends TitleAreaDialog {
 					public void widgetSelected(SelectionEvent e) {
 						setReturnCode(CANCEL);
 						recorder.unregisterListener(builderListener);
-						recorder.terminate();
 						close();
 					}
 				});
+
 	}
 
-	private String compileActionText() {
-		StringBuffer result = new StringBuffer();
+	private PreGenerationAction assembleActions() {
+		PreGenerationSequence seq = ActionsFactory.eINSTANCE
+				.createPreGenerationSequence();
 		IStructuredSelection sel = (IStructuredSelection) lstEvents
 				.getSelection();
 		for (Object o : sel.toArray())
-			result.append(o + "\n");
+			seq.getActions().add((PreGenerationAction) o);
 
 		sel = (IStructuredSelection) lstValidations.getSelection();
 		for (Object o : sel.toArray())
-			result.append(o + "\n");
+			seq.getActions().add((PreGenerationAction) o);
 
-		return result.toString();
+		return seq;
 	}
 
 	private void buildState() {
-		recorder.buildState(builderListener, compileActionText());
+		recorder.buildState(builderListener, assembleActions());
 	}
 
 	private void identifyState() {
@@ -574,7 +580,7 @@ public class RecordingDialog extends TitleAreaDialog {
 			if (o instanceof Entry<?, ?>)
 				o = ((Entry<?, ?>) o).getKey();
 			recorder.identifyState(builderListener, (UIState) o,
-					compileActionText());
+					assembleActions());
 		}
 	}
 

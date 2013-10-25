@@ -26,14 +26,23 @@ public final class PostProcessorManager {
 		addPostProcessor(new ParsingPostProcessor());
 	}
 
+	/* (non-Javadoc)
+	 * @see org.tud.inf.st.mbt.emf.postprocess.IPostProcessorManager#addPostProcessor(org.tud.inf.st.mbt.emf.postprocess.IPostProcessor)
+	 */
 	public void addPostProcessor(IPostProcessor c) {
 		processors.add(c);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.tud.inf.st.mbt.emf.postprocess.IPostProcessorManager#removePostProcessor(org.tud.inf.st.mbt.emf.postprocess.IPostProcessor)
+	 */
 	public void removePostProcessor(IPostProcessor c) {
 		processors.remove(c);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.tud.inf.st.mbt.emf.postprocess.IPostProcessorManager#processAll(org.eclipse.emf.ecore.resource.ResourceSet)
+	 */
 	public void processAll(ResourceSet rs) {
 		for (IPostProcessor c : processors)
 			try {

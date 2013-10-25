@@ -13,6 +13,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -23,7 +26,9 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.tud.inf.st.mbt.automation.AbstractAutomationType;
+import org.tud.inf.st.mbt.actions.provider.ActionsItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.core.provider.CoreItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.data.provider.DataItemProviderAdapterFactory;
 import org.tud.inf.st.mbt.emf.generator.State;
 import org.tud.inf.st.mbt.emf.generator.State.IStateActivationListener;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFContextMenuProvider;
@@ -34,10 +39,20 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.EMFTextProvider;
 import org.tud.inf.st.mbt.emf.graphicaleditor.GraphicalEMFEditor;
 import org.tud.inf.st.mbt.emf.graphicaleditor.focus.FocusNode;
 import org.tud.inf.st.mbt.emf.validation.ValidationManager;
+import org.tud.inf.st.mbt.features.Configuration;
+import org.tud.inf.st.mbt.features.FeaturesFactory;
+import org.tud.inf.st.mbt.features.provider.FeaturesItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.featuretree.provider.FeaturetreeItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.functions.provider.FunctionsItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.ocm.provider.OcmItemProviderAdapterFactory;
 import org.tud.inf.st.mbt.rules.InstructionPointerAtom;
 import org.tud.inf.st.mbt.rules.Predicate;
 import org.tud.inf.st.mbt.rules.RulesPackage;
 import org.tud.inf.st.mbt.rules.TokenAtom;
+import org.tud.inf.st.mbt.rules.provider.RulesItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.scenario.provider.ScenarioItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.terms.provider.TermsItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.test.provider.TestItemProviderAdapterFactory;
 import org.tud.inf.st.mbt.ulang.guigraph.actions.EditImportsAction;
 import org.tud.inf.st.mbt.ulang.guigraph.actions.LayoutAction;
 import org.tud.inf.st.mbt.ulang.guigraph.actions.RecordAction;
@@ -48,8 +63,7 @@ public class GUIGraphEditor extends GraphicalEMFEditor implements
 
 	public static final String ID = "org.tud.inf.st.mbt.ulang.guigrapheditor";
 	public static final int NOSIM = -1;
-
-	private AbstractAutomationType activeLiveAutomationType;
+	private ComposedAdapterFactory adapterFactory;
 
 	public GUIGraphEditor() {
 		super();
@@ -102,14 +116,43 @@ public class GUIGraphEditor extends GraphicalEMFEditor implements
 		GuiGraph model = GuigraphFactory.eINSTANCE
 				.createGuiGraph();
 		new GUIGraphModelIndex(null).getIdByObject(model);
-		return Arrays.asList(new GuiGraph[] { model });
+		Configuration empty = FeaturesFactory.eINSTANCE.createConfiguration();
+		empty.setId(model.getId()+"_empty");
+		empty.setName(empty.getId());;
+		return Arrays.asList(new EObject[] { model, empty });
 	}
 
 	@Override
 	protected AdapterFactory getAdapterFactory(EClass type) {
-		if (type.getEPackage().equals(GuigraphPackage.eINSTANCE))
-			return new GuigraphItemProviderAdapterFactory();
-		return null;
+		if(adapterFactory != null)return adapterFactory;
+		
+		adapterFactory = new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
+		adapterFactory
+				.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new ActionsItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new FeaturetreeItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new GuigraphItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new CoreItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new TestItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new RulesItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new FeaturesItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new DataItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new FunctionsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new OcmItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new ScenarioItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new TermsItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		
+		return adapterFactory;
 	}
 
 	@Override
@@ -183,15 +226,6 @@ public class GUIGraphEditor extends GraphicalEMFEditor implements
 	@Override
 	protected ResourceSet createResourceSet() {
 		return new GuiGraphResourceSet();
-	}
-
-	public void setActiveLiveAutomationType(
-			AbstractAutomationType activeLiveAutomationType) {
-		this.activeLiveAutomationType = activeLiveAutomationType;
-	}
-
-	public AbstractAutomationType getActiveLiveAutomationType() {
-		return activeLiveAutomationType;
 	}
 
 	@Override

@@ -8,26 +8,26 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.tud.inf.st.mbt.actions.provider.AllEditPlugin;
-
+import org.tud.inf.st.mbt.core.CorePackage;
 import org.tud.inf.st.mbt.core.provider.AbstractModelElementItemProvider;
-
+import org.tud.inf.st.mbt.emf.util.ReportUtil;
 import org.tud.inf.st.mbt.test.TestFactory;
 import org.tud.inf.st.mbt.test.TestPackage;
 import org.tud.inf.st.mbt.test.TestReport;
+import org.tud.inf.st.mbt.test.TestRun;
 
 /**
  * This is the item provider adapter for a {@link org.tud.inf.st.mbt.test.TestReport} object.
@@ -36,7 +36,7 @@ import org.tud.inf.st.mbt.test.TestReport;
  * @generated
  */
 public class TestReportItemProvider
-	extends AbstractModelElementItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -64,8 +64,123 @@ public class TestReportItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNotePropertyDescriptor(object);
+			addIdPropertyDescriptor(object);
+			addTraceableToPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addSuitePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Note feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNotePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractModelElement_note_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractModelElement_note_feature", "_UI_AbstractModelElement_type"),
+				 CorePackage.Literals.ABSTRACT_MODEL_ELEMENT__NOTE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractModelElement_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractModelElement_id_feature", "_UI_AbstractModelElement_type"),
+				 CorePackage.Literals.ABSTRACT_MODEL_ELEMENT__ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Traceable To feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTraceableToPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractModelElement_traceableTo_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractModelElement_traceableTo_feature", "_UI_AbstractModelElement_type"),
+				 CorePackage.Literals.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractModelElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractModelElement_name_feature", "_UI_AbstractModelElement_type"),
+				 CorePackage.Literals.ABSTRACT_MODEL_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Suite feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSuitePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestReport_suite_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestReport_suite_feature", "_UI_TestReport_type"),
+				 TestPackage.Literals.TEST_REPORT__SUITE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -102,10 +217,17 @@ public class TestReportItemProvider
 	 * This returns TestReport.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
+		if(object instanceof TestReport){
+			if(ReportUtil.passed((TestReport) object)){
+				return overlayImage(object, getResourceLocator().getImage("pass.png"));
+			} else {
+				return overlayImage(object, getResourceLocator().getImage("fail.png"));
+			}
+		}
+		
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/TestReport"));
 	}
 
@@ -135,6 +257,11 @@ public class TestReportItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TestReport.class)) {
+			case TestPackage.TEST_REPORT__NOTE:
+			case TestPackage.TEST_REPORT__ID:
+			case TestPackage.TEST_REPORT__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case TestPackage.TEST_REPORT__RUNS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

@@ -18,6 +18,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -59,7 +61,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.commands.ActionHandler;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
@@ -81,7 +82,7 @@ public abstract class GraphicalEMFEditor extends
 	private GraphicalDescription graphicalDescription;
 	private URI loadedURI;
 	private PropertySheetPage properties;
-	private ContentOutlinePage outline;
+	private EMFOutlinePage outline;
 	private EMFEditPartFactory factory;
 	private IResource editedResource;
 	private FocusNode focusRoot = new FocusNode("All", null);
@@ -421,10 +422,15 @@ public abstract class GraphicalEMFEditor extends
 			return properties;
 		} else if (type.equals(IContentOutlinePage.class)) {
 			if (outline == null) {
-				Collection<? extends EObject> i = ((EMFEditorInput) getEditorInput())
-						.getModelInput().getContents();
 				outline = new EMFOutlinePage(getAdapterFactory(getGraph()
-						.eClass()), i);
+						.eClass()), getGraph());
+			
+				getGraph().eAdapters().add(new AdapterImpl(){
+					@Override
+					public void notifyChanged(Notification msg) {
+						outline.setInput(getGraph());
+					}
+				});
 			}
 			return outline;
 		} else if (type.equals(ZoomManager.class)) {

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.tud.inf.st.mbt.core.impl.AbstractModelElementImpl;
+import org.tud.inf.st.mbt.test.TestCase;
 import org.tud.inf.st.mbt.test.TestCaseRun;
 import org.tud.inf.st.mbt.test.TestPackage;
 import org.tud.inf.st.mbt.test.TestRun;
@@ -33,13 +34,13 @@ import org.tud.inf.st.mbt.test.Verdict;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestRunImpl#getStepRuns <em>Step Runs</em>}</li>
- *   <li>{@link org.tud.inf.st.mbt.test.impl.TestRunImpl#getVerdict <em>Verdict</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.impl.TestRunImpl#get_case <em>case</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TestRunImpl extends AbstractModelElementImpl implements TestRun {
+public class TestRunImpl extends TestExecutableImpl implements TestRun {
 	/**
 	 * The cached value of the '{@link #getStepRuns() <em>Step Runs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -50,14 +51,14 @@ public class TestRunImpl extends AbstractModelElementImpl implements TestRun {
 	 */
 	protected EList<TestStepRun> stepRuns;
 	/**
-	 * The cached value of the '{@link #getVerdict() <em>Verdict</em>}' containment reference.
+	 * The cached value of the '{@link #get_case() <em>case</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVerdict()
+	 * @see #get_case()
 	 * @generated
 	 * @ordered
 	 */
-	protected Verdict verdict;
+	protected TestCase _case;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,8 +95,16 @@ public class TestRunImpl extends AbstractModelElementImpl implements TestRun {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Verdict getVerdict() {
-		return verdict;
+	public TestCase get_case() {
+		if (_case != null && _case.eIsProxy()) {
+			InternalEObject old_case = (InternalEObject)_case;
+			_case = (TestCase)eResolveProxy(old_case);
+			if (_case != old_case) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TestPackage.TEST_RUN__CASE, old_case, _case));
+			}
+		}
+		return _case;
 	}
 
 	/**
@@ -103,14 +112,8 @@ public class TestRunImpl extends AbstractModelElementImpl implements TestRun {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVerdict(Verdict newVerdict, NotificationChain msgs) {
-		Verdict oldVerdict = verdict;
-		verdict = newVerdict;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestPackage.TEST_RUN__VERDICT, oldVerdict, newVerdict);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public TestCase basicGet_case() {
+		return _case;
 	}
 
 	/**
@@ -118,18 +121,11 @@ public class TestRunImpl extends AbstractModelElementImpl implements TestRun {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVerdict(Verdict newVerdict) {
-		if (newVerdict != verdict) {
-			NotificationChain msgs = null;
-			if (verdict != null)
-				msgs = ((InternalEObject)verdict).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestPackage.TEST_RUN__VERDICT, null, msgs);
-			if (newVerdict != null)
-				msgs = ((InternalEObject)newVerdict).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestPackage.TEST_RUN__VERDICT, null, msgs);
-			msgs = basicSetVerdict(newVerdict, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TestPackage.TEST_RUN__VERDICT, newVerdict, newVerdict));
+	public void set_case(TestCase new_case) {
+		TestCase old_case = _case;
+		_case = new_case;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestPackage.TEST_RUN__CASE, old_case, _case));
 	}
 
 	/**
@@ -142,8 +138,6 @@ public class TestRunImpl extends AbstractModelElementImpl implements TestRun {
 		switch (featureID) {
 			case TestPackage.TEST_RUN__STEP_RUNS:
 				return ((InternalEList<?>)getStepRuns()).basicRemove(otherEnd, msgs);
-			case TestPackage.TEST_RUN__VERDICT:
-				return basicSetVerdict(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -158,8 +152,9 @@ public class TestRunImpl extends AbstractModelElementImpl implements TestRun {
 		switch (featureID) {
 			case TestPackage.TEST_RUN__STEP_RUNS:
 				return getStepRuns();
-			case TestPackage.TEST_RUN__VERDICT:
-				return getVerdict();
+			case TestPackage.TEST_RUN__CASE:
+				if (resolve) return get_case();
+				return basicGet_case();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -177,8 +172,8 @@ public class TestRunImpl extends AbstractModelElementImpl implements TestRun {
 				getStepRuns().clear();
 				getStepRuns().addAll((Collection<? extends TestStepRun>)newValue);
 				return;
-			case TestPackage.TEST_RUN__VERDICT:
-				setVerdict((Verdict)newValue);
+			case TestPackage.TEST_RUN__CASE:
+				set_case((TestCase)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -195,8 +190,8 @@ public class TestRunImpl extends AbstractModelElementImpl implements TestRun {
 			case TestPackage.TEST_RUN__STEP_RUNS:
 				getStepRuns().clear();
 				return;
-			case TestPackage.TEST_RUN__VERDICT:
-				setVerdict((Verdict)null);
+			case TestPackage.TEST_RUN__CASE:
+				set_case((TestCase)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -212,8 +207,8 @@ public class TestRunImpl extends AbstractModelElementImpl implements TestRun {
 		switch (featureID) {
 			case TestPackage.TEST_RUN__STEP_RUNS:
 				return stepRuns != null && !stepRuns.isEmpty();
-			case TestPackage.TEST_RUN__VERDICT:
-				return verdict != null;
+			case TestPackage.TEST_RUN__CASE:
+				return _case != null;
 		}
 		return super.eIsSet(featureID);
 	}

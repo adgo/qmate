@@ -37,7 +37,7 @@ import org.tud.inf.st.mbt.test.TestStep;
  * @generated
  */
 public class TestStepItemProvider
-	extends AbstractModelElementItemProvider
+	extends TestExecutableItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -198,17 +198,6 @@ public class TestStepItemProvider
 			(createChildParameter
 				(TestPackage.Literals.TEST_STEP__ACTION,
 				 ActionsFactory.eINSTANCE.createGetFeatureStateAction()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return AllEditPlugin.INSTANCE;
 	}
 
 }

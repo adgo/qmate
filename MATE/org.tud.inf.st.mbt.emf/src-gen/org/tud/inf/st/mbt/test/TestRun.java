@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.test.TestRun#getStepRuns <em>Step Runs</em>}</li>
- *   <li>{@link org.tud.inf.st.mbt.test.TestRun#getVerdict <em>Verdict</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.TestRun#get_case <em>case</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TestRun extends AbstractModelElement {
+public interface TestRun extends TestExecutable {
 	/**
 	 * Returns the value of the '<em><b>Step Runs</b></em>' containment reference list.
 	 * The list contents are of type {@link org.tud.inf.st.mbt.test.TestStepRun}.
@@ -43,29 +43,29 @@ public interface TestRun extends AbstractModelElement {
 	EList<TestStepRun> getStepRuns();
 
 	/**
-	 * Returns the value of the '<em><b>Verdict</b></em>' containment reference.
+	 * Returns the value of the '<em><b>case</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Verdict</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>case</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Verdict</em>' containment reference.
-	 * @see #setVerdict(Verdict)
-	 * @see org.tud.inf.st.mbt.test.TestPackage#getTestRun_Verdict()
-	 * @model containment="true"
+	 * @return the value of the '<em>case</em>' reference.
+	 * @see #set_case(TestCase)
+	 * @see org.tud.inf.st.mbt.test.TestPackage#getTestRun__case()
+	 * @model
 	 * @generated
 	 */
-	Verdict getVerdict();
+	TestCase get_case();
 
 	/**
-	 * Sets the value of the '{@link org.tud.inf.st.mbt.test.TestRun#getVerdict <em>Verdict</em>}' containment reference.
+	 * Sets the value of the '{@link org.tud.inf.st.mbt.test.TestRun#get_case <em>case</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Verdict</em>' containment reference.
-	 * @see #getVerdict()
+	 * @param value the new value of the '<em>case</em>' reference.
+	 * @see #get_case()
 	 * @generated
 	 */
-	void setVerdict(Verdict value);
+	void set_case(TestCase value);
 
 } // TestRun

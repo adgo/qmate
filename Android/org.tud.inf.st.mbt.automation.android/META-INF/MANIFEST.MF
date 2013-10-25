@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Android Automation
-Bundle-SymbolicName: org.tud.inf.st.mbt.automation.android
+Bundle-SymbolicName: org.tud.inf.st.mbt.automation.android;singleton:=true
 Bundle-Version: 0
 Bundle-Activator: org.tud.inf.st.mbt.automation.android.Activator
 Require-Bundle: org.eclipse.core.runtime,
@@ -13,11 +13,12 @@ Require-Bundle: org.eclipse.core.runtime,
  com.android.ide.eclipse.ddms;bundle-version="22.2.1",
  com.android.ide.eclipse.hierarchyviewer;bundle-version="22.2.1",
  com.android.ide.eclipse.traceview;bundle-version="22.2.1",
- org.tud.inf.st.mbt.android;bundle-version="1.0.0"
+ org.eclipse.core.resources;bundle-version="3.8.101",
+ org.eclipse.emf.common;bundle-version="2.9.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: lib/android-os-bins.jar,
  lib/colt-1.2.0.jar,
  lib/json-simple-1.1.1.jar,
  lib/recorder.jar,
  .
+Bundle-ActivationPolicy: lazy

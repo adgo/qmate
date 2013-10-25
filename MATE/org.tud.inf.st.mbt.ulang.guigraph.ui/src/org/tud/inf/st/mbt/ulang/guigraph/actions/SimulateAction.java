@@ -52,14 +52,11 @@ public class SimulateAction extends ActionDelegate {
 		if (dialog.open() == Window.OK) {
 			try {
 				SimulationView view = (SimulationView) PlatformUI
-						.getWorkbench()
-						.getActiveWorkbenchWindow()
-						.getActivePage()
-						.showView(
-								SimulationView.ID);
-				view.startSimulation(dialog.getMaxTime(),
-						dialog.getBoundary(),
-						dialog.getSelectedConfigurations(), rs);
+						.getWorkbench().getActiveWorkbenchWindow()
+						.getActivePage().showView(SimulationView.ID);
+				view.startSimulation(dialog.getMaxTime(), dialog.getBoundary(),
+						dialog.getSelectedConfigurations(), rs,
+						dialog.isIgnoreRealtime());
 			} catch (PartInitException e) {
 				e.printStackTrace();
 			}

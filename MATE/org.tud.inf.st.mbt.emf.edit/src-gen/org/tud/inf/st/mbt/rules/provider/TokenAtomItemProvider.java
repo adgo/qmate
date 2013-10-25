@@ -125,12 +125,10 @@ public class TokenAtomItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		TokenAtom tokenAtom = (TokenAtom)object;
-		return getString("_UI_TokenAtom_type") + " " + tokenAtom.getCount();
+		return object+"";
 	}
 
 	/**

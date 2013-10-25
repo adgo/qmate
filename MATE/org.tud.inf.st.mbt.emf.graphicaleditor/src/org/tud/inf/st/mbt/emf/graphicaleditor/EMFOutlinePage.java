@@ -1,7 +1,5 @@
 package org.tud.inf.st.mbt.emf.graphicaleditor;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -13,9 +11,9 @@ import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 public class EMFOutlinePage extends ContentOutlinePage {
 	private TreeViewer contentOutlineViewer;
 	private AdapterFactory adapterFactory;
-	private Collection<? extends EObject> input;
+	private EObject input;
 	
-	public EMFOutlinePage(AdapterFactory af,Collection<? extends EObject> input) {
+	public EMFOutlinePage(AdapterFactory af,EObject input) {
 		this.adapterFactory = af;
 		this.input = input;
 	}
@@ -30,6 +28,13 @@ public class EMFOutlinePage extends ContentOutlinePage {
 		//
 		contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+
+		
 		contentOutlineViewer.setInput(input);
 	}
+	
+	public void setInput(EObject input){
+		contentOutlineViewer.setInput(input);
+	}
+	
 }

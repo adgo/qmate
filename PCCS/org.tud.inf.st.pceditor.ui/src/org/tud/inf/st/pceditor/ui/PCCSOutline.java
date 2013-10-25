@@ -1,18 +1,24 @@
 package org.tud.inf.st.pceditor.ui;
 
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
+import org.osgi.framework.Bundle;
 import org.tud.inf.st.pccs.ConcreteSyntax;
 import org.tud.inf.st.pccs.provider.PccsItemProviderAdapterFactory;
 
@@ -71,6 +77,8 @@ public class PCCSOutline extends ContentOutlinePage {
 		});
 
 		contentOutlineViewer.setLabelProvider(new LabelProvider() {
+			Image txtImg = getImageResource("icons/text.png");
+			
 			@Override
 			public String getText(Object element) {
 				if (element instanceof EObject) {
@@ -84,6 +92,18 @@ public class PCCSOutline extends ContentOutlinePage {
 				}
 				return element + "";
 			}
+			
+			@Override
+			public Image getImage(Object element) {
+				return txtImg;
+			}
+			
+			private Image getImageResource(String file) {
+			  Bundle bundle = Activator.getDefault().getBundle();
+			  URL url = FileLocator.find(bundle, new Path(file), null);
+			  ImageDescriptor image = ImageDescriptor.createFromURL(url);
+			  return image.createImage();
+			} 
 		});
 
 		contentOutlineViewer.setInput(input);

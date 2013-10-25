@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Actions Language</title>
+</head>
+<body>
+	<h1>Actions Language</h1>
+	With the actions language, several types of test actions can be
+	defined:
+	<ol>
+		<li><b>Term Actions:</b> Arbitrary messages for communicating
+			with system under test. The syntax of term actions is defined as <a
+			href="TermLanguage.html">Term Language</a>.</li>
+		<li><b>Data Exchange:</b> Download and upload synchronizable data
+			and state entities with the system under test.</li>
+		<li><b>Reconfiguration Actions:</b> Change data values and
+			feature states of the variability model.</li>
+		<li><b>Event Actions:</b> Delegate control flow by producing
+			events and logic time.</li>
+		<li><b>Fail action:</b>A special action <pre>&fail</pre> allows to
+			force a failed test outcome.</li>
+	</ol>
+	
+	All actions can be sequenced by separating them by a ";"; terminal. For instance: <pre>action1;action2;action3;</pre>
+	
+	<h2>Data Exchange Actions</h2>
+	
+	<table>
+		<tr>
+			<th>Symbol</th>
+			<th>Syntax</th>
+			<th>Example</th>
+		</tr>
+		<tr>
+			<td><pre>GetData</pre></td>
+			<td><pre>&get value _NodeFunction_</pre></td>
+			<td><pre>&get value x</pre></td>
+		</tr>
+	</table>
+	
+</body>
+</html>

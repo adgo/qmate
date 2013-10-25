@@ -59,8 +59,6 @@ public class OcmFactoryImpl extends EFactoryImpl implements OcmFactory {
 			case OcmPackage.OPERATIONAL_CONFIGURATION_MODEL: return createOperationalConfigurationModel();
 			case OcmPackage.STANDARD_CONFIGURATION_NODE: return createStandardConfigurationNode();
 			case OcmPackage.RECONFIGURATION_ACTION_NODE: return createReconfigurationActionNode();
-			case OcmPackage.COMPOSED_CONFIGURATION_NODE: return createComposedConfigurationNode();
-			case OcmPackage.COMPOSITION_EDGE: return createCompositionEdge();
 			case OcmPackage.TIMED_EDGE: return createTimedEdge();
 			case OcmPackage.EVENT_GUARDED_EDGE: return createEventGuardedEdge();
 			default:
@@ -96,26 +94,6 @@ public class OcmFactoryImpl extends EFactoryImpl implements OcmFactory {
 	public ReconfigurationActionNode createReconfigurationActionNode() {
 		ReconfigurationActionNodeImpl reconfigurationActionNode = new ReconfigurationActionNodeImpl();
 		return reconfigurationActionNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositionEdge createCompositionEdge() {
-		CompositionEdgeImpl compositionEdge = new CompositionEdgeImpl();
-		return compositionEdge;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComposedConfigurationNode createComposedConfigurationNode() {
-		ComposedConfigurationNodeImpl composedConfigurationNode = new ComposedConfigurationNodeImpl();
-		return composedConfigurationNode;
 	}
 
 	/**

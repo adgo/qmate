@@ -182,11 +182,6 @@ public class OperationalConfigurationModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(OcmPackage.Literals.OPERATIONAL_CONFIGURATION_MODEL__EDGES,
-				 OcmFactory.eINSTANCE.createCompositionEdge()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(OcmPackage.Literals.OPERATIONAL_CONFIGURATION_MODEL__EDGES,
 				 OcmFactory.eINSTANCE.createTimedEdge()));
 
 		newChildDescriptors.add
@@ -203,11 +198,6 @@ public class OperationalConfigurationModelItemProvider
 			(createChildParameter
 				(OcmPackage.Literals.OPERATIONAL_CONFIGURATION_MODEL__NODES,
 				 OcmFactory.eINSTANCE.createReconfigurationActionNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(OcmPackage.Literals.OPERATIONAL_CONFIGURATION_MODEL__NODES,
-				 OcmFactory.eINSTANCE.createComposedConfigurationNode()));
 	}
 
 	/**

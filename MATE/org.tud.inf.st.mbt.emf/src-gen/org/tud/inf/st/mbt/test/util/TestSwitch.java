@@ -72,14 +72,16 @@ public class TestSwitch<T> extends Switch<T> {
 			case TestPackage.TEST_SUITE: {
 				TestSuite testSuite = (TestSuite)theEObject;
 				T result = caseTestSuite(testSuite);
-				if (result == null) result = caseAbstractModelElement(testSuite);
 				if (result == null) result = caseITopLevelElement(testSuite);
+				if (result == null) result = caseTestExecutable(testSuite);
+				if (result == null) result = caseAbstractModelElement(testSuite);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TestPackage.TEST_CASE: {
 				TestCase testCase = (TestCase)theEObject;
 				T result = caseTestCase(testCase);
+				if (result == null) result = caseTestExecutable(testCase);
 				if (result == null) result = caseAbstractModelElement(testCase);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -87,6 +89,7 @@ public class TestSwitch<T> extends Switch<T> {
 			case TestPackage.TEST_STEP: {
 				TestStep testStep = (TestStep)theEObject;
 				T result = caseTestStep(testStep);
+				if (result == null) result = caseTestExecutable(testStep);
 				if (result == null) result = caseAbstractModelElement(testStep);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -94,14 +97,16 @@ public class TestSwitch<T> extends Switch<T> {
 			case TestPackage.TEST_REPORT: {
 				TestReport testReport = (TestReport)theEObject;
 				T result = caseTestReport(testReport);
-				if (result == null) result = caseAbstractModelElement(testReport);
 				if (result == null) result = caseITopLevelElement(testReport);
+				if (result == null) result = caseTestExecutable(testReport);
+				if (result == null) result = caseAbstractModelElement(testReport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TestPackage.TEST_RUN: {
 				TestRun testRun = (TestRun)theEObject;
 				T result = caseTestRun(testRun);
+				if (result == null) result = caseTestExecutable(testRun);
 				if (result == null) result = caseAbstractModelElement(testRun);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -109,6 +114,7 @@ public class TestSwitch<T> extends Switch<T> {
 			case TestPackage.TEST_STEP_RUN: {
 				TestStepRun testStepRun = (TestStepRun)theEObject;
 				T result = caseTestStepRun(testStepRun);
+				if (result == null) result = caseTestExecutable(testStepRun);
 				if (result == null) result = caseAbstractModelElement(testStepRun);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -116,6 +122,13 @@ public class TestSwitch<T> extends Switch<T> {
 			case TestPackage.VERDICT: {
 				Verdict verdict = (Verdict)theEObject;
 				T result = caseVerdict(verdict);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TestPackage.TEST_EXECUTABLE: {
+				TestExecutable testExecutable = (TestExecutable)theEObject;
+				T result = caseTestExecutable(testExecutable);
+				if (result == null) result = caseAbstractModelElement(testExecutable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -195,6 +208,21 @@ public class TestSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVerdict(Verdict object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Executable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Executable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTestExecutable(TestExecutable object) {
 		return null;
 	}
 

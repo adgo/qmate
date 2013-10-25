@@ -4,23 +4,24 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.tud.inf.st.mbt.automation.AbstractConnectorType;
+import org.tud.inf.st.mbt.automation.IAutomationConstants;
 import org.tud.inf.st.mbt.automation.record.AbstractRecorder;
-import org.tud.inf.st.mbt.automation.record.AbstractRecorderType;
 
-public final class AndroidRecorderType extends AbstractRecorderType{
+public final class AndroidRecorderType extends AbstractConnectorType{
 	
 	private static AndroidRecorderType instance;
 	private static final String name = "ADB Recorder (via Accessability Service)";
 	private static final List<AndroidRecorder> recorders = new ArrayList<>();
-	
-	private AndroidRecorderType() {
-	}
 	
 	public static AndroidRecorderType getInstance() {
 		if(instance == null)instance = new AndroidRecorderType();
 		return instance;
 	}
 
+	private AndroidRecorderType() {
+	}
+	
 	@Override
 	public String getName() {
 		return name;
@@ -28,16 +29,16 @@ public final class AndroidRecorderType extends AbstractRecorderType{
 
 	@Override
 	public String[] getAvailableConnections() {
-		return AndroidRecorderBridge.getDevices();
+		return CustomizedAndroidBridge.getDevices();
 	}
 
 	@Override
-	protected Collection<? extends AbstractRecorder> getActiveRecorders() {
+	public Collection<? extends AbstractRecorder> getActiveConnectors() {
 		return recorders;
 	}
 
 	@Override
-	public AbstractRecorder getRecorder(String connection) {
+	public AbstractRecorder getConnector(String connection) {
 		for(AndroidRecorder r:recorders){
 			if(r.getConnection().equals(connection))return r;
 		}
@@ -48,14 +49,8 @@ public final class AndroidRecorderType extends AbstractRecorderType{
 	}
 
 	@Override
-	public void terminateRecorder(String connection) {
-		for(AndroidRecorder r:recorders.toArray(new AndroidRecorder[0])){
-			if(r.equals(connection)){
-				r.terminate();
-				recorders.remove(r);
-				return;
-			}
-		}
+	public Integer getKind() {
+		return IAutomationConstants.KIND_RECORDER;
 	}
 
 }

@@ -2,6 +2,9 @@ package org.tud.inf.st.mbt.automation.android;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.tud.inf.st.mbt.automation.ConnectorManager;
+import org.tud.inf.st.mbt.automation.android.execute.AndroidSimulationAutomationType;
+import org.tud.inf.st.mbt.automation.android.record.AndroidRecorderType;
 
 public class Activator implements BundleActivator {
 
@@ -17,6 +20,8 @@ public class Activator implements BundleActivator {
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
+		ConnectorManager.getInstance().registerType(AndroidRecorderType.getInstance());
+		ConnectorManager.getInstance().registerType(AndroidSimulationAutomationType.getInstance());
 	}
 
 	/*

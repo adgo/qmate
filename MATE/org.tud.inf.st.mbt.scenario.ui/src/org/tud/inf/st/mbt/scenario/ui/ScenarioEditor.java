@@ -2,7 +2,6 @@ package org.tud.inf.st.mbt.scenario.ui;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -13,6 +12,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.gef.SnapToGrid;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -24,6 +26,9 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.eclipse.ui.dialogs.ISelectionStatusValidator;
+import org.tud.inf.st.mbt.actions.provider.ActionsItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.core.provider.CoreItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.data.provider.DataItemProviderAdapterFactory;
 import org.tud.inf.st.mbt.emf.generator.State;
 import org.tud.inf.st.mbt.emf.generator.State.IStateActivationListener;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFEditPartFactory;
@@ -33,18 +38,26 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.EMFTextProvider;
 import org.tud.inf.st.mbt.emf.graphicaleditor.GraphicalEMFEditor;
 import org.tud.inf.st.mbt.emf.transformations.ScenarioModelAnalyzer;
 import org.tud.inf.st.mbt.emf.validation.ValidationManager;
+import org.tud.inf.st.mbt.features.provider.FeaturesItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.featuretree.provider.FeaturetreeItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.functions.provider.FunctionsItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.ocm.provider.OcmItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.rules.provider.RulesItemProviderAdapterFactory;
 import org.tud.inf.st.mbt.scenario.Placement;
 import org.tud.inf.st.mbt.scenario.Scenario;
 import org.tud.inf.st.mbt.scenario.ScenarioFactory;
 import org.tud.inf.st.mbt.scenario.ScenarioModel;
-import org.tud.inf.st.mbt.scenario.ScenarioPackage;
 import org.tud.inf.st.mbt.scenario.SpatialBase;
 import org.tud.inf.st.mbt.scenario.provider.ScenarioItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.terms.provider.TermsItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.test.provider.TestItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.ulang.guigraph.provider.GuigraphItemProviderAdapterFactory;
 
 public class ScenarioEditor extends GraphicalEMFEditor implements IStateActivationListener{
 
 	public static final String ID = "org.tud.inf.st.mbt.scenario.ui.editor";
 	private Scenario scenario;
+	private ComposedAdapterFactory adapterFactory;
 	
 	public ScenarioEditor() {
 		super();
@@ -228,10 +241,35 @@ public class ScenarioEditor extends GraphicalEMFEditor implements IStateActivati
 
 	@Override
 	protected AdapterFactory getAdapterFactory(EClass type) {
-		if (type.getEPackage().equals(ScenarioPackage.eINSTANCE)) {
-			return new ScenarioItemProviderAdapterFactory();
-		} else
-			return null;
+		if(adapterFactory != null)return adapterFactory;
+		
+		adapterFactory = new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
+		adapterFactory
+				.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new ActionsItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new FeaturetreeItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new GuigraphItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new CoreItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new TestItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new RulesItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new FeaturesItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new DataItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new FunctionsItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new OcmItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new ScenarioItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new TermsItemProviderAdapterFactory());
+		adapterFactory
+				.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+		
+		return adapterFactory;
 	}
 
 	@Override

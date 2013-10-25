@@ -17,7 +17,6 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.basics.BasicNodeEditPart;
 import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFComponentEditPolicy;
 import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFGraphicalNodeEditPolicy;
 import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFXYLayoutEditPolicy;
-import org.tud.inf.st.mbt.ocm.CompositionEdge;
 import org.tud.inf.st.mbt.ocm.Edge;
 import org.tud.inf.st.mbt.ocm.OcmPackage;
 import org.tud.inf.st.mbt.ocm.OperationalConfigurationModel;
@@ -55,20 +54,11 @@ public abstract class BasicOCMNodeEditPart extends BasicNodeEditPart implements 
 
 					public boolean canConnect(EObject source, EObject target,
 							EClass connType) {
-						if (connType.equals(OcmPackage.eINSTANCE
-								.getCompositionEdge())
-								&& !OcmPackage.eINSTANCE
-										.getComposedConfigurationNode()
-										.isSuperTypeOf(target.eClass()))
-							return false;
-						else
 							return true;
 					}
 
 					public EObject getSource(EObject connection) {
-						if (connection instanceof CompositionEdge) {
-							return ((CompositionEdge) connection).getSource();
-						} else if (connection instanceof OperationalEdge) {
+						if (connection instanceof OperationalEdge) {
 							return ((OperationalEdge) connection).getSource();
 						}
 
@@ -76,9 +66,7 @@ public abstract class BasicOCMNodeEditPart extends BasicNodeEditPart implements 
 					}
 
 					public EObject getTarget(EObject connection) {
-						if (connection instanceof CompositionEdge) {
-							return ((CompositionEdge) connection).getTarget();
-						} else if (connection instanceof OperationalEdge) {
+						if (connection instanceof OperationalEdge) {
 							return ((OperationalEdge) connection).getTarget();
 						}
 

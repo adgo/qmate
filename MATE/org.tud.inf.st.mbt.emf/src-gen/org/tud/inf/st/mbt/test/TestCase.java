@@ -23,7 +23,7 @@ import org.tud.inf.st.mbt.core.AbstractModelElement;
  * @model
  * @generated
  */
-public interface TestCase extends AbstractModelElement {
+public interface TestCase extends TestExecutable {
 	/**
 	 * Returns the value of the '<em><b>Steps</b></em>' containment reference list.
 	 * The list contents are of type {@link org.tud.inf.st.mbt.test.TestStep}.

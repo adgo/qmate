@@ -824,16 +824,6 @@ public class ActionReferenceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ActionsPackage.Literals.ACTION_REFERENCE__PARAMETERS,
-				 OcmFactory.eINSTANCE.createComposedConfigurationNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActionsPackage.Literals.ACTION_REFERENCE__PARAMETERS,
-				 OcmFactory.eINSTANCE.createCompositionEdge()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActionsPackage.Literals.ACTION_REFERENCE__PARAMETERS,
 				 OcmFactory.eINSTANCE.createTimedEdge()));
 
 		newChildDescriptors.add

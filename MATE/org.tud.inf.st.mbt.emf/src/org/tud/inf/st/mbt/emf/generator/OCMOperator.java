@@ -22,8 +22,6 @@ import org.tud.inf.st.mbt.features.IFeature;
 import org.tud.inf.st.mbt.functions.DataNodeFunction;
 import org.tud.inf.st.mbt.functions.DataValueFunction;
 import org.tud.inf.st.mbt.functions.FunctionsFactory;
-import org.tud.inf.st.mbt.ocm.ComposedConfigurationNode;
-import org.tud.inf.st.mbt.ocm.CompositionEdge;
 import org.tud.inf.st.mbt.ocm.ConfigurationNode;
 import org.tud.inf.st.mbt.ocm.Edge;
 import org.tud.inf.st.mbt.ocm.EventGuardedEdge;
@@ -334,20 +332,7 @@ public class OCMOperator extends TransitionOperator {
 			State before, ConfigurationNode target,
 			List<ConfigurationNode> visited) {
 		List<ReconfigurationAction> actions = new LinkedList<ReconfigurationAction>();
-		if (target instanceof ComposedConfigurationNode) {
-			visited.add(target);
-			for (Edge e : ocm.getEdges()) {
-				if (e instanceof CompositionEdge
-						&& ((CompositionEdge) e).getTarget().equals(target)) {
-					ConfigurationNode in = ((CompositionEdge) e).getSource();
-					if (visited.contains(in))
-						throw new RuntimeException("Cyclic composition in OCM "
-								+ ocm);
-					actions.addAll(getAllConfigurationActions(before, in,
-							visited));
-				}
-			}
-		} else if (target instanceof StandardConfigurationNode) {
+		if (target instanceof StandardConfigurationNode) {
 			actions.addAll(getDeactivateFeatures(before,
 					(StandardConfigurationNode) target));
 			for (Atom a : produceAtoms((StandardConfigurationNode) target)) {

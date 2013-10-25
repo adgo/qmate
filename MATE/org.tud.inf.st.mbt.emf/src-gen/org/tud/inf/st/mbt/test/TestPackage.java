@@ -74,7 +74,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE__NOTE = CorePackage.ABSTRACT_MODEL_ELEMENT__NOTE;
+	int TEST_SUITE__NOTE = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -83,7 +83,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE__ID = CorePackage.ABSTRACT_MODEL_ELEMENT__ID;
+	int TEST_SUITE__ID = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
@@ -92,7 +92,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE__TRACEABLE_TO = CorePackage.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO;
+	int TEST_SUITE__TRACEABLE_TO = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -101,7 +101,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE__NAME = CorePackage.ABSTRACT_MODEL_ELEMENT__NAME;
+	int TEST_SUITE__NAME = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Cases</b></em>' containment reference list.
@@ -110,7 +110,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE__CASES = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TEST_SUITE__CASES = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' reference.
@@ -119,7 +119,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE__CONFIGURATION = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_SUITE__CONFIGURATION = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
@@ -128,7 +128,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE__RISK_REDUCTION = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TEST_SUITE__RISK_REDUCTION = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Suite</em>' class.
@@ -137,7 +137,62 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int TEST_SUITE_FEATURE_COUNT = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The meta object id for the '{@link org.tud.inf.st.mbt.test.impl.TestExecutableImpl <em>Executable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.tud.inf.st.mbt.test.impl.TestExecutableImpl
+	 * @see org.tud.inf.st.mbt.test.impl.TestPackageImpl#getTestExecutable()
+	 * @generated
+	 */
+	int TEST_EXECUTABLE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_EXECUTABLE__NOTE = CorePackage.ABSTRACT_MODEL_ELEMENT__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_EXECUTABLE__ID = CorePackage.ABSTRACT_MODEL_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_EXECUTABLE__TRACEABLE_TO = CorePackage.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_EXECUTABLE__NAME = CorePackage.ABSTRACT_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Executable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_EXECUTABLE_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.test.impl.TestCaseImpl <em>Case</em>}' class.
@@ -156,7 +211,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__NOTE = CorePackage.ABSTRACT_MODEL_ELEMENT__NOTE;
+	int TEST_CASE__NOTE = TEST_EXECUTABLE__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -165,7 +220,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__ID = CorePackage.ABSTRACT_MODEL_ELEMENT__ID;
+	int TEST_CASE__ID = TEST_EXECUTABLE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
@@ -174,7 +229,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__TRACEABLE_TO = CorePackage.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO;
+	int TEST_CASE__TRACEABLE_TO = TEST_EXECUTABLE__TRACEABLE_TO;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -183,7 +238,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__NAME = CorePackage.ABSTRACT_MODEL_ELEMENT__NAME;
+	int TEST_CASE__NAME = TEST_EXECUTABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
@@ -192,7 +247,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__STEPS = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TEST_CASE__STEPS = TEST_EXECUTABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
@@ -201,7 +256,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__RISK_REDUCTION = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_CASE__RISK_REDUCTION = TEST_EXECUTABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Case</em>' class.
@@ -210,7 +265,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TEST_CASE_FEATURE_COUNT = TEST_EXECUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.test.impl.TestStepImpl <em>Step</em>}' class.
@@ -229,7 +284,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP__NOTE = CorePackage.ABSTRACT_MODEL_ELEMENT__NOTE;
+	int TEST_STEP__NOTE = TEST_EXECUTABLE__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -238,7 +293,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP__ID = CorePackage.ABSTRACT_MODEL_ELEMENT__ID;
+	int TEST_STEP__ID = TEST_EXECUTABLE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
@@ -247,7 +302,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP__TRACEABLE_TO = CorePackage.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO;
+	int TEST_STEP__TRACEABLE_TO = TEST_EXECUTABLE__TRACEABLE_TO;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -256,7 +311,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP__NAME = CorePackage.ABSTRACT_MODEL_ELEMENT__NAME;
+	int TEST_STEP__NAME = TEST_EXECUTABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Action</b></em>' containment reference.
@@ -265,7 +320,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP__ACTION = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TEST_STEP__ACTION = TEST_EXECUTABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Step</em>' class.
@@ -274,7 +329,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_STEP_FEATURE_COUNT = TEST_EXECUTABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.test.impl.TestReportImpl <em>Report</em>}' class.
@@ -293,7 +348,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_REPORT__NOTE = CorePackage.ABSTRACT_MODEL_ELEMENT__NOTE;
+	int TEST_REPORT__NOTE = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -302,7 +357,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_REPORT__ID = CorePackage.ABSTRACT_MODEL_ELEMENT__ID;
+	int TEST_REPORT__ID = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
@@ -311,7 +366,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_REPORT__TRACEABLE_TO = CorePackage.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO;
+	int TEST_REPORT__TRACEABLE_TO = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -320,7 +375,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_REPORT__NAME = CorePackage.ABSTRACT_MODEL_ELEMENT__NAME;
+	int TEST_REPORT__NAME = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Runs</b></em>' containment reference list.
@@ -329,7 +384,16 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_REPORT__RUNS = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TEST_REPORT__RUNS = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Suite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_REPORT__SUITE = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Report</em>' class.
@@ -338,7 +402,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_REPORT_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_REPORT_FEATURE_COUNT = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.test.impl.VerdictImpl <em>Verdict</em>}' class.
@@ -367,7 +431,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_RUN__NOTE = CorePackage.ABSTRACT_MODEL_ELEMENT__NOTE;
+	int TEST_RUN__NOTE = TEST_EXECUTABLE__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -376,7 +440,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_RUN__ID = CorePackage.ABSTRACT_MODEL_ELEMENT__ID;
+	int TEST_RUN__ID = TEST_EXECUTABLE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
@@ -385,7 +449,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_RUN__TRACEABLE_TO = CorePackage.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO;
+	int TEST_RUN__TRACEABLE_TO = TEST_EXECUTABLE__TRACEABLE_TO;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -394,7 +458,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_RUN__NAME = CorePackage.ABSTRACT_MODEL_ELEMENT__NAME;
+	int TEST_RUN__NAME = TEST_EXECUTABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Step Runs</b></em>' containment reference list.
@@ -403,16 +467,16 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_RUN__STEP_RUNS = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TEST_RUN__STEP_RUNS = TEST_EXECUTABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Verdict</b></em>' containment reference.
+	 * The feature id for the '<em><b>case</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_RUN__VERDICT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_RUN__CASE = TEST_EXECUTABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Run</em>' class.
@@ -421,7 +485,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_RUN_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TEST_RUN_FEATURE_COUNT = TEST_EXECUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.test.impl.TestStepRunImpl <em>Step Run</em>}' class.
@@ -440,7 +504,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP_RUN__NOTE = CorePackage.ABSTRACT_MODEL_ELEMENT__NOTE;
+	int TEST_STEP_RUN__NOTE = TEST_EXECUTABLE__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -449,7 +513,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP_RUN__ID = CorePackage.ABSTRACT_MODEL_ELEMENT__ID;
+	int TEST_STEP_RUN__ID = TEST_EXECUTABLE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
@@ -458,7 +522,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP_RUN__TRACEABLE_TO = CorePackage.ABSTRACT_MODEL_ELEMENT__TRACEABLE_TO;
+	int TEST_STEP_RUN__TRACEABLE_TO = TEST_EXECUTABLE__TRACEABLE_TO;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -467,7 +531,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP_RUN__NAME = CorePackage.ABSTRACT_MODEL_ELEMENT__NAME;
+	int TEST_STEP_RUN__NAME = TEST_EXECUTABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Step</b></em>' reference.
@@ -476,7 +540,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP_RUN__STEP = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TEST_STEP_RUN__STEP = TEST_EXECUTABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' containment reference list.
@@ -485,7 +549,25 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP_RUN__STATE = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_STEP_RUN__STATE = TEST_EXECUTABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Verdict</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_STEP_RUN__VERDICT = TEST_EXECUTABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_STEP_RUN__ACTION = TEST_EXECUTABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Step Run</em>' class.
@@ -494,7 +576,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP_RUN_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TEST_STEP_RUN_FEATURE_COUNT = TEST_EXECUTABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -632,6 +714,17 @@ public interface TestPackage extends EPackage {
 	EReference getTestReport_Runs();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.tud.inf.st.mbt.test.TestReport#getSuite <em>Suite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Suite</em>'.
+	 * @see org.tud.inf.st.mbt.test.TestReport#getSuite()
+	 * @see #getTestReport()
+	 * @generated
+	 */
+	EReference getTestReport_Suite();
+
+	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.test.Verdict <em>Verdict</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -651,6 +744,16 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVerdict_Name();
+
+	/**
+	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.test.TestExecutable <em>Executable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Executable</em>'.
+	 * @see org.tud.inf.st.mbt.test.TestExecutable
+	 * @generated
+	 */
+	EClass getTestExecutable();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.test.TestRun <em>Run</em>}'.
@@ -674,15 +777,15 @@ public interface TestPackage extends EPackage {
 	EReference getTestRun_StepRuns();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.tud.inf.st.mbt.test.TestRun#getVerdict <em>Verdict</em>}'.
+	 * Returns the meta object for the reference '{@link org.tud.inf.st.mbt.test.TestRun#get_case <em>case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Verdict</em>'.
-	 * @see org.tud.inf.st.mbt.test.TestRun#getVerdict()
+	 * @return the meta object for the reference '<em>case</em>'.
+	 * @see org.tud.inf.st.mbt.test.TestRun#get_case()
 	 * @see #getTestRun()
 	 * @generated
 	 */
-	EReference getTestRun_Verdict();
+	EReference getTestRun__case();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.test.TestStepRun <em>Step Run</em>}'.
@@ -715,6 +818,28 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTestStepRun_State();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.tud.inf.st.mbt.test.TestStepRun#getVerdict <em>Verdict</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Verdict</em>'.
+	 * @see org.tud.inf.st.mbt.test.TestStepRun#getVerdict()
+	 * @see #getTestStepRun()
+	 * @generated
+	 */
+	EReference getTestStepRun_Verdict();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.tud.inf.st.mbt.test.TestStepRun#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Action</em>'.
+	 * @see org.tud.inf.st.mbt.test.TestStepRun#getAction()
+	 * @see #getTestStepRun()
+	 * @generated
+	 */
+	EReference getTestStepRun_Action();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -835,6 +960,14 @@ public interface TestPackage extends EPackage {
 		EReference TEST_REPORT__RUNS = eINSTANCE.getTestReport_Runs();
 
 		/**
+		 * The meta object literal for the '<em><b>Suite</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_REPORT__SUITE = eINSTANCE.getTestReport_Suite();
+
+		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.test.impl.VerdictImpl <em>Verdict</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -851,6 +984,16 @@ public interface TestPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VERDICT__NAME = eINSTANCE.getVerdict_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.tud.inf.st.mbt.test.impl.TestExecutableImpl <em>Executable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.tud.inf.st.mbt.test.impl.TestExecutableImpl
+		 * @see org.tud.inf.st.mbt.test.impl.TestPackageImpl#getTestExecutable()
+		 * @generated
+		 */
+		EClass TEST_EXECUTABLE = eINSTANCE.getTestExecutable();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.test.impl.TestRunImpl <em>Run</em>}' class.
@@ -871,12 +1014,12 @@ public interface TestPackage extends EPackage {
 		EReference TEST_RUN__STEP_RUNS = eINSTANCE.getTestRun_StepRuns();
 
 		/**
-		 * The meta object literal for the '<em><b>Verdict</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>case</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_RUN__VERDICT = eINSTANCE.getTestRun_Verdict();
+		EReference TEST_RUN__CASE = eINSTANCE.getTestRun__case();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.test.impl.TestStepRunImpl <em>Step Run</em>}' class.
@@ -903,6 +1046,22 @@ public interface TestPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST_STEP_RUN__STATE = eINSTANCE.getTestStepRun_State();
+
+		/**
+		 * The meta object literal for the '<em><b>Verdict</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_STEP_RUN__VERDICT = eINSTANCE.getTestStepRun_Verdict();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_STEP_RUN__ACTION = eINSTANCE.getTestStepRun_Action();
 
 	}
 

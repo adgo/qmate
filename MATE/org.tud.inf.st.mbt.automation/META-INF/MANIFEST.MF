@@ -20,5 +20,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.tud.inf.st.mbt.automation.Activator
 Export-Package: org.tud.inf.st.mbt.automation,
+ org.tud.inf.st.mbt.automation.basic,
+ org.tud.inf.st.mbt.automation.execute,
  org.tud.inf.st.mbt.automation.record,
  org.tud.inf.st.mbt.automation.traversal

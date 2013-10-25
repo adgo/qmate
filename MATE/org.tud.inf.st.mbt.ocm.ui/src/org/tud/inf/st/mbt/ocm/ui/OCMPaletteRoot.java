@@ -24,18 +24,6 @@ public class OCMPaletteRoot extends EMFPaletteRoot {
 				new EMFCreationFactory(OcmPackage.eINSTANCE.getReconfigurationActionNode()),
 				Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
 						"icons/conf.png"), null));
-		scGroup.add(new CreationToolEntry(
-				"Union",
-				"Create Union.",
-				new EMFCreationFactory(OcmPackage.eINSTANCE.getComposedConfigurationNode()),
-				Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-						"icons/union.png"), null));
-
-		scGroup.add(new ConnectionCreationToolEntry("Composition Edge",
-				"Create a new composition edge.", new EMFCreationFactory(
-						OcmPackage.eINSTANCE.getCompositionEdge()), Activator
-						.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-								"icons/cedge.png"), null));
 
 		scGroup.add(new ConnectionCreationToolEntry("Timed Edge",
 				"Create a new timed edge.", new EMFCreationFactory(

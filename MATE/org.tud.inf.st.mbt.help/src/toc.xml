@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="MATE" topic="src/MATE.html">
+   <topic label="Basic Concepts">
+   </topic>
+   <topic label="Techniqual Components">
+      <topic label="GUI-Graph Editor">
+      </topic>
+      <topic label="Generic Model Editor">
+      </topic>
+      <topic label="Operational Configuration Model (OCM) Editor">
+      </topic>
+      <topic label="Simulator">
+      </topic>
+      <topic href="src/StatisticsView.html" label="Statistics View">
+      </topic>
+      <topic label="Automation">
+         <topic label="Recording Models">
+         </topic>
+         <topic label="Test Execution Automation">
+         </topic>
+      </topic>
+      <topic label="Environment Models">
+         <topic label="Data Graphs Editor">
+         </topic>
+         <topic label="Spatial Scenario Editor">
+         </topic>
+      </topic>
+      <topic label="Textual Modeling Languages">
+         <topic label="Variability Constraints">
+         </topic>
+         <topic href="src/ActionsLanguage.html" label="Actions Language">
+         </topic>
+         <topic label="Functional Language">
+         </topic>
+      </topic>
+   </topic>
+   <topic label="Workflow">
+      <topic label="Getting Started">
+      </topic>
+      <topic label="Designing a variability space">
+      </topic>
+      <topic label="Defining Environment Change">
+      </topic>
+      <topic label="Defining Adaptation">
+      </topic>
+      <topic label="Defining a test workflow">
+      </topic>
+      <topic label="Simulate or Generate">
+      </topic>
+   </topic>
+</toc>

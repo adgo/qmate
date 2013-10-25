@@ -32,6 +32,7 @@ public class GenerateDialog extends TitleAreaDialog {
 	private List<Configuration> selectedConfigurations;
 	private ListViewer configs;
 	private int noCases, time, bound;
+	private boolean ignoreRealtime = false;
 	private ResourceSet rs;
 	private boolean simulating = false;
 
@@ -72,8 +73,8 @@ public class GenerateDialog extends TitleAreaDialog {
 			setTitle("Test Generation Dialog");
 			setMessage("Set up new test generation job.");
 		} else {
-			setTitle("Variability exploration parameters");
-			setMessage("Set up new exploration.");
+			setTitle("Simulation Configuration Dialog");
+			setMessage("Set up new simulation.");
 		}
 	}
 
@@ -108,7 +109,7 @@ public class GenerateDialog extends TitleAreaDialog {
 			txtNoCases.setLayoutData(new GridData(GridData.FILL, SWT.CENTER,
 					true, true));
 			txtNoCases.setText("100");
-		}
+		} 
 
 		l = new Label(parent, SWT.None);
 		l.setText("General maximal time per clock:");
@@ -148,6 +149,30 @@ public class GenerateDialog extends TitleAreaDialog {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
+		
+		if(simulating){
+				l = new Label(parent, SWT.None);
+				l.setText("Time variability:");
+				l.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true, true));
+				final Button selIgnoreRT = new Button(parent, SWT.CHECK);
+				selIgnoreRT.setText("Ignore realtime");
+				selIgnoreRT.addSelectionListener(new SelectionListener() {
+
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						if (selIgnoreRT.getSelection())
+							GenerateDialog.this.ignoreRealtime = true;
+						else {
+							GenerateDialog.this.ignoreRealtime = false;
+						}
+					}
+
+					@Override
+					public void widgetDefaultSelected(SelectionEvent e) {
+					}
+				});
+				selIgnoreRT.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true, true));
+		}
 
 		l = new Label(parent, SWT.None);
 		l.setText("Generate for configurations:");
@@ -245,5 +270,9 @@ public class GenerateDialog extends TitleAreaDialog {
 
 	public String getTargetFile() {
 		return targetFile;
+	}
+	
+	public boolean isIgnoreRealtime() {
+		return ignoreRealtime;
 	}
 }
