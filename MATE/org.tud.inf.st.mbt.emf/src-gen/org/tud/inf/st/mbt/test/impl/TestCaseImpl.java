@@ -31,6 +31,7 @@ import org.tud.inf.st.mbt.test.TestStep;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestCaseImpl#getSteps <em>Steps</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.impl.TestCaseImpl#getRiskReduction <em>Risk Reduction</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,6 +47,25 @@ public class TestCaseImpl extends TestExecutableImpl implements TestCase {
 	 * @ordered
 	 */
 	protected EList<TestStep> steps;
+
+	/**
+	 * The default value of the '{@link #getRiskReduction() <em>Risk Reduction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRiskReduction()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double RISK_REDUCTION_EDEFAULT = 0.0;
+	/**
+	 * The cached value of the '{@link #getRiskReduction() <em>Risk Reduction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRiskReduction()
+	 * @generated
+	 * @ordered
+	 */
+	protected double riskReduction = RISK_REDUCTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -83,6 +103,27 @@ public class TestCaseImpl extends TestExecutableImpl implements TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public double getRiskReduction() {
+		return riskReduction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRiskReduction(double newRiskReduction) {
+		double oldRiskReduction = riskReduction;
+		riskReduction = newRiskReduction;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestPackage.TEST_CASE__RISK_REDUCTION, oldRiskReduction, riskReduction));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -102,6 +143,8 @@ public class TestCaseImpl extends TestExecutableImpl implements TestCase {
 		switch (featureID) {
 			case TestPackage.TEST_CASE__STEPS:
 				return getSteps();
+			case TestPackage.TEST_CASE__RISK_REDUCTION:
+				return getRiskReduction();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,6 +162,9 @@ public class TestCaseImpl extends TestExecutableImpl implements TestCase {
 				getSteps().clear();
 				getSteps().addAll((Collection<? extends TestStep>)newValue);
 				return;
+			case TestPackage.TEST_CASE__RISK_REDUCTION:
+				setRiskReduction((Double)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -134,6 +180,9 @@ public class TestCaseImpl extends TestExecutableImpl implements TestCase {
 			case TestPackage.TEST_CASE__STEPS:
 				getSteps().clear();
 				return;
+			case TestPackage.TEST_CASE__RISK_REDUCTION:
+				setRiskReduction(RISK_REDUCTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -148,6 +197,8 @@ public class TestCaseImpl extends TestExecutableImpl implements TestCase {
 		switch (featureID) {
 			case TestPackage.TEST_CASE__STEPS:
 				return steps != null && !steps.isEmpty();
+			case TestPackage.TEST_CASE__RISK_REDUCTION:
+				return riskReduction != RISK_REDUCTION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

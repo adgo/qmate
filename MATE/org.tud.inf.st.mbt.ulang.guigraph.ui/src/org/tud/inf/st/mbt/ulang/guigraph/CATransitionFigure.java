@@ -81,7 +81,7 @@ public class CATransitionFigure extends RoundedRectangle implements
 	}
 
 	public void setTerminates(boolean term) {
-		border.setWidth(term ? 3 : 0);
+		border.setWidth(term ? 3 : 1);
 		border.setColor(term ? ColorConstants.red : ColorConstants.gray);
 	}
 
@@ -99,7 +99,7 @@ public class CATransitionFigure extends RoundedRectangle implements
 	}
 
 	public void setActive(boolean active) {
-		border.setWidth(active ? 3 : 0);
+		border.setWidth(active ? 5 : 1);
 		border.setColor(active ? ColorConstants.blue : ColorConstants.gray);
 	}
 

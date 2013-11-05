@@ -68,7 +68,6 @@ public class TestReportItemProvider
 			addIdPropertyDescriptor(object);
 			addTraceableToPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
-			addRiskReductionPropertyDescriptor(object);
 			addSuitePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -158,28 +157,6 @@ public class TestReportItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Risk Reduction feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRiskReductionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TestExecutable_riskReduction_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TestExecutable_riskReduction_feature", "_UI_TestExecutable_type"),
-				 TestPackage.Literals.TEST_EXECUTABLE__RISK_REDUCTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -283,7 +260,6 @@ public class TestReportItemProvider
 			case TestPackage.TEST_REPORT__NOTE:
 			case TestPackage.TEST_REPORT__ID:
 			case TestPackage.TEST_REPORT__NAME:
-			case TestPackage.TEST_REPORT__RISK_REDUCTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case TestPackage.TEST_REPORT__RUNS:

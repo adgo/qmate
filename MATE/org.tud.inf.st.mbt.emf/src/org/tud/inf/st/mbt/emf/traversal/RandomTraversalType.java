@@ -1,9 +1,8 @@
-package org.tud.inf.st.mbt.automation.basic;
+package org.tud.inf.st.mbt.emf.traversal;
 
 import java.util.List;
 import java.util.Random;
 
-import org.tud.inf.st.mbt.automation.traversal.AbstractTraversalType;
 import org.tud.inf.st.mbt.emf.generator.State;
 import org.tud.inf.st.mbt.features.Configuration;
 

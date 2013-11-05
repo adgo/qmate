@@ -69,6 +69,5 @@ Export-Package: org.tud.inf.st.mbt.emf.ui;uses:="org.eclipse.core.resources,org.
    org.tud.inf.st.mbt.core,
    org.tud.inf.st.mbt.coverage,
    org.eclipse.ui.wizards.newresource,
-   org.eclipse.swt.widgets",
- org.tud.inf.st.mbt.ui.cmds;uses:="org.eclipse.core.commands"
+   org.eclipse.swt.widgets"
 Bundle-ClassPath: .

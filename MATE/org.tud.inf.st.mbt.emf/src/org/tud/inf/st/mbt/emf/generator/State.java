@@ -78,6 +78,7 @@ public class State {
 	private PredicateList propositions;
 	private State parent;
 	private AbstractModelElement[] traceableTo;
+	private double priority;
 
 	public State(State parent,
 			Collection<? extends PostGenerationAction> actions,
@@ -268,8 +269,12 @@ public class State {
 		return effected;
 	}
 
-	public float getPriority() {
-		return 1f;
+	public double getPriority() {
+		return priority;
+	}
+	
+	public void setPriority(double priority) {
+		this.priority = priority;
 	}
 
 	public void setParent(State parent) {

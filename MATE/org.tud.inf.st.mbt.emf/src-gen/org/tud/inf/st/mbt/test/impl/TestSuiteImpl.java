@@ -33,9 +33,9 @@ import org.tud.inf.st.mbt.test.TestSuite;
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getTraceableTo <em>Traceable To</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getRiskReduction <em>Risk Reduction</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getCases <em>Cases</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getRiskReduction <em>Risk Reduction</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,26 +113,6 @@ public class TestSuiteImpl extends TestExecutableImpl implements TestSuite {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRiskReduction() <em>Risk Reduction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRiskReduction()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final double RISK_REDUCTION_EDEFAULT = 0.0;
-
-	/**
-	 * The cached value of the '{@link #getRiskReduction() <em>Risk Reduction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRiskReduction()
-	 * @generated
-	 * @ordered
-	 */
-	protected double riskReduction = RISK_REDUCTION_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getCases() <em>Cases</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -151,6 +131,26 @@ public class TestSuiteImpl extends TestExecutableImpl implements TestSuite {
 	 * @ordered
 	 */
 	protected Configuration configuration;
+
+	/**
+	 * The default value of the '{@link #getRiskReduction() <em>Risk Reduction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRiskReduction()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double RISK_REDUCTION_EDEFAULT = 0.0;
+
+	/**
+	 * The cached value of the '{@link #getRiskReduction() <em>Risk Reduction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRiskReduction()
+	 * @generated
+	 * @ordered
+	 */
+	protected double riskReduction = RISK_REDUCTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -347,13 +347,13 @@ public class TestSuiteImpl extends TestExecutableImpl implements TestSuite {
 				return getTraceableTo();
 			case TestPackage.TEST_SUITE__NAME:
 				return getName();
-			case TestPackage.TEST_SUITE__RISK_REDUCTION:
-				return getRiskReduction();
 			case TestPackage.TEST_SUITE__CASES:
 				return getCases();
 			case TestPackage.TEST_SUITE__CONFIGURATION:
 				if (resolve) return getConfiguration();
 				return basicGetConfiguration();
+			case TestPackage.TEST_SUITE__RISK_REDUCTION:
+				return getRiskReduction();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -380,15 +380,15 @@ public class TestSuiteImpl extends TestExecutableImpl implements TestSuite {
 			case TestPackage.TEST_SUITE__NAME:
 				setName((String)newValue);
 				return;
-			case TestPackage.TEST_SUITE__RISK_REDUCTION:
-				setRiskReduction((Double)newValue);
-				return;
 			case TestPackage.TEST_SUITE__CASES:
 				getCases().clear();
 				getCases().addAll((Collection<? extends TestCase>)newValue);
 				return;
 			case TestPackage.TEST_SUITE__CONFIGURATION:
 				setConfiguration((Configuration)newValue);
+				return;
+			case TestPackage.TEST_SUITE__RISK_REDUCTION:
+				setRiskReduction((Double)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -414,14 +414,14 @@ public class TestSuiteImpl extends TestExecutableImpl implements TestSuite {
 			case TestPackage.TEST_SUITE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case TestPackage.TEST_SUITE__RISK_REDUCTION:
-				setRiskReduction(RISK_REDUCTION_EDEFAULT);
-				return;
 			case TestPackage.TEST_SUITE__CASES:
 				getCases().clear();
 				return;
 			case TestPackage.TEST_SUITE__CONFIGURATION:
 				setConfiguration((Configuration)null);
+				return;
+			case TestPackage.TEST_SUITE__RISK_REDUCTION:
+				setRiskReduction(RISK_REDUCTION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -443,12 +443,12 @@ public class TestSuiteImpl extends TestExecutableImpl implements TestSuite {
 				return traceableTo != null && !traceableTo.isEmpty();
 			case TestPackage.TEST_SUITE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case TestPackage.TEST_SUITE__RISK_REDUCTION:
-				return riskReduction != RISK_REDUCTION_EDEFAULT;
 			case TestPackage.TEST_SUITE__CASES:
 				return cases != null && !cases.isEmpty();
 			case TestPackage.TEST_SUITE__CONFIGURATION:
 				return configuration != null;
+			case TestPackage.TEST_SUITE__RISK_REDUCTION:
+				return riskReduction != RISK_REDUCTION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -471,7 +471,6 @@ public class TestSuiteImpl extends TestExecutableImpl implements TestSuite {
 		}
 		if (baseClass == TestExecutable.class) {
 			switch (derivedFeatureID) {
-				case TestPackage.TEST_SUITE__RISK_REDUCTION: return TestPackage.TEST_EXECUTABLE__RISK_REDUCTION;
 				default: return -1;
 			}
 		}
@@ -496,7 +495,6 @@ public class TestSuiteImpl extends TestExecutableImpl implements TestSuite {
 		}
 		if (baseClass == TestExecutable.class) {
 			switch (baseFeatureID) {
-				case TestPackage.TEST_EXECUTABLE__RISK_REDUCTION: return TestPackage.TEST_SUITE__RISK_REDUCTION;
 				default: return -1;
 			}
 		}

@@ -77,7 +77,7 @@ public class CAOperator extends TransitionOperator {
 					ActionsFactory.eINSTANCE.createGetRealTimeAction(),
 					Collections.<String, Object> emptyMap()));
 		}
-		
+
 		for (Transition t : activated)
 			if (t instanceof ConditionActionTransition) {
 				ConditionActionTransition cat = (ConditionActionTransition) t;
@@ -88,12 +88,20 @@ public class CAOperator extends TransitionOperator {
 							s.getPropositions()), cat);
 					n.setTerminating(cat.isTerminates());
 					consumeAndProduce(cat, n);
+					n.setPriority(cat.getRate()*cat.getFaultImpact()
+							* cat.getFaultProbability());
 					next.add(n);
 				} else {
-					next.addAll(actionProcessor.executeAction(s,
+					List<State> postAction = actionProcessor.executeAction(s,
 							cat.getActions(),
-							Collections.<String, Object> emptyMap(), cat));
+							Collections.<String, Object> emptyMap(), cat);
+					for (State pa : postAction)
+						pa.setPriority(cat.getRate()*cat.getFaultImpact()
+								* cat.getFaultProbability());
+					next.addAll(postAction);
 				}
+				
+				cat.setRate(Math.max(cat.getRate()-1, 0));
 
 			}
 

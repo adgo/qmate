@@ -70,7 +70,11 @@ public class TimerOperator extends TransitionOperator {
 				for (State n : nextLocal) {
 					consumeAndProduce(tt, n);
 					n.setTerminating(tt.isTerminates());
+					n.setPriority(tt.getFaultImpact()
+							* tt.getFaultProbability() * tt.getRate());
 				}
+				
+				tt.setRate(Math.max(tt.getRate() - 1, 0));
 
 				next.addAll(nextLocal);
 			}

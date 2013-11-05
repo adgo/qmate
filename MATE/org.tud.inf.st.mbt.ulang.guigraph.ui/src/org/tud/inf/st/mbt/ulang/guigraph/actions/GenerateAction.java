@@ -87,7 +87,7 @@ public class GenerateAction extends ActionDelegate {
 						monitor.beginTask("Generating for configuration " + c
 								+ " (" + ic + ")", IProgressMonitor.UNKNOWN);
 						Generator generator = new Generator(c, rs,
-								dialog.getBoundary(), dialog.getMaxTime());
+								dialog.getBoundary(), dialog.getMaxTime(),dialog.getTraversalType());
 						while (generator.hasNext()
 								&& generator.getTestSuite().getCases().size() < dialog
 										.getNoCases()) {

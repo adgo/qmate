@@ -1,4 +1,4 @@
-package org.tud.inf.st.mbt.automation.traversal;
+package org.tud.inf.st.mbt.emf.traversal;
 
 import java.util.List;
 

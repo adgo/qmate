@@ -20,6 +20,7 @@ import org.tud.inf.st.mbt.features.ExplicitSet;
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.test.TestSuite#getCases <em>Cases</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.TestSuite#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.TestSuite#getRiskReduction <em>Risk Reduction</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,5 +70,31 @@ public interface TestSuite extends ITopLevelElement, TestExecutable {
 	 * @generated
 	 */
 	void setConfiguration(Configuration value);
+
+	/**
+	 * Returns the value of the '<em><b>Risk Reduction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Risk Reduction</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Risk Reduction</em>' attribute.
+	 * @see #setRiskReduction(double)
+	 * @see org.tud.inf.st.mbt.test.TestPackage#getTestSuite_RiskReduction()
+	 * @model required="true"
+	 * @generated
+	 */
+	double getRiskReduction();
+
+	/**
+	 * Sets the value of the '{@link org.tud.inf.st.mbt.test.TestSuite#getRiskReduction <em>Risk Reduction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Risk Reduction</em>' attribute.
+	 * @see #getRiskReduction()
+	 * @generated
+	 */
+	void setRiskReduction(double value);
 
 } // TestSuite

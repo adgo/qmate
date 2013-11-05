@@ -214,17 +214,51 @@ public class RecordingDialog extends TitleAreaDialog {
 
 		Group grpEvents = new Group(actions, SWT.None);
 		grpEvents.setText("Events");
-		grpEvents.setLayout(new FillLayout());
+		grpEvents.setLayout(new GridLayout(1,true));
+		final Button btnEvents = new Button(grpEvents,SWT.None);
+		btnEvents.setText("Non/All");
+		btnEvents.addSelectionListener(new SelectionAdapter() {
+			boolean all = true;
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(all){
+					all = false;
+					lstEvents.getList().deselectAll();
+				} else {
+					all = true;
+					lstEvents.getList().selectAll();
+				}
+			}
+		});
+		btnEvents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		lstEvents = new ListViewer(grpEvents, SWT.MULTI | SWT.V_SCROLL);
 		lstEvents.setContentProvider(termListCP);
 		lstEvents.setLabelProvider(new LabelProvider());
+		lstEvents.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		Group grpValidations = new Group(actions, SWT.None);
 		grpValidations.setText("Validations");
-		grpValidations.setLayout(new FillLayout());
+		grpValidations.setLayout(new GridLayout(1,true));
+		final Button btnValidations = new Button(grpValidations,SWT.None);
+		btnValidations.setText("Non/All");
+		btnValidations.addSelectionListener(new SelectionAdapter() {
+			boolean all = false;
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(all){
+					all = false;
+					lstValidations.getList().deselectAll();
+				} else {
+					all = true;
+					lstValidations.getList().selectAll();
+				}
+			}
+		});
+		btnValidations.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		lstValidations = new ListViewer(grpValidations, SWT.MULTI | SWT.V_SCROLL);
 		lstValidations.setContentProvider(termListCP);
 		lstValidations.setLabelProvider(new LabelProvider());
+		lstValidations.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		Group grpStates = new Group(parent, SWT.None);
 		grpStates.setText("States");

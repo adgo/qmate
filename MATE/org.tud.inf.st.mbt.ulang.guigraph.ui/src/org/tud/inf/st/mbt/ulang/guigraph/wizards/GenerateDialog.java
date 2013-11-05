@@ -7,10 +7,13 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -23,6 +26,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.tud.inf.st.mbt.emf.traversal.AbstractTraversalType;
+import org.tud.inf.st.mbt.emf.traversal.TraversalManager;
 import org.tud.inf.st.mbt.emf.ui.dialogs.LoadModelResourceDialog;
 import org.tud.inf.st.mbt.features.Configuration;
 
@@ -35,6 +40,7 @@ public class GenerateDialog extends TitleAreaDialog {
 	private boolean ignoreRealtime = false;
 	private ResourceSet rs;
 	private boolean simulating = false;
+	private AbstractTraversalType traversalType;
 
 	public GenerateDialog(Shell parentShell, String targetFile, ResourceSet rs) {
 		super(parentShell);
@@ -109,6 +115,39 @@ public class GenerateDialog extends TitleAreaDialog {
 			txtNoCases.setLayoutData(new GridData(GridData.FILL, SWT.CENTER,
 					true, true));
 			txtNoCases.setText("100");
+			
+			l = new Label(parent,SWT.None);
+			l.setText("Traversal strategy:");
+			l.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true, true));
+			final ComboViewer cbTraversal = new ComboViewer(parent);
+			cbTraversal.getCombo().setLayoutData(new GridData(GridData.FILL, SWT.CENTER,
+					true, true));
+			cbTraversal.setContentProvider(new IStructuredContentProvider() {
+				
+				@Override
+				public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {		
+				}
+				
+				@Override
+				public void dispose() {			
+				}
+				
+				@Override
+				public Object[] getElements(Object inputElement) {
+					return (Object[])inputElement;
+				}
+			});
+			cbTraversal.setInput(TraversalManager.getInstance().getTraversalTypes());
+			cbTraversal.getCombo().select(0);
+			this.traversalType = TraversalManager.getInstance().getTraversalTypes()[0];
+			cbTraversal.addSelectionChangedListener(new ISelectionChangedListener() {
+				
+				@Override
+				public void selectionChanged(SelectionChangedEvent event) {
+					Object o = ((IStructuredSelection)event.getSelection()).getFirstElement();
+					traversalType = (AbstractTraversalType) o;
+				}
+			});
 		} 
 
 		l = new Label(parent, SWT.None);
@@ -274,5 +313,9 @@ public class GenerateDialog extends TitleAreaDialog {
 	
 	public boolean isIgnoreRealtime() {
 		return ignoreRealtime;
+	}
+	
+	public AbstractTraversalType getTraversalType() {
+		return traversalType;
 	}
 }

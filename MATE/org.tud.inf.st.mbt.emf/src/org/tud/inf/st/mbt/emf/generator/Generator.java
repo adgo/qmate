@@ -9,6 +9,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.tud.inf.st.mbt.data.DataBinding;
+import org.tud.inf.st.mbt.emf.traversal.AbstractTraversalType;
 import org.tud.inf.st.mbt.emf.util.ModelUtil;
 import org.tud.inf.st.mbt.features.Configuration;
 import org.tud.inf.st.mbt.features.IFeature;
@@ -34,11 +35,13 @@ public class Generator implements Iterator<GeneratorState> {
 	private ActionProcessor actionProcessor;
 	private State current;
 	private SATFoundation satFoundation;
+	private AbstractTraversalType traversalType;
 
 	public Generator(Configuration config, ResourceSet rs, int maxTokens,
-			int maxTime) {
+			int maxTime, AbstractTraversalType traversalType) {
 		this.actionProcessor = new ActionProcessor(
 				satFoundation = new SATFoundation(rs, maxTokens, maxTime));
+		this.traversalType = traversalType;
 
 		configureOperators();
 
@@ -86,7 +89,8 @@ public class Generator implements Iterator<GeneratorState> {
 			return null;
 		}
 
-		current = queue.poll();
+		current = traversalType.determineNext(queue);
+		queue.remove(current);
 
 		if (current.isTopInstructionSequenceRunning()) {
 			queue.addAll(Arrays.asList(actionProcessor
@@ -113,12 +117,14 @@ public class Generator implements Iterator<GeneratorState> {
 			TestCase c = TestFactory.eINSTANCE.createTestCase();
 			c.setId(suite.getId() + "-case-" + suite.getCases().size() + 1);
 			c.setName(c.getId());
+			c.setRiskReduction(0);
 			return c;
 		} else {
 			TestCase c = buildCase(s.getParent());
 			TestStep ts = TestFactory.eINSTANCE.createTestStep();
 			ts.setId(c.getId() + "-step-" + c.getSteps().size() + 1);
 			ts.setName(ts.getId());
+			c.setRiskReduction(c.getRiskReduction()+s.getPriority());
 			if (s.getTraceableTo() != null && s.getTraceableTo().length > 0)
 				ts.setNote(s.getTraceableTo()[0].getNote());
 
@@ -156,6 +162,9 @@ public class Generator implements Iterator<GeneratorState> {
 
 	public TestSuite getTestSuite() {
 		renameElements();
+		suite.setRiskReduction(0);
+		for(TestCase c:suite.getCases())
+			suite.setRiskReduction(suite.getRiskReduction()+c.getRiskReduction());
 		return suite;
 	}
 }

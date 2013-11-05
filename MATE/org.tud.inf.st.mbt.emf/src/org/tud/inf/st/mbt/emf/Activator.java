@@ -2,6 +2,9 @@ package org.tud.inf.st.mbt.emf;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.tud.inf.st.mbt.emf.traversal.PriorityTraversalType;
+import org.tud.inf.st.mbt.emf.traversal.RandomTraversalType;
+import org.tud.inf.st.mbt.emf.traversal.TraversalManager;
 
 public class Activator implements BundleActivator {
 
@@ -20,6 +23,9 @@ public class Activator implements BundleActivator {
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
 		activator = this;
+		
+		TraversalManager.getInstance().registerType(new RandomTraversalType());
+		TraversalManager.getInstance().registerType(new PriorityTraversalType());
 	}
 
 	/*

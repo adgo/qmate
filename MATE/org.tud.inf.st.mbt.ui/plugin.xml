@@ -26,6 +26,14 @@
       </runtime>
    </extension>
    <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/project.png"
+            id="org.tud.inf.st.mbt.ui.mateNatureImage"
+            natureId="org.tud.inf.st.mbt.ui.nature">
+      </image>
+   </extension>
+   <extension
          id="MATE"
          point="org.eclipse.core.runtime.products">
       <product
@@ -95,27 +103,9 @@
             name="MATE Project"
             project="true">
       </wizard>
-      <wizard
-            category="org.tud.inf.st.mbt.ui.matecategory"
-            class="org.tud.inf.st.mbt.emf.ui.wizards.NewFeatureTreeWizard"
-            descriptionImage="icons/mate16.png"
-            icon="icons/mate16.png"
-            id="org.tud.inf.st.mbt.ui.wizards.featuretree"
-            name="Feature Tree"
-            project="false">
-      </wizard>
       <primaryWizard
             id="org.tud.inf.st.mbt.ui.NewMATEProjectWizard">
       </primaryWizard>
-      <wizard
-            category="org.tud.inf.st.mbt.ui.matecategory"
-            class="org.tud.inf.st.mbt.emf.ui.wizards.NewDataSpaceWizard"
-            descriptionImage="icons/mate16.png"
-            icon="icons/mate16.png"
-            id="org.tud.inf.st.mbt.ui.wizards.dataspace"
-            name="Data Space"
-            project="false">
-      </wizard>
       <wizard
             category="org.tud.inf.st.mbt.ui.matecategory"
             class="org.tud.inf.st.mbt.emf.ui.wizards.NewGenericWizard"

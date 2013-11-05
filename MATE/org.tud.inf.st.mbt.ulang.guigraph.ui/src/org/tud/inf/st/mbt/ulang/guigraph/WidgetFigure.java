@@ -48,10 +48,10 @@ public class WidgetFigure extends Figure{
 	
 	public void setActive(boolean active){
 		if(active){
-			((LineBorder)getBorder()).setWidth(3);
+			((LineBorder)getBorder()).setWidth(5);
 			((LineBorder)getBorder()).setColor(ColorConstants.blue);	
 		} else{
-			((LineBorder)getBorder()).setWidth(0);
+			((LineBorder)getBorder()).setWidth(1);
 			((LineBorder)getBorder()).setColor(ColorConstants.black);	
 		}
 	}

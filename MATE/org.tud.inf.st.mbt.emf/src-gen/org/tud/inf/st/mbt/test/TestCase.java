@@ -15,6 +15,7 @@ import org.tud.inf.st.mbt.core.AbstractModelElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.test.TestCase#getSteps <em>Steps</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.TestCase#getRiskReduction <em>Risk Reduction</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,5 +39,31 @@ public interface TestCase extends TestExecutable {
 	 * @generated
 	 */
 	EList<TestStep> getSteps();
+
+	/**
+	 * Returns the value of the '<em><b>Risk Reduction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Risk Reduction</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Risk Reduction</em>' attribute.
+	 * @see #setRiskReduction(double)
+	 * @see org.tud.inf.st.mbt.test.TestPackage#getTestCase_RiskReduction()
+	 * @model required="true"
+	 * @generated
+	 */
+	double getRiskReduction();
+
+	/**
+	 * Sets the value of the '{@link org.tud.inf.st.mbt.test.TestCase#getRiskReduction <em>Risk Reduction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Risk Reduction</em>' attribute.
+	 * @see #getRiskReduction()
+	 * @generated
+	 */
+	void setRiskReduction(double value);
 
 } // TestCase

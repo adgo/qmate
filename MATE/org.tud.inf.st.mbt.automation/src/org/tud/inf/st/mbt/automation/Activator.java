@@ -3,8 +3,8 @@ package org.tud.inf.st.mbt.automation;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.tud.inf.st.mbt.automation.basic.BasicConnectorType;
-import org.tud.inf.st.mbt.automation.basic.RandomTraversalType;
-import org.tud.inf.st.mbt.automation.traversal.TraversalManager;
+import org.tud.inf.st.mbt.emf.traversal.RandomTraversalType;
+import org.tud.inf.st.mbt.emf.traversal.TraversalManager;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -32,7 +32,6 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 		
 		ConnectorManager.getInstance().registerType(new BasicConnectorType());
-		TraversalManager.getInstance().registerType(new RandomTraversalType());
 	}
 
 	/*
