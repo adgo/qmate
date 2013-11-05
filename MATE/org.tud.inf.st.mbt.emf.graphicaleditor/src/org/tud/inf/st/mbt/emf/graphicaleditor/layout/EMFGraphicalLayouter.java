@@ -213,6 +213,7 @@ public class EMFGraphicalLayouter {
 		List<GraphicalNodeDefinition> todo = new ArrayList<>();
 		for (Object o : gd.getNodes())
 			if (o instanceof GraphicalNodeDefinition) {
+				if(((GraphicalNodeDefinition) o).getReferenceId()==null)continue;
 				int surface = (int) ((float) endpoints
 						.getSizeHint(((GraphicalNodeDefinition) o)
 								.getReferenceId()).width * (float) endpoints

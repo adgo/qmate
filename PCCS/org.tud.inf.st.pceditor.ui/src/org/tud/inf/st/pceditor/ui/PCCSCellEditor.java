@@ -63,7 +63,6 @@ public class PCCSCellEditor extends CellEditor {
 		viewer.getTextWidget().addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				valueChanged(true, true);
-				viewer.doOperation(ISourceViewer.CONTENTASSIST_PROPOSALS);
 			}
 		});
 		viewer.getTextWidget().addKeyListener(new KeyAdapter() {

@@ -51,7 +51,6 @@ public interface DataLeaf extends DataStructureNode {
 
 	/**
 	 * Returns the value of the '<em><b>Causal Link Type</b></em>' attribute.
-	 * The default value is <code>"3"</code>.
 	 * The literals are from the enumeration {@link org.tud.inf.st.mbt.core.CausalLinkType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -63,7 +62,7 @@ public interface DataLeaf extends DataStructureNode {
 	 * @see org.tud.inf.st.mbt.core.CausalLinkType
 	 * @see #setCausalLinkType(CausalLinkType)
 	 * @see org.tud.inf.st.mbt.data.DataPackage#getDataLeaf_CausalLinkType()
-	 * @model default="3" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	CausalLinkType getCausalLinkType();

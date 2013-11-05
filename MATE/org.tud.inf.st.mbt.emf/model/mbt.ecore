@@ -30,14 +30,10 @@
           eType="#//test/TestCase" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
           eType="#//features/Configuration"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="riskReduction" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TestCase" eSuperTypes="#//test/TestExecutable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="steps" upperBound="-1"
           eType="#//test/TestStep" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="riskReduction" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TestStep" eSuperTypes="#//test/TestExecutable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="action" lowerBound="1"
@@ -67,7 +63,10 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TestExecutable" abstract="true" eSuperTypes="#//core/AbstractModelElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="TestExecutable" abstract="true" eSuperTypes="#//core/AbstractModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="riskReduction" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="rules" nsURI="http://st.inf.tud.org/mbt/rules" nsPrefix="rules">
     <eClassifiers xsi:type="ecore:EClass" name="Predicate" abstract="true" interface="true"/>

@@ -72,10 +72,12 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -91,10 +93,13 @@ import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -1025,16 +1030,16 @@ public class CoreEditor extends MultiPageEditorPart implements
 		// Only creates the other pages if there is something that can be edited
 		//
 		if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
-			// Create a page for the selection tree view.
+	
+
+			// This is the page for the table tree viewer.
 			//
 			{
 				ViewerPane viewerPane = new ViewerPane(getSite().getPage(),
 						CoreEditor.this) {
 					@Override
 					public Viewer createViewer(Composite composite) {
-						Tree tree = new Tree(composite, SWT.MULTI);
-						TreeViewer newTreeViewer = new TreeViewer(tree);
-						return newTreeViewer;
+						return new TreeViewer(composite);
 					}
 
 					@Override
@@ -1045,26 +1050,72 @@ public class CoreEditor extends MultiPageEditorPart implements
 				};
 				viewerPane.createControl(getContainer());
 
-				selectionViewer = (TreeViewer) viewerPane.getViewer();
-				selectionViewer
+				treeViewerWithColumns = (TreeViewer) viewerPane.getViewer();
+
+				Tree tree = treeViewerWithColumns.getTree();
+				tree.setLayoutData(new FillLayout());
+				tree.setHeaderVisible(true);
+				tree.setLinesVisible(true);
+				
+
+				TreeColumn objectColumn = new TreeColumn(tree, SWT.NONE);
+				objectColumn.setText(getString("_UI_ObjectColumn_label"));
+				objectColumn.setResizable(true);
+				objectColumn.setWidth(250);
+
+				TreeColumn selfColumn = new TreeColumn(tree, SWT.NONE);
+				selfColumn.setText(getString("_UI_SelfColumn_label"));
+				selfColumn.setResizable(true);
+				selfColumn.setWidth(200);
+
+				treeViewerWithColumns.setColumnProperties(new String[] { "Element",
+						"Text" });
+				treeViewerWithColumns
 						.setContentProvider(new AdapterFactoryContentProvider(
 								adapterFactory));
 
-				selectionViewer
-						.setLabelProvider(new AdapterFactoryLabelProvider(
-								adapterFactory));
-				selectionViewer.setInput(editingDomain.getResourceSet());
-				selectionViewer.setSelection(new StructuredSelection(
-						editingDomain.getResourceSet().getResources().get(0)),
-						true);
-				viewerPane.setTitle(editingDomain.getResourceSet());
+				
+				treeViewerWithColumns
+				.setLabelProvider(new ITableLabelProvider() {
+					AdapterFactoryLabelProvider base = new AdapterFactoryLabelProvider(
+							adapterFactory);
+					
+					@Override
+					public void removeListener(ILabelProviderListener listener) {
+						base.removeListener(listener);						
+					}
+					
+					@Override
+					public boolean isLabelProperty(Object element, String property) {
+						return base.isLabelProperty(element, property);
+					}
+					
+					@Override
+					public void dispose() {
+						base.dispose();						
+					}
+					
+					@Override
+					public void addListener(ILabelProviderListener listener) {
+						base.addListener(listener);						
+					}
+					
+					@Override
+					public String getColumnText(Object element, int columnIndex) {
+						if(columnIndex==1)return ""+element;
+						return base.getColumnText(element,columnIndex);
+					}
+					
+					@Override
+					public Image getColumnImage(Object element, int columnIndex) {
+						return base.getColumnImage(element, columnIndex);
+					}
+				});
 
-				new AdapterFactoryTreeEditor(selectionViewer.getTree(),
-						adapterFactory);
-
-				createContextMenuFor(selectionViewer);
+				createContextMenuFor(treeViewerWithColumns);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
+				setPageText(pageIndex,
+						getString("_UI_TreeWithColumnsPage_label"));
 			}
 
 			getSite().getShell().getDisplay().asyncExec(new Runnable() {
@@ -1647,7 +1698,7 @@ public class CoreEditor extends MultiPageEditorPart implements
 							getSite().getShell(),
 							IAutomationConstants.KIND_SIMULATION_AUTOMATION);
 					if (dialog.open() == Window.OK) {
-						//TODO
+						// TODO
 					}
 				}
 			});

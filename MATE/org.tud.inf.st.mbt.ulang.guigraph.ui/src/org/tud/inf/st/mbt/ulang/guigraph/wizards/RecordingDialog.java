@@ -215,14 +215,14 @@ public class RecordingDialog extends TitleAreaDialog {
 		Group grpEvents = new Group(actions, SWT.None);
 		grpEvents.setText("Events");
 		grpEvents.setLayout(new FillLayout());
-		lstEvents = new ListViewer(grpEvents, SWT.MULTI);
+		lstEvents = new ListViewer(grpEvents, SWT.MULTI | SWT.V_SCROLL);
 		lstEvents.setContentProvider(termListCP);
 		lstEvents.setLabelProvider(new LabelProvider());
 
 		Group grpValidations = new Group(actions, SWT.None);
 		grpValidations.setText("Validations");
 		grpValidations.setLayout(new FillLayout());
-		lstValidations = new ListViewer(grpValidations, SWT.MULTI);
+		lstValidations = new ListViewer(grpValidations, SWT.MULTI | SWT.V_SCROLL);
 		lstValidations.setContentProvider(termListCP);
 		lstValidations.setLabelProvider(new LabelProvider());
 

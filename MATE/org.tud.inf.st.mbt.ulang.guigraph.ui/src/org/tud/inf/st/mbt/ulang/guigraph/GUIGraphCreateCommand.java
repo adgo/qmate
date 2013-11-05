@@ -63,7 +63,7 @@ public class GUIGraphCreateCommand extends Command {
 				location = location.getTranslated(-parentXY.x, -parentXY.y);
 			}
 
-			if (size == null || size.width * size.height == 0)
+			if (size == null || size.width * size.height < 20)
 				size = graphics.getStandardDimension(childType);
 
 			graphics.setObjectConstraint(child, new Rectangle(location, size));

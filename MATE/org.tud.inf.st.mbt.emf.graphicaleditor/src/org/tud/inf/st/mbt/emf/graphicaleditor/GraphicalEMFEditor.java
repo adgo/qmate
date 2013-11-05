@@ -284,9 +284,7 @@ public abstract class GraphicalEMFEditor extends
 		super.configureGraphicalViewer();
 		GraphicalViewer viewer = getGraphicalViewer();
 
-		viewer.getControl().setBackground(
-				new Color(viewer.getControl().getShell().getDisplay(), 230,
-						230, 255));
+		viewer.getControl().setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WHITE));
 		viewer.setRootEditPart(new ScalableFreeformRootEditPart());
 		viewer.setEditPartFactory(getEditPartFactory());
 

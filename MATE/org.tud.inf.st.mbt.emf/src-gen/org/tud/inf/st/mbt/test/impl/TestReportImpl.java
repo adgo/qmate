@@ -39,6 +39,7 @@ import org.tud.inf.st.mbt.test.TestSuite;
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestReportImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestReportImpl#getTraceableTo <em>Traceable To</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestReportImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.impl.TestReportImpl#getRiskReduction <em>Risk Reduction</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestReportImpl#getRuns <em>Runs</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestReportImpl#getSuite <em>Suite</em>}</li>
  * </ul>
@@ -46,7 +47,7 @@ import org.tud.inf.st.mbt.test.TestSuite;
  *
  * @generated
  */
-public class TestReportImpl extends EObjectImpl implements TestReport {
+public class TestReportImpl extends TestExecutableImpl implements TestReport {
 	/**
 	 * The default value of the '{@link #getNote() <em>Note</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -116,6 +117,26 @@ public class TestReportImpl extends EObjectImpl implements TestReport {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRiskReduction() <em>Risk Reduction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRiskReduction()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double RISK_REDUCTION_EDEFAULT = 0.0;
+
+	/**
+	 * The cached value of the '{@link #getRiskReduction() <em>Risk Reduction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRiskReduction()
+	 * @generated
+	 * @ordered
+	 */
+	protected double riskReduction = RISK_REDUCTION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRuns() <em>Runs</em>}' containment reference list.
@@ -236,6 +257,27 @@ public class TestReportImpl extends EObjectImpl implements TestReport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public double getRiskReduction() {
+		return riskReduction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRiskReduction(double newRiskReduction) {
+		double oldRiskReduction = riskReduction;
+		riskReduction = newRiskReduction;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestPackage.TEST_REPORT__RISK_REDUCTION, oldRiskReduction, riskReduction));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<TestRun> getRuns() {
 		if (runs == null) {
 			runs = new EObjectContainmentEList<TestRun>(TestRun.class, this, TestPackage.TEST_REPORT__RUNS);
@@ -311,6 +353,8 @@ public class TestReportImpl extends EObjectImpl implements TestReport {
 				return getTraceableTo();
 			case TestPackage.TEST_REPORT__NAME:
 				return getName();
+			case TestPackage.TEST_REPORT__RISK_REDUCTION:
+				return getRiskReduction();
 			case TestPackage.TEST_REPORT__RUNS:
 				return getRuns();
 			case TestPackage.TEST_REPORT__SUITE:
@@ -341,6 +385,9 @@ public class TestReportImpl extends EObjectImpl implements TestReport {
 				return;
 			case TestPackage.TEST_REPORT__NAME:
 				setName((String)newValue);
+				return;
+			case TestPackage.TEST_REPORT__RISK_REDUCTION:
+				setRiskReduction((Double)newValue);
 				return;
 			case TestPackage.TEST_REPORT__RUNS:
 				getRuns().clear();
@@ -373,6 +420,9 @@ public class TestReportImpl extends EObjectImpl implements TestReport {
 			case TestPackage.TEST_REPORT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case TestPackage.TEST_REPORT__RISK_REDUCTION:
+				setRiskReduction(RISK_REDUCTION_EDEFAULT);
+				return;
 			case TestPackage.TEST_REPORT__RUNS:
 				getRuns().clear();
 				return;
@@ -399,6 +449,8 @@ public class TestReportImpl extends EObjectImpl implements TestReport {
 				return traceableTo != null && !traceableTo.isEmpty();
 			case TestPackage.TEST_REPORT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case TestPackage.TEST_REPORT__RISK_REDUCTION:
+				return riskReduction != RISK_REDUCTION_EDEFAULT;
 			case TestPackage.TEST_REPORT__RUNS:
 				return runs != null && !runs.isEmpty();
 			case TestPackage.TEST_REPORT__SUITE:
@@ -425,6 +477,7 @@ public class TestReportImpl extends EObjectImpl implements TestReport {
 		}
 		if (baseClass == TestExecutable.class) {
 			switch (derivedFeatureID) {
+				case TestPackage.TEST_REPORT__RISK_REDUCTION: return TestPackage.TEST_EXECUTABLE__RISK_REDUCTION;
 				default: return -1;
 			}
 		}
@@ -449,6 +502,7 @@ public class TestReportImpl extends EObjectImpl implements TestReport {
 		}
 		if (baseClass == TestExecutable.class) {
 			switch (baseFeatureID) {
+				case TestPackage.TEST_EXECUTABLE__RISK_REDUCTION: return TestPackage.TEST_REPORT__RISK_REDUCTION;
 				default: return -1;
 			}
 		}
@@ -458,21 +512,10 @@ public class TestReportImpl extends EObjectImpl implements TestReport {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (note: ");
-		result.append(note);
-		result.append(", id: ");
-		result.append(id);
-		result.append(", name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //TestReportImpl

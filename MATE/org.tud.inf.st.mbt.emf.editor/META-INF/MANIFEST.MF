@@ -8,8 +8,7 @@ Bundle-Activator: org.tud.inf.st.mbt.emf.editor.AllEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.tud.inf.st.mbt.core.presentation,
- org.tud.inf.st.mbt.emf.editor
+Export-Package: org.tud.inf.st.mbt.core.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  org.tud.inf.st.mbt.emf.edit;visibility:=reexport,

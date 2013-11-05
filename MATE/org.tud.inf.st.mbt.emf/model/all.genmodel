@@ -160,11 +160,9 @@
       <genClasses ecoreClass="mbt.ecore#//test/TestSuite">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestSuite/cases"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestSuite/configuration"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//test/TestSuite/riskReduction"/>
       </genClasses>
       <genClasses ecoreClass="mbt.ecore#//test/TestCase">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestCase/steps"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//test/TestCase/riskReduction"/>
       </genClasses>
       <genClasses ecoreClass="mbt.ecore#//test/TestStep">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//test/TestStep/action"/>
@@ -189,7 +187,9 @@
       <genClasses ecoreClass="mbt.ecore#//test/Verdict">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//test/Verdict/name"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="mbt.ecore#//test/TestExecutable"/>
+      <genClasses image="false" ecoreClass="mbt.ecore#//test/TestExecutable">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//test/TestExecutable/riskReduction"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Rules" basePackage="org.tud.inf.st.mbt" disposableProviderFactory="true"
         ecorePackage="mbt.ecore#//rules">

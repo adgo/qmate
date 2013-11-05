@@ -650,7 +650,7 @@ public class ModelUtil {
 		return context;
 	}
 
-	public static PreGenerationAction functorAction(String functor,
+	public static TermAction functorAction(String functor,
 			Object... args) {
 		TermAction a = ActionsFactory.eINSTANCE.createTermAction();
 		FunctorTerm ft = TermsFactory.eINSTANCE.createFunctorTerm();

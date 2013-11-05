@@ -82,7 +82,9 @@ public class LayoutCommand extends Command {
 					return new Dimension(nodeMax.width, (int) ((1+lines.length)*15+60));					
 				}
 				return nodeMax;
-			} else return nodesBackup.get(nodeID).getSize();
+			} else if(nodesBackup.get(nodeID)!=null)
+					return nodesBackup.get(nodeID).getSize();
+			return new Dimension(50,50);
 		}
 	}
 

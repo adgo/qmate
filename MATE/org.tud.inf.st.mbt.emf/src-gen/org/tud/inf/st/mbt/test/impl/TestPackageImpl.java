@@ -255,15 +255,6 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTestSuite_RiskReduction() {
-		return (EAttribute)testSuiteEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTestCase() {
 		return testCaseEClass;
 	}
@@ -275,15 +266,6 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 */
 	public EReference getTestCase_Steps() {
 		return (EReference)testCaseEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTestCase_RiskReduction() {
-		return (EAttribute)testCaseEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -435,6 +417,15 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTestExecutable_RiskReduction() {
+		return (EAttribute)testExecutableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TestFactory getTestFactory() {
 		return (TestFactory)getEFactoryInstance();
 	}
@@ -461,11 +452,9 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		testSuiteEClass = createEClass(TEST_SUITE);
 		createEReference(testSuiteEClass, TEST_SUITE__CASES);
 		createEReference(testSuiteEClass, TEST_SUITE__CONFIGURATION);
-		createEAttribute(testSuiteEClass, TEST_SUITE__RISK_REDUCTION);
 
 		testCaseEClass = createEClass(TEST_CASE);
 		createEReference(testCaseEClass, TEST_CASE__STEPS);
-		createEAttribute(testCaseEClass, TEST_CASE__RISK_REDUCTION);
 
 		testStepEClass = createEClass(TEST_STEP);
 		createEReference(testStepEClass, TEST_STEP__ACTION);
@@ -488,6 +477,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		createEAttribute(verdictEClass, VERDICT__NAME);
 
 		testExecutableEClass = createEClass(TEST_EXECUTABLE);
+		createEAttribute(testExecutableEClass, TEST_EXECUTABLE__RISK_REDUCTION);
 	}
 
 	/**
@@ -538,11 +528,9 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		initEClass(testSuiteEClass, TestSuite.class, "TestSuite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTestSuite_Cases(), this.getTestCase(), null, "cases", null, 0, -1, TestSuite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestSuite_Configuration(), theFeaturesPackage.getConfiguration(), null, "configuration", null, 1, 1, TestSuite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTestSuite_RiskReduction(), ecorePackage.getEDouble(), "riskReduction", null, 1, 1, TestSuite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testCaseEClass, TestCase.class, "TestCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTestCase_Steps(), this.getTestStep(), null, "steps", null, 0, -1, TestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTestCase_RiskReduction(), ecorePackage.getEDouble(), "riskReduction", null, 1, 1, TestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testStepEClass, TestStep.class, "TestStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTestStep_Action(), theActionsPackage.getPostGenerationAction(), null, "action", null, 1, 1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -565,6 +553,7 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 		initEAttribute(getVerdict_Name(), ecorePackage.getEString(), "name", null, 1, 1, Verdict.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testExecutableEClass, TestExecutable.class, "TestExecutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTestExecutable_RiskReduction(), ecorePackage.getEDouble(), "riskReduction", null, 1, 1, TestExecutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

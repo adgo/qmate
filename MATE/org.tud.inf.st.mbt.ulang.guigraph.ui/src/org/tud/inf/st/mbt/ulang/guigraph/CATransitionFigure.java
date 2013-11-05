@@ -182,7 +182,7 @@ public class CATransitionFigure extends RoundedRectangle implements
 		setConstraint(
 				note_label,
 				new Rectangle(new Point(topLeft).getTranslated(0, inner.height
-						+ outer.height), outer));
+						+ outer.height-3), outer));
 
 		ac_label.invalidate();
 		ac.invalidate();

@@ -104,13 +104,22 @@ public interface TestPackage extends EPackage {
 	int TEST_SUITE__NAME = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_SUITE__RISK_REDUCTION = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Cases</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE__CASES = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 4;
+	int TEST_SUITE__CASES = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' reference.
@@ -119,16 +128,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_SUITE__CONFIGURATION = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST_SUITE__RISK_REDUCTION = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 6;
+	int TEST_SUITE__CONFIGURATION = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Suite</em>' class.
@@ -186,13 +186,22 @@ public interface TestPackage extends EPackage {
 	int TEST_EXECUTABLE__NAME = CorePackage.ABSTRACT_MODEL_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_EXECUTABLE__RISK_REDUCTION = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Executable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_EXECUTABLE_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TEST_EXECUTABLE_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.test.impl.TestCaseImpl <em>Case</em>}' class.
@@ -241,6 +250,15 @@ public interface TestPackage extends EPackage {
 	int TEST_CASE__NAME = TEST_EXECUTABLE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_CASE__RISK_REDUCTION = TEST_EXECUTABLE__RISK_REDUCTION;
+
+	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -250,22 +268,13 @@ public interface TestPackage extends EPackage {
 	int TEST_CASE__STEPS = TEST_EXECUTABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST_CASE__RISK_REDUCTION = TEST_EXECUTABLE_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Case</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE_FEATURE_COUNT = TEST_EXECUTABLE_FEATURE_COUNT + 2;
+	int TEST_CASE_FEATURE_COUNT = TEST_EXECUTABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.test.impl.TestStepImpl <em>Step</em>}' class.
@@ -312,6 +321,15 @@ public interface TestPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEST_STEP__NAME = TEST_EXECUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_STEP__RISK_REDUCTION = TEST_EXECUTABLE__RISK_REDUCTION;
 
 	/**
 	 * The feature id for the '<em><b>Action</b></em>' containment reference.
@@ -378,13 +396,22 @@ public interface TestPackage extends EPackage {
 	int TEST_REPORT__NAME = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_REPORT__RISK_REDUCTION = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Runs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_REPORT__RUNS = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 4;
+	int TEST_REPORT__RUNS = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Suite</b></em>' reference.
@@ -393,7 +420,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_REPORT__SUITE = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 5;
+	int TEST_REPORT__SUITE = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Report</em>' class.
@@ -402,7 +429,7 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_REPORT_FEATURE_COUNT = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 6;
+	int TEST_REPORT_FEATURE_COUNT = CorePackage.ITOP_LEVEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.test.impl.VerdictImpl <em>Verdict</em>}' class.
@@ -459,6 +486,15 @@ public interface TestPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEST_RUN__NAME = TEST_EXECUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_RUN__RISK_REDUCTION = TEST_EXECUTABLE__RISK_REDUCTION;
 
 	/**
 	 * The feature id for the '<em><b>Step Runs</b></em>' containment reference list.
@@ -532,6 +568,15 @@ public interface TestPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEST_STEP_RUN__NAME = TEST_EXECUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Risk Reduction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_STEP_RUN__RISK_REDUCTION = TEST_EXECUTABLE__RISK_REDUCTION;
 
 	/**
 	 * The feature id for the '<em><b>Step</b></em>' reference.
@@ -629,17 +674,6 @@ public interface TestPackage extends EPackage {
 	EReference getTestSuite_Configuration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.test.TestSuite#getRiskReduction <em>Risk Reduction</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Risk Reduction</em>'.
-	 * @see org.tud.inf.st.mbt.test.TestSuite#getRiskReduction()
-	 * @see #getTestSuite()
-	 * @generated
-	 */
-	EAttribute getTestSuite_RiskReduction();
-
-	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.test.TestCase <em>Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -659,17 +693,6 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTestCase_Steps();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.test.TestCase#getRiskReduction <em>Risk Reduction</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Risk Reduction</em>'.
-	 * @see org.tud.inf.st.mbt.test.TestCase#getRiskReduction()
-	 * @see #getTestCase()
-	 * @generated
-	 */
-	EAttribute getTestCase_RiskReduction();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.test.TestStep <em>Step</em>}'.
@@ -754,6 +777,17 @@ public interface TestPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTestExecutable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.test.TestExecutable#getRiskReduction <em>Risk Reduction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Risk Reduction</em>'.
+	 * @see org.tud.inf.st.mbt.test.TestExecutable#getRiskReduction()
+	 * @see #getTestExecutable()
+	 * @generated
+	 */
+	EAttribute getTestExecutable_RiskReduction();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.test.TestRun <em>Run</em>}'.
@@ -890,14 +924,6 @@ public interface TestPackage extends EPackage {
 		EReference TEST_SUITE__CONFIGURATION = eINSTANCE.getTestSuite_Configuration();
 
 		/**
-		 * The meta object literal for the '<em><b>Risk Reduction</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEST_SUITE__RISK_REDUCTION = eINSTANCE.getTestSuite_RiskReduction();
-
-		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.test.impl.TestCaseImpl <em>Case</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -914,14 +940,6 @@ public interface TestPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST_CASE__STEPS = eINSTANCE.getTestCase_Steps();
-
-		/**
-		 * The meta object literal for the '<em><b>Risk Reduction</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEST_CASE__RISK_REDUCTION = eINSTANCE.getTestCase_RiskReduction();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.test.impl.TestStepImpl <em>Step</em>}' class.
@@ -994,6 +1012,14 @@ public interface TestPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TEST_EXECUTABLE = eINSTANCE.getTestExecutable();
+
+		/**
+		 * The meta object literal for the '<em><b>Risk Reduction</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEST_EXECUTABLE__RISK_REDUCTION = eINSTANCE.getTestExecutable_RiskReduction();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.test.impl.TestRunImpl <em>Run</em>}' class.

@@ -3,13 +3,12 @@
 package org.tud.inf.st.mbt.test.impl;
 
 import java.util.Collection;
-import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -17,7 +16,6 @@ import org.tud.inf.st.mbt.actions.PostGenerationAction;
 import org.tud.inf.st.mbt.core.impl.AbstractModelElementImpl;
 import org.tud.inf.st.mbt.rules.Atom;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.tud.inf.st.mbt.test.TestPackage;
 import org.tud.inf.st.mbt.test.TestStep;
 import org.tud.inf.st.mbt.test.TestStepRun;
@@ -342,6 +340,11 @@ public class TestStepRunImpl extends TestExecutableImpl implements TestStepRun {
 				return action != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	@Override
+	public String toString() {
+		return ""+action;
 	}
 
 } //TestStepRunImpl

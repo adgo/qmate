@@ -4,17 +4,12 @@ package org.tud.inf.st.mbt.test.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.tud.inf.st.mbt.actions.PostGenerationAction;
 import org.tud.inf.st.mbt.core.impl.AbstractModelElementImpl;
-
 import org.tud.inf.st.mbt.terms.Term;
-
 import org.tud.inf.st.mbt.test.TestPackage;
 import org.tud.inf.st.mbt.test.TestStep;
 
@@ -173,6 +168,11 @@ public class TestStepImpl extends TestExecutableImpl implements TestStep {
 				return action != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	@Override
+	public String toString() {
+		return ""+action;
 	}
 
 } //TestStepImpl

@@ -17,6 +17,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.json.simple.JSONObject;
 import org.tud.inf.st.mbt.actions.PreGenerationAction;
+import org.tud.inf.st.mbt.actions.TermAction;
 import org.tud.inf.st.mbt.android.recorder.RecorderConstants;
 import org.tud.inf.st.mbt.automation.IAutomationConstants;
 import org.tud.inf.st.mbt.automation.android.record.WindowAnalyzer.WindowDiff;
@@ -96,9 +97,10 @@ public class ListenerSupplier {
 				int type = Integer.parseInt(json
 						.get(RecorderConstants.EVENT_TYPE) + "");
 				if (type == AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED) {
-					actions.add(buildType(i));
+					PreGenerationAction pga = buildType(i);
+					if(pga!=null)actions.add(pga);
 				} else {
-					PreGenerationAction pga = event2ActionString(json);
+					PreGenerationAction pga = event2Action(json);
 					if (pga != null)
 						actions.add(pga);
 				}
@@ -111,7 +113,7 @@ public class ListenerSupplier {
 			events.clear();
 		}
 
-		private PreGenerationAction buildType(Counter i) {
+		private TermAction buildType(Counter i) {
 
 			while (i.value < events.size()) {
 				JSONObject json = events.get(i.value);
@@ -126,10 +128,10 @@ public class ListenerSupplier {
 				}
 			}
 
-			return ModelUtil.functorAction(IAutomationConstants.FUNCTOR_TYPE, "");
+			return null;
 		}
 
-		private PreGenerationAction event2ActionString(JSONObject event) {
+		private PreGenerationAction event2Action(JSONObject event) {
 			// Rectangle bounds = WindowAnalyzer.findBoundsByWindowID(
 			// (JSONObject) event.get(RecorderConstants.EVENT_POST), Integer
 			// .parseInt(event.get(RecorderConstants.EVENT_SOURCE)
@@ -176,6 +178,7 @@ public class ListenerSupplier {
 	private AbstractRecorderListener listener;
 	private List<JSONUIState> states = new ArrayList<>();
 	private JSONUIState lastState;
+	private ConditionActionTransition lastTransition;
 	private int supplierPfx = new Random().nextInt(Integer.MAX_VALUE);
 	private int lastIdx = 0;
 	private AndroidEventQueue eventActionsQueue = new AndroidEventQueue();
@@ -251,8 +254,10 @@ public class ListenerSupplier {
 
 	// build completely new state
 	public void buildState(PreGenerationAction action) {
-		if (currentPostJSON == null)
+		if (currentPostJSON == null){
+			System.err.println("No state was received yet!");
 			return;// no state was received yet
+		}
 
 		Form f = factoryGG.createForm();
 		f.setId(id());
@@ -263,11 +268,24 @@ public class ListenerSupplier {
 
 		JSONUIState s = new JSONUIState(currentPostJSON, f);
 		s.setImg(new Image(currentImg.getDevice(), currentImg, SWT.IMAGE_COPY));
+		
+		if (lastState == null){
+			NoWidgetNode start = factoryGG.createNoWidgetNode();
+			start.setId(id());
+			start.setName("start_"+start.getId());
+			start.setInitialTokens(1);
+			listener.getGraph().getNodes().add(start);
+			lastState = new JSONUIState(currentPostJSON, null, start);
+		}
 
 		if (lastState != null) {
+			if(lastTransition!=null)lastTransition.setTerminates(false);
+			
 			ConditionActionTransition cat = factoryGG
 					.createConditionActionTransition();
 			cat.setApplicationConditionText("true");
+			cat.setTerminates(true);
+			lastTransition = cat;
 			
 			String actions = action+"";
 			actions = actions.replaceAll(";", ";\n");
@@ -309,11 +327,15 @@ public class ListenerSupplier {
 		if (s == null || !(s instanceof JSONUIState))
 			return;
 
+		if(lastTransition!=null)lastTransition.setTerminates(false);
+		
 		ConditionActionTransition cat = factoryGG
 				.createConditionActionTransition();
 		cat.setApplicationConditionText("true");
 		cat.setActionsText(action + "");
 		cat.setId(id());
+		cat.setTerminates(true);
+		lastTransition = cat;
 		listener.getGraph().getNodes().add(cat);
 
 		eventActionsQueue.clear();

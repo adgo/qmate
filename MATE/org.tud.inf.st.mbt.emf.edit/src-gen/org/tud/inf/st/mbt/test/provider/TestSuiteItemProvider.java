@@ -178,9 +178,9 @@ public class TestSuiteItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TestSuite_riskReduction_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TestSuite_riskReduction_feature", "_UI_TestSuite_type"),
-				 TestPackage.Literals.TEST_SUITE__RISK_REDUCTION,
+				 getString("_UI_TestExecutable_riskReduction_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestExecutable_riskReduction_feature", "_UI_TestExecutable_type"),
+				 TestPackage.Literals.TEST_EXECUTABLE__RISK_REDUCTION,
 				 true,
 				 false,
 				 false,

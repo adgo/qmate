@@ -22,7 +22,7 @@ public class UIState implements Cloneable{
 	
 	public List<Place> getAllPlaces() {
 		List<Place> places = new ArrayList<Place>(noScreenNodes.size() + 1);
-		places.add(screenNode);
+		if(screenNode!=null)places.add(screenNode);
 		places.addAll(noScreenNodes);
 		return places;
 	}

@@ -6,26 +6,17 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.tud.inf.st.mbt.core.AbstractModelElement;
 import org.tud.inf.st.mbt.core.CorePackage;
-import org.tud.inf.st.mbt.core.impl.AbstractModelElementImpl;
-
 import org.tud.inf.st.mbt.features.Configuration;
-import org.tud.inf.st.mbt.features.ExplicitSet;
-
 import org.tud.inf.st.mbt.test.TestCase;
 import org.tud.inf.st.mbt.test.TestExecutable;
 import org.tud.inf.st.mbt.test.TestPackage;
@@ -42,15 +33,15 @@ import org.tud.inf.st.mbt.test.TestSuite;
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getTraceableTo <em>Traceable To</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getRiskReduction <em>Risk Reduction</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getCases <em>Cases</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getConfiguration <em>Configuration</em>}</li>
- *   <li>{@link org.tud.inf.st.mbt.test.impl.TestSuiteImpl#getRiskReduction <em>Risk Reduction</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TestSuiteImpl extends EObjectImpl implements TestSuite {
+public class TestSuiteImpl extends TestExecutableImpl implements TestSuite {
 	/**
 	 * The default value of the '{@link #getNote() <em>Note</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -122,26 +113,6 @@ public class TestSuiteImpl extends EObjectImpl implements TestSuite {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCases() <em>Cases</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCases()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TestCase> cases;
-
-	/**
-	 * The cached value of the '{@link #getConfiguration() <em>Configuration</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConfiguration()
-	 * @generated
-	 * @ordered
-	 */
-	protected Configuration configuration;
-
-	/**
 	 * The default value of the '{@link #getRiskReduction() <em>Risk Reduction</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,6 +131,26 @@ public class TestSuiteImpl extends EObjectImpl implements TestSuite {
 	 * @ordered
 	 */
 	protected double riskReduction = RISK_REDUCTION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getCases() <em>Cases</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCases()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TestCase> cases;
+
+	/**
+	 * The cached value of the '{@link #getConfiguration() <em>Configuration</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConfiguration()
+	 * @generated
+	 * @ordered
+	 */
+	protected Configuration configuration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -356,13 +347,13 @@ public class TestSuiteImpl extends EObjectImpl implements TestSuite {
 				return getTraceableTo();
 			case TestPackage.TEST_SUITE__NAME:
 				return getName();
+			case TestPackage.TEST_SUITE__RISK_REDUCTION:
+				return getRiskReduction();
 			case TestPackage.TEST_SUITE__CASES:
 				return getCases();
 			case TestPackage.TEST_SUITE__CONFIGURATION:
 				if (resolve) return getConfiguration();
 				return basicGetConfiguration();
-			case TestPackage.TEST_SUITE__RISK_REDUCTION:
-				return getRiskReduction();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -389,15 +380,15 @@ public class TestSuiteImpl extends EObjectImpl implements TestSuite {
 			case TestPackage.TEST_SUITE__NAME:
 				setName((String)newValue);
 				return;
+			case TestPackage.TEST_SUITE__RISK_REDUCTION:
+				setRiskReduction((Double)newValue);
+				return;
 			case TestPackage.TEST_SUITE__CASES:
 				getCases().clear();
 				getCases().addAll((Collection<? extends TestCase>)newValue);
 				return;
 			case TestPackage.TEST_SUITE__CONFIGURATION:
 				setConfiguration((Configuration)newValue);
-				return;
-			case TestPackage.TEST_SUITE__RISK_REDUCTION:
-				setRiskReduction((Double)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -423,14 +414,14 @@ public class TestSuiteImpl extends EObjectImpl implements TestSuite {
 			case TestPackage.TEST_SUITE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case TestPackage.TEST_SUITE__RISK_REDUCTION:
+				setRiskReduction(RISK_REDUCTION_EDEFAULT);
+				return;
 			case TestPackage.TEST_SUITE__CASES:
 				getCases().clear();
 				return;
 			case TestPackage.TEST_SUITE__CONFIGURATION:
 				setConfiguration((Configuration)null);
-				return;
-			case TestPackage.TEST_SUITE__RISK_REDUCTION:
-				setRiskReduction(RISK_REDUCTION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -452,12 +443,12 @@ public class TestSuiteImpl extends EObjectImpl implements TestSuite {
 				return traceableTo != null && !traceableTo.isEmpty();
 			case TestPackage.TEST_SUITE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case TestPackage.TEST_SUITE__RISK_REDUCTION:
+				return riskReduction != RISK_REDUCTION_EDEFAULT;
 			case TestPackage.TEST_SUITE__CASES:
 				return cases != null && !cases.isEmpty();
 			case TestPackage.TEST_SUITE__CONFIGURATION:
 				return configuration != null;
-			case TestPackage.TEST_SUITE__RISK_REDUCTION:
-				return riskReduction != RISK_REDUCTION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -480,6 +471,7 @@ public class TestSuiteImpl extends EObjectImpl implements TestSuite {
 		}
 		if (baseClass == TestExecutable.class) {
 			switch (derivedFeatureID) {
+				case TestPackage.TEST_SUITE__RISK_REDUCTION: return TestPackage.TEST_EXECUTABLE__RISK_REDUCTION;
 				default: return -1;
 			}
 		}
@@ -504,6 +496,7 @@ public class TestSuiteImpl extends EObjectImpl implements TestSuite {
 		}
 		if (baseClass == TestExecutable.class) {
 			switch (baseFeatureID) {
+				case TestPackage.TEST_EXECUTABLE__RISK_REDUCTION: return TestPackage.TEST_SUITE__RISK_REDUCTION;
 				default: return -1;
 			}
 		}
@@ -513,23 +506,10 @@ public class TestSuiteImpl extends EObjectImpl implements TestSuite {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (note: ");
-		result.append(note);
-		result.append(", id: ");
-		result.append(id);
-		result.append(", name: ");
-		result.append(name);
-		result.append(", riskReduction: ");
-		result.append(riskReduction);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //TestSuiteImpl

@@ -52,9 +52,9 @@ public class AndroidRecorder extends AbstractRecorder {
 							+ " -s "
 							+ getConnection()
 							+ " shell export run_base=/data/local/tmp;export base=/system;"
-							+ "export CLASSPATH=/mnt/sdcard/recorder.apk;"
+							+ "export CLASSPATH=/system/app/recorder.apk;"
 							+ "export LD_LIBRARY_PATH=/system/lib:/vendor/lib;"
-							+ "exec app_process ${base}/bin org.tud.inf.st.mbt.android.recorder.Recorder";
+							+ "exec app_process ${base}/bin org.tud.inf.st.mbt.automation.android.recorderservice.Recorder";
 
 					try {
 						process = Runtime.getRuntime().exec(shell);
