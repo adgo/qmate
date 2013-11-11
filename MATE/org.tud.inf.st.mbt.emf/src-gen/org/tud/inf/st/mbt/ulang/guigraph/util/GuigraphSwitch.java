@@ -169,6 +169,16 @@ public class GuigraphSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GuigraphPackage.PAGE_TRANSITION: {
+				PageTransition pageTransition = (PageTransition)theEObject;
+				T result = casePageTransition(pageTransition);
+				if (result == null) result = caseTransition(pageTransition);
+				if (result == null) result = caseGuiGraphNode(pageTransition);
+				if (result == null) result = caseIRealTimeConsumer(pageTransition);
+				if (result == null) result = caseAbstractModelElement(pageTransition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -350,6 +360,21 @@ public class GuigraphSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInhibitorArc(InhibitorArc object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Page Transition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Page Transition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePageTransition(PageTransition object) {
 		return null;
 	}
 

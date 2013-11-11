@@ -1,43 +1,149 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Actions Language</title>
-</head>
-<body>
-	<h1>Actions Language</h1>
-	With the actions language, several types of test actions can be
-	defined:
-	<ol>
-		<li><b>Term Actions:</b> Arbitrary messages for communicating
-			with system under test. The syntax of term actions is defined as <a
-			href="TermLanguage.html">Term Language</a>.</li>
-		<li><b>Data Exchange:</b> Download and upload synchronizable data
-			and state entities with the system under test.</li>
-		<li><b>Reconfiguration Actions:</b> Change data values and
-			feature states of the variability model.</li>
-		<li><b>Event Actions:</b> Delegate control flow by producing
-			events and logic time.</li>
-		<li><b>Fail action:</b>A special action <pre>&fail</pre> allows to
-			force a failed test outcome.</li>
-	</ol>
-	
-	All actions can be sequenced by separating them by a ";"; terminal. For instance: <pre>action1;action2;action3;</pre>
-	
-	<h2>Data Exchange Actions</h2>
-	
-	<table>
-		<tr>
-			<th>Symbol</th>
-			<th>Syntax</th>
-			<th>Example</th>
-		</tr>
-		<tr>
-			<td><pre>GetData</pre></td>
-			<td><pre>&get value _NodeFunction_</pre></td>
-			<td><pre>&get value x</pre></td>
-		</tr>
-	</table>
-	
-</body>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>Actions Language</title>
+  </head>
+  <body>
+    <h1>Actions Language</h1>
+    With the actions language, several types of test actions can be defined:
+    <ol>
+      <li><b>Term Actions:</b> Arbitrary messages for communicating with system
+        under test. The syntax of term actions is defined as <a href="TermLanguage.html">Term
+          Language</a>.</li>
+      <li><b>Data Exchange:</b> Upload synchronizable data and state entities
+        with the system under test.</li>
+      <li><b>Reconfiguration Actions:</b> Change data values and feature states
+        of the variability model. Only these actions can be used in Operational
+        Configuration Models (OCMs).</li>
+      <li><b>Event Actions:</b> Delegate control flow by producing events and
+        logic time.</li>
+      <li><span style="font-weight: bold;">Reference: </span>Call action from a
+        definitions file: &lt;id.of.action&gt;</li>
+      <li><b>Fail action:</b>A special action
+        <pre>&amp;fail</pre>
+        allows to force a failed test outcome.</li>
+    </ol>
+    All actions can be sequenced by separating them by a ";"; terminal. For
+    instance:
+    <pre>action1;action2;action3;</pre>
+    <h2>Data Exchange Actions</h2>
+    <table style="width: 500px; height: 73px;">
+      <tbody>
+        <tr>
+          <th>Class</th>
+          <th>Syntax</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td>
+            <pre>GetDataAction</pre>
+          </td>
+          <td>
+            <pre>&amp;get value &lt;id.of.node&gt;</pre>
+          </td>
+          <td>
+            <pre>&amp;get value x</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>GetFeatureStateAction</pre>
+          </td>
+          <td>
+            <pre>&amp;get state &lt;id.of.feature&gt;</pre>
+          </td>
+          <td>
+            <pre>&amp;get state f</pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Reconfiguration Actions</h2>
+    <table style="width: 500px; height: 73px;">
+      <tbody>
+        <tr>
+          <th>Class</th>
+          <th>Syntax</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td>
+            <pre>SetDataAction</pre>
+          </td>
+          <td>
+            <pre>&lt;NodeFunction&gt; = &lt;DataFunction&gt;</pre>
+          </td>
+          <td>
+            <pre>x = v0</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>RemoveBagAction</pre>
+          </td>
+          <td>
+            <pre>&amp;unset &lt;id.of.bag&gt;[idx]</pre>
+          </td>
+          <td>
+            <pre>&amp;unset b[0]</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>ActivateFeatureAction</pre>
+          </td>
+          <td>
+            <pre>&amp;activate &lt;id.of.feature&gt;</pre>
+          </td>
+          <td>
+            <pre>&amp;activate Motor</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>DeactivateFeatureAction</pre>
+          </td>
+          <td>
+            <pre>&amp;deactivate &lt;id.of.feature&gt;</pre>
+          </td>
+          <td>
+            <pre>&amp;deactivate Motor</pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Event Actions</h2>
+    <table style="width: 500px; height: 73px;">
+      <tbody>
+        <tr>
+          <th>Class</th>
+          <th>Syntax</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td>
+            <pre>ThrowAction</pre>
+          </td>
+          <td>
+            <pre>&amp;throw &lt;eventID&gt;</pre>
+          </td>
+          <td>
+            <pre>&amp;throw &lt;StartRaining&gt;</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>GetFeatureStateAction</pre>
+          </td>
+          <td>
+            <pre>&amp;time &lt;id.of.consumer&gt; +10<br>| &amp; time + 5</pre>
+          </td>
+          <td>
+            <pre>&amp;time WeatherSystem +100</pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
 </html>

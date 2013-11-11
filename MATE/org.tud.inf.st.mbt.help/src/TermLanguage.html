@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>Term Language</title>
+  </head>
+  <body>
+    <h1>Term Language</h1>
+    <p> Terms can define arbitrary messages to be sent or to be received from
+      the system. Basic types are integer, float, string, long,&nbsp;and bool.
+      Lists can be defined and composite functor terms with parameters that are
+      terms as well. A reference term allows to point to test model objects as
+      term parameters. By usning the functor terms, a term value can be computed
+      at simulation time. Functions are defined in the <a href="FunctionLanguage.html">Function
+        Language</a>. The term language syntax is listed in the
+      following table:</p>
+    <table>
+      <tbody>
+        <tr>
+          <th>Class</th>
+          <th>Syntax</th>
+          <th>Examples</th>
+        </tr>
+        <tr>
+          <td>
+            <pre>IntegerTerm</pre>
+          </td>
+          <td>
+            <pre>any int value</pre>
+          </td>
+          <td>
+            <pre>123</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>FloatTerm</pre>
+          </td>
+          <td>
+            <pre>any float value</pre>
+          </td>
+          <td>
+            <pre>12.3</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>StringTerm</pre>
+          </td>
+          <td>
+            <pre>any string value</pre>
+          </td>
+          <td>
+            <pre>"Hello World!"</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>LongTerm</pre>
+          </td>
+          <td>
+            <pre>any long value</pre>
+          </td>
+          <td>
+            <pre>12345678</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>BoolTerm</pre>
+          </td>
+          <td>
+            <pre>true | false</pre>
+          </td>
+          <td>
+            <pre>true</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>ReferenceTerm</pre>
+          </td>
+          <td>
+            <pre>&amp;object(&lt;id&gt;)</pre>
+          </td>
+          <td>
+            <pre>model.path.to.object</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>ListTerm</pre>
+          </td>
+          <td>
+            <pre>[&lt;comma sep. list of terms&gt;]</pre>
+          </td>
+          <td>
+            <pre>[a,"b",c,1,0.5,true]</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>FunctorTerm</pre>
+          </td>
+          <td>
+            <pre>&lt;functor&gt;(&lt;comma sep. list of terms&gt;)</pre>
+          </td>
+          <td>
+            <pre>a(a,2,"b"), c</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>FunctionTerm</pre>
+          </td>
+          <td>
+            <pre>&amp;&lt;function&gt;</pre>
+          </td>
+          <td>
+            <pre>&amp;1+2, </pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

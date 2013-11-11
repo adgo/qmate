@@ -34,62 +34,6 @@
       </image>
    </extension>
    <extension
-         id="MATE"
-         point="org.eclipse.core.runtime.products">
-      <product
-            application="org.eclipse.ui.ide.workbench"
-            name="MATE">
-         <property
-               name="appName"
-               value="MATE">
-         </property>
-         <property
-               name="aboutImage"
-               value="icons/mate_full.png">
-         </property>
-         <property
-               name="aboutText"
-               value="This is the Mobile Application Test Environment by Georg Püschel (georg.pueschel@googlemail.com)">
-         </property>
-         <property
-               name="windowImages"
-               value="icons/mate16.png,icons/mate32.png,icons/mate48.png,icons/mate128.png">
-         </property>
-         <property
-               name="startupForegroundColor"
-               value="000000">
-         </property>
-         <property
-               name="startupMessageRect"
-               value="25,252,510,20">
-         </property>
-         <property
-               name="startupProgressRect"
-               value="25,275,510,20">
-         </property>
-         <property
-               name="preferenceCustomization"
-               value="plugin_customization.ini">
-         </property>
-         <property
-               name="applicationXMI"
-               value="org.eclipse.ui.workbench/LegacyIDE.e4xmi">
-         </property>
-         <property
-               name="applicationCSS"
-               value="platform:/plugin/org.tud.inf.st.mbt.ui/css/default.css">
-         </property>
-         <property
-               name="cssTheme"
-               value="org.tud.inf.st.mbt.ui.theme">
-         </property>
-         <property
-				name="applicationCSSResources"
-          value="platform:/plugin/org.eclipse.platform/images/">
-		  </property>
-      </product>
-   </extension>
-   <extension
          point="org.eclipse.ui.newWizards">
       <category
             id="org.tud.inf.st.mbt.ui.matecategory"
@@ -178,6 +122,102 @@
                menubarPath="group.generate">
          </action>
       </objectContribution>
+   </extension>
+   <extension
+         id="adaptive"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="Model-based Adaptivity Test Environment">
+         <property
+               name="appName"
+               value="Model-based Adaptivity Test Environment">
+         </property>
+         <property
+               name="aboutImage"
+               value="icons/mate_full.png">
+         </property>
+         <property
+               name="aboutText"
+               value="This is the Model-based Adaptivity Test Environment by Georg Püschel (georg.pueschel@googlemail.com)">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/mate16.png,icons/mate32.png,icons/mate48.png,icons/mate128.png">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="000000">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="25,252,510,20">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="25,275,510,20">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+         <property
+               name="applicationXMI"
+               value="org.eclipse.ui.workbench/LegacyIDE.e4xmi">
+         </property>
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/org.tud.inf.st.mbt.ui/css/default.css">
+         </property>
+         <property
+               name="cssTheme"
+               value="org.tud.inf.st.mbt.ui.theme">
+         </property>
+         <property
+               name="applicationCSSResources"
+               value="platform:/plugin/org.eclipse.platform/images/">
+         </property>
+      </product>
+   </extension>
+   <extension
+         id="mobile"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="Mobile Application Test Environment">
+         <property
+               name="windowImages"
+               value="icons/mate16.png,icons/mate32.png,icons/mate48.png,icons/mate128.png">
+         </property>
+         <property
+               name="aboutText"
+               value="This is the Mobile Application Test Environment by Georg Püschel (georg.pueschel@googlemail.com)">
+         </property>
+         <property
+               name="aboutImage"
+               value="icons/mate_full.png">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="000000">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="25,275,510,20">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="25,252,510,20">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+         <property
+               name="appName"
+               value="Mobile Application Test Environment">
+         </property>
+      </product>
    </extension>
 
 </plugin>

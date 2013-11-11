@@ -119,6 +119,10 @@ public class GuigraphAdapterFactory extends AdapterFactoryImpl {
 				return createInhibitorArcAdapter();
 			}
 			@Override
+			public Adapter casePageTransition(PageTransition object) {
+				return createPageTransitionAdapter();
+			}
+			@Override
 			public Adapter caseAbstractModelElement(AbstractModelElement object) {
 				return createAbstractModelElementAdapter();
 			}
@@ -311,6 +315,20 @@ public class GuigraphAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInhibitorArcAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.tud.inf.st.mbt.ulang.guigraph.PageTransition <em>Page Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.PageTransition
+	 * @generated
+	 */
+	public Adapter createPageTransitionAdapter() {
 		return null;
 	}
 

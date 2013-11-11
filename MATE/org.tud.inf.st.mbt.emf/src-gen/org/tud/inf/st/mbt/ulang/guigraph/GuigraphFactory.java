@@ -94,6 +94,15 @@ public interface GuigraphFactory extends EFactory {
 	InhibitorArc createInhibitorArc();
 
 	/**
+	 * Returns a new object of class '<em>Page Transition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Page Transition</em>'.
+	 * @generated
+	 */
+	PageTransition createPageTransition();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

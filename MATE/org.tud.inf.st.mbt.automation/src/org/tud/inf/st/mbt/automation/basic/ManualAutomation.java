@@ -99,9 +99,11 @@ public class ManualAutomation implements ISimulationAutomation {
 			int result = new MessageDialog(Display.getCurrent()
 					.getActiveShell(), "Feature state request", null,
 					"Is the following feature active: " + f + "?",
-					MessageDialog.QUESTION, new String[] { "YES", "NO" }, 0)
-					.open();
-			if (result == 0) {
+					MessageDialog.QUESTION, new String[] { "&YES", "&NO",
+							"&Cancel" }, 0).open();
+			if (result == 2) {
+				throw new RuntimeException("Test execution canceled!");
+			} else if (result == 0) {
 				FeatureVersion v = null;
 				if (f instanceof TreeFeature
 						&& !((TreeFeature) f).getVersions().isEmpty()) {
@@ -130,26 +132,29 @@ public class ManualAutomation implements ISimulationAutomation {
 					- lastRealTime);
 			return true;
 		} else {
-			class DialogRun implements Runnable{
+			class DialogRun implements Runnable {
 
 				int result = -1;
-				
+
 				@Override
 				public void run() {
 					result = new MessageDialog(Display.getDefault()
 							.getActiveShell(), "Please execute", null,
 							"Execute the following action: " + action,
-							MessageDialog.QUESTION, new String[] { "OK", "ERROR" }, 0)
-							.open();						
+							MessageDialog.QUESTION, new String[] { "&OK",
+									"&ERROR", "&Cancel" }, 0).open();
 				}
-				
+
 			}
 			DialogRun run = new DialogRun();
-			Display.getDefault().syncExec(run);	
-					
-			if (run.result != 0)
+			Display.getDefault().syncExec(run);
+
+			if (run.result == 2)
+				throw new RuntimeException("Test execution canceled!");
+			else if (run.result != 0)
 				return false;
-			else return true;
+			else
+				return true;
 		}
 	}
 
@@ -159,7 +164,7 @@ public class ManualAutomation implements ISimulationAutomation {
 	}
 
 	@Override
-	public void terminate() {		
+	public void terminate() {
 	}
 
 }

@@ -296,13 +296,22 @@ public interface GuigraphPackage extends EPackage {
 	int FORM__IMAGE = WIDGET__IMAGE;
 
 	/**
+	 * The feature id for the '<em><b>Map To Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORM__MAP_TO_PAGE = WIDGET_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Form</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORM_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 0;
+	int FORM_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -505,13 +514,22 @@ public interface GuigraphPackage extends EPackage {
 	int PLACE__NAME = GUI_GRAPH_NODE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Map To Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACE__MAP_TO_PAGE = GUI_GRAPH_NODE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Place</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLACE_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 0;
+	int PLACE_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.NoWidgetNodeImpl <em>No Widget Node</em>}' class.
@@ -558,6 +576,15 @@ public interface GuigraphPackage extends EPackage {
 	 * @ordered
 	 */
 	int NO_WIDGET_NODE__NAME = PLACE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Map To Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NO_WIDGET_NODE__MAP_TO_PAGE = PLACE__MAP_TO_PAGE;
 
 	/**
 	 * The feature id for the '<em><b>Initial Tokens</b></em>' attribute.
@@ -1079,6 +1106,124 @@ public interface GuigraphPackage extends EPackage {
 	int INHIBITOR_ARC_FEATURE_COUNT = ARC_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PageTransitionImpl <em>Page Transition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.PageTransitionImpl
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPageTransition()
+	 * @generated
+	 */
+	int PAGE_TRANSITION = 12;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__NOTE = TRANSITION__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__ID = TRANSITION__ID;
+
+	/**
+	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__TRACEABLE_TO = TRANSITION__TRACEABLE_TO;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__NAME = TRANSITION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Rate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__RATE = TRANSITION__RATE;
+
+	/**
+	 * The feature id for the '<em><b>Fault Impact</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__FAULT_IMPACT = TRANSITION__FAULT_IMPACT;
+
+	/**
+	 * The feature id for the '<em><b>Fault Probability</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__FAULT_PROBABILITY = TRANSITION__FAULT_PROBABILITY;
+
+	/**
+	 * The feature id for the '<em><b>Terminates</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__TERMINATES = TRANSITION__TERMINATES;
+
+	/**
+	 * The feature id for the '<em><b>Time Min</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__TIME_MIN = TRANSITION__TIME_MIN;
+
+	/**
+	 * The feature id for the '<em><b>Time Max</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__TIME_MAX = TRANSITION__TIME_MAX;
+
+	/**
+	 * The feature id for the '<em><b>Page</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__PAGE = TRANSITION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Page Transition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION_FEATURE_COUNT = TRANSITION_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.GuiGraph <em>Gui Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1292,6 +1437,17 @@ public interface GuigraphPackage extends EPackage {
 	EClass getPlace();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.Place#isMapToPage <em>Map To Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Map To Page</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.Place#isMapToPage()
+	 * @see #getPlace()
+	 * @generated
+	 */
+	EAttribute getPlace_MapToPage();
+
+	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.ConditionActionTransition <em>Condition Action Transition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1439,6 +1595,27 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getInhibitorArc();
+
+	/**
+	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.PageTransition <em>Page Transition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Page Transition</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.PageTransition
+	 * @generated
+	 */
+	EClass getPageTransition();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.tud.inf.st.mbt.ulang.guigraph.PageTransition#getPage <em>Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Page</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.PageTransition#getPage()
+	 * @see #getPageTransition()
+	 * @generated
+	 */
+	EReference getPageTransition_Page();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1637,6 +1814,14 @@ public interface GuigraphPackage extends EPackage {
 		EClass PLACE = eINSTANCE.getPlace();
 
 		/**
+		 * The meta object literal for the '<em><b>Map To Page</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLACE__MAP_TO_PAGE = eINSTANCE.getPlace_MapToPage();
+
+		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.ConditionActionTransitionImpl <em>Condition Action Transition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1757,6 +1942,24 @@ public interface GuigraphPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INHIBITOR_ARC = eINSTANCE.getInhibitorArc();
+
+		/**
+		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PageTransitionImpl <em>Page Transition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.PageTransitionImpl
+		 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPageTransition()
+		 * @generated
+		 */
+		EClass PAGE_TRANSITION = eINSTANCE.getPageTransition();
+
+		/**
+		 * The meta object literal for the '<em><b>Page</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAGE_TRANSITION__PAGE = eINSTANCE.getPageTransition_Page();
 
 	}
 

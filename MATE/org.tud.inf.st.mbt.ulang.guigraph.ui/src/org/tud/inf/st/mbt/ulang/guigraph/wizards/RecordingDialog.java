@@ -46,6 +46,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
@@ -358,24 +359,27 @@ public class RecordingDialog extends TitleAreaDialog {
 			}
 		});
 
-		final Button chkAutomate = new Button(parent, SWT.TOGGLE);
-		chkAutomate.setText("Activate complete automation");
-		chkAutomate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true,
-				2, 1));
-		chkAutomate.addListener(SWT.Selection, new Listener() {
-
-			@Override
-			public void handleEvent(Event event) {
-				if (automationFlag) {
-					automationFlag = false;
-					chkAutomate.setText("Activate automated recording");
-				} else {
-					automationFlag = true;
-					chkAutomate.setText("Deactivate automated recording");
-				}
-				chkAutomate.setSelection(automationFlag);
-			}
-		});
+//		final Button chkAutomate = new Button(parent, SWT.TOGGLE);
+//		chkAutomate.setText("Activate complete automation");
+//		chkAutomate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true,
+//				2, 1));
+//		chkAutomate.addListener(SWT.Selection, new Listener() {
+//
+//			@Override
+//			public void handleEvent(Event event) {
+//				if (automationFlag) {
+//					automationFlag = false;
+//					chkAutomate.setText("Activate automated recording");
+//				} else {
+//					automationFlag = true;
+//					chkAutomate.setText("Deactivate automated recording");
+//				}
+//				chkAutomate.setSelection(automationFlag);
+//			}
+//		});
+		
+		Label l = new Label(parent,SWT.None);
+		l.setText("");
 
 		Button btnIdentifyState = new Button(parent, SWT.None);
 		btnIdentifyState.setText("Identify with selected state");

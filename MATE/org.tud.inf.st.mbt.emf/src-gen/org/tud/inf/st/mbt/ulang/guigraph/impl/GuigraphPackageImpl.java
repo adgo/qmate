@@ -62,6 +62,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.GuigraphFactory;
 import org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage;
 import org.tud.inf.st.mbt.ulang.guigraph.InhibitorArc;
 import org.tud.inf.st.mbt.ulang.guigraph.NoWidgetNode;
+import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 import org.tud.inf.st.mbt.ulang.guigraph.StandardArc;
 import org.tud.inf.st.mbt.ulang.guigraph.TimerTransition;
@@ -158,6 +159,13 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * @generated
 	 */
 	private EClass inhibitorArcEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pageTransitionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -440,6 +448,15 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPlace_MapToPage() {
+		return (EAttribute)placeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConditionActionTransition() {
 		return conditionActionTransitionEClass;
 	}
@@ -566,6 +583,24 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPageTransition() {
+		return pageTransitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPageTransition_Page() {
+		return (EReference)pageTransitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GuigraphFactory getGuigraphFactory() {
 		return (GuigraphFactory)getEFactoryInstance();
 	}
@@ -615,6 +650,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		createEAttribute(noWidgetNodeEClass, NO_WIDGET_NODE__INITIAL_TOKENS);
 
 		placeEClass = createEClass(PLACE);
+		createEAttribute(placeEClass, PLACE__MAP_TO_PAGE);
 
 		conditionActionTransitionEClass = createEClass(CONDITION_ACTION_TRANSITION);
 		createEReference(conditionActionTransitionEClass, CONDITION_ACTION_TRANSITION__APPLICATION_CONDITION);
@@ -634,6 +670,9 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		createEAttribute(standardArcEClass, STANDARD_ARC__WEIGHT);
 
 		inhibitorArcEClass = createEClass(INHIBITOR_ARC);
+
+		pageTransitionEClass = createEClass(PAGE_TRANSITION);
+		createEReference(pageTransitionEClass, PAGE_TRANSITION__PAGE);
 	}
 
 	/**
@@ -683,6 +722,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		arcEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
 		standardArcEClass.getESuperTypes().add(this.getArc());
 		inhibitorArcEClass.getESuperTypes().add(this.getArc());
+		pageTransitionEClass.getESuperTypes().add(this.getTransition());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiGraphEClass, GuiGraph.class, "GuiGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -711,6 +751,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		initEAttribute(getNoWidgetNode_InitialTokens(), ecorePackage.getEInt(), "initialTokens", "0", 1, 1, NoWidgetNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(placeEClass, Place.class, "Place", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPlace_MapToPage(), ecorePackage.getEBoolean(), "mapToPage", null, 0, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionActionTransitionEClass, ConditionActionTransition.class, "ConditionActionTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionActionTransition_ApplicationCondition(), theRulesPackage.getPredicate(), null, "applicationCondition", null, 1, 1, ConditionActionTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -730,6 +771,9 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		initEAttribute(getStandardArc_Weight(), ecorePackage.getEInt(), "weight", "1", 1, 1, StandardArc.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inhibitorArcEClass, InhibitorArc.class, "InhibitorArc", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(pageTransitionEClass, PageTransition.class, "PageTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPageTransition_Page(), this.getGuiGraph(), null, "page", null, 1, 1, PageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>Function Language</title>
+  </head>
+  <body>
+    <h1>Function Language</h1>
+    <p> Functions allow to compute information about the model's state at
+      simulation time. Thus, it is not necessary to define each derivable piece
+      of information explicitely. MATE supports the following data types for
+      functions:</p>
+    <ul>
+      <li>arithmetrical (float)</li>
+      <li>logic (bool)</li>
+      <li>data (data values from pre-defined finite domains)</li>
+      <li>node (pre-defined variables and data structure nodes)</li>
+    </ul>
+    <h2>Arithmetrical Operators</h2>
+    <p>Supported data types:</p>
+    <ul>
+      <li>int, e.g., 1</li>
+      <li>long, e.g., 123457890</li>
+      <li>float, e.g., 1.23</li>
+    </ul>
+    <p>The up-to-dat supported operators are:</p>
+    <ul>
+      <li>multiplication '*'</li>
+      <li>division '/'</li>
+      <li>addition '+' and '-'</li>
+      <li>brackets '(' ')'</li>
+    </ul>
+    <p>Additionally, several functions on bags can be queried:</p>
+    <ul>
+      <li>size(&lt;id.of.bag&gt;)</li>
+      <li>next(&lt;id.of.bag&gt;), the next free element</li>
+      <li>free(&lt;id.of.bag&gt;), the first free element</li>
+      <li>index(&lt;id.of.bag&gt;,&lt;needle&gt;), the index of data element
+        needle in a bag</li>
+      <li>count(&lt;id.of.bag&gt;,&lt;needle&gt;), the number of occurances of
+        needle in the bag</li>
+    </ul>
+    <ul>
+    </ul>
+    <ul>
+    </ul>
+    <p>A valid arithmetrical expression is for instance: </p>
+    <pre>(1*2)+(3-4)/5</pre>
+    <h2>Logic Operators</h2>
+    <p>Most of logic operators are defined in Rules Language. Additionally,
+      arithmetrical functions can be compared with boolean results. Comparison
+      operators are:</p>
+    <ul>
+      <li>&gt;,&lt;,=</li>
+      <li>the
+        <pre>"&lt;containedValue&gt; in &lt;container&gt;"&nbsp;</pre>
+        operator checks if a data value is contained by another equivalence data
+        class</li>
+    </ul>
+    <h2>Data Operators</h2>
+    <ul>
+      <li>&lt;NodeFunction&gt;, cf. next section. Queries the value of a
+        specific pre-defined data node.</li>
+    </ul>
+    <h2>Node Operators</h2>
+    <ul>
+      <li>&lt;id.to.a.node&gt;</li>
+      <li>&lt;id.of.bag&gt;[idx], a specific element in a bag</li>
+    </ul>
+    <h2>Common Operators for All Function Types</h2>
+    <p>Common operators are type-safe!</p>
+    <ul>
+      <li>References &lt;id.of.function&gt; to functions defined in a Defintions
+        file.</li>
+      <li>Cases (not for logic functions):
+        <pre>          | &lt;Logic Function&gt; = &lt;Function&gt;</pre>
+        Example:
+        <pre>| ?a=2 = 4 | ?a=3 = 5</pre>
+      </li>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>Rules Language</title>
+  </head>
+  <body>
+    <h1>Rules Language</h1>
+    <p> Rules are propositions on the simulation model's state. The
+      computational result of a rule is boolean. The following types of atoms
+      are supported:</p>
+    <table>
+      <tbody>
+        <tr>
+          <th>Class</th>
+          <th>Syntax</th>
+          <th>Examples</th>
+        </tr>
+        <tr>
+          <td>
+            <pre>True</pre>
+          </td>
+          <td>
+            <pre>otherwise | true</pre>
+          </td>
+          <td>
+            <pre>true</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>FeatureAtom</pre>
+          </td>
+          <td>
+            <pre>&lt;id.of.feature&gt; | &lt;id.of.feature&gt;[&lt;id.of.version&gt;]</pre>
+          </td>
+          <td>
+            <pre>Motor[Diesel]</pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>FunctionAtom</pre>
+          </td>
+          <td>
+            <pre>[&lt;a logic function&gt;]</pre>
+          </td>
+          <td>
+            <pre>[1&nbsp; &gt; 2]</pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>These atoms can be composed by serveral operators:</p>
+    <ul>
+      <li>
+        <pre>not</pre>
+      </li>
+      <li>
+        <pre>and</pre>
+      </li>
+      <li>
+        <pre>or</pre>
+      </li>
+      <li>implication '-&gt;'</li>
+      <li>equivalence '&lt;-&gt;'</li>
+      <li>brackets '(' ')'</li>
+    </ul>
+    <p>A valid rule is for instance:</p>
+    <pre>(Motor[Diesel] and ?a&gt;2) -&gt; Wheels</pre>
+    <br>
+  </body>
+</html>

@@ -256,6 +256,29 @@ public class GuigraphItemProviderAdapterFactory extends GuigraphAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.tud.inf.st.mbt.ulang.guigraph.PageTransition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PageTransitionItemProvider pageTransitionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.tud.inf.st.mbt.ulang.guigraph.PageTransition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPageTransitionAdapter() {
+		if (pageTransitionItemProvider == null) {
+			pageTransitionItemProvider = new PageTransitionItemProvider(this);
+		}
+
+		return pageTransitionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -362,6 +385,7 @@ public class GuigraphItemProviderAdapterFactory extends GuigraphAdapterFactory i
 		if (timerTransitionItemProvider != null) timerTransitionItemProvider.dispose();
 		if (standardArcItemProvider != null) standardArcItemProvider.dispose();
 		if (inhibitorArcItemProvider != null) inhibitorArcItemProvider.dispose();
+		if (pageTransitionItemProvider != null) pageTransitionItemProvider.dispose();
 	}
 
 }

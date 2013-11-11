@@ -239,8 +239,8 @@ public class RunTestAction extends ActionDelegate {
 								|| connector.automate(action, responder))
 							v.setName("PASS");
 					} catch (Exception ex) {
-						ex.printStackTrace();
 						v.setName("ERROR");
+						throw ex;
 					}
 
 					TestStepRun tsr = F.createTestStepRun();

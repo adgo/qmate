@@ -3,12 +3,9 @@
 package org.tud.inf.st.mbt.features.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.tud.inf.st.mbt.features.FeatureReference;
 import org.tud.inf.st.mbt.features.FeatureVersion;
 import org.tud.inf.st.mbt.features.FeaturesPackage;
@@ -212,6 +209,11 @@ public class FeatureReferenceImpl extends IFeatureImpl implements FeatureReferen
 				return version != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	@Override
+	public String toString() {
+		return ""+feature;
 	}
 
 } //FeatureReferenceImpl

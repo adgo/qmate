@@ -28,11 +28,13 @@
          </topic>
       </topic>
       <topic label="Textual Modeling Languages">
-         <topic label="Variability Constraints">
+         <topic href="src/RulesLanguage.html" label="Rules Constraints">
          </topic>
          <topic href="src/ActionsLanguage.html" label="Actions Language">
          </topic>
-         <topic label="Functional Language">
+         <topic href="src/FunctionLanguage.html" label="Function Language">
+         </topic>
+         <topic href="src/TermLanguage.html" label="Term Language">
          </topic>
       </topic>
    </topic>

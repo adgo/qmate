@@ -113,7 +113,9 @@
     <genClasses ecoreClass="guigraph.ecore#//NoWidgetNode">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//NoWidgetNode/initialTokens"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="guigraph.ecore#//Place"/>
+    <genClasses image="false" ecoreClass="guigraph.ecore#//Place">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Place/mapToPage"/>
+    </genClasses>
     <genClasses ecoreClass="guigraph.ecore#//ConditionActionTransition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//ConditionActionTransition/applicationCondition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//ConditionActionTransition/actions"/>
@@ -132,6 +134,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//StandardArc/weight"/>
     </genClasses>
     <genClasses ecoreClass="guigraph.ecore#//InhibitorArc"/>
+    <genClasses ecoreClass="guigraph.ecore#//PageTransition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference guigraph.ecore#//PageTransition/page"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Mbt" basePackage="org.tud.inf.st" disposableProviderFactory="true"
       ecorePackage="mbt.ecore#/">

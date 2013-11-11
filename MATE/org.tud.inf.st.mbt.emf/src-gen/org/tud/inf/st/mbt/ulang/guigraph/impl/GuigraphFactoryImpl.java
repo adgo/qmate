@@ -64,6 +64,7 @@ public class GuigraphFactoryImpl extends EFactoryImpl implements GuigraphFactory
 			case GuigraphPackage.TIMER_TRANSITION: return createTimerTransition();
 			case GuigraphPackage.STANDARD_ARC: return createStandardArc();
 			case GuigraphPackage.INHIBITOR_ARC: return createInhibitorArc();
+			case GuigraphPackage.PAGE_TRANSITION: return createPageTransition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -147,6 +148,16 @@ public class GuigraphFactoryImpl extends EFactoryImpl implements GuigraphFactory
 	public InhibitorArc createInhibitorArc() {
 		InhibitorArcImpl inhibitorArc = new InhibitorArcImpl();
 		return inhibitorArc;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PageTransition createPageTransition() {
+		PageTransitionImpl pageTransition = new PageTransitionImpl();
+		return pageTransition;
 	}
 
 	/**

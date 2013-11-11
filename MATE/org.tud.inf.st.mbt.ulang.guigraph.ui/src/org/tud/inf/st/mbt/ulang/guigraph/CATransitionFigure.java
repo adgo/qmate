@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.tud.inf.st.mbt.core.CorePackage;
 import org.tud.inf.st.mbt.emf.graphicaleditor.basics.MultiLabeled;
 import org.tud.inf.st.mbt.emf.graphicaleditor.beauty.BeautyBorder;
+import org.tud.inf.st.mbt.emf.ui.MBTConstants;
 
 public class CATransitionFigure extends RoundedRectangle implements
 		MultiLabeled {
@@ -149,40 +150,41 @@ public class CATransitionFigure extends RoundedRectangle implements
 	public void paintFigure(Graphics graphics) {
 		Dimension size = getBounds().getSize();
 
-		Dimension outer = new Dimension(size.width, 17);
-		Dimension inner = new Dimension(size.width, size.height - 2
-				* outer.height);
+		Dimension upper = new Dimension(size.width,MBTConstants.IS_MOBILE ? 0 : 17);
+		
+		Dimension lower = new Dimension(size.width,20);
+		Dimension middle = new Dimension(size.width,size.height-upper.height-lower.height);
 
 		Point topLeft = new Point(0, 0);
 
 		setConstraint(ac, new Rectangle(new Point(topLeft), new Dimension(
-				(int) (outer.width * 0.7), outer.height)));
+				(int) (upper.width * 0.7), upper.height)));
 		setConstraint(ac_label, new Rectangle(new Point(topLeft),
-				new Dimension((int) (outer.width * 0.7), outer.height)));
+				new Dimension((int) (upper.width * 0.7), upper.height)));
 
 		setConstraint(time, new Rectangle(new Point(
-				(int) (outer.width * 0.7) + 1, topLeft.y), new Dimension(
-				(int) (outer.width * 0.3) - 1, outer.height)));
+				(int) (upper.width * 0.7) + 1, topLeft.y), new Dimension(
+				(int) (upper.width * 0.3) - 1, upper.height)));
 		setConstraint(time_label, new Rectangle(new Point(
-				(int) (outer.width * 0.7) + 1, topLeft.y), new Dimension(
-				(int) (outer.width * 0.3) - 1, outer.height)));
+				(int) (upper.width * 0.7) + 1, topLeft.y), new Dimension(
+				(int) (upper.width * 0.3) - 1, upper.height)));
 
 		setConstraint(ue,
 				new Rectangle(
-						new Point(topLeft).getTranslated(0, outer.height),
-						inner));
+						new Point(topLeft).getTranslated(0, upper.height),
+						middle));
 		setConstraint(ue_label,
 				new Rectangle(
-						new Point(topLeft).getTranslated(0, outer.height),
-						inner));
+						new Point(topLeft).getTranslated(0, upper.height),
+						middle));
 		setConstraint(
 				note,
-				new Rectangle(new Point(topLeft).getTranslated(0, inner.height
-						+ outer.height), outer));
+				new Rectangle(new Point(topLeft).getTranslated(0, upper.height
+						+ middle.height), lower));
 		setConstraint(
 				note_label,
-				new Rectangle(new Point(topLeft).getTranslated(0, inner.height
-						+ outer.height-3), outer));
+				new Rectangle(new Point(topLeft).getTranslated(0, upper.height
+						+ middle.height), lower));
 
 		ac_label.invalidate();
 		ac.invalidate();

@@ -18,6 +18,7 @@ import org.eclipse.gef.CompoundSnapToHelper;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.SnapToGeometry;
 import org.eclipse.gef.SnapToGrid;
 import org.eclipse.gef.SnapToHelper;
@@ -25,7 +26,10 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.IWorkbenchAdapter;
+import org.eclipse.ui.views.properties.PropertySheet;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFGraphics;
 import org.tud.inf.st.mbt.emf.graphicaleditor.focus.IFocusableListener;
 
@@ -37,7 +41,7 @@ public abstract class BasicNodeEditPart extends AbstractGraphicalEditPart
 	private Adapter changeAdapter = new AdapterImpl() {
 		public void notifyChanged(Notification msg) {
 			Display.getDefault().asyncExec(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					refreshVisuals();
@@ -46,7 +50,7 @@ public abstract class BasicNodeEditPart extends AbstractGraphicalEditPart
 						((ConnectionEditPart) cep).refresh();
 					}
 					refreshTargetConnections();
-					refreshChildren();					
+					refreshChildren();
 				}
 			});
 
@@ -69,12 +73,13 @@ public abstract class BasicNodeEditPart extends AbstractGraphicalEditPart
 	protected void setConstraint(Rectangle constraint) {
 		getFigure().setBounds(constraint);
 		AbstractGraphicalEditPart parent = (AbstractGraphicalEditPart) getParent();
-		if(parent!=null)parent.setLayoutConstraint(this, getFigure(), constraint);
+		if (parent != null)
+			parent.setLayoutConstraint(this, getFigure(), constraint);
 	}
-	
+
 	@Override
 	protected void createEditPolicies() {
-		installEditPolicy("Snap2Grid", new SnapFeedbackPolicy());		
+		installEditPolicy("Snap2Grid", new SnapFeedbackPolicy());
 	}
 
 	@Override
@@ -143,20 +148,23 @@ public abstract class BasicNodeEditPart extends AbstractGraphicalEditPart
 	}
 
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class key) {
-	    if (key == SnapToHelper.class) {
-	        List<SnapToHelper> helpers = new ArrayList<SnapToHelper>();
-	        if (Boolean.TRUE.equals(getViewer().getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED))) {
-	            helpers.add(new SnapToGeometry(this));
-	        }
-	        if (Boolean.TRUE.equals(getViewer().getProperty(SnapToGrid.PROPERTY_GRID_ENABLED))) {
-	            helpers.add(new SnapToGrid(this));
-	        }
-	        if(helpers.size()==0) {
-	            return null;
-	        } else {
-	            return new CompoundSnapToHelper(helpers.toArray(new SnapToHelper[0]));
-	        }
-	    }
+		if (key == SnapToHelper.class) {
+			List<SnapToHelper> helpers = new ArrayList<SnapToHelper>();
+			if (Boolean.TRUE.equals(getViewer().getProperty(
+					SnapToGeometry.PROPERTY_SNAP_ENABLED))) {
+				helpers.add(new SnapToGeometry(this));
+			}
+			if (Boolean.TRUE.equals(getViewer().getProperty(
+					SnapToGrid.PROPERTY_GRID_ENABLED))) {
+				helpers.add(new SnapToGrid(this));
+			}
+			if (helpers.size() == 0) {
+				return null;
+			} else {
+				return new CompoundSnapToHelper(
+						helpers.toArray(new SnapToHelper[0]));
+			}
+		}
 		if (key == IWorkbenchAdapter.class)
 			return this;
 		return super.getAdapter(key);
@@ -174,4 +182,5 @@ public abstract class BasicNodeEditPart extends AbstractGraphicalEditPart
 	public Object[] getChildren(Object o) {
 		return null;
 	}
+
 }

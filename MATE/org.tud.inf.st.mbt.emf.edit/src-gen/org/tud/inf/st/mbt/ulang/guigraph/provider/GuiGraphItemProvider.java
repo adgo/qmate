@@ -235,6 +235,11 @@ public class GuiGraphItemProvider
 			(createChildParameter
 				(GuigraphPackage.Literals.GUI_GRAPH__NODES,
 				 GuigraphFactory.eINSTANCE.createTimerTransition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GuigraphPackage.Literals.GUI_GRAPH__NODES,
+				 GuigraphFactory.eINSTANCE.createPageTransition()));
 	}
 
 	/**
