@@ -12,7 +12,7 @@ import org.tud.inf.st.mbt.emf.traversal.TraversalManager;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.tud.inf.st.mbt.ocm.ui"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.tud.inf.st.mbt.automation"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -31,9 +31,11 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		
-		ConnectorManager.getInstance().registerType(new BasicConnectorType());
+		//ConnectorManager.getInstance().registerType(new BasicConnectorType());
 	}
 
+
+	
 	/*
 	 * (non-Javadoc)
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)

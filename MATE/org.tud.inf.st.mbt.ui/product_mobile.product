@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Mobile Application Test Environment" uid="org.tud.inf.st.mbt.ui.mobile" id="org.tud.inf.st.mbt.ui.mobile" application="org.eclipse.ui.ide.workbench" version="0.1" useFeatures="false" includeLaunchers="false">
+<product name="Mobile Application Test Environment" uid="org.tud.inf.st.mbt.ui.mobile" id="org.tud.inf.st.mbt.ui.mobile" application="org.eclipse.ui.ide.workbench" version="0.1" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="icons/mate_full.png"/>
@@ -14,7 +14,6 @@
    </configIni>
 
    <launcherArgs>
-      <programArgs>-console</programArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
@@ -274,6 +273,9 @@
    </plugins>
 
    <configurations>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="3" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="3" />
       <plugin id="org.tud.inf.st.mbt.automation" autoStart="true" startLevel="5" />
       <plugin id="org.tud.inf.st.mbt.automation.android" autoStart="true" startLevel="5" />
       <property name="perspective" value="org.tud.inf.st.mbt.ui.perspective" />

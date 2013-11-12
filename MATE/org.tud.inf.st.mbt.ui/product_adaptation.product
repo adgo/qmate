@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Model-based Adaptivity Test Environment" uid="org.tud.inf.st.mbt.ui.adaptive" id="org.tud.inf.st.mbt.ui.adaptive" application="org.eclipse.ui.ide.workbench" version="0.1" useFeatures="false" includeLaunchers="false">
+<product name="Model-based Adaptivity Test Environment" uid="org.tud.inf.st.mbt.ui.adaptive" id="org.tud.inf.st.mbt.ui.adaptive" application="org.eclipse.ui.ide.workbench" version="0.1" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.tud.inf.st.mbt.ui/icons/mate_full.png"/>
@@ -14,7 +14,6 @@
    </configIni>
 
    <launcherArgs>
-      <programArgs>-console</programArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
@@ -33,7 +32,6 @@
    </launcher>
 
    <vm>
-      <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5</windows>
    </vm>
 
    <license>
@@ -249,6 +247,9 @@
    </plugins>
 
    <configurations>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="3" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="3" />
       <plugin id="org.tud.inf.st.mbt.automation" autoStart="true" startLevel="5" />
       <property name="perspective" value="org.tud.inf.st.mbt.emf.ui.perspective" />
    </configurations>

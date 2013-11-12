@@ -3,6 +3,8 @@ package org.tud.inf.st.mbt.automation;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.tud.inf.st.mbt.automation.basic.BasicConnectorType;
+
 public final class ConnectorManager {
 	private static ConnectorManager instance;
 
@@ -15,6 +17,7 @@ public final class ConnectorManager {
 	private List<AbstractConnectorType> connectorTypes = new ArrayList<>();
 
 	private ConnectorManager() {
+		registerType(new BasicConnectorType());
 	}
 
 	public void terminateAll() {
