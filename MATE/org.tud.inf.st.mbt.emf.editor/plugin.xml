@@ -5,77 +5,112 @@
 -->
 
 <plugin>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-null
-null
-null
-
-
-null
-null
-null
-
-
-null
-null
-null
-
-
-null
-null
-null
-
-
-null
-null
-null
-
-
-null
-null
-null
-
-
-null
-null
-null   <extension point="org.eclipse.ui.editors">
-      <!-- @generated all -->
+   <extension
+         point="org.eclipse.ui.editors">
       <editor
-            id="org.tud.inf.st.mbt.core.presentation.CoreEditorID"
-            name="%_UI_CoreEditor_label"
-            icon="icons/mate16.png"
-            extensions="core,generic,test,report,model,ecore,suite,data"
             class="org.tud.inf.st.mbt.core.presentation.CoreEditor"
-            contributorClass="org.tud.inf.st.mbt.core.presentation.CoreActionBarContributor">
+            contributorClass="org.tud.inf.st.mbt.core.presentation.CoreActionBarContributor"
+            extensions="core,model,generic,test,report,data"
+            icon="icons/mate16.png"
+            id="org.tud.inf.st.mbt.core.presentation.CoreEditorID"
+            name="%_UI_CoreEditor_label">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.tud.inf.st.mbt.core.presentation.CoreEditor"
+            contributorClass="org.tud.inf.st.mbt.core.presentation.CoreActionBarContributor"
+            extensions="core,model,generic,test,report,data"
+            icon="icons/full/obj16/CoreModelFile.gif"
+            id="org.tud.inf.st.mbt.core.presentation.CoreEditorID"
+            name="%_UI_CoreEditor_label">
+      </editor>
+   </extension>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+null
+null
+null
+
+
+null
+null
+null
+
+
+null
+null
+null
+
+
+null
+null
+null
+
+
+null
+null
+null
+
+
+null
+null
+null
+
+
+null
+null
+null
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 null

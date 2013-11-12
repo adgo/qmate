@@ -1030,7 +1030,39 @@ public class CoreEditor extends MultiPageEditorPart implements
 		// Only creates the other pages if there is something that can be edited
 		//
 		if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
-	
+			// Create a page for the selection tree view.
+			//
+			{
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), CoreEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							Tree tree = new Tree(composite, SWT.MULTI);
+							TreeViewer newTreeViewer = new TreeViewer(tree);
+							return newTreeViewer;
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
+				viewerPane.createControl(getContainer());
+
+				selectionViewer = (TreeViewer)viewerPane.getViewer();
+				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+
+				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				selectionViewer.setInput(editingDomain.getResourceSet());
+				selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+				viewerPane.setTitle(editingDomain.getResourceSet());
+
+				new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
+
+				createContextMenuFor(selectionViewer);
+				int pageIndex = addPage(viewerPane.getControl());
+				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
+			}
 
 			// This is the page for the table tree viewer.
 			//
