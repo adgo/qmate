@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>GuiGraph Editor</title>
+  </head>
+  <body>
+    <h1>Gui Graph Editor</h1>
+    <p>Gui Graphs describe the basic operaional view on the system under test.
+      The model is based on <span style="font-weight: bold;">Petri net</span>s
+      plus several extensions. A Petri net consists of three fundamental
+      elements:</p>
+    <ul>
+      <li><span style="font-weight: bold;">Places </span>consitute a partitial
+        state. A place can be filled with multiple tokens. An assignment of
+        tokens the a subset of places of a Petri net is a marking and, thus, a
+        state.</li>
+      <li><span style="font-weight: bold;">Transitions </span>define behavior.</li>
+      <li>(Directed) <span style="font-weight: bold;">Arcs </span>can be
+        connect a Place with a Transition but never two entities of the same
+        type. An arc has a <span style="font-weight: bold;">weight </span>to
+        define how many tokens are transferred on this specific arc.</li>
+    </ul>
+    <p>We say, transitions get activated if all places from incoming arcs are
+      filled with enough tokens for each arc's weight. Then the transition may
+      fire by removing these tokens and putting new tokens in places that are
+      connected by output arcs in the respective number of the arcs' weight.</p>
+    <p>Petri nets are not Turing-complete. Therefore,<span style="font-weight: bold;">
+        Inhibitor arcs</span> can be used that are special arcs from places to
+      transitions. A transition with with an incoming inhibitor arc can only be
+      activated if the respective place is not marked by a <span style="font-weight: bold;">token</span>.</p>
+    <p>Besides inhibitor arcs, we added some additional extensions for Gui
+      Graphs. Places are provided in two different visual representations and
+      transitions are extended with labels, application conditions and time intervals.
+      We call the special type of our transitions Condition Action Transitions.</p>
+    <h2>Two Types of Places</h2>
+    <p>There are two semantically equal types of places:</p>
+    <ol>
+      <li><span style="font-weight: bold;">Non-widget Nodes</span> and</li>
+      <li><span style="font-weight: bold;">Widget Nodes</span> that can
+        additionally be associated to screenshots. This can be used to provide
+        an additional orientation for the test engineer.</li>
+    </ol>
+    <p>Using the property view, an additional number of tokens can be set to
+      each place.</p>
+    <h2>Labels</h2>
+    <p>Lables descibe observable behavior that is executed when a transition
+      "fires". Gui Graph labels are defined by the <a href="ActionsLanguage.html">Action
+        Language</a>. Define labels by double clicking on the middle compartment
+      of a condition action transition.</p>
+    <h2>Application Conditions (only in the Adaptivity Testing Version)</h2>
+    <p>Application conditions are taken from so-called<span style="font-style: italic;">
+        Feature Petri nets</span>. They restrict the activation of each
+      transition to a propositional constraint defined in the <a href="RulesLanguage.html">Rules
+        Language</a>. Define application conditions by double clicking on the
+      upper compartment of a condition action transition.</p>
+    <h2>Time Intervals (only in the Adaptivity Testing Version)</h2>
+    <p>Time intervals are taken from so-called <span style="font-style: italic;">Time
+        Petri nets</span>. They restrict the firering of transitions to a (real)
+      time inside the respective interval. The time counter starts as soon as
+      the transitions becomes enabled (equal to activation in standard Petri
+      nets). You can define a temporal indeterminism with the help of these
+      intervals. They can be changed in the property view after selecting the
+      respecitve transition.</p>
+    <h2>Clocking Transitions</h2>
+    <p>Clocking transitions work like standard transitions of Inhibitor Arc Petri
+      nets plus that they produce logic time in order to control timed
+      environment models (so-called <span style="font-weight: bold;">consumers</span>).
+      Clocking transitions have activation time intervals as well. In the
+      property view the amount of produced logical time can be defined as well
+      as a specific consumer. If no consumer is defined,<span style="font-style: italic;">
+        all consumers in the model's resource set are run</span>.</p>
+    <span style="font-weight: bold;"></span>
+  </body>
+</html>

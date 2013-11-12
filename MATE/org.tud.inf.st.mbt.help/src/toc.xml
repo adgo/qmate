@@ -5,7 +5,7 @@
    <topic label="Basic Concepts">
    </topic>
    <topic label="Techniqual Components">
-      <topic label="GUI-Graph Editor">
+      <topic href="src/GuiGraphEditor.html" label="GUI-Graph Editor">
       </topic>
       <topic label="Generic Model Editor">
       </topic>
