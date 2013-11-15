@@ -19,6 +19,7 @@ import org.tud.inf.st.mbt.rules.IRealTimeConsumer;
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#isTerminates <em>Terminates</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getTimeMin <em>Time Min</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getTimeMax <em>Time Max</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getTimingType <em>Timing Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -187,5 +188,35 @@ public interface Transition extends GuiGraphNode, IRealTimeConsumer {
 	 * @generated
 	 */
 	void setTimeMax(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Timing Type</b></em>' attribute.
+	 * The default value is <code>"DelayUntilStart"</code>.
+	 * The literals are from the enumeration {@link org.tud.inf.st.mbt.ulang.guigraph.TimingType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Timing Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Timing Type</em>' attribute.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.TimingType
+	 * @see #setTimingType(TimingType)
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage#getTransition_TimingType()
+	 * @model default="DelayUntilStart" required="true"
+	 * @generated
+	 */
+	TimingType getTimingType();
+
+	/**
+	 * Sets the value of the '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getTimingType <em>Timing Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Timing Type</em>' attribute.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.TimingType
+	 * @see #getTimingType()
+	 * @generated
+	 */
+	void setTimingType(TimingType value);
 
 } // Transition

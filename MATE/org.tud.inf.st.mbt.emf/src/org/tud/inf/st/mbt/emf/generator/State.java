@@ -42,6 +42,7 @@ import org.tud.inf.st.mbt.rules.RulesPackage;
 import org.tud.inf.st.mbt.rules.TimeAtom;
 import org.tud.inf.st.mbt.rules.TokenAtom;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
+import org.tud.inf.st.mbt.ulang.guigraph.TimingType;
 import org.tud.inf.st.mbt.ulang.guigraph.Transition;
 
 public class State {
@@ -272,7 +273,7 @@ public class State {
 	public double getPriority() {
 		return priority;
 	}
-	
+
 	public void setPriority(double priority) {
 		this.priority = priority;
 	}
@@ -459,6 +460,54 @@ public class State {
 		return false;
 	}
 
+	public long getMinTimeToElapse() {
+
+		long min = Long.MAX_VALUE;
+
+		PredicateList rtas = findAllPredicates(RulesPackage.eINSTANCE
+				.getRealTimeAtom());
+		for (Predicate p : rtas) {
+			RealTimeAtom rta = (RealTimeAtom) p;
+			if (TimedConditionActionOperator.class.isAssignableFrom(rta
+					.getConsumer().getClass())) {
+				TimedConditionAction tca = (TimedConditionAction) rta
+						.getConsumer();
+
+				min = Math.max(0,
+						Math.min(min, tca.getFrequency() - rta.getTime()));
+
+			} else if (Transition.class.isAssignableFrom(rta.getConsumer()
+					.getClass())) {
+				Transition t = (Transition) rta.getConsumer();
+
+				if (t.getTimingType().equals(TimingType.INTERVAL)) {
+					if (rta.getTime() >= t.getTimeMin()) {
+						if (t.getTimeMax() >= t.getTimeMin()
+								&& rta.getTime() <= t.getTimeMax())
+							min = Math.max(
+									0,
+									Math.min(min,
+											t.getTimeMin() - rta.getTime()));
+						if(t.getTimeMax()<t.getTimeMin())
+							min = 0;
+					} else {
+						min = Math.max(
+								0,
+								Math.min(min,
+										t.getTimeMin() - rta.getTime()));
+					}
+				} else if (t.getTimingType().equals(
+						TimingType.DELAY_UNTIL_START)) {
+					min = Math.max(0,
+							Math.min(min, t.getTimeMin() - rta.getTime()));
+				}
+
+			}
+		}
+
+		return min;
+	}
+
 	public List<? extends IRealTimeConsumer> getRealTimeEnabledConsumers(
 			Class<? extends IRealTimeConsumer> type) {
 		PredicateList rtas = findAllPredicates(RulesPackage.eINSTANCE
@@ -479,6 +528,10 @@ public class State {
 					if (rta.getTime() >= t.getTimeMin()
 							&& (rta.getTime() <= t.getTimeMax() || t
 									.getTimeMax() < t.getTimeMin()))
+						result.add(t);
+					else if (rta.getTime() >= t.getTimeMin()
+							&& t.getTimingType().equals(
+									TimingType.DELAY_UNTIL_START))
 						result.add(t);
 				}
 			}

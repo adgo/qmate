@@ -86,17 +86,14 @@ public class CATransitionFigure extends RoundedRectangle implements
 		border.setColor(term ? ColorConstants.red : ColorConstants.gray);
 	}
 
-	public void setTime(long min, long max) {
-		StringBuffer txt = new StringBuffer();
-		txt.append("[");
-		if (min < 0)
-			min = 0;
-		txt.append("" + min);
-		txt.append("..");
-		if (max < min)
-			max = Long.MAX_VALUE;
-		txt.append("" + (max == Long.MAX_VALUE ? "*" : max) + "]");
-		time_label.setText(txt.toString());
+	public void setTime(TimingType t, long min, long max) {
+
+		if (t.equals(TimingType.DELAY_UNTIL_START)) {
+			time_label.setText(">=" + (min < 0 ? 0 : min));
+		} else if (t.equals(TimingType.INTERVAL)) {
+			time_label.setText("[" + (min < 0 ? 0 : min) + ".."
+					+ (max < min || max == Long.MAX_VALUE ? "*" : max) + "]");
+		}
 	}
 
 	public void setActive(boolean active) {
@@ -150,10 +147,12 @@ public class CATransitionFigure extends RoundedRectangle implements
 	public void paintFigure(Graphics graphics) {
 		Dimension size = getBounds().getSize();
 
-		Dimension upper = new Dimension(size.width,MBTConstants.IS_MOBILE ? 0 : 17);
-		
-		Dimension lower = new Dimension(size.width,20);
-		Dimension middle = new Dimension(size.width,size.height-upper.height-lower.height);
+		Dimension upper = new Dimension(size.width, MBTConstants.IS_MOBILE ? 0
+				: 17);
+
+		Dimension lower = new Dimension(size.width, 20);
+		Dimension middle = new Dimension(size.width, size.height - upper.height
+				- lower.height);
 
 		Point topLeft = new Point(0, 0);
 

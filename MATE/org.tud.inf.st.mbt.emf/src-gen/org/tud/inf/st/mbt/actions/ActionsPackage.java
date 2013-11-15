@@ -754,13 +754,22 @@ public interface ActionsPackage extends EPackage {
 	int GET_PROPERTY_ACTION_FEATURE_COUNT = DEPENDENT_ACTION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Time Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GET_REAL_TIME_ACTION__TIME_HINT = DEPENDENT_ACTION_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Get Real Time Action</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GET_REAL_TIME_ACTION_FEATURE_COUNT = DEPENDENT_ACTION_FEATURE_COUNT + 0;
+	int GET_REAL_TIME_ACTION_FEATURE_COUNT = DEPENDENT_ACTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.actions.impl.GetFeatureStateActionImpl <em>Get Feature State Action</em>}' class.
@@ -1114,6 +1123,17 @@ public interface ActionsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getGetRealTimeAction();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.actions.GetRealTimeAction#getTimeHint <em>Time Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time Hint</em>'.
+	 * @see org.tud.inf.st.mbt.actions.GetRealTimeAction#getTimeHint()
+	 * @see #getGetRealTimeAction()
+	 * @generated
+	 */
+	EAttribute getGetRealTimeAction_TimeHint();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.actions.GetFeatureStateAction <em>Get Feature State Action</em>}'.
@@ -1596,6 +1616,14 @@ public interface ActionsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass GET_REAL_TIME_ACTION = eINSTANCE.getGetRealTimeAction();
+
+		/**
+		 * The meta object literal for the '<em><b>Time Hint</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GET_REAL_TIME_ACTION__TIME_HINT = eINSTANCE.getGetRealTimeAction_TimeHint();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.actions.impl.GetFeatureStateActionImpl <em>Get Feature State Action</em>}' class.

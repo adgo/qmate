@@ -83,16 +83,25 @@ public class CATransitionEditPart extends BasicNodeEditPart implements Markable 
 
 					public boolean canConnect(EObject source, EObject target,
 							EClass connType) {
-						if(!(source instanceof Transition && !(target instanceof Transition))
-								&& !(target instanceof Transition && !(source instanceof Transition)))return false;
-						
-						for(Arc a:ModelUtil.getAllEObjectsOfSuperType(getModel().eContainer(), Arc.class)){
-							if(a.getSource().equals(source) && a.getTarget().equals(target)){
-								if(connType.equals(GuigraphPackage.eINSTANCE.getStandardArc()) && a instanceof StandardArc)return false;
-								if(connType.equals(GuigraphPackage.eINSTANCE.getInhibitorArc()) && a instanceof InhibitorArc)return false;								
+						if (!(source instanceof Transition && !(target instanceof Transition))
+								&& !(target instanceof Transition && !(source instanceof Transition)))
+							return false;
+
+						for (Arc a : ModelUtil.getAllEObjectsOfSuperType(
+								getModel().eContainer(), Arc.class)) {
+							if (a.getSource().equals(source)
+									&& a.getTarget().equals(target)) {
+								if (connType.equals(GuigraphPackage.eINSTANCE
+										.getStandardArc())
+										&& a instanceof StandardArc)
+									return false;
+								if (connType.equals(GuigraphPackage.eINSTANCE
+										.getInhibitorArc())
+										&& a instanceof InhibitorArc)
+									return false;
 							}
 						}
-						
+
 						return true;
 					}
 
@@ -170,7 +179,8 @@ public class CATransitionEditPart extends BasicNodeEditPart implements Markable 
 				.setText(getModel().getActionsText());
 		fig.getLabel(CATransitionFigure.NOTE).setText(note);
 
-		fig.setTime(getModel().getTimeMin(), getModel().getTimeMax());
+		fig.setTime(getModel().getTimingType(), getModel().getTimeMin(),
+				getModel().getTimeMax());
 
 		if (simulationActive)
 			fig.setActive(simulationActive);

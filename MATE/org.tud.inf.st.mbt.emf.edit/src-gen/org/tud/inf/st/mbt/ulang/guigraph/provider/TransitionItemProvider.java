@@ -69,6 +69,7 @@ public class TransitionItemProvider
 			addTerminatesPropertyDescriptor(object);
 			addTimeMinPropertyDescriptor(object);
 			addTimeMaxPropertyDescriptor(object);
+			addTimingTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -206,6 +207,28 @@ public class TransitionItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Timing Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTimingTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Transition_timingType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Transition_timingType_feature", "_UI_Transition_type"),
+				 GuigraphPackage.Literals.TRANSITION__TIMING_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Transition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,6 +271,7 @@ public class TransitionItemProvider
 			case GuigraphPackage.TRANSITION__TERMINATES:
 			case GuigraphPackage.TRANSITION__TIME_MIN:
 			case GuigraphPackage.TRANSITION__TIME_MAX:
+			case GuigraphPackage.TRANSITION__TIMING_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

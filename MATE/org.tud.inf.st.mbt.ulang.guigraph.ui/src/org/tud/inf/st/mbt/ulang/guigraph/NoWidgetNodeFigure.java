@@ -11,6 +11,7 @@ import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.swt.SWT;
 
 public class NoWidgetNodeFigure extends Figure {
 	private Shape circle;
@@ -21,6 +22,7 @@ public class NoWidgetNodeFigure extends Figure {
 
 		circle = new Ellipse();
 		circle.setBackgroundColor(ColorConstants.white);
+		circle.setAntialias(SWT.ON);
 
 		markingLabel = new Label("");
 		label = new Label("");

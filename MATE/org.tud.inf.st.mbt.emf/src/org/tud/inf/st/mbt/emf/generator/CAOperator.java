@@ -9,18 +9,23 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.tud.inf.st.mbt.actions.ActionsFactory;
+import org.tud.inf.st.mbt.actions.GetRealTimeAction;
 import org.tud.inf.st.mbt.emf.util.FunctionProcessor;
 import org.tud.inf.st.mbt.ulang.guigraph.ConditionActionTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
 import org.tud.inf.st.mbt.ulang.guigraph.NoWidgetNode;
+import org.tud.inf.st.mbt.ulang.guigraph.TimingType;
 import org.tud.inf.st.mbt.ulang.guigraph.Transition;
 
 public class CAOperator extends TransitionOperator {
 	private ActionProcessor actionProcessor;
+	private TimingType timingType;
 
-	public CAOperator(SATFoundation sf) {
-		super(sf);
+	public CAOperator(SATFoundation sf, boolean ignoreRealTime,
+			TimingType timingType) {
+		super(sf, ignoreRealTime);
 		actionProcessor = new ActionProcessor(sf);
+		this.timingType = timingType;
 	}
 
 	@Override
@@ -48,38 +53,26 @@ public class CAOperator extends TransitionOperator {
 
 	@Override
 	public State[] operate(State s) {
-		if (s.isTopInstructionSequenceFinishing()
-				&& s.getTopInstructionContainer() instanceof ConditionActionTransition) {
-			ConditionActionTransition cat = (ConditionActionTransition) s
-					.getTopInstructionContainer();
-			State n = new State(s, null, cat.isTerminates(), new PredicateList(
-					s.getPropositions()), cat);
-			n.deconfigureProposition(n.getTopInstructionPointerAtom());
-			consumeAndProduce(cat, n);
-			return new State[] { n };
-		}
-		if (s.isTopInstructionSequenceFinishing()
-				&& s.getTopInstructionContainer() == null) {
-			State n = new State(s, null, false, new PredicateList(
-					s.getPropositions()));
-			n.deconfigureProposition(n.getTopInstructionPointerAtom());
-			return new State[] { n };
-		}
-
 		List<State> next = new LinkedList<>();
 
 		new FunctionProcessor(getSatFoundation(), s).recomputeFunctionResults();
 
 		List<Transition> activated = super.computeActivatedTransitions(s);
 
-		if (!isIgnoreRealtime()) {
-			next.addAll(actionProcessor.executeAction(s,
-					ActionsFactory.eINSTANCE.createGetRealTimeAction(),
-					Collections.<String, Object> emptyMap()));
+		if (!isIgnoreRealtime() && timingType.equals(TimingType.INTERVAL)) {
+			GetRealTimeAction grta = ActionsFactory.eINSTANCE
+					.createGetRealTimeAction();
+			long hint = s.getMinTimeToElapse();
+			if (hint != Long.MAX_VALUE) {
+				grta.setTimeHint(hint);
+				next.addAll(actionProcessor.executeAction(s, grta,
+						Collections.<String, Object> emptyMap()));
+			}
 		}
 
 		for (Transition t : activated)
-			if (t instanceof ConditionActionTransition) {
+			if (t instanceof ConditionActionTransition
+					&& t.getTimingType().equals(timingType)) {
 				ConditionActionTransition cat = (ConditionActionTransition) t;
 
 				if (cat.getActions() == null
@@ -88,7 +81,7 @@ public class CAOperator extends TransitionOperator {
 							s.getPropositions()), cat);
 					n.setTerminating(cat.isTerminates());
 					consumeAndProduce(cat, n);
-					n.setPriority(cat.getRate()*cat.getFaultImpact()
+					n.setPriority(cat.getRate() * cat.getFaultImpact()
 							* cat.getFaultProbability());
 					next.add(n);
 				} else {
@@ -96,12 +89,12 @@ public class CAOperator extends TransitionOperator {
 							cat.getActions(),
 							Collections.<String, Object> emptyMap(), cat);
 					for (State pa : postAction)
-						pa.setPriority(cat.getRate()*cat.getFaultImpact()
+						pa.setPriority(cat.getRate() * cat.getFaultImpact()
 								* cat.getFaultProbability());
 					next.addAll(postAction);
 				}
-				
-				cat.setRate(Math.max(cat.getRate()-1, 0));
+
+				cat.setRate(Math.max(cat.getRate() - 1, 0));
 
 			}
 

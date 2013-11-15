@@ -15,8 +15,8 @@ import org.tud.inf.st.mbt.ulang.guigraph.Transition;
 
 public class TimerOperator extends TransitionOperator {
 
-	public TimerOperator(SATFoundation sf) {
-		super(sf);
+	public TimerOperator(SATFoundation sf, boolean ignoreRealTime) {
+		super(sf,ignoreRealTime);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -40,7 +40,7 @@ public class TimerOperator extends TransitionOperator {
 							OperationalConfigurationModel.class);
 					for (OperationalConfigurationModel ocm : ocms)
 						nextLocal.addAll(Arrays.asList(new OCMOperator(
-								getSatFoundation(), ocm, tt.getDuration())
+								getSatFoundation(), ocm, tt.getDuration(),isIgnoreRealtime())
 								.operate(s)));
 					List<DataScenario> dss = (List<DataScenario>) getAllEObjectsOfSuperType(
 							getSatFoundation().getResourceSet(),
@@ -49,7 +49,7 @@ public class TimerOperator extends TransitionOperator {
 						nextLocal.addAll(Arrays
 								.asList(new DataScenarioOperator(
 										getSatFoundation(), ds, tt
-												.getDuration()).operate(s)));
+												.getDuration(),isIgnoreRealtime()).operate(s)));
 					if (ocms.isEmpty() && dss.isEmpty())
 						nextLocal.add(new State(s, Collections
 								.<PostGenerationAction> emptyList(), tt
@@ -59,11 +59,11 @@ public class TimerOperator extends TransitionOperator {
 					nextLocal.addAll(Arrays.asList(new OCMOperator(
 							getSatFoundation(),
 							(OperationalConfigurationModel) tt.getConsumer(),
-							tt.getDuration()).operate(s)));
+							tt.getDuration(),isIgnoreRealtime()).operate(s)));
 				} else if (tt.getConsumer() instanceof DataScenario) {
 					nextLocal.addAll(Arrays.asList(new DataScenarioOperator(
 							getSatFoundation(),
-							(DataScenario) tt.getConsumer(), tt.getDuration())
+							(DataScenario) tt.getConsumer(), tt.getDuration(),isIgnoreRealtime())
 							.operate(s)));
 				}
 

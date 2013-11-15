@@ -130,8 +130,12 @@ public class ManualAutomation implements ISimulationAutomation {
 
 			return true;
 		} else if (action instanceof GetRealTimeAction) {
-			simulationAccessor.elapseRealTime(System.currentTimeMillis()
-					- lastRealTime);
+			long elapsed = System.currentTimeMillis()
+					- lastRealTime;
+			
+			long hint = ((GetRealTimeAction) action).getTimeHint();
+			
+			simulationAccessor.elapseRealTime(elapsed>hint ? elapsed : hint);
 			return true;
 		} else {
 			class DialogRun implements Runnable {

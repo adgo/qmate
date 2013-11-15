@@ -34,6 +34,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeMax" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timingType" lowerBound="1"
+        eType="#//TimingType" defaultValueLiteral="DelayUntilStart"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GuiGraphNode" abstract="true" interface="true"
       eSuperTypes="mbt.ecore#//core/AbstractModelElement"/>
@@ -73,5 +75,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="InhibitorArc" eSuperTypes="#//Arc"/>
   <eClassifiers xsi:type="ecore:EClass" name="PageTransition" eSuperTypes="#//Transition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="page" lowerBound="1" eType="#//GuiGraph"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimingType">
+    <eLiterals name="DelayUntilStart"/>
+    <eLiterals name="Interval" value="1"/>
   </eClassifiers>
 </ecore:EPackage>

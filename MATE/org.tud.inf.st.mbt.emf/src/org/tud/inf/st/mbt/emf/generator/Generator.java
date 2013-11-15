@@ -19,6 +19,7 @@ import org.tud.inf.st.mbt.test.TestCase;
 import org.tud.inf.st.mbt.test.TestFactory;
 import org.tud.inf.st.mbt.test.TestStep;
 import org.tud.inf.st.mbt.test.TestSuite;
+import org.tud.inf.st.mbt.ulang.guigraph.TimingType;
 
 /**
  * Generates offline test cases. Does not work with downlink variables and
@@ -28,19 +29,17 @@ import org.tud.inf.st.mbt.test.TestSuite;
  */
 public class Generator implements Iterator<GeneratorState> {
 	private LinkedList<State> queue = new LinkedList<>();
-	private List<AbstractOperator> operators = new ArrayList<>(3);
+	private AbstractOperator operator;
 	private State initial = new State(null, null, false, new PredicateList());
 	private int step = 0;
 	private TestSuite suite;
-	private ActionProcessor actionProcessor;
 	private State current;
 	private SATFoundation satFoundation;
 	private AbstractTraversalType traversalType;
 
 	public Generator(Configuration config, ResourceSet rs, int maxTokens,
 			int maxTime, AbstractTraversalType traversalType) {
-		this.actionProcessor = new ActionProcessor(
-				satFoundation = new SATFoundation(rs, maxTokens, maxTime));
+		satFoundation = new SATFoundation(rs, maxTokens, maxTime);
 		this.traversalType = traversalType;
 
 		configureOperators();
@@ -50,10 +49,8 @@ public class Generator implements Iterator<GeneratorState> {
 		suite.setName(config.getName() + "_suite");
 		suite.setConfiguration(config);
 
-		// init
-		for (AbstractOperator o : operators) {
-			o.contributeToInitialState(initial);
-		}
+		operator.contributeToInitialState(initial);
+
 		for (IFeature f : config.getFeatures()) {
 			for (Atom p : ModelUtil.atoms(f)) {
 				initial.configureProposition(p);
@@ -69,8 +66,7 @@ public class Generator implements Iterator<GeneratorState> {
 
 	@Override
 	public final boolean hasNext() {
-		return !operators.isEmpty() && !queue.isEmpty()
-				&& !(current != null && current.isFailed());
+		return !queue.isEmpty() && !(current != null && current.isFailed());
 	}
 
 	@Override
@@ -82,14 +78,7 @@ public class Generator implements Iterator<GeneratorState> {
 		current = traversalType.determineNext(queue);
 		queue.remove(current);
 
-		if (current.isTopInstructionSequenceRunning()) {
-			queue.addAll(Arrays.asList(actionProcessor
-					.operateTopInstructionSequence(current)));
-		} else {
-			for (AbstractOperator o : operators) {
-				queue.addAll(Arrays.asList(o.operate(current)));
-			}
-		}
+		queue.addAll(Arrays.asList(operator.operate(current)));
 
 		TestCase newCase = null;
 		if (current.isTerminating()) {
@@ -105,8 +94,9 @@ public class Generator implements Iterator<GeneratorState> {
 	public TestSuite getTestSuite() {
 		renameElements();
 		suite.setRiskReduction(0);
-		for(TestCase c:suite.getCases())
-			suite.setRiskReduction(suite.getRiskReduction()+c.getRiskReduction());
+		for (TestCase c : suite.getCases())
+			suite.setRiskReduction(suite.getRiskReduction()
+					+ c.getRiskReduction());
 		return suite;
 	}
 
@@ -122,7 +112,7 @@ public class Generator implements Iterator<GeneratorState> {
 			TestStep ts = TestFactory.eINSTANCE.createTestStep();
 			ts.setId(c.getId() + "-step-" + c.getSteps().size() + 1);
 			ts.setName(ts.getId());
-			c.setRiskReduction(c.getRiskReduction()+s.getPriority());
+			c.setRiskReduction(c.getRiskReduction() + s.getPriority());
 			if (s.getTraceableTo() != null && s.getTraceableTo().length > 0)
 				ts.setNote(s.getTraceableTo()[0].getNote());
 
@@ -159,12 +149,11 @@ public class Generator implements Iterator<GeneratorState> {
 	}
 
 	private void configureOperators() {
-		operators.add(new CAOperator(satFoundation));
-		operators.add(new TimerOperator(satFoundation));
-		operators.add(new TimedConditionActionOperator(satFoundation));
-		
-		for(AbstractOperator op:operators)
-			if(op instanceof TransitionOperator)
-				((TransitionOperator) op).setIgnoreRealtime(true);
+		operator = new InstructionsOperator(satFoundation, true)
+				.ifEmpty(AbstractOperator.combine(new CAOperator(satFoundation,
+						true, TimingType.DELAY_UNTIL_START), new CAOperator(
+						satFoundation, true, TimingType.INTERVAL),
+						new TimedConditionActionOperator(satFoundation),
+						new TimerOperator(satFoundation, true)));
 	}
 }

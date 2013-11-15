@@ -51,8 +51,9 @@ public abstract class TransitionOperator extends AbstractOperator {
 	private SATFoundation satFoundation;
 	private boolean ignoreRealtime = false;
 
-	public TransitionOperator(SATFoundation satFoundation) {
+	public TransitionOperator(SATFoundation satFoundation, boolean ignoreRealTime) {
 		this.satFoundation = satFoundation;
+		this.ignoreRealtime = ignoreRealTime;
 
 		this.sat = satFoundation.buildSAT();
 
@@ -112,8 +113,12 @@ public abstract class TransitionOperator extends AbstractOperator {
 	protected void consumeAndProduce(Transition t, State s) {
 		for (PlaceWeight w : trans2consumed.get(t))
 			changeTokenCount(s, w.place, -w.weight);
+		
+		computeEnabledTransitions(s);
+		
 		for (PlaceWeight w : trans2produced.get(t))
 			changeTokenCount(s, w.place, w.weight);
+		
 		s.deconfigureProposition(ModelUtil.atom((IRealTimeConsumer) t, 0L));
 	}
 
@@ -133,6 +138,9 @@ public abstract class TransitionOperator extends AbstractOperator {
 				if (!timed.contains(t))
 					s.configureProposition(ModelUtil.atom(t, 0));
 				enabled.add(t);
+			} else {
+				if(timed.contains(t))
+					s.deconfigureProposition(ModelUtil.atom(t,0));
 			}
 		}
 

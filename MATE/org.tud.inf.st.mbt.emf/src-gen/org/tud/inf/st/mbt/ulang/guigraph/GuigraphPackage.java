@@ -4,6 +4,7 @@ package org.tud.inf.st.mbt.ulang.guigraph;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -459,13 +460,22 @@ public interface GuigraphPackage extends EPackage {
 	int TRANSITION__TIME_MAX = GUI_GRAPH_NODE_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Timing Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__TIMING_TYPE = GUI_GRAPH_NODE_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 6;
+	int TRANSITION_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PlaceImpl <em>Place</em>}' class.
@@ -705,6 +715,15 @@ public interface GuigraphPackage extends EPackage {
 	int CONDITION_ACTION_TRANSITION__TIME_MAX = TRANSITION__TIME_MAX;
 
 	/**
+	 * The feature id for the '<em><b>Timing Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_ACTION_TRANSITION__TIMING_TYPE = TRANSITION__TIMING_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Application Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -848,6 +867,15 @@ public interface GuigraphPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIMER_TRANSITION__TIME_MAX = TRANSITION__TIME_MAX;
+
+	/**
+	 * The feature id for the '<em><b>Timing Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIMER_TRANSITION__TIMING_TYPE = TRANSITION__TIMING_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Duration</b></em>' attribute.
@@ -1206,6 +1234,15 @@ public interface GuigraphPackage extends EPackage {
 	int PAGE_TRANSITION__TIME_MAX = TRANSITION__TIME_MAX;
 
 	/**
+	 * The feature id for the '<em><b>Timing Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_TRANSITION__TIMING_TYPE = TRANSITION__TIMING_TYPE;
+
+	/**
 	 * The feature id for the '<em><b>Page</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1222,6 +1259,16 @@ public interface GuigraphPackage extends EPackage {
 	 * @ordered
 	 */
 	int PAGE_TRANSITION_FEATURE_COUNT = TRANSITION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.TimingType <em>Timing Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.TimingType
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getTimingType()
+	 * @generated
+	 */
+	int TIMING_TYPE = 13;
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.GuiGraph <em>Gui Graph</em>}'.
@@ -1394,6 +1441,17 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTransition_TimeMax();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getTimingType <em>Timing Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Timing Type</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.Transition#getTimingType()
+	 * @see #getTransition()
+	 * @generated
+	 */
+	EAttribute getTransition_TimingType();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.GuiGraphNode <em>Gui Graph Node</em>}'.
@@ -1618,6 +1676,16 @@ public interface GuigraphPackage extends EPackage {
 	EReference getPageTransition_Page();
 
 	/**
+	 * Returns the meta object for enum '{@link org.tud.inf.st.mbt.ulang.guigraph.TimingType <em>Timing Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Timing Type</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.TimingType
+	 * @generated
+	 */
+	EEnum getTimingType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1774,6 +1842,14 @@ public interface GuigraphPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TRANSITION__TIME_MAX = eINSTANCE.getTransition_TimeMax();
+
+		/**
+		 * The meta object literal for the '<em><b>Timing Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSITION__TIMING_TYPE = eINSTANCE.getTransition_TimingType();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.GuiGraphNode <em>Gui Graph Node</em>}' class.
@@ -1960,6 +2036,16 @@ public interface GuigraphPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAGE_TRANSITION__PAGE = eINSTANCE.getPageTransition_Page();
+
+		/**
+		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.TimingType <em>Timing Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.tud.inf.st.mbt.ulang.guigraph.TimingType
+		 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getTimingType()
+		 * @generated
+		 */
+		EEnum TIMING_TYPE = eINSTANCE.getTimingType();
 
 	}
 

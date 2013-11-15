@@ -255,7 +255,7 @@ public class ActionProcessor {
 							OperationalConfigurationModel.class);
 			for (OperationalConfigurationModel ocm : ocms)
 				next.addAll(Arrays.asList(new OCMOperator(satFoundation, ocm,
-						((ThrowAction) a).getEventID()).operate(s)));
+						((ThrowAction) a).getEventID(),false).operate(s)));
 			if (next.isEmpty()) {
 				State n = new State(s,
 						Collections.<PostGenerationAction> emptyList(), false,
@@ -296,11 +296,11 @@ public class ActionProcessor {
 			int time = ((TimeAction) a).getTime();
 			if (consumer instanceof OperationalConfigurationModel) {
 				next.addAll(Arrays.asList(new OCMOperator(satFoundation,
-						(OperationalConfigurationModel) consumer, time)
+						(OperationalConfigurationModel) consumer, time,false)
 						.operate(s)));
 			} else if (consumer instanceof DataScenario) {
 				next.addAll(Arrays.asList(new DataScenarioOperator(
-						satFoundation, (DataScenario) consumer, time)
+						satFoundation, (DataScenario) consumer, time,false)
 						.operate(s)));
 			} else {
 				for (ITimeConsumer tc : ModelUtil.getAllEObjectsOfSuperType(
@@ -309,11 +309,11 @@ public class ActionProcessor {
 					if (consumer instanceof OperationalConfigurationModel) {
 						next.addAll(Arrays.asList(new OCMOperator(
 								satFoundation,
-								(OperationalConfigurationModel) consumer, time)
+								(OperationalConfigurationModel) consumer, time,false)
 								.operate(s)));
 					} else if (consumer instanceof DataScenario) {
 						next.addAll(Arrays.asList(new DataScenarioOperator(
-								satFoundation, (DataScenario) consumer, time)
+								satFoundation, (DataScenario) consumer, time,false)
 								.operate(s)));
 					}
 				}

@@ -4,6 +4,7 @@ package org.tud.inf.st.mbt.ulang.guigraph.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -66,6 +67,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 import org.tud.inf.st.mbt.ulang.guigraph.StandardArc;
 import org.tud.inf.st.mbt.ulang.guigraph.TimerTransition;
+import org.tud.inf.st.mbt.ulang.guigraph.TimingType;
 import org.tud.inf.st.mbt.ulang.guigraph.Transition;
 import org.tud.inf.st.mbt.ulang.guigraph.Widget;
 
@@ -166,6 +168,13 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * @generated
 	 */
 	private EClass pageTransitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum timingTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -412,6 +421,15 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTransition_TimingType() {
+		return (EAttribute)transitionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGuiGraphNode() {
 		return guiGraphNodeEClass;
 	}
@@ -601,6 +619,15 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getTimingType() {
+		return timingTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GuigraphFactory getGuigraphFactory() {
 		return (GuigraphFactory)getEFactoryInstance();
 	}
@@ -643,6 +670,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		createEAttribute(transitionEClass, TRANSITION__TERMINATES);
 		createEAttribute(transitionEClass, TRANSITION__TIME_MIN);
 		createEAttribute(transitionEClass, TRANSITION__TIME_MAX);
+		createEAttribute(transitionEClass, TRANSITION__TIMING_TYPE);
 
 		guiGraphNodeEClass = createEClass(GUI_GRAPH_NODE);
 
@@ -673,6 +701,9 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 
 		pageTransitionEClass = createEClass(PAGE_TRANSITION);
 		createEReference(pageTransitionEClass, PAGE_TRANSITION__PAGE);
+
+		// Create enums
+		timingTypeEEnum = createEEnum(TIMING_TYPE);
 	}
 
 	/**
@@ -744,6 +775,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		initEAttribute(getTransition_Terminates(), ecorePackage.getEBoolean(), "terminates", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransition_TimeMin(), ecorePackage.getELong(), "timeMin", "0", 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransition_TimeMax(), ecorePackage.getELong(), "timeMax", "-1", 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransition_TimingType(), this.getTimingType(), "timingType", "DelayUntilStart", 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(guiGraphNodeEClass, GuiGraphNode.class, "GuiGraphNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -774,6 +806,11 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 
 		initEClass(pageTransitionEClass, PageTransition.class, "PageTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPageTransition_Page(), this.getGuiGraph(), null, "page", null, 1, 1, PageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(timingTypeEEnum, TimingType.class, "TimingType");
+		addEEnumLiteral(timingTypeEEnum, TimingType.DELAY_UNTIL_START);
+		addEEnumLiteral(timingTypeEEnum, TimingType.INTERVAL);
 
 		// Create resource
 		createResource(eNS_URI);

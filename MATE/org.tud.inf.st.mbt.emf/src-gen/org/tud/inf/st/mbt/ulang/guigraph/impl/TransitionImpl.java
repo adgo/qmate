@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.tud.inf.st.mbt.core.impl.AbstractModelElementImpl;
 import org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage;
+import org.tud.inf.st.mbt.ulang.guigraph.TimingType;
 import org.tud.inf.st.mbt.ulang.guigraph.Transition;
 
 /**
@@ -22,6 +23,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.Transition;
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#isTerminates <em>Terminates</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getTimeMin <em>Time Min</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getTimeMax <em>Time Max</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getTimingType <em>Timing Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -147,6 +149,26 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 	 * @ordered
 	 */
 	protected long timeMax = TIME_MAX_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTimingType() <em>Timing Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimingType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TimingType TIMING_TYPE_EDEFAULT = TimingType.DELAY_UNTIL_START;
+
+	/**
+	 * The cached value of the '{@link #getTimingType() <em>Timing Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimingType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TimingType timingType = TIMING_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -298,6 +320,27 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TimingType getTimingType() {
+		return timingType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimingType(TimingType newTimingType) {
+		TimingType oldTimingType = timingType;
+		timingType = newTimingType == null ? TIMING_TYPE_EDEFAULT : newTimingType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__TIMING_TYPE, oldTimingType, timingType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -313,6 +356,8 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 				return getTimeMin();
 			case GuigraphPackage.TRANSITION__TIME_MAX:
 				return getTimeMax();
+			case GuigraphPackage.TRANSITION__TIMING_TYPE:
+				return getTimingType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -342,6 +387,9 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 				return;
 			case GuigraphPackage.TRANSITION__TIME_MAX:
 				setTimeMax((Long)newValue);
+				return;
+			case GuigraphPackage.TRANSITION__TIMING_TYPE:
+				setTimingType((TimingType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -373,6 +421,9 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 			case GuigraphPackage.TRANSITION__TIME_MAX:
 				setTimeMax(TIME_MAX_EDEFAULT);
 				return;
+			case GuigraphPackage.TRANSITION__TIMING_TYPE:
+				setTimingType(TIMING_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -397,6 +448,8 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 				return timeMin != TIME_MIN_EDEFAULT;
 			case GuigraphPackage.TRANSITION__TIME_MAX:
 				return timeMax != TIME_MAX_EDEFAULT;
+			case GuigraphPackage.TRANSITION__TIMING_TYPE:
+				return timingType != TIMING_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -690,6 +690,15 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGetRealTimeAction_TimeHint() {
+		return (EAttribute)getRealTimeActionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGetFeatureStateAction() {
 		return getFeatureStateActionEClass;
 	}
@@ -870,6 +879,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		createEReference(getPropertyActionEClass, GET_PROPERTY_ACTION__PROPERTY);
 
 		getRealTimeActionEClass = createEClass(GET_REAL_TIME_ACTION);
+		createEAttribute(getRealTimeActionEClass, GET_REAL_TIME_ACTION__TIME_HINT);
 
 		getFeatureStateActionEClass = createEClass(GET_FEATURE_STATE_ACTION);
 		createEReference(getFeatureStateActionEClass, GET_FEATURE_STATE_ACTION__FEATURE);
@@ -1011,6 +1021,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		initEReference(getGetPropertyAction_Property(), theDataPackage.getDataLeaf(), null, "property", null, 1, 1, GetPropertyAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(getRealTimeActionEClass, GetRealTimeAction.class, "GetRealTimeAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGetRealTimeAction_TimeHint(), ecorePackage.getELong(), "timeHint", "0", 1, 1, GetRealTimeAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(getFeatureStateActionEClass, GetFeatureStateAction.class, "GetFeatureStateAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGetFeatureStateAction_Feature(), theFeaturesPackage.getIFeature(), null, "feature", null, 1, 1, GetFeatureStateAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

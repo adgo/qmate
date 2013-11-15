@@ -145,17 +145,10 @@ public abstract class PlaceImpl extends AbstractModelElementImpl implements Plac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (mapToPage: ");
-		result.append(mapToPage);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //PlaceImpl

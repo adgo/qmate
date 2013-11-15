@@ -29,8 +29,8 @@ public class DataScenarioOperator extends TransitionOperator {
 	private DataScenario scenario;
 	private ActionProcessor actionProcessor;
 
-	public DataScenarioOperator(SATFoundation sf, DataScenario scen, int ticks) {
-		super(sf);
+	public DataScenarioOperator(SATFoundation sf, DataScenario scen, int ticks, boolean ignoreRealTime) {
+		super(sf,ignoreRealTime);
 		this.actionProcessor = new ActionProcessor(sf);
 		this.scenario = scen;
 		this.ticks = ticks;

@@ -60,8 +60,8 @@ import org.tud.inf.st.mbt.data.DataBinding;
 import org.tud.inf.st.mbt.data.DataElement;
 import org.tud.inf.st.mbt.data.DataLeaf;
 import org.tud.inf.st.mbt.emf.generator.AbstractOperator;
-import org.tud.inf.st.mbt.emf.generator.ActionProcessor;
 import org.tud.inf.st.mbt.emf.generator.CAOperator;
+import org.tud.inf.st.mbt.emf.generator.InstructionsOperator;
 import org.tud.inf.st.mbt.emf.generator.PredicateList;
 import org.tud.inf.st.mbt.emf.generator.SATFoundation;
 import org.tud.inf.st.mbt.emf.generator.State;
@@ -79,6 +79,7 @@ import org.tud.inf.st.mbt.features.FeatureVersion;
 import org.tud.inf.st.mbt.features.IFeature;
 import org.tud.inf.st.mbt.rules.DataAtom;
 import org.tud.inf.st.mbt.rules.InstructionPointerAtom;
+import org.tud.inf.st.mbt.ulang.guigraph.TimingType;
 import org.tud.inf.st.pceditor.emf.PCCSResourceSetImpl;
 
 public class SimulationView extends ViewPart {
@@ -216,7 +217,8 @@ public class SimulationView extends ViewPart {
 		}
 
 		public Object[] getChildren(Object parentElement) {
-			if (cache.containsKey(parentElement))
+			if (cache.containsKey(parentElement)
+					&& cache.get(parentElement).length > 0)
 				return cache.get(parentElement);
 			List<Object> children = new ArrayList<>();
 			try {
@@ -224,35 +226,37 @@ public class SimulationView extends ViewPart {
 						&& isReady((State) parentElement)
 						&& !((State) parentElement).isFailed()) {
 					State current = (State) parentElement;
-					if (current.isTopInstructionSequenceRunning()) {
-						children.addAll(Arrays.asList(actionProcessor
-								.operateTopInstructionSequence(current)));
-					} else {
-						for (AbstractOperator o : operators) {
-							children.addAll(Arrays.asList(o.operate(current)));
-						}
-					}
+					children.addAll(Arrays.asList(operator.operate(current)));
 				} else if (parentElement instanceof Configuration) {
 					Configuration config = (Configuration) parentElement;
 					State initial = new State(null, null, false,
 							new PredicateList());
-					operators = new AbstractOperator[] {
-							new CAOperator(satFoundation),
-							new TimerOperator(satFoundation),
-							new TimedConditionActionOperator(satFoundation) };
 
-					CAOperator caOp = new CAOperator(satFoundation);
-					TimerOperator tOp = new TimerOperator(satFoundation);
-					TimedConditionActionOperator tcaOp = new TimedConditionActionOperator(
-							satFoundation);
+					if (ignoreRealtime) {
+						operator = new InstructionsOperator(satFoundation, ignoreRealtime)
+								.ifEmpty(AbstractOperator.combine(
+										new CAOperator(satFoundation, ignoreRealtime,
+												TimingType.DELAY_UNTIL_START),
+										new CAOperator(satFoundation, ignoreRealtime,
+												TimingType.INTERVAL),
+										new TimedConditionActionOperator(
+												satFoundation),
+										new TimerOperator(satFoundation, ignoreRealtime)));
+					} else {
+						operator = new InstructionsOperator(satFoundation,
+								ignoreRealtime).ifEmpty(
+								new CAOperator(satFoundation, ignoreRealtime,
+										TimingType.DELAY_UNTIL_START)).ifEmpty(
+								AbstractOperator.combine(new CAOperator(
+										satFoundation, ignoreRealtime,
+										TimingType.INTERVAL),
+										new TimedConditionActionOperator(
+												satFoundation),
+										new TimerOperator(satFoundation,
+												ignoreRealtime)));
+					}
 
-					caOp.setIgnoreRealtime(ignoreRealtime);
-					tOp.setIgnoreRealtime(ignoreRealtime);
-
-					operators = new AbstractOperator[] { caOp, tOp, tcaOp };
-
-					for (AbstractOperator o : operators)
-						o.contributeToInitialState(initial);
+					operator.contributeToInitialState(initial);
 					for (IFeature f : config.getFeatures()) {
 						initial.configureAll(ModelUtil.atoms(f));
 					}
@@ -324,13 +328,12 @@ public class SimulationView extends ViewPart {
 	}
 
 	private StepTreeViewer stepViewer;
-	private AbstractOperator[] operators;
+	private AbstractOperator operator;
 	private State lastExecuted;
 	private Map<Configuration, State> conf2initial = new HashMap<>();
 	private List<State> failed = new LinkedList<State>();
 	private List<State> downloaded = new LinkedList<State>();
 	private TreeViewer details;
-	private ActionProcessor actionProcessor;
 	private SATFoundation satFoundation;
 	private boolean visualize = false;
 	private Button traverseBtn;
@@ -512,7 +515,7 @@ public class SimulationView extends ViewPart {
 									Resource r = null;
 									try {
 										r = rs.getResource(URI.createURI(d
-												.getTargetFile()),true);
+												.getTargetFile()), true);
 									} catch (Exception e) {
 										// ok
 									}
@@ -574,8 +577,7 @@ public class SimulationView extends ViewPart {
 		failed.clear();
 		conf2initial.clear();
 		stepViewer.setInput(confs);
-		this.actionProcessor = new ActionProcessor(
-				satFoundation = new SATFoundation(rs, maxTokens, maxTime));
+		satFoundation = new SATFoundation(rs, maxTokens, maxTime);
 		cancelTraversal();
 		checkTraversalEnabled();
 	}
@@ -659,7 +661,11 @@ public class SimulationView extends ViewPart {
 					Display.getDefault().syncExec(new Runnable() {
 						@Override
 						public void run() {
-							automate(next);
+							try {
+								automate(next);
+							} catch (Exception e) {
+								jobCancelled = true;
+							}
 							if (visualize)
 								next.activate();
 						}
@@ -679,6 +685,7 @@ public class SimulationView extends ViewPart {
 									cancelTraversal();
 								}
 							});
+							traversationJob = null;
 							return Status.OK_STATUS;
 						}
 					}
@@ -719,6 +726,9 @@ public class SimulationView extends ViewPart {
 	}
 
 	private void automate(State selected) {
+		if (connectorType == null)
+			return;
+
 		Object as = connectorType.getConnector(lblConnection.getText());
 
 		if (!(as instanceof ISimulationAutomation))

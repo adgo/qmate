@@ -60,8 +60,31 @@ public class GetRealTimeActionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addTimeHintPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Time Hint feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTimeHintPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GetRealTimeAction_timeHint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GetRealTimeAction_timeHint_feature", "_UI_GetRealTimeAction_type"),
+				 ActionsPackage.Literals.GET_REAL_TIME_ACTION__TIME_HINT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -83,7 +106,8 @@ public class GetRealTimeActionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_GetRealTimeAction_type");
+		GetRealTimeAction getRealTimeAction = (GetRealTimeAction)object;
+		return getString("_UI_GetRealTimeAction_type") + " " + getRealTimeAction.getTimeHint();
 	}
 
 	/**
@@ -96,6 +120,12 @@ public class GetRealTimeActionItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(GetRealTimeAction.class)) {
+			case ActionsPackage.GET_REAL_TIME_ACTION__TIME_HINT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

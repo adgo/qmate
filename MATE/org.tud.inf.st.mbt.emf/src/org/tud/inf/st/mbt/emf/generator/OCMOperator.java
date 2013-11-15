@@ -49,16 +49,16 @@ public class OCMOperator extends TransitionOperator {
 	private ActionProcessor actionProcessor;
 
 	public OCMOperator(SATFoundation sf, OperationalConfigurationModel ocm,
-			int ticks) {
-		super(sf);
+			int ticks, boolean ignoreRealTime) {
+		super(sf,ignoreRealTime);
 		this.actionProcessor = new ActionProcessor(sf);
 		this.ticks = ticks;
 		this.ocm = ocm;
 	}
 
 	public OCMOperator(SATFoundation sf, OperationalConfigurationModel ocm,
-			String eventID) {
-		super(sf);
+			String eventID, boolean ignoreRealTime) {
+		super(sf,ignoreRealTime);
 		this.eventID = eventID;
 		this.ocm = ocm;
 	}
@@ -195,7 +195,7 @@ public class OCMOperator extends TransitionOperator {
 						n.configureProposition(nconf);
 
 						next.addAll(Arrays.asList(new OCMOperator(
-								getSatFoundation(), ocm, ticks - duration)
+								getSatFoundation(), ocm, ticks - duration,isIgnoreRealtime())
 								.operate(n)));
 					}
 					if (next.isEmpty())
