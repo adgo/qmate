@@ -122,13 +122,22 @@ public interface FeaturesPackage extends EPackage {
 	int FEATURE__VERSIONS = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Causal Link Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__CAUSAL_LINK_TYPE = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int FEATURE_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.features.impl.FeatureSetImpl <em>Feature Set</em>}' class.
@@ -747,6 +756,17 @@ public interface FeaturesPackage extends EPackage {
 	EReference getFeature_Versions();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.features.Feature#getCausalLinkType <em>Causal Link Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Causal Link Type</em>'.
+	 * @see org.tud.inf.st.mbt.features.Feature#getCausalLinkType()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EAttribute getFeature_CausalLinkType();
+
+	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.features.FeatureSet <em>Feature Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1064,6 +1084,14 @@ public interface FeaturesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FEATURE__VERSIONS = eINSTANCE.getFeature_Versions();
+
+		/**
+		 * The meta object literal for the '<em><b>Causal Link Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE__CAUSAL_LINK_TYPE = eINSTANCE.getFeature_CausalLinkType();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.features.impl.FeatureSetImpl <em>Feature Set</em>}' class.

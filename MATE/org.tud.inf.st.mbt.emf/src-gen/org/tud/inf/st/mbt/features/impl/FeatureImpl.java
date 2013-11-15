@@ -33,6 +33,7 @@ import org.tud.inf.st.mbt.features.FeaturesPackage;
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.features.impl.FeatureImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.features.impl.FeatureImpl#getVersions <em>Versions</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.features.impl.FeatureImpl#getCausalLinkType <em>Causal Link Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,6 +58,24 @@ public class FeatureImpl extends AbstractModelElementImpl implements Feature {
 	 * @ordered
 	 */
 	protected EList<FeatureVersion> versions;
+	/**
+	 * The default value of the '{@link #getCausalLinkType() <em>Causal Link Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCausalLinkType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final CausalLinkType CAUSAL_LINK_TYPE_EDEFAULT = CausalLinkType.VIRTUAL;
+	/**
+	 * The cached value of the '{@link #getCausalLinkType() <em>Causal Link Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCausalLinkType()
+	 * @generated
+	 * @ordered
+	 */
+	protected CausalLinkType causalLinkType = CAUSAL_LINK_TYPE_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -105,6 +124,27 @@ public class FeatureImpl extends AbstractModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CausalLinkType getCausalLinkType() {
+		return causalLinkType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCausalLinkType(CausalLinkType newCausalLinkType) {
+		CausalLinkType oldCausalLinkType = causalLinkType;
+		causalLinkType = newCausalLinkType == null ? CAUSAL_LINK_TYPE_EDEFAULT : newCausalLinkType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FeaturesPackage.FEATURE__CAUSAL_LINK_TYPE, oldCausalLinkType, causalLinkType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -128,6 +168,8 @@ public class FeatureImpl extends AbstractModelElementImpl implements Feature {
 				return getAttributes();
 			case FeaturesPackage.FEATURE__VERSIONS:
 				return getVersions();
+			case FeaturesPackage.FEATURE__CAUSAL_LINK_TYPE:
+				return getCausalLinkType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,6 +191,9 @@ public class FeatureImpl extends AbstractModelElementImpl implements Feature {
 				getVersions().clear();
 				getVersions().addAll((Collection<? extends FeatureVersion>)newValue);
 				return;
+			case FeaturesPackage.FEATURE__CAUSAL_LINK_TYPE:
+				setCausalLinkType((CausalLinkType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -167,6 +212,9 @@ public class FeatureImpl extends AbstractModelElementImpl implements Feature {
 			case FeaturesPackage.FEATURE__VERSIONS:
 				getVersions().clear();
 				return;
+			case FeaturesPackage.FEATURE__CAUSAL_LINK_TYPE:
+				setCausalLinkType(CAUSAL_LINK_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -183,8 +231,26 @@ public class FeatureImpl extends AbstractModelElementImpl implements Feature {
 				return attributes != null && !attributes.isEmpty();
 			case FeaturesPackage.FEATURE__VERSIONS:
 				return versions != null && !versions.isEmpty();
+			case FeaturesPackage.FEATURE__CAUSAL_LINK_TYPE:
+				return causalLinkType != CAUSAL_LINK_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (causalLinkType: ");
+		result.append(causalLinkType);
+		result.append(')');
+		return result.toString();
 	}
 
 } //FeatureImpl

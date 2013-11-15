@@ -77,9 +77,9 @@ public class GUIGraphCreateCommand extends Command {
 	public void undo() {
 		if (child != null) {
 			if (parent.eClass().equals(GuigraphPackage.eINSTANCE.getGuiGraph())) {
-				if (childType.equals(GuigraphPackage.eINSTANCE
-						.getGuiGraphNode())) {
-					((GuiGraph) parent).getNodes().remove((Form) child);
+				if (GuigraphPackage.eINSTANCE
+						.getGuiGraphNode().isSuperTypeOf(childType)) {
+					((GuiGraph) parent).getNodes().remove((GuiGraphNode) child);
 				}
 			} else if (GuigraphPackage.eINSTANCE.getWidget().isSuperTypeOf(
 					parent.eClass())) {

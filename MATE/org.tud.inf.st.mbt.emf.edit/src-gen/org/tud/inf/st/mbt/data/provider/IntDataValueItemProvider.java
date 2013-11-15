@@ -99,14 +99,10 @@ public class IntDataValueItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((IntDataValue)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_IntDataValue_type") :
-			getString("_UI_IntDataValue_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**

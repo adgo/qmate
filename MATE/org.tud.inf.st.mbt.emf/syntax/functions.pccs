@@ -4,9 +4,11 @@ syntax functions f:"http://st.inf.tud.org/mbt/functions";
 operators{"(" ")"  "." "=" "[" "]" "+" "-" "*" "/" ">" "<" "," "$" "?" "|" "&"}
 keywords{"in" "tokens" "time" "size" "next" "free" "version" "index" "count" "object" "Function"}   
 parsers{     
-	func ::= or(pfarith pfdata pflog pfnode);	
+	func ::= or(pfarith pfdata pflog pfnode var);	
 	
-	pflog ::= or(fpredicate plarger plower pequal psub ref_log);
+	var ::= ("?" #^id) => f:FunctionVariable(id=id);
+	
+	pflog ::= or(fpredicate plarger plower pequal psub ref_log pfnodevalue);
 	
 	plarger ::= (pfarith^l ">" pfarith^r) => f:LargerThanFunction(_left = l _right = r);	
 	plower ::= (pfarith^l "<" pfarith^r) => f:LowerThanFunction(_left = l _right = r);	
@@ -14,7 +16,7 @@ parsers{
 	psub ::= (pfdata^l "in"  pfdata^r) => f:SubClassFunction(sub=l in=r);	
 	fpredicate ::= rules.rule => f:PredicateFunction(predicate=this);	
 	
-	ref_log ::= ("&" (# ("."#)*)/"."^r) => f:LogicReferenceFunction(function = r);
+	ref_log ::= ("&" (# ("."#)*)/"."^r "(" func*^p ")") => f:LogicReferenceFunction(function = r parameters=p);
 	
 	pfarith ::= {
 		pfint pflong pffloat pftokens pftime pfbagsize pfbagnext pfbagfree pfbagindex pfbagcount
@@ -25,9 +27,10 @@ parsers{
 		("(" pfarith^f ")") => f:SubFunction(operand=f)	
 		ref_arith
 		pfarithcase
+		pfnodevalue
 	};
 	
-	ref_arith ::= ("&" (# ("."#)*)/"."^r) => f:ArithmetricReferenceFunction(function = r);
+	ref_arith ::= ("&" (# ("."#)*)/"."^r "(" func*^p ")") => f:ArithmetricReferenceFunction(function = r parameters=p);
 		
 	pfint ::= ($i^i) => f:IntFunction(value=i);
 	pflong ::= ($l^l) => f:LongFunction(value=l);
@@ -48,19 +51,17 @@ parsers{
 	pfnnode ::= ("$" (# ("."#)*)/"."^n) => f:DataNodeFunction(data = n);
 	pfnbag ::= ("$" (# ("."#)*)/"."^b "[" pfarith^i "]") => f:BagElementFunction(data = b idx = i);
 	
-	ref_node ::= ("&" (# ("."#)*)/"."^r) => f:DataNodeReferenceFunction(function = r);
+	ref_node ::= ("&" (# ("."#)*)/"."^r "(" func*^p ")") => f:DataNodeReferenceFunction(function = r parameters=p);
 	
 	pfnodecase ::= nodecase+ => f:DataNodeCaseFunction(cases=this);
 	nodecase ::= ("|" rule^c "=" pfnode^then) => f:DataNodeCase(condition=c then=then);
 	
 	pfdata ::= or(pfvalue pfnodevalue pfdatacase ref_value);
 	pfvalue ::=  ((# ("."#)*)/"."^n) => f:DataValueFunction(value=n);
-	pfnodevalue ::= pfnode => f:DataNodeValueFunction(node=this);
+	pfnodevalue ::= ("?" pfnode^n) => f:DataNodeValueFunction(node=n);
 	
-	ref_value ::= ("&" (# ("."#)*)/"."^r) => f:ValueReferenceFunction(function = r);
+	ref_value ::= ("&" (# ("."#)*)/"."^r "(" func*^p ")") => f:ValueReferenceFunction(function = r parameters=p);
 	
 	pfdatacase ::= datacase+ => f:ValueCaseFunction(cases=this);
 	datacase ::= ("|" rule^c "=" pfdata^then) => f:ValueCase(condition=c then=then);
-	
-	var_func ::= ("Function" "?" #^id) => f:FunctionVariable(id=id); 	
 } start func 

@@ -32,12 +32,12 @@ public interface DataLeaf extends DataStructureNode {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Domain</em>' reference.
-	 * @see #setDomain(DataClass)
+	 * @see #setDomain(DataElement)
 	 * @see org.tud.inf.st.mbt.data.DataPackage#getDataLeaf_Domain()
 	 * @model required="true"
 	 * @generated
 	 */
-	DataClass getDomain();
+	DataElement getDomain();
 
 	/**
 	 * Sets the value of the '{@link org.tud.inf.st.mbt.data.DataLeaf#getDomain <em>Domain</em>}' reference.
@@ -47,10 +47,11 @@ public interface DataLeaf extends DataStructureNode {
 	 * @see #getDomain()
 	 * @generated
 	 */
-	void setDomain(DataClass value);
+	void setDomain(DataElement value);
 
 	/**
 	 * Returns the value of the '<em><b>Causal Link Type</b></em>' attribute.
+	 * The default value is <code>"Virtual"</code>.
 	 * The literals are from the enumeration {@link org.tud.inf.st.mbt.core.CausalLinkType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -62,7 +63,7 @@ public interface DataLeaf extends DataStructureNode {
 	 * @see org.tud.inf.st.mbt.core.CausalLinkType
 	 * @see #setCausalLinkType(CausalLinkType)
 	 * @see org.tud.inf.st.mbt.data.DataPackage#getDataLeaf_CausalLinkType()
-	 * @model required="true"
+	 * @model default="Virtual" required="true"
 	 * @generated
 	 */
 	CausalLinkType getCausalLinkType();

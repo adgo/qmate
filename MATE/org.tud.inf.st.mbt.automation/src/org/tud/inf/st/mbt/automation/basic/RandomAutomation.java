@@ -11,7 +11,6 @@ import org.tud.inf.st.mbt.actions.GetRealTimeAction;
 import org.tud.inf.st.mbt.actions.PostGenerationAction;
 import org.tud.inf.st.mbt.actions.PostGenerationSequence;
 import org.tud.inf.st.mbt.automation.execute.ISimulationResponder;
-import org.tud.inf.st.mbt.data.DataClass;
 import org.tud.inf.st.mbt.data.DataElement;
 import org.tud.inf.st.mbt.data.DataLeaf;
 import org.tud.inf.st.mbt.emf.util.ModelUtil;
@@ -42,8 +41,8 @@ public class RandomAutomation extends ManualAutomation {
 			return true;
 		} else if (action instanceof GetPropertyAction) {
 			DataLeaf leaf = ((GetPropertyAction) action).getProperty();
-			DataClass c = leaf.getDomain();
-			Set<DataElement> elements = ModelUtil.getAllLeafElements(c);
+			DataElement e = leaf.getDomain();
+			Set<DataElement> elements = ModelUtil.getAllLeafElements(e);
 			DataElement select = elements.toArray(new DataElement[0])[rand
 					.nextInt(elements.size())];
 			simulationAccessor.setProperty(leaf, select);

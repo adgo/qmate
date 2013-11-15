@@ -40,7 +40,7 @@ public class GenerateAction extends ActionDelegate {
 	@Override
 	public void run(IAction action) {
 		final ResourceSet rs = new PCCSResourceSetImpl();
-		Resource rgg = new XMIResourceImpl(URI.createURI(selected
+		Resource rgg = rs.createResource(URI.createURI(selected
 				.getLocationURI().toString() + ".ecore"));
 		rs.getResources().add(rgg);
 		try {

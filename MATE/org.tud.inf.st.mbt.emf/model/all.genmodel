@@ -275,6 +275,7 @@
       <genClasses ecoreClass="mbt.ecore#//features/Feature">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/Feature/attributes"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//features/Feature/versions"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//features/Feature/causalLinkType"/>
       </genClasses>
       <genClasses image="false" ecoreClass="mbt.ecore#//features/FeatureSet"/>
       <genClasses ecoreClass="mbt.ecore#//features/ExplicitSet">

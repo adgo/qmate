@@ -435,6 +435,11 @@ public class ContextEntryItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RulesPackage.Literals.CONTEXT_ENTRY__VALUE,
+				 GuigraphFactory.eINSTANCE.createPageTransition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RulesPackage.Literals.CONTEXT_ENTRY__VALUE,
 				 CoreFactory.eINSTANCE.createGenericModelContainer()));
 
 		newChildDescriptors.add

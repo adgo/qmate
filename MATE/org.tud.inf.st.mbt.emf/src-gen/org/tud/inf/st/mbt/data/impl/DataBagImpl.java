@@ -167,7 +167,7 @@ public class DataBagImpl extends DataStructureNodeImpl implements DataBag {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	public void organize() {
-		if (!hasBeenOrganized){
+		if (!hasBeenOrganized && getSingleElementPrototype()!=null){
 			for (int i = 0; i < getMaxSize(); i++) {
 				getGeneratedElements().add(EcoreUtil.copy(getSingleElementPrototype()));
 			}

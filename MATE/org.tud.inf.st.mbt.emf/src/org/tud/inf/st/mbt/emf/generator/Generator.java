@@ -67,16 +67,6 @@ public class Generator implements Iterator<GeneratorState> {
 		queue.add(initial);
 	}
 
-	private void configureOperators() {
-		operators.add(new CAOperator(satFoundation));
-		operators.add(new TimerOperator(satFoundation));
-		operators.add(new TimedConditionActionOperator(satFoundation));
-		
-		for(AbstractOperator op:operators)
-			if(op instanceof TransitionOperator)
-				((TransitionOperator) op).setIgnoreRealtime(true);
-	}
-
 	@Override
 	public final boolean hasNext() {
 		return !operators.isEmpty() && !queue.isEmpty()
@@ -110,6 +100,14 @@ public class Generator implements Iterator<GeneratorState> {
 		}
 
 		return new GeneratorState(step++, queue.size(), newCase);
+	}
+
+	public TestSuite getTestSuite() {
+		renameElements();
+		suite.setRiskReduction(0);
+		for(TestCase c:suite.getCases())
+			suite.setRiskReduction(suite.getRiskReduction()+c.getRiskReduction());
+		return suite;
 	}
 
 	private TestCase buildCase(State s) {
@@ -160,11 +158,13 @@ public class Generator implements Iterator<GeneratorState> {
 		}
 	}
 
-	public TestSuite getTestSuite() {
-		renameElements();
-		suite.setRiskReduction(0);
-		for(TestCase c:suite.getCases())
-			suite.setRiskReduction(suite.getRiskReduction()+c.getRiskReduction());
-		return suite;
+	private void configureOperators() {
+		operators.add(new CAOperator(satFoundation));
+		operators.add(new TimerOperator(satFoundation));
+		operators.add(new TimedConditionActionOperator(satFoundation));
+		
+		for(AbstractOperator op:operators)
+			if(op instanceof TransitionOperator)
+				((TransitionOperator) op).setIgnoreRealtime(true);
 	}
 }

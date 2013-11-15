@@ -13,12 +13,14 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.tud.inf.st.mbt.actions.provider.AllEditPlugin;
@@ -64,8 +66,31 @@ public class FeatureItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addCausalLinkTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Causal Link Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCausalLinkTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_causalLinkType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_causalLinkType_feature", "_UI_Feature_type"),
+				 FeaturesPackage.Literals.FEATURE__CAUSAL_LINK_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -136,6 +161,9 @@ public class FeatureItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Feature.class)) {
+			case FeaturesPackage.FEATURE__CAUSAL_LINK_TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case FeaturesPackage.FEATURE__ATTRIBUTES:
 			case FeaturesPackage.FEATURE__VERSIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));

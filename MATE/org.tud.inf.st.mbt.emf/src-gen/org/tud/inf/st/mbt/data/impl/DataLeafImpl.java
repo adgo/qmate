@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.tud.inf.st.mbt.core.CausalLinkType;
 import org.tud.inf.st.mbt.data.DataBag;
 import org.tud.inf.st.mbt.data.DataClass;
+import org.tud.inf.st.mbt.data.DataElement;
 import org.tud.inf.st.mbt.data.DataLeaf;
 import org.tud.inf.st.mbt.data.DataPackage;
 
@@ -33,7 +34,7 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 	 * @generated
 	 * @ordered
 	 */
-	protected DataClass domain;
+	protected DataElement domain;
 
 	/**
 	 * The default value of the '{@link #getCausalLinkType() <em>Causal Link Type</em>}' attribute.
@@ -43,7 +44,7 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final CausalLinkType CAUSAL_LINK_TYPE_EDEFAULT = CausalLinkType.UPLINK;
+	protected static final CausalLinkType CAUSAL_LINK_TYPE_EDEFAULT = CausalLinkType.VIRTUAL;
 	/**
 	 * The cached value of the '{@link #getCausalLinkType() <em>Causal Link Type</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
@@ -75,10 +76,10 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataClass getDomain() {
+	public DataElement getDomain() {
 		if (domain != null && domain.eIsProxy()) {
 			InternalEObject oldDomain = (InternalEObject)domain;
-			domain = (DataClass)eResolveProxy(oldDomain);
+			domain = (DataElement)eResolveProxy(oldDomain);
 			if (domain != oldDomain) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataPackage.DATA_LEAF__DOMAIN, oldDomain, domain));
@@ -91,16 +92,17 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataClass basicGetDomain() {
+	public DataElement basicGetDomain() {
 		return domain;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDomain(DataClass newDomain) {
-		DataClass oldDomain = domain;
+	public void setDomain(DataElement newDomain) {
+		DataElement oldDomain = domain;
 		domain = newDomain;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.DATA_LEAF__DOMAIN, oldDomain, domain));
@@ -149,7 +151,7 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DataPackage.DATA_LEAF__DOMAIN:
-				setDomain((DataClass)newValue);
+				setDomain((DataElement)newValue);
 				return;
 			case DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE:
 				setCausalLinkType((CausalLinkType)newValue);
@@ -166,7 +168,7 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DataPackage.DATA_LEAF__DOMAIN:
-				setDomain((DataClass)null);
+				setDomain((DataElement)null);
 				return;
 			case DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE:
 				setCausalLinkType(CAUSAL_LINK_TYPE_EDEFAULT);

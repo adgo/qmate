@@ -99,14 +99,10 @@ public class FloatDataValueItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FloatDataValue)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_FloatDataValue_type") :
-			getString("_UI_FloatDataValue_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**

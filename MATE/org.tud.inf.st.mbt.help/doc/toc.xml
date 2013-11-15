@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?NLS TYPE="org.eclipse.help.toc"?>
 
-<toc label="MATE" topic="src/MATE.html">
+<toc label="MATE" topic="doc/MATE.html">
    <topic label="Basic Concepts">
    </topic>
    <topic label="Techniqual Components">
-      <topic href="src/GuiGraphEditor.html" label="GUI-Graph Editor">
+      <topic href="doc/GuiGraphEditor.html" label="GUI-Graph Editor">
       </topic>
       <topic label="Generic Model Editor">
       </topic>
@@ -13,7 +13,7 @@
       </topic>
       <topic label="Simulator">
       </topic>
-      <topic href="src/StatisticsView.html" label="Statistics View">
+      <topic href="doc/StatisticsView.html" label="Statistics View">
       </topic>
       <topic label="Automation">
          <topic label="Recording Models">
@@ -28,13 +28,13 @@
          </topic>
       </topic>
       <topic label="Textual Modeling Languages">
-         <topic href="src/RulesLanguage.html" label="Rules Constraints">
+         <topic href="doc/RulesLanguage.html" label="Rules Constraints">
          </topic>
-         <topic href="src/ActionsLanguage.html" label="Actions Language">
+         <topic href="doc/ActionsLanguage.html" label="Actions Language">
          </topic>
-         <topic href="src/FunctionLanguage.html" label="Function Language">
+         <topic href="doc/FunctionLanguage.html" label="Function Language">
          </topic>
-         <topic href="src/TermLanguage.html" label="Term Language">
+         <topic href="doc/TermLanguage.html" label="Term Language">
          </topic>
       </topic>
    </topic>

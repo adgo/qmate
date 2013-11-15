@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.tud.inf.st.mbt.emf.traversal.AbstractTraversalType;
 import org.tud.inf.st.mbt.emf.traversal.TraversalManager;
+import org.tud.inf.st.mbt.emf.ui.MBTConstants;
 import org.tud.inf.st.mbt.emf.ui.dialogs.LoadModelResourceDialog;
 import org.tud.inf.st.mbt.features.Configuration;
 
@@ -69,7 +70,11 @@ public class GenerateDialog extends TitleAreaDialog {
 				cl.add((Configuration) n);
 			}
 		}
-		configs.setInput(cl);
+		if(!MBTConstants.IS_MOBILE)configs.setInput(cl);
+		else {
+			selectedConfigurations = new ArrayList<>();
+			selectedConfigurations.add(cl.get(0));
+		}
 	}
 
 	@Override
@@ -115,52 +120,59 @@ public class GenerateDialog extends TitleAreaDialog {
 			txtNoCases.setLayoutData(new GridData(GridData.FILL, SWT.CENTER,
 					true, true));
 			txtNoCases.setText("100");
-			
-			l = new Label(parent,SWT.None);
+
+			l = new Label(parent, SWT.None);
 			l.setText("Traversal strategy:");
 			l.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true, true));
 			final ComboViewer cbTraversal = new ComboViewer(parent);
-			cbTraversal.getCombo().setLayoutData(new GridData(GridData.FILL, SWT.CENTER,
-					true, true));
+			cbTraversal.getCombo().setLayoutData(
+					new GridData(GridData.FILL, SWT.CENTER, true, true));
 			cbTraversal.setContentProvider(new IStructuredContentProvider() {
-				
+
 				@Override
-				public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {		
+				public void inputChanged(Viewer viewer, Object oldInput,
+						Object newInput) {
 				}
-				
+
 				@Override
-				public void dispose() {			
+				public void dispose() {
 				}
-				
+
 				@Override
 				public Object[] getElements(Object inputElement) {
-					return (Object[])inputElement;
+					return (Object[]) inputElement;
 				}
 			});
-			cbTraversal.setInput(TraversalManager.getInstance().getTraversalTypes());
+			cbTraversal.setInput(TraversalManager.getInstance()
+					.getTraversalTypes());
 			cbTraversal.getCombo().select(0);
-			this.traversalType = TraversalManager.getInstance().getTraversalTypes()[0];
-			cbTraversal.addSelectionChangedListener(new ISelectionChangedListener() {
-				
-				@Override
-				public void selectionChanged(SelectionChangedEvent event) {
-					Object o = ((IStructuredSelection)event.getSelection()).getFirstElement();
-					traversalType = (AbstractTraversalType) o;
-				}
-			});
-		} 
+			this.traversalType = TraversalManager.getInstance()
+					.getTraversalTypes()[0];
+			cbTraversal
+					.addSelectionChangedListener(new ISelectionChangedListener() {
+
+						@Override
+						public void selectionChanged(SelectionChangedEvent event) {
+							Object o = ((IStructuredSelection) event
+									.getSelection()).getFirstElement();
+							traversalType = (AbstractTraversalType) o;
+						}
+					});
+		}
+
+		if (!MBTConstants.IS_MOBILE) {
+			l = new Label(parent, SWT.None);
+			l.setText("General maximal time per clock:");
+			l.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true, true));
+
+			txtTime = new Text(parent, SWT.None);
+			txtTime.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true,
+					true));
+			txtTime.setText("100");
+		}
 
 		l = new Label(parent, SWT.None);
-		l.setText("General maximal time per clock:");
-		l.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true, true));
-
-		txtTime = new Text(parent, SWT.None);
-		txtTime.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true,
-				true));
-		txtTime.setText("100");
-
-		l = new Label(parent, SWT.None);
-		l.setText("K-boundness constraint:");
+		l.setText("K-boundedness constraint:");
 		l.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true, true));
 
 		txtBound = new Text(parent, SWT.None);
@@ -188,11 +200,13 @@ public class GenerateDialog extends TitleAreaDialog {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
-		
-		if(simulating){
+
+		if (!MBTConstants.IS_MOBILE) {
+			if (simulating) {
 				l = new Label(parent, SWT.None);
 				l.setText("Time variability:");
-				l.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true, true));
+				l.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true,
+						true));
 				final Button selIgnoreRT = new Button(parent, SWT.CHECK);
 				selIgnoreRT.setText("Ignore realtime");
 				selIgnoreRT.addSelectionListener(new SelectionListener() {
@@ -210,39 +224,42 @@ public class GenerateDialog extends TitleAreaDialog {
 					public void widgetDefaultSelected(SelectionEvent e) {
 					}
 				});
-				selIgnoreRT.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true, true));
-		}
-
-		l = new Label(parent, SWT.None);
-		l.setText("Generate for configurations:");
-		l.setLayoutData(new GridData(GridData.BEGINNING, SWT.BEGINNING, true, true));
-		GridData gd = new GridData(GridData.FILL, SWT.FILL, true, true);
-		gd.heightHint = 100;
-		configs = new ListViewer(parent);
-		configs.getControl().setLayoutData(gd);
-		configs.setContentProvider(new IStructuredContentProvider() {
-
-			public void inputChanged(Viewer viewer, Object oldInput,
-					Object newInput) {
+				selIgnoreRT.setLayoutData(new GridData(GridData.FILL,
+						SWT.CENTER, true, true));
 			}
 
-			public void dispose() {
-			}
+			l = new Label(parent, SWT.None);
+			l.setText("Generate for configurations:");
+			l.setLayoutData(new GridData(GridData.BEGINNING, SWT.BEGINNING,
+					true, true));
+			GridData gd = new GridData(GridData.FILL, SWT.FILL, true, true);
+			gd.heightHint = 100;
+			configs = new ListViewer(parent);
+			configs.getControl().setLayoutData(gd);
+			configs.setContentProvider(new IStructuredContentProvider() {
 
-			@Override
-			public Object[] getElements(Object inputElement) {
-				if (inputElement instanceof List<?>) {
-					return ((List<?>) inputElement).toArray();
+				public void inputChanged(Viewer viewer, Object oldInput,
+						Object newInput) {
 				}
-				return null;
-			}
-		});
-		configs.setLabelProvider(new LabelProvider() {
-			@Override
-			public String getText(Object element) {
-				return element + "";
-			}
-		});
+
+				public void dispose() {
+				}
+
+				@Override
+				public Object[] getElements(Object inputElement) {
+					if (inputElement instanceof List<?>) {
+						return ((List<?>) inputElement).toArray();
+					}
+					return null;
+				}
+			});
+			configs.setLabelProvider(new LabelProvider() {
+				@Override
+				public String getText(Object element) {
+					return element + "";
+				}
+			});
+		}
 		requestConfigs();
 
 		return parent;
@@ -257,30 +274,34 @@ public class GenerateDialog extends TitleAreaDialog {
 				return false;
 			}
 		}
-		try {
-			time = Integer.parseInt(txtTime.getText());
-		} catch (NumberFormatException e) {
-			setErrorMessage("You entered an invalid time constraint.");
-			return false;
-		}
+		if (!MBTConstants.IS_MOBILE)
+			try {
+				time = Integer.parseInt(txtTime.getText());
+			} catch (NumberFormatException e) {
+				setErrorMessage("You entered an invalid time constraint.");
+				return false;
+			}
+
 		try {
 			bound = Integer.parseInt(txtBound.getText());
 		} catch (NumberFormatException e) {
 			setErrorMessage("You entered an invalid K-boundness.");
 			return false;
 		}
-		if (configs.getSelection().isEmpty()) {
-			setErrorMessage("No configurations were selected.");
-			return false;
-		} else {
-			selectedConfigurations = new ArrayList<>();
-			Iterator<?> i = ((IStructuredSelection) configs.getSelection())
-					.iterator();
-			while (i.hasNext()) {
-				Configuration c = (Configuration) i.next();
-				selectedConfigurations.add(c);
+
+		if (!MBTConstants.IS_MOBILE)
+			if (configs.getSelection().isEmpty()) {
+				setErrorMessage("No configurations were selected.");
+				return false;
+			} else {
+				selectedConfigurations = new ArrayList<>();
+				Iterator<?> i = ((IStructuredSelection) configs.getSelection())
+						.iterator();
+				while (i.hasNext()) {
+					Configuration c = (Configuration) i.next();
+					selectedConfigurations.add(c);
+				}
 			}
-		}
 
 		return true;
 	}
@@ -296,7 +317,7 @@ public class GenerateDialog extends TitleAreaDialog {
 	}
 
 	public int getMaxTime() {
-		return time;
+		return MBTConstants.IS_MOBILE ? Integer.MAX_VALUE : time;
 	}
 
 	public int getBoundary() {
@@ -310,11 +331,11 @@ public class GenerateDialog extends TitleAreaDialog {
 	public String getTargetFile() {
 		return targetFile;
 	}
-	
+
 	public boolean isIgnoreRealtime() {
-		return ignoreRealtime;
+		return MBTConstants.IS_MOBILE || ignoreRealtime;
 	}
-	
+
 	public AbstractTraversalType getTraversalType() {
 		return traversalType;
 	}

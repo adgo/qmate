@@ -19,7 +19,7 @@ import org.tud.inf.st.mbt.automation.execute.ISimulationResponder;
 import org.tud.inf.st.mbt.data.DataClass;
 import org.tud.inf.st.mbt.data.DataElement;
 import org.tud.inf.st.mbt.data.DataLeaf;
-import org.tud.inf.st.mbt.data.DataValue;
+import org.tud.inf.st.mbt.data.TypedDataClass;
 import org.tud.inf.st.mbt.features.FeatureVersion;
 import org.tud.inf.st.mbt.features.IFeature;
 import org.tud.inf.st.mbt.featuretree.TreeFeature;
@@ -41,7 +41,7 @@ public class ManualAutomation implements ISimulationAutomation {
 			return true;
 		} else if (action instanceof GetPropertyAction) {
 			DataLeaf leaf = ((GetPropertyAction) action).getProperty();
-			DataClass c = leaf.getDomain();
+			DataElement e = leaf.getDomain();
 			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(
 					Display.getCurrent().getActiveShell(), new LabelProvider(),
 					new ITreeContentProvider() {
@@ -74,17 +74,19 @@ public class ManualAutomation implements ISimulationAutomation {
 						public Object[] getChildren(Object parentElement) {
 							if (parentElement instanceof Object[]) {
 								return (Object[]) parentElement;
-							} else if (parentElement instanceof DataValue)
-								return new Object[0];
-							else if (parentElement instanceof DataClass) {
+							} else if (parentElement instanceof DataClass) {
 								return ((DataClass) parentElement)
 										.getChildren().toArray(
 												new DataElement[0]);
-							} else
-								return new Object[0];
+							} else if (parentElement instanceof TypedDataClass){
+								return ((TypedDataClass) parentElement)
+										.getChildren().toArray(
+												new DataElement[0]);
+							}
+							else return new Object[0];
 						}
 					});
-			dialog.setInput(new Object[] { c });
+			dialog.setInput(new Object[] { e });
 			dialog.setTitle("Value assignment");
 			dialog.setMessage("Select a value for " + leaf);
 			dialog.setAllowMultiple(false);
@@ -142,7 +144,7 @@ public class ManualAutomation implements ISimulationAutomation {
 							.getActiveShell(), "Please execute", null,
 							"Execute the following action: " + action,
 							MessageDialog.QUESTION, new String[] { "&OK",
-									"&ERROR", "&Cancel" }, 0).open();
+									"&FAILURE", "&Cancel" }, 0).open();
 				}
 
 			}

@@ -1,12 +1,12 @@
 //syntax definition for defintion files
-import "platform:/resource/PCCSModuls/terms.pccs";
-import "platform:/resource/PCCSModuls/functions.pccs";
-import "platform:/resource/PCCSModuls/actions.pccs";
+import "platform:/plugin/org.tud.inf.st.mbt.emf/syntax/terms.pccs";
+import "platform:/plugin/org.tud.inf.st.mbt.emf/syntax/functions.pccs";
+import "platform:/plugin/org.tud.inf.st.mbt.emf/syntax/actions.pccs";
 
 syntax defintions c:"http://st.inf.tud.org/mbt/core";
 comments "//" "/*" "*/";
 operators{"{" "}" "?" "@" "="}
-keywords{"container" "if" "action" "timer" "arithmetric" "datanode" "value" "logic" "import"}
+keywords{"term" "container" "if" "action" "timer" "arithmetric" "datanode" "value" "logic" "import"}
 parsers{
 	defs ::= (_import* or(container standalone_action tc_action standalone_farith
 		standalone_fnode standalone_fvalue standalone_flog )^d)* => d;
@@ -15,20 +15,25 @@ parsers{
 
 	container ::= ("container" #^id "{" defs^defs "}") => c:GenericModelContainer(id=id name=id elements=defs); 
 	
-	standalone_action ::= ("action" #^id contextvariable*^params "=" paction^a) 
+	standalone_action ::= ("action" #^id "(" contextvariable*^params ")" "=" paction^a) 
 				=> a:StandAloneAction(parameters=params id=id name=id action=a);	
-	tc_action ::= ("timer" #^id contextvariable*^params "@" $i^f "if" pflog^c "=" paction^a) 
+	tc_action ::= ("timer" #^id "(" contextvariable*^params ")" "@" $i^f "if" pflog^c "=" paction^a) 
 				=> a:TimedConditionAction(parameters=params id=id name=id action=a condition=c frequency=f);
-	standalone_farith ::= ("arithmetric" #^id contextvariable*^params "=" pfarith^f) 
+	standalone_farith ::= ("arithmetric" #^id "(" contextvariable*^params ")" "=" pfarith^f) 
 				=> f:ArithmetricStandAloneFunction(parameters=params id=id name=id function=f);
-	standalone_fnode ::= ("datanode" #^id contextvariable*^params "=" pfnode^f) 
+	standalone_fnode ::= ("datanode" #^id "(" contextvariable*^params ")" "=" pfnode^f) 
 				=> f:DataNodeStandAloneFunction(parameters=params id=id name=id function=f);
-	standalone_fvalue ::= ("value" #^id contextvariable*^params "=" pfvalue^f) 
+	standalone_fvalue ::= ("value" #^id "(" contextvariable*^params ")" "=" pfvalue^f) 
 				=> f:ValueStandAloneFunction(parameters=params id=id name=id function=f);
-	standalone_flog ::= ("logic" #^id contextvariable*^params "=" pflog^f) 
+	standalone_flog ::= ("logic" #^id "(" contextvariable*^params ")" "=" pflog^f) 
 				=> f:LogicStandAloneFunction(parameters=params id=id name=id function=f);
 
 	contextvariable ::= or(
-		var_term var_func 
+		("term" #^id) => t:TermVariable(id=id)
+		("arithmetric" #^id) => f:ArithmetricFunctionVariable(id=id)
+		("datanode" #^id) => f:DataNodeFunctionVariable(id=id)
+		("value" #^id) => f:ValueFunctionVariable(id=id)
+		("logic" #^id) => f:LogicFunctionVariable(id=id)
 	);
+		
 } start defs

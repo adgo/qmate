@@ -4,14 +4,14 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="/src/toc.xml"
+            file="doc/toc.xml"
             primary="true">
       </toc>
    </extension>
    <extension
          point="org.eclipse.help.contexts">
       <contexts
-            file="src/contexts.xml"
+            file="doc/contexts.xml"
             plugin="org.tud.inf.st.mbt.help">
       </contexts>
    </extension>

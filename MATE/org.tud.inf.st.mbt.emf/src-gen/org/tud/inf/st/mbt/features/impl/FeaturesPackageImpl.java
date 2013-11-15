@@ -2,6 +2,7 @@
  */
 package org.tud.inf.st.mbt.features.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -318,6 +319,15 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFeature_CausalLinkType() {
+		return (EAttribute)featureEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFeatureSet() {
 		return featureSetEClass;
 	}
@@ -578,6 +588,7 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 		featureEClass = createEClass(FEATURE);
 		createEReference(featureEClass, FEATURE__ATTRIBUTES);
 		createEReference(featureEClass, FEATURE__VERSIONS);
+		createEAttribute(featureEClass, FEATURE__CAUSAL_LINK_TYPE);
 
 		featureSetEClass = createEClass(FEATURE_SET);
 
@@ -675,6 +686,7 @@ public class FeaturesPackageImpl extends EPackageImpl implements FeaturesPackage
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFeature_Attributes(), this.getFeatureAttribute(), null, "attributes", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeature_Versions(), this.getFeatureVersion(), null, "versions", null, 0, -1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeature_CausalLinkType(), theCorePackage.getCausalLinkType(), "causalLinkType", "Virtual", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureSetEClass, FeatureSet.class, "FeatureSet", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

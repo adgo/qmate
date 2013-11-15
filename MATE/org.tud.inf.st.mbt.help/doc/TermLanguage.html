@@ -11,13 +11,12 @@
       terms as well. A reference term allows to point to test model objects as
       term parameters. By usning the functor terms, a term value can be computed
       at simulation time. Functions are defined in the <a href="FunctionLanguage.html">Function
-        Language</a>. The term language syntax is listed in the
-      following table:</p>
-    <table>
+        Language</a>. The term language syntax is listed in the following table:</p>
+    <table border="1">
       <tbody>
         <tr>
-          <th>Class</th>
-          <th>Syntax</th>
+          <th style="width: 104px;">Class</th>
+          <th style="width: 236px;">Syntax</th>
           <th>Examples</th>
         </tr>
         <tr>
@@ -83,7 +82,7 @@
             <pre>&amp;object(&lt;id&gt;)</pre>
           </td>
           <td>
-            <pre>model.path.to.object</pre>
+            <pre>&amp;object(model.path.to.object)</pre>
           </td>
         </tr>
         <tr>
@@ -105,7 +104,7 @@
             <pre>&lt;functor&gt;(&lt;comma sep. list of terms&gt;)</pre>
           </td>
           <td>
-            <pre>a(a,2,"b"), c</pre>
+            <pre>a(a,2,"b"), c, "a"([1,true])</pre>
           </td>
         </tr>
         <tr>

@@ -549,6 +549,11 @@ public class ValueReferenceFunctionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(FunctionsPackage.Literals.REFERENCE_FUNCTION__PARAMETERS,
+				 GuigraphFactory.eINSTANCE.createPageTransition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(FunctionsPackage.Literals.REFERENCE_FUNCTION__PARAMETERS,
 				 CoreFactory.eINSTANCE.createGenericModelContainer()));
 
 		newChildDescriptors.add

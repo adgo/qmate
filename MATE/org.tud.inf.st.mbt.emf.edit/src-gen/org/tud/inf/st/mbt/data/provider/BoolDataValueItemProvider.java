@@ -99,14 +99,10 @@ public class BoolDataValueItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((BoolDataValue)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_BoolDataValue_type") :
-			getString("_UI_BoolDataValue_type") + " " + label;
+		return getText(object);
 	}
 
 	/**

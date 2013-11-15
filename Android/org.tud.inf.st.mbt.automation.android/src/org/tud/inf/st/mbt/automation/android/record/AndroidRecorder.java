@@ -87,13 +87,13 @@ public class AndroidRecorder extends AbstractRecorder {
 				public void run() {
 					Image screen = null;
 					while (!isTerminated()) {
-						try{
+						try {
 							process.exitValue();
 							break;
-						} catch(Exception e){
-							//everything OK
+						} catch (Exception e) {
+							// everything OK
 						}
-						
+
 						try {
 							synchronized (screenLock) {
 								screenFile = CustomizedAndroidBridge
@@ -221,7 +221,8 @@ public class AndroidRecorder extends AbstractRecorder {
 	}
 
 	@Override
-	public void buildState(AbstractRecorderListener l, PreGenerationAction action) {
+	public void buildState(AbstractRecorderListener l,
+			PreGenerationAction action) {
 		suppliers.get(l).buildState(action);
 	}
 

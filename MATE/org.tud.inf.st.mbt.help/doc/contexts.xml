@@ -2,6 +2,6 @@
 <contexts>
    <context id="StatisticsView" title="Statistics View">
       <description>The statistics view visualizes test result statistics.</description>
-      <topic href="src/StatisticsView.html" label="Statistics View"/>
+      <topic href="doc/StatisticsView.html" label="Statistics View"/>
    </context>
 </contexts>

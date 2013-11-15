@@ -7,7 +7,7 @@ parsers{
 	psequence ::= ((paction^a ";")*=>a) => a:PreGenerationSequence(actions = this);
 	paction ::= or(("{" psequence^s "}")=>s pfail psetdata pgetdata ptermaction pthrow pactivate pdeactivate prembag getfstate);
 	
-	pactionref ::= ((# ("."#)*)/"."^r) => a:ActionReference(action = r);
+	pactionref ::= ((# ("."#)*)/"."^r "(" func*^p ")") => a:ActionReference(action = r parameters=p);
 	
 	pfail ::= ("&" "fail") => a:FailAction();
 	psetdata ::= (pfnode^n "=" pfdata^v) => a:SetDataAction(node = n values=v);

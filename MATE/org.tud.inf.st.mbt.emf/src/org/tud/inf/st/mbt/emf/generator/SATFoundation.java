@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.tud.inf.st.mbt.actions.PreGenerationAction;
 import org.tud.inf.st.mbt.actions.TimedConditionAction;
 import org.tud.inf.st.mbt.data.DataBag;
@@ -140,7 +141,7 @@ public class SATFoundation {
 			PreGenerationAction pga_normalized = ActionProcessor.normalize(
 					cat.getActions(), features, new HashMap<String, Object>());
 			actionFunctionsNormalized.addAll(getAllEObjectsOfSuperType(
-					pga_normalized, IFunction.class, false));
+					pga_normalized, ILogicFunction.class, false));
 
 		}
 
@@ -181,7 +182,7 @@ public class SATFoundation {
 		for (IFunction f : actionFunctionsNormalized) {
 			LogicFunctionAtom lfa_normal = RulesFactory.eINSTANCE
 					.createLogicFunctionAtom();
-			lfa_normal.setFunction((ILogicFunction) f);
+			lfa_normal.setFunction(EcoreUtil.copy((ILogicFunction) f));
 			logicFunctionAtoms.add(lfa_normal);
 		}
 

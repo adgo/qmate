@@ -18,6 +18,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -57,6 +58,7 @@ import org.tud.inf.st.mbt.data.DataScenario;
 import org.tud.inf.st.mbt.data.DataStructureNode;
 import org.tud.inf.st.mbt.data.DataValue;
 import org.tud.inf.st.mbt.data.StepDataBinding;
+import org.tud.inf.st.mbt.data.TypedDataClass;
 import org.tud.inf.st.mbt.datascen.ui.SingleVariableDiagram.ChangeEvent;
 import org.tud.inf.st.mbt.datascen.ui.SingleVariableDiagram.ChangeListener;
 import org.tud.inf.st.mbt.emf.generator.State;
@@ -79,12 +81,12 @@ public class DataScenarioEditor extends EditorPart implements
 	private Text txtID, txtName, txtLength;
 	private Button btnCommitt;
 	private Set<DataLeaf> remove = new HashSet<DataLeaf>();
-	
+
 	public DataScenarioEditor() {
 		super();
 		State.registerStateActivationListener(this);
 	}
-	
+
 	@Override
 	public void dispose() {
 		State.unregisterStateActivationListener(this);
@@ -362,19 +364,28 @@ public class DataScenarioEditor extends EditorPart implements
 		setDirty();
 	}
 
-	private List<DataElement> getAllPossibleElements(DataClass dc) {
+	private List<DataElement> getAllPossibleElements(DataElement e) {
 		List<DataElement> elements = new LinkedList<>();
 
-		if (dc.getChildren().isEmpty())
-			elements.add(dc);
-		else {
-			for (DataElement e : dc.getChildren()) {
-				if (e instanceof DataValue)
-					elements.add(e);
-				else
-					elements.addAll(getAllPossibleElements((DataClass) e));
+		if (e instanceof DataClass || e instanceof TypedDataClass) {
+			List<DataElement> children = new LinkedList<>();
+			if (e instanceof DataClass)
+				children.addAll(((DataClass) e).getChildren());
+			if (e instanceof TypedDataClass)
+				children.addAll(((TypedDataClass) e).getChildren());
+
+			if (children.isEmpty())
+				elements.add(e);
+			else {
+				for (DataElement ce : children) {
+					if (ce instanceof DataValue)
+						elements.add(ce);
+					else
+						elements.addAll(getAllPossibleElements((DataClass) ce));
+				}
 			}
-		}
+		} else
+			elements.add(e);
 
 		return elements;
 	}
@@ -497,18 +508,19 @@ public class DataScenarioEditor extends EditorPart implements
 	@Override
 	public void stateActivated(State s) {
 		int activatedStep = -1;
-		if(s!=null)for (Predicate p : s.findAllPredicates(RulesPackage.eINSTANCE
-				.getTimeAtom())) {
-			TimeAtom a = (TimeAtom) p;
-			if (a.getConsumer() instanceof DataScenario
-					&& ((DataScenario) a.getConsumer()).getId().equals(
-							scenario.getId())) {
-				activatedStep = a.getTime();
-				break;
+		if (s != null)
+			for (Predicate p : s.findAllPredicates(RulesPackage.eINSTANCE
+					.getTimeAtom())) {
+				TimeAtom a = (TimeAtom) p;
+				if (a.getConsumer() instanceof DataScenario
+						&& ((DataScenario) a.getConsumer()).getId().equals(
+								scenario.getId())) {
+					activatedStep = a.getTime();
+					break;
+				}
 			}
-		}
-		for(SingleVariableDiagram svd:leaf2Diagram.values()){
-			svd.setSimualtionActive(activatedStep-1);
+		for (SingleVariableDiagram svd : leaf2Diagram.values()) {
+			svd.setSimualtionActive(activatedStep - 1);
 		}
 	}
 

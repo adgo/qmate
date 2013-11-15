@@ -160,6 +160,8 @@
           eType="#//features/FeatureAttribute" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="versions" upperBound="-1"
           eType="#//features/FeatureVersion" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="causalLinkType" lowerBound="1"
+          eType="#//core/CausalLinkType" defaultValueLiteral="Virtual"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FeatureSet" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExplicitSet" eSuperTypes="#//features/FeatureSet">
@@ -214,9 +216,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataLeaf" eSuperTypes="#//data/DataStructureNode">
       <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
-          eType="#//data/DataClass"/>
+          eType="#//data/DataElement"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="causalLinkType" lowerBound="1"
-          eType="#//core/CausalLinkType"/>
+          eType="#//core/CausalLinkType" defaultValueLiteral="Virtual"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataClass" eSuperTypes="#//data/DataElement #//core/ITopLevelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
