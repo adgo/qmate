@@ -70,7 +70,7 @@ import org.tud.inf.st.mbt.emf.generator.TimerOperator;
 import org.tud.inf.st.mbt.emf.traversal.AbstractTraversalType;
 import org.tud.inf.st.mbt.emf.traversal.TraversalManager;
 import org.tud.inf.st.mbt.emf.ui.MATEImages;
-import org.tud.inf.st.mbt.emf.ui.dialogs.ExportReportDialog;
+import org.tud.inf.st.mbt.emf.ui.dialogs.ExportFileDialog;
 import org.tud.inf.st.mbt.emf.ui.dialogs.SelectConnectorDialog;
 import org.tud.inf.st.mbt.emf.util.ModelUtil;
 import org.tud.inf.st.mbt.emf.util.ReportUtil;
@@ -233,15 +233,18 @@ public class SimulationView extends ViewPart {
 							new PredicateList());
 
 					if (ignoreRealtime) {
-						operator = new InstructionsOperator(satFoundation, ignoreRealtime)
-								.ifEmpty(AbstractOperator.combine(
-										new CAOperator(satFoundation, ignoreRealtime,
-												TimingType.DELAY_UNTIL_START),
-										new CAOperator(satFoundation, ignoreRealtime,
+						operator = new InstructionsOperator(satFoundation,
+								ignoreRealtime).ifEmpty(AbstractOperator
+								.combine(new CAOperator(satFoundation,
+										ignoreRealtime,
+										TimingType.DELAY_UNTIL_START),
+										new CAOperator(satFoundation,
+												ignoreRealtime,
 												TimingType.INTERVAL),
 										new TimedConditionActionOperator(
 												satFoundation),
-										new TimerOperator(satFoundation, ignoreRealtime)));
+										new TimerOperator(satFoundation,
+												ignoreRealtime)));
 					} else {
 						operator = new InstructionsOperator(satFoundation,
 								ignoreRealtime).ifEmpty(
@@ -508,8 +511,10 @@ public class SimulationView extends ViewPart {
 						menu.add(new org.eclipse.jface.action.Action(
 								"Export report...") {
 							public void run() {
-								ExportReportDialog d = new ExportReportDialog(
-										getSite().getShell());
+								ExportFileDialog d = new ExportFileDialog(
+										getSite().getShell(), new Random()
+												.nextInt(Integer.MAX_VALUE)
+												+ "");
 								if (d.open() == Window.OK) {
 									PCCSResourceSetImpl rs = new PCCSResourceSetImpl();
 									Resource r = null;

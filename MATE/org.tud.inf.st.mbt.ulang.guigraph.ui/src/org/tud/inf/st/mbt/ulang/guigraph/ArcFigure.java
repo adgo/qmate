@@ -5,6 +5,7 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MidpointLocator;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.swt.SWT;
 
 public class ArcFigure extends PolylineConnection {
@@ -14,7 +15,12 @@ public class ArcFigure extends PolylineConnection {
 		setTargetDecoration(new PolygonDecoration());
 		setAntialias(SWT.ON);
 		
-		add(weightLabel = new Label(), new MidpointLocator(this, 0));
+		add(weightLabel = new Label(), new MidpointLocator(this, 0){
+			@Override
+			protected Point getReferencePoint() {
+				return super.getReferencePoint().getTranslated(6, 8);
+			}
+		});
 		weightLabel.setForegroundColor(ColorConstants.black);
 	}
 	

@@ -54,14 +54,14 @@ public class NoWidgetNodeFigure extends Figure {
 	@Override
 	protected void paintFigure(Graphics graphics) {
 		Dimension size = getBounds().getSize();
+		int labelStart = (int) (size.width * 0.2+10);
 
 		setConstraint(circle, new Rectangle(new Point(0, 0),
 				new Dimension(size)));
 		setConstraint(markingLabel, new Rectangle(new Point(
-				(int) (size.width * 0.1), (int) (size.height * 0.22)),
-				new Dimension(size.height, size.height).scale(0.6)));
+				(int) (size.width * 0.1), 0),
+				new Dimension(labelStart-2, size.height)));
 
-		int labelStart = (int) (size.width * 0.2+10);
 
 		setConstraint(label, new Rectangle(new Point(labelStart, 0),
 				new Dimension(size.width - labelStart-2, size.height)));

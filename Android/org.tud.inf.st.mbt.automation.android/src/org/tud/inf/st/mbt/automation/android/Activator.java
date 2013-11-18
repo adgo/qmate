@@ -23,7 +23,7 @@ public class Activator implements BundleActivator {
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
 		ConnectorManager.getInstance().registerType(AndroidRecorderType.getInstance());
-		ConnectorManager.getInstance().registerType(AndroidSimulationAutomationType.getInstance());
+		//ConnectorManager.getInstance().registerType(AndroidSimulationAutomationType.getInstance());
 	}
 
 	/*

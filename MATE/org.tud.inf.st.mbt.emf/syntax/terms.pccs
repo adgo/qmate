@@ -6,7 +6,7 @@ keywords{"object" "true" "false"}
 parsers{     
 	term ::= or(string functor long int float list ref function);
   	string ::= % => t:StringTerm(value=this);
-  	functor ::= (or(# %)?^func ("(" term^op ("," term^op)*=>op^op  ")")?=>op^op) => t:FunctorTerm(functor=func arguments=op);
+  	functor ::= (or(# %)^func ("(" term^op ("," term^op)*=>op^op  ")")?=>op^op) => t:FunctorTerm(functor=func arguments=op);
   	
 	int ::= ($i^i) => t:IntegerTerm(value=i);
 	long ::= ($l^l) => t:LongTerm(value=l);

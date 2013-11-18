@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.tud.inf.st.mbt.automation.exportcontrib"
+            nameFilter="*.test"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.tud.inf.st.mbt.automation.exports.CSVExportAction"
+               id="org.tud.inf.st.mbt.automation.export.csv.action"
+               label="Export to CSV..."
+               menubarPath="group.generate">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

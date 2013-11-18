@@ -256,6 +256,7 @@
       <plugin id="org.slf4j.api"/>
       <plugin id="org.tud.inf.st.mbt.automation"/>
       <plugin id="org.tud.inf.st.mbt.automation.android"/>
+      <plugin id="org.tud.inf.st.mbt.automation.exports"/>
       <plugin id="org.tud.inf.st.mbt.emf"/>
       <plugin id="org.tud.inf.st.mbt.emf.edit"/>
       <plugin id="org.tud.inf.st.mbt.emf.editor"/>

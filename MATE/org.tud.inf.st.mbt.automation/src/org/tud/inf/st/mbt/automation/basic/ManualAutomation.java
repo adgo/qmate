@@ -23,6 +23,8 @@ import org.tud.inf.st.mbt.data.TypedDataClass;
 import org.tud.inf.st.mbt.features.FeatureVersion;
 import org.tud.inf.st.mbt.features.IFeature;
 import org.tud.inf.st.mbt.featuretree.TreeFeature;
+import org.tud.inf.st.mbt.test.TestCase;
+import org.tud.inf.st.mbt.test.TestSuite;
 
 public class ManualAutomation implements ISimulationAutomation {
 
@@ -130,12 +132,22 @@ public class ManualAutomation implements ISimulationAutomation {
 
 			return true;
 		} else if (action instanceof GetRealTimeAction) {
-			long elapsed = System.currentTimeMillis()
+			long currentRealTime = System.currentTimeMillis();
+			long elapsed = currentRealTime
 					- lastRealTime;
+			lastRealTime = currentRealTime;
 			
 			long hint = ((GetRealTimeAction) action).getTimeHint();
 			
-			simulationAccessor.elapseRealTime(elapsed>hint ? elapsed : hint);
+			long wait = Math.max(0, hint-elapsed);
+			
+			try {
+				Thread.sleep(wait);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			simulationAccessor.elapseRealTime(Math.max(hint, elapsed));
 			return true;
 		} else {
 			class DialogRun implements Runnable {
@@ -171,6 +183,18 @@ public class ManualAutomation implements ISimulationAutomation {
 
 	@Override
 	public void terminate() {
+	}
+
+	@Override
+	public void startTestSuite(TestSuite suite) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void startTestCase(TestCase _case) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

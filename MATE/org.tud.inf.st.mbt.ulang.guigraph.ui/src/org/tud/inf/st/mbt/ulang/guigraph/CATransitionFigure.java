@@ -56,7 +56,7 @@ public class CATransitionFigure extends RoundedRectangle implements
 		time_label = new Label();
 
 		ac_label.setForegroundColor(ColorConstants.black);
-		ue_label.setForegroundColor(ColorConstants.black);
+		ue_label.setForegroundColor(ColorConstants.white);
 		note_label.setForegroundColor(ColorConstants.black);
 		time_label.setForegroundColor(ColorConstants.white);
 
@@ -129,7 +129,7 @@ public class CATransitionFigure extends RoundedRectangle implements
 			if (f.equals(AC))
 				fig.setBackgroundColor(GGColors.c1);
 			if (f.equals(UE))
-				fig.setBackgroundColor(ColorConstants.white);
+				fig.setBackgroundColor(GGColors.c3);
 			if (f.equals(NOTE))
 				fig.setBackgroundColor(GGColors.c0);
 		}

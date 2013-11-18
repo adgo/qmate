@@ -11,4 +11,6 @@ public class GGColors {
 			200, 40));
 	public static final Color c2 = new Color(Display.getCurrent(), new RGB(200,
 			210, 200));
+	public static final Color c3 = new Color(Display.getCurrent(), new RGB(
+			91, 87,159));
 }

@@ -72,7 +72,7 @@
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="false"
-            id="org.tud.inf.st.mbt.ui.validatecontrib"
+            id="org.tud.inf.st.mbt.ui.contrib"
             nameFilter="*.*"
             objectClass="org.eclipse.core.resources.IFile">
          <action
@@ -82,12 +82,6 @@
                label="Validate..."
                menubarPath="group.generate">
          </action>
-      </objectContribution>
-      <objectContribution
-            adaptable="false"
-            id="org.tud.inf.st.mbt.ui.postproccontrib"
-            nameFilter="*.*"
-            objectClass="org.eclipse.core.resources.IFile">
          <action
                class="org.tud.inf.st.mbt.emf.ui.actions.PostProcessAction"
                icon="icons/mate16.png"
@@ -98,8 +92,8 @@
       </objectContribution>
       <objectContribution
             adaptable="false"
-            id="org.tud.inf.st.mbt.ui.statisticscontrib"
-            nameFilter="*.*"
+            id="org.tud.inf.st.mbt.ui.reportcontrib"
+            nameFilter="*.report"
             objectClass="org.eclipse.core.resources.IFile">
          <action
                class="org.tud.inf.st.mbt.emf.ui.actions.ShowStatisticsAction"
@@ -108,11 +102,18 @@
                label="Show test statistics..."
                menubarPath="group.generate">
          </action>
+         <action
+               class="org.tud.inf.st.mbt.emf.ui.actions.RunTestAction"
+               icon="icons/mate16.png"
+               id="org.tud.inf.st.mbt.ui.actions.test"
+               label="Test/Replay tests..."
+               menubarPath="group.generate">
+         </action>
       </objectContribution>
       <objectContribution
             adaptable="false"
             id="org.tud.inf.st.mbt.ui.testcontrib"
-            nameFilter="*.*"
+            nameFilter="*.test"
             objectClass="org.eclipse.core.resources.IFile">
          <action
                class="org.tud.inf.st.mbt.emf.ui.actions.RunTestAction"

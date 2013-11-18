@@ -37,7 +37,7 @@ import org.tud.inf.st.mbt.automation.execute.ISimulationAutomation;
 import org.tud.inf.st.mbt.automation.execute.ISimulationResponder;
 import org.tud.inf.st.mbt.data.DataElement;
 import org.tud.inf.st.mbt.data.DataLeaf;
-import org.tud.inf.st.mbt.emf.ui.dialogs.ExportReportDialog;
+import org.tud.inf.st.mbt.emf.ui.dialogs.ExportFileDialog;
 import org.tud.inf.st.mbt.emf.ui.dialogs.SelectConnectorDialog;
 import org.tud.inf.st.mbt.emf.ui.views.StatisticsView;
 import org.tud.inf.st.mbt.emf.util.ModelUtil;
@@ -97,7 +97,8 @@ public class RunTestAction extends ActionDelegate {
 				.getConnectorType().getConnector(conDialog.getConnection());
 
 		final String suffix = "_run_"
-				+ new SimpleDateFormat("dd_MM_YYYY__HH_mm_ss_SS").format(new Date());
+				+ new SimpleDateFormat("dd_MM_YYYY__HH_mm_ss_SS")
+						.format(new Date());
 
 		new Job("Running test") {
 
@@ -128,7 +129,8 @@ public class RunTestAction extends ActionDelegate {
 							+ ModelUtil.getAllEObjectsOfSuperType(rs,
 									TestStepRun.class, false).size();
 
-					monitor.beginTask("Executing test steps in "+f.getName()+".", stepSum);
+					monitor.beginTask("Executing test steps in " + f.getName()
+							+ ".", stepSum);
 					Set<TestExecutable> finished = new HashSet<>();
 
 					if (!executeForType(r, monitor, finished, results,
@@ -156,8 +158,10 @@ public class RunTestAction extends ActionDelegate {
 				Display.getDefault().asyncExec(new Runnable() {
 					@Override
 					public void run() {
-						ExportReportDialog exportDialog = new ExportReportDialog(
-								Display.getDefault().getActiveShell());
+						ExportFileDialog exportDialog = new ExportFileDialog(
+								Display.getDefault().getActiveShell(),
+								new Random().nextInt(Integer.MAX_VALUE)
+										+ ".report");
 						if (exportDialog.open() == Window.OK) {
 							PCCSResourceSetImpl rs = new PCCSResourceSetImpl();
 							Resource r = null;
@@ -183,8 +187,8 @@ public class RunTestAction extends ActionDelegate {
 			public boolean executeForType(Object container,
 					IProgressMonitor monitor, Set<TestExecutable> finished,
 					final Resource results, Class<? extends TestExecutable> type) {
-				for (TestExecutable e : ModelUtil.getAllEObjectsOfSuperType(container,
-						type, false)) {
+				for (TestExecutable e : ModelUtil.getAllEObjectsOfSuperType(
+						container, type, false)) {
 					if (monitor.isCanceled())
 						return false;
 					if (e.getId() == null)
@@ -254,6 +258,8 @@ public class RunTestAction extends ActionDelegate {
 				}
 
 				if (e instanceof TestCase) {
+					connector.startTestCase((TestCase) e);
+
 					TestRun r = F.createTestRun();
 					r.set_case((TestCase) e);
 					r.setId(r.get_case().getId() + suffix);
@@ -269,6 +275,8 @@ public class RunTestAction extends ActionDelegate {
 					return r;
 				}
 				if (e instanceof TestRun) {
+					connector.startTestCase(((TestRun) e).get_case());
+
 					TestRun r = F.createTestRun();
 					r.set_case(((TestRun) e).get_case());
 					r.setId(e.getId() + suffix);
@@ -284,6 +292,8 @@ public class RunTestAction extends ActionDelegate {
 					return r;
 				}
 				if (e instanceof TestSuite) {
+					connector.startTestSuite((TestSuite) e);
+
 					TestReport report = F.createTestReport();
 					report.setSuite((TestSuite) e);
 					report.setId(e.getId() + suffix);
@@ -298,6 +308,8 @@ public class RunTestAction extends ActionDelegate {
 					return report;
 				}
 				if (e instanceof TestReport) {
+					connector.startTestSuite(((TestReport) e).getSuite());
+
 					TestReport report = F.createTestReport();
 					report.setSuite(((TestReport) e).getSuite());
 					report.setId(e.getId() + suffix);

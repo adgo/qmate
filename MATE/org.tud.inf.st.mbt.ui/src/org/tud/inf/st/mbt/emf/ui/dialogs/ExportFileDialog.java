@@ -1,7 +1,5 @@
 package org.tud.inf.st.mbt.emf.ui.dialogs;
 
-import java.util.Random;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
@@ -25,13 +23,15 @@ import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.tud.inf.st.mbt.emf.ui.Activator;
 
-public class ExportReportDialog extends TitleAreaDialog {
+public class ExportFileDialog extends TitleAreaDialog {
 
 	private Button btnNew, btnAppend;
 	private String targetFile = null;
+	private String stdFileName;
 
-	public ExportReportDialog(Shell parentShell) {
+	public ExportFileDialog(Shell parentShell, String stdFileName) {
 		super(parentShell);
+		this.stdFileName = stdFileName;
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class ExportReportDialog extends TitleAreaDialog {
 				dialog.setTitle("Container Selection");
 				if(dialog.open() == Window.OK){
 					IPath cont = (IPath) dialog.getResult()[0];
-					targetFile = cont+"/report_"+Math.abs(new Random().nextInt())+".report";
+					targetFile = cont+"/"+stdFileName;
 					btnNew.setText("Browse... | "+targetFile);
 				}
 			}
