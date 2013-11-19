@@ -63,6 +63,7 @@ import org.tud.inf.st.mbt.emf.generator.AbstractOperator;
 import org.tud.inf.st.mbt.emf.generator.CAOperator;
 import org.tud.inf.st.mbt.emf.generator.InstructionsOperator;
 import org.tud.inf.st.mbt.emf.generator.PredicateList;
+import org.tud.inf.st.mbt.emf.generator.RealTimeOperator;
 import org.tud.inf.st.mbt.emf.generator.SATFoundation;
 import org.tud.inf.st.mbt.emf.generator.State;
 import org.tud.inf.st.mbt.emf.generator.TimedConditionActionOperator;
@@ -256,6 +257,8 @@ public class SimulationView extends ViewPart {
 										new TimedConditionActionOperator(
 												satFoundation),
 										new TimerOperator(satFoundation,
+												ignoreRealtime),
+										new RealTimeOperator(satFoundation,
 												ignoreRealtime)));
 					}
 
@@ -514,7 +517,7 @@ public class SimulationView extends ViewPart {
 								ExportFileDialog d = new ExportFileDialog(
 										getSite().getShell(), new Random()
 												.nextInt(Integer.MAX_VALUE)
-												+ "");
+												+ ".report");
 								if (d.open() == Window.OK) {
 									PCCSResourceSetImpl rs = new PCCSResourceSetImpl();
 									Resource r = null;
@@ -575,16 +578,23 @@ public class SimulationView extends ViewPart {
 	}
 
 	public void startSimulation(int maxTime, int maxTokens,
-			Collection<Configuration> confs, ResourceSet rs,
+			final Collection<Configuration> confs, ResourceSet rs,
 			boolean ignoreRealtime) {
 		lastExecuted = null;
 		this.ignoreRealtime = ignoreRealtime;
 		failed.clear();
 		conf2initial.clear();
-		stepViewer.setInput(confs);
 		satFoundation = new SATFoundation(rs, maxTokens, maxTime);
-		cancelTraversal();
-		checkTraversalEnabled();
+
+		Display.getDefault().syncExec(new Runnable() {			
+			@Override
+			public void run() {
+				stepViewer.setInput(confs);
+				cancelTraversal();
+				checkTraversalEnabled();				
+			}
+		});
+
 	}
 
 	@Override
@@ -728,6 +738,7 @@ public class SimulationView extends ViewPart {
 
 	private void setFailed(State state) {
 		failed.add(state);
+		state.setFailed(true);
 	}
 
 	private void automate(State selected) {

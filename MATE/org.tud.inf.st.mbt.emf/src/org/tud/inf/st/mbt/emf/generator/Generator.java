@@ -154,6 +154,7 @@ public class Generator implements Iterator<GeneratorState> {
 						true, TimingType.DELAY_UNTIL_START), new CAOperator(
 						satFoundation, true, TimingType.INTERVAL),
 						new TimedConditionActionOperator(satFoundation),
-						new TimerOperator(satFoundation, true)));
+						new TimerOperator(satFoundation, true),
+						new RealTimeOperator(satFoundation, true)));
 	}
 }

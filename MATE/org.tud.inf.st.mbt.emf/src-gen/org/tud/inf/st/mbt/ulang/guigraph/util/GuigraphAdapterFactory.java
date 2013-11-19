@@ -75,6 +75,10 @@ public class GuigraphAdapterFactory extends AdapterFactoryImpl {
 				return createGuiGraphAdapter();
 			}
 			@Override
+			public Adapter casePage(Page object) {
+				return createPageAdapter();
+			}
+			@Override
 			public Adapter caseWidget(Widget object) {
 				return createWidgetAdapter();
 			}
@@ -161,6 +165,20 @@ public class GuigraphAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGuiGraphAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.tud.inf.st.mbt.ulang.guigraph.Page <em>Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.Page
+	 * @generated
+	 */
+	public Adapter createPageAdapter() {
 		return null;
 	}
 

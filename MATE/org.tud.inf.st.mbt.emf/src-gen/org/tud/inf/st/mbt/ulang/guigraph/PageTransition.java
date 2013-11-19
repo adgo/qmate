@@ -30,12 +30,12 @@ public interface PageTransition extends Transition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Page</em>' reference.
-	 * @see #setPage(GuiGraph)
+	 * @see #setPage(Page)
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage#getPageTransition_Page()
 	 * @model required="true"
 	 * @generated
 	 */
-	GuiGraph getPage();
+	Page getPage();
 
 	/**
 	 * Sets the value of the '{@link org.tud.inf.st.mbt.ulang.guigraph.PageTransition#getPage <em>Page</em>}' reference.
@@ -45,5 +45,5 @@ public interface PageTransition extends Transition {
 	 * @see #getPage()
 	 * @generated
 	 */
-	void setPage(GuiGraph value);
+	void setPage(Page value);
 } // PageTransition

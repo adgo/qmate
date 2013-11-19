@@ -563,6 +563,15 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTokenAtom_InstancePath() {
+		return (EReference)tokenAtomEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInstructionPointerAtom() {
 		return instructionPointerAtomEClass;
 	}
@@ -601,6 +610,15 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 	 */
 	public EReference getInstructionPointerAtom_Context() {
 		return (EReference)instructionPointerAtomEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInstructionPointerAtom_InstancePath() {
+		return (EReference)instructionPointerAtomEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -664,6 +682,15 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 	 */
 	public EReference getRealTimeAtom_Consumer() {
 		return (EReference)realTimeAtomEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRealTimeAtom_InstancePath() {
+		return (EReference)realTimeAtomEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -853,12 +880,14 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 		tokenAtomEClass = createEClass(TOKEN_ATOM);
 		createEAttribute(tokenAtomEClass, TOKEN_ATOM__COUNT);
 		createEReference(tokenAtomEClass, TOKEN_ATOM__PLACE);
+		createEReference(tokenAtomEClass, TOKEN_ATOM__INSTANCE_PATH);
 
 		instructionPointerAtomEClass = createEClass(INSTRUCTION_POINTER_ATOM);
 		createEReference(instructionPointerAtomEClass, INSTRUCTION_POINTER_ATOM__SEQUENCE);
 		createEAttribute(instructionPointerAtomEClass, INSTRUCTION_POINTER_ATOM__INSTRUCTION);
 		createEAttribute(instructionPointerAtomEClass, INSTRUCTION_POINTER_ATOM__STACK_LEVEL);
 		createEReference(instructionPointerAtomEClass, INSTRUCTION_POINTER_ATOM__CONTEXT);
+		createEReference(instructionPointerAtomEClass, INSTRUCTION_POINTER_ATOM__INSTANCE_PATH);
 
 		configurationAtomEClass = createEClass(CONFIGURATION_ATOM);
 		createEReference(configurationAtomEClass, CONFIGURATION_ATOM__CONFIGURATION);
@@ -878,6 +907,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 		realTimeAtomEClass = createEClass(REAL_TIME_ATOM);
 		createEAttribute(realTimeAtomEClass, REAL_TIME_ATOM__TIME);
 		createEReference(realTimeAtomEClass, REAL_TIME_ATOM__CONSUMER);
+		createEReference(realTimeAtomEClass, REAL_TIME_ATOM__INSTANCE_PATH);
 
 		contextEntryEClass = createEClass(CONTEXT_ENTRY);
 		createEAttribute(contextEntryEClass, CONTEXT_ENTRY__ID);
@@ -984,12 +1014,14 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 		initEClass(tokenAtomEClass, TokenAtom.class, "TokenAtom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTokenAtom_Count(), ecorePackage.getEInt(), "count", null, 1, 1, TokenAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTokenAtom_Place(), theGuigraphPackage.getPlace(), null, "place", null, 1, 1, TokenAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTokenAtom_InstancePath(), theGuigraphPackage.getPageTransition(), null, "instancePath", null, 0, -1, TokenAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(instructionPointerAtomEClass, InstructionPointerAtom.class, "InstructionPointerAtom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInstructionPointerAtom_Sequence(), theActionsPackage.getPreGenerationSequence(), null, "sequence", null, 1, 1, InstructionPointerAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInstructionPointerAtom_Instruction(), ecorePackage.getEInt(), "instruction", null, 1, 1, InstructionPointerAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInstructionPointerAtom_StackLevel(), ecorePackage.getEInt(), "stackLevel", "0", 1, 1, InstructionPointerAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInstructionPointerAtom_Context(), this.getContextEntry(), null, "context", null, 0, -1, InstructionPointerAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstructionPointerAtom_InstancePath(), theGuigraphPackage.getPageTransition(), null, "instancePath", null, 0, -1, InstructionPointerAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configurationAtomEClass, ConfigurationAtom.class, "ConfigurationAtom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConfigurationAtom_Configuration(), theOcmPackage.getConfigurationNode(), null, "configuration", null, 1, 1, ConfigurationAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1009,6 +1041,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 		initEClass(realTimeAtomEClass, RealTimeAtom.class, "RealTimeAtom", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRealTimeAtom_Time(), ecorePackage.getELong(), "time", "0", 1, 1, RealTimeAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRealTimeAtom_Consumer(), this.getIRealTimeConsumer(), null, "consumer", null, 1, 1, RealTimeAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRealTimeAtom_InstancePath(), theGuigraphPackage.getPageTransition(), null, "instancePath", null, 0, -1, RealTimeAtom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contextEntryEClass, ContextEntry.class, "ContextEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getContextEntry_Id(), ecorePackage.getEString(), "id", null, 1, 1, ContextEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

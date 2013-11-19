@@ -2,6 +2,9 @@
  */
 package org.tud.inf.st.mbt.rules;
 
+import org.eclipse.emf.common.util.EList;
+import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -13,6 +16,7 @@ package org.tud.inf.st.mbt.rules;
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.rules.RealTimeAtom#getTime <em>Time</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.rules.RealTimeAtom#getConsumer <em>Consumer</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.rules.RealTimeAtom#getInstancePath <em>Instance Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,5 +77,21 @@ public interface RealTimeAtom extends Atom {
 	 * @generated
 	 */
 	void setConsumer(IRealTimeConsumer value);
+
+	/**
+	 * Returns the value of the '<em><b>Instance Path</b></em>' reference list.
+	 * The list contents are of type {@link org.tud.inf.st.mbt.ulang.guigraph.PageTransition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instance Path</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance Path</em>' reference list.
+	 * @see org.tud.inf.st.mbt.rules.RulesPackage#getRealTimeAtom_InstancePath()
+	 * @model
+	 * @generated
+	 */
+	EList<PageTransition> getInstancePath();
 
 } // RealTimeAtom

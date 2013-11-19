@@ -62,6 +62,7 @@ public class TokenAtomItemProvider
 
 			addCountPropertyDescriptor(object);
 			addPlacePropertyDescriptor(object);
+			addInstancePathPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -102,6 +103,28 @@ public class TokenAtomItemProvider
 				 getString("_UI_TokenAtom_place_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TokenAtom_place_feature", "_UI_TokenAtom_type"),
 				 RulesPackage.Literals.TOKEN_ATOM__PLACE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Instance Path feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInstancePathPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TokenAtom_instancePath_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TokenAtom_instancePath_feature", "_UI_TokenAtom_type"),
+				 RulesPackage.Literals.TOKEN_ATOM__INSTANCE_PATH,
 				 true,
 				 false,
 				 true,

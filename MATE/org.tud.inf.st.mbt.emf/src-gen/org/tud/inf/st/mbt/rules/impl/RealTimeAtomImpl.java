@@ -2,17 +2,19 @@
  */
 package org.tud.inf.st.mbt.rules.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.tud.inf.st.mbt.rules.IRealTimeConsumer;
 import org.tud.inf.st.mbt.rules.RealTimeAtom;
 import org.tud.inf.st.mbt.rules.RulesPackage;
+import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +25,7 @@ import org.tud.inf.st.mbt.rules.RulesPackage;
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.rules.impl.RealTimeAtomImpl#getTime <em>Time</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.rules.impl.RealTimeAtomImpl#getConsumer <em>Consumer</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.rules.impl.RealTimeAtomImpl#getInstancePath <em>Instance Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,6 +61,16 @@ public class RealTimeAtomImpl extends EObjectImpl implements RealTimeAtom {
 	 * @ordered
 	 */
 	protected IRealTimeConsumer consumer;
+
+	/**
+	 * The cached value of the '{@link #getInstancePath() <em>Instance Path</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstancePath()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PageTransition> instancePath;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,6 +155,18 @@ public class RealTimeAtomImpl extends EObjectImpl implements RealTimeAtom {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<PageTransition> getInstancePath() {
+		if (instancePath == null) {
+			instancePath = new EObjectResolvingEList<PageTransition>(PageTransition.class, this, RulesPackage.REAL_TIME_ATOM__INSTANCE_PATH);
+		}
+		return instancePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -150,6 +175,8 @@ public class RealTimeAtomImpl extends EObjectImpl implements RealTimeAtom {
 			case RulesPackage.REAL_TIME_ATOM__CONSUMER:
 				if (resolve) return getConsumer();
 				return basicGetConsumer();
+			case RulesPackage.REAL_TIME_ATOM__INSTANCE_PATH:
+				return getInstancePath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -159,6 +186,7 @@ public class RealTimeAtomImpl extends EObjectImpl implements RealTimeAtom {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -167,6 +195,10 @@ public class RealTimeAtomImpl extends EObjectImpl implements RealTimeAtom {
 				return;
 			case RulesPackage.REAL_TIME_ATOM__CONSUMER:
 				setConsumer((IRealTimeConsumer)newValue);
+				return;
+			case RulesPackage.REAL_TIME_ATOM__INSTANCE_PATH:
+				getInstancePath().clear();
+				getInstancePath().addAll((Collection<? extends PageTransition>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -186,6 +218,9 @@ public class RealTimeAtomImpl extends EObjectImpl implements RealTimeAtom {
 			case RulesPackage.REAL_TIME_ATOM__CONSUMER:
 				setConsumer((IRealTimeConsumer)null);
 				return;
+			case RulesPackage.REAL_TIME_ATOM__INSTANCE_PATH:
+				getInstancePath().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -202,6 +237,8 @@ public class RealTimeAtomImpl extends EObjectImpl implements RealTimeAtom {
 				return time != TIME_EDEFAULT;
 			case RulesPackage.REAL_TIME_ATOM__CONSUMER:
 				return consumer != null;
+			case RulesPackage.REAL_TIME_ATOM__INSTANCE_PATH:
+				return instancePath != null && !instancePath.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -212,6 +249,7 @@ public class RealTimeAtomImpl extends EObjectImpl implements RealTimeAtom {
 	 */
 	@Override
 	public String toString() {
-		return "real_time("+consumer+") = "+time;
+		String instance = instancePath!=null && instancePath.size()>0 ? "@"+instancePath : "";
+		return "real_time("+consumer+instance+") = "+time;
 	}
 } //RealTimeAtomImpl

@@ -228,6 +228,7 @@
       <plugin id="org.slf4j.api"/>
       <plugin id="org.tud.inf.st.mbt.automation"/>
       <plugin id="org.tud.inf.st.mbt.automation.exports"/>
+      <plugin id="org.tud.inf.st.mbt.automation.hometurtle"/>
       <plugin id="org.tud.inf.st.mbt.datascen.ui"/>
       <plugin id="org.tud.inf.st.mbt.emf"/>
       <plugin id="org.tud.inf.st.mbt.emf.edit"/>
@@ -252,6 +253,7 @@
       <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="3" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="3" />
       <plugin id="org.tud.inf.st.mbt.automation" autoStart="true" startLevel="5" />
+      <plugin id="org.tud.inf.st.mbt.automation.hometurtle" autoStart="true" startLevel="5" />
       <property name="perspective" value="org.tud.inf.st.mbt.emf.ui.perspective" />
    </configurations>
 

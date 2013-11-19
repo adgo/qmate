@@ -63,6 +63,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.GuigraphFactory;
 import org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage;
 import org.tud.inf.st.mbt.ulang.guigraph.InhibitorArc;
 import org.tud.inf.st.mbt.ulang.guigraph.NoWidgetNode;
+import org.tud.inf.st.mbt.ulang.guigraph.Page;
 import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 import org.tud.inf.st.mbt.ulang.guigraph.StandardArc;
@@ -84,6 +85,13 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * @generated
 	 */
 	private EClass guiGraphEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -322,6 +330,15 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPage() {
+		return pageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getWidget() {
 		return widgetEClass;
 	}
@@ -459,15 +476,6 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 */
 	public EClass getPlace() {
 		return placeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPlace_MapToPage() {
-		return (EAttribute)placeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -657,6 +665,8 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		createEReference(guiGraphEClass, GUI_GRAPH__INVARIANT);
 		createEAttribute(guiGraphEClass, GUI_GRAPH__INVARIANT_TEXT);
 
+		pageEClass = createEClass(PAGE);
+
 		widgetEClass = createEClass(WIDGET);
 		createEReference(widgetEClass, WIDGET__CHILDREN);
 		createEAttribute(widgetEClass, WIDGET__IMAGE);
@@ -678,7 +688,6 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		createEAttribute(noWidgetNodeEClass, NO_WIDGET_NODE__INITIAL_TOKENS);
 
 		placeEClass = createEClass(PLACE);
-		createEAttribute(placeEClass, PLACE__MAP_TO_PAGE);
 
 		conditionActionTransitionEClass = createEClass(CONDITION_ACTION_TRANSITION);
 		createEReference(conditionActionTransitionEClass, CONDITION_ACTION_TRANSITION__APPLICATION_CONDITION);
@@ -740,6 +749,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 
 		// Add supertypes to classes
 		guiGraphEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
+		pageEClass.getESuperTypes().add(this.getGuiGraph());
 		widgetEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
 		formEClass.getESuperTypes().add(this.getWidget());
 		formEClass.getESuperTypes().add(this.getPlace());
@@ -762,6 +772,8 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		initEReference(getGuiGraph_Invariant(), theRulesPackage.getPredicate(), null, "invariant", null, 0, 1, GuiGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGuiGraph_InvariantText(), ecorePackage.getEString(), "invariantText", "true", 0, 1, GuiGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(pageEClass, Page.class, "Page", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(widgetEClass, Widget.class, "Widget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWidget_Children(), this.getWidget(), null, "children", null, 0, -1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWidget_Image(), ecorePackage.getEString(), "image", null, 1, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -783,7 +795,6 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		initEAttribute(getNoWidgetNode_InitialTokens(), ecorePackage.getEInt(), "initialTokens", "0", 1, 1, NoWidgetNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(placeEClass, Place.class, "Place", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPlace_MapToPage(), ecorePackage.getEBoolean(), "mapToPage", null, 0, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionActionTransitionEClass, ConditionActionTransition.class, "ConditionActionTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionActionTransition_ApplicationCondition(), theRulesPackage.getPredicate(), null, "applicationCondition", null, 1, 1, ConditionActionTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -805,7 +816,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		initEClass(inhibitorArcEClass, InhibitorArc.class, "InhibitorArc", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pageTransitionEClass, PageTransition.class, "PageTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPageTransition_Page(), this.getGuiGraph(), null, "page", null, 1, 1, PageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPageTransition_Page(), this.getPage(), null, "page", null, 1, 1, PageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(timingTypeEEnum, TimingType.class, "TimingType");

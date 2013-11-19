@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
 import org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage;
+import org.tud.inf.st.mbt.ulang.guigraph.Page;
 import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 
 /**
@@ -33,7 +34,7 @@ public class PageTransitionImpl extends TransitionImpl implements PageTransition
 	 * @generated
 	 * @ordered
 	 */
-	protected GuiGraph page;
+	protected Page page;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -59,10 +60,10 @@ public class PageTransitionImpl extends TransitionImpl implements PageTransition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GuiGraph getPage() {
+	public Page getPage() {
 		if (page != null && page.eIsProxy()) {
 			InternalEObject oldPage = (InternalEObject)page;
-			page = (GuiGraph)eResolveProxy(oldPage);
+			page = (Page)eResolveProxy(oldPage);
 			if (page != oldPage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GuigraphPackage.PAGE_TRANSITION__PAGE, oldPage, page));
@@ -76,7 +77,7 @@ public class PageTransitionImpl extends TransitionImpl implements PageTransition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GuiGraph basicGetPage() {
+	public Page basicGetPage() {
 		return page;
 	}
 
@@ -85,8 +86,8 @@ public class PageTransitionImpl extends TransitionImpl implements PageTransition
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPage(GuiGraph newPage) {
-		GuiGraph oldPage = page;
+	public void setPage(Page newPage) {
+		Page oldPage = page;
 		page = newPage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.PAGE_TRANSITION__PAGE, oldPage, page));
@@ -116,7 +117,7 @@ public class PageTransitionImpl extends TransitionImpl implements PageTransition
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case GuigraphPackage.PAGE_TRANSITION__PAGE:
-				setPage((GuiGraph)newValue);
+				setPage((Page)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -131,7 +132,7 @@ public class PageTransitionImpl extends TransitionImpl implements PageTransition
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case GuigraphPackage.PAGE_TRANSITION__PAGE:
-				setPage((GuiGraph)null);
+				setPage((Page)null);
 				return;
 		}
 		super.eUnset(featureID);

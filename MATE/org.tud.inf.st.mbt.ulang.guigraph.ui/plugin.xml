@@ -16,7 +16,7 @@
             class="org.tud.inf.st.mbt.ulang.guigraph.GUIGraphEditor"
             contributorClass="org.tud.inf.st.mbt.emf.graphicaleditor.EMFActionBarContributor"
             default="true"
-            extensions="gg"
+            extensions="gg,page"
             icon="icons/gg.png"
             id="org.tud.inf.st.mbt.guigrapheditor"
             name="GUI Graph Editor">

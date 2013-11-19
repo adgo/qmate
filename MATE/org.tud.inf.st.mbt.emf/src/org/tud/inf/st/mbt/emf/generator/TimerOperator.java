@@ -68,7 +68,7 @@ public class TimerOperator extends TransitionOperator {
 				}
 
 				for (State n : nextLocal) {
-					consumeAndProduce(tt, n);
+					consumeAndProduce(tt, n, null);//TODO instance
 					n.setTerminating(tt.isTerminates());
 					n.setPriority(tt.getFaultImpact()
 							* tt.getFaultProbability() * tt.getRate());

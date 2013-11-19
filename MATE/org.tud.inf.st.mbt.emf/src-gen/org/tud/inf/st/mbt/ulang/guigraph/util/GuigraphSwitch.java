@@ -76,6 +76,14 @@ public class GuigraphSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case GuigraphPackage.PAGE: {
+				Page page = (Page)theEObject;
+				T result = casePage(page);
+				if (result == null) result = caseGuiGraph(page);
+				if (result == null) result = caseAbstractModelElement(page);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case GuigraphPackage.WIDGET: {
 				Widget widget = (Widget)theEObject;
 				T result = caseWidget(widget);
@@ -195,6 +203,21 @@ public class GuigraphSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGuiGraph(GuiGraph object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Page</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Page</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePage(Page object) {
 		return null;
 	}
 

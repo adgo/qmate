@@ -71,6 +71,8 @@ public class WidgetFigure extends Figure{
 		Dimension size = getBounds().getSize();
 		if(!size.equals(lastSize))resetImage(true);
 		lastSize = size;
+		
+		if(size.getArea()<900)size = new Dimension(30,30);
 
 		setConstraint(rect, new Rectangle(new Point(0, 0), size));
 		

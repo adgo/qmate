@@ -11,6 +11,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="invariantText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Page" eSuperTypes="#//GuiGraph"/>
   <eClassifiers xsi:type="ecore:EClass" name="Widget" eSuperTypes="mbt.ecore#//core/AbstractModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
         eType="#//Widget" containment="true">
@@ -43,9 +44,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialTokens" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Place" abstract="true" eSuperTypes="#//GuiGraphNode">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mapToPage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Place" abstract="true" eSuperTypes="#//GuiGraphNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionActionTransition" eSuperTypes="#//Transition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="applicationCondition" lowerBound="1"
         eType="ecore:EClass mbt.ecore#//rules/Predicate" containment="true"/>
@@ -74,7 +73,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InhibitorArc" eSuperTypes="#//Arc"/>
   <eClassifiers xsi:type="ecore:EClass" name="PageTransition" eSuperTypes="#//Transition">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="page" lowerBound="1" eType="#//GuiGraph"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="page" lowerBound="1" eType="#//Page"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TimingType">
     <eLiterals name="DelayUntilStart"/>

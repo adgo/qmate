@@ -58,6 +58,7 @@ public class GuigraphFactoryImpl extends EFactoryImpl implements GuigraphFactory
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case GuigraphPackage.GUI_GRAPH: return createGuiGraph();
+			case GuigraphPackage.PAGE: return createPage();
 			case GuigraphPackage.WIDGET: return createWidget();
 			case GuigraphPackage.FORM: return createForm();
 			case GuigraphPackage.NO_WIDGET_NODE: return createNoWidgetNode();
@@ -109,6 +110,16 @@ public class GuigraphFactoryImpl extends EFactoryImpl implements GuigraphFactory
 	public GuiGraph createGuiGraph() {
 		GuiGraphImpl guiGraph = new GuiGraphImpl();
 		return guiGraph;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Page createPage() {
+		PageImpl page = new PageImpl();
+		return page;
 	}
 
 	/**

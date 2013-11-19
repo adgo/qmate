@@ -24,7 +24,7 @@ public class InstructionsOperator extends TransitionOperator {
 			State n = new State(s, null, cat.isTerminates(), new PredicateList(
 					s.getPropositions()), cat);
 			n.deconfigureProposition(n.getTopInstructionPointerAtom());
-			consumeAndProduce(cat, n);
+			consumeAndProduce(cat, n,s.getTopInstructionPointerAtom().getInstancePath());
 			return new State[] { n };
 		}
 		if (s.isTopInstructionSequenceFinishing()

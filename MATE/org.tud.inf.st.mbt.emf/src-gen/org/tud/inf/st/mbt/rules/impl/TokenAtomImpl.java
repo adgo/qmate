@@ -2,17 +2,18 @@
  */
 package org.tud.inf.st.mbt.rules.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.tud.inf.st.mbt.rules.RulesPackage;
 import org.tud.inf.st.mbt.rules.TokenAtom;
-
+import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 
 /**
@@ -24,6 +25,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.Place;
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.rules.impl.TokenAtomImpl#getCount <em>Count</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.rules.impl.TokenAtomImpl#getPlace <em>Place</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.rules.impl.TokenAtomImpl#getInstancePath <em>Instance Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,6 +61,16 @@ public class TokenAtomImpl extends EObjectImpl implements TokenAtom {
 	 * @ordered
 	 */
 	protected Place place;
+
+	/**
+	 * The cached value of the '{@link #getInstancePath() <em>Instance Path</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstancePath()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PageTransition> instancePath;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,6 +155,18 @@ public class TokenAtomImpl extends EObjectImpl implements TokenAtom {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<PageTransition> getInstancePath() {
+		if (instancePath == null) {
+			instancePath = new EObjectResolvingEList<PageTransition>(PageTransition.class, this, RulesPackage.TOKEN_ATOM__INSTANCE_PATH);
+		}
+		return instancePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -151,6 +175,8 @@ public class TokenAtomImpl extends EObjectImpl implements TokenAtom {
 			case RulesPackage.TOKEN_ATOM__PLACE:
 				if (resolve) return getPlace();
 				return basicGetPlace();
+			case RulesPackage.TOKEN_ATOM__INSTANCE_PATH:
+				return getInstancePath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -160,6 +186,7 @@ public class TokenAtomImpl extends EObjectImpl implements TokenAtom {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -168,6 +195,10 @@ public class TokenAtomImpl extends EObjectImpl implements TokenAtom {
 				return;
 			case RulesPackage.TOKEN_ATOM__PLACE:
 				setPlace((Place)newValue);
+				return;
+			case RulesPackage.TOKEN_ATOM__INSTANCE_PATH:
+				getInstancePath().clear();
+				getInstancePath().addAll((Collection<? extends PageTransition>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -187,6 +218,9 @@ public class TokenAtomImpl extends EObjectImpl implements TokenAtom {
 			case RulesPackage.TOKEN_ATOM__PLACE:
 				setPlace((Place)null);
 				return;
+			case RulesPackage.TOKEN_ATOM__INSTANCE_PATH:
+				getInstancePath().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -203,6 +237,8 @@ public class TokenAtomImpl extends EObjectImpl implements TokenAtom {
 				return count != COUNT_EDEFAULT;
 			case RulesPackage.TOKEN_ATOM__PLACE:
 				return place != null;
+			case RulesPackage.TOKEN_ATOM__INSTANCE_PATH:
+				return instancePath != null && !instancePath.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -213,7 +249,8 @@ public class TokenAtomImpl extends EObjectImpl implements TokenAtom {
 	 */
 	@Override
 	public String toString() {
-		return "token("+place+") = "+count;
+		String instance = instancePath!=null && instancePath.size()>0 ? "@"+instancePath : "";
+		return "token("+place+instance+") = "+count;
 	}
 
 } //TokenAtomImpl

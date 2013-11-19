@@ -31,15 +31,18 @@ public class ManualAutomation implements ISimulationAutomation {
 	private long lastRealTime = System.currentTimeMillis();
 
 	public boolean automate(final PostGenerationAction action,
-			ISimulationResponder simulationAccessor) {
-		if (action instanceof FailAction) {
+			ISimulationResponder responder) {
+		if (action instanceof FailAction) {			
+			elapseRealTime(responder);
 			return false;
 		} else if (action instanceof PostGenerationSequence) {
 			for (PostGenerationAction e : ((PostGenerationSequence) action)
 					.getActions().toArray(new PostGenerationAction[0])) {
-				if (!automate(e, simulationAccessor))
+				if (!automate(e, responder))
 					return false;
 			}
+			
+			elapseRealTime(responder);
 			return true;
 		} else if (action instanceof GetPropertyAction) {
 			DataLeaf leaf = ((GetPropertyAction) action).getProperty();
@@ -96,7 +99,9 @@ public class ManualAutomation implements ISimulationAutomation {
 					|| dialog.getResult().length != 1)
 				;
 			DataElement select = (DataElement) dialog.getResult()[0];
-			simulationAccessor.setProperty(leaf, select);
+			responder.setProperty(leaf, select);
+			
+			elapseRealTime(responder);
 			return true;
 		} else if (action instanceof GetFeatureStateAction) {
 			IFeature f = ((GetFeatureStateAction) action).getFeature();
@@ -125,17 +130,17 @@ public class ManualAutomation implements ISimulationAutomation {
 						;
 					v = (FeatureVersion) dialog.getResult()[0];
 				}
-				simulationAccessor.setFeatureActivated(f, v, true);
+				responder.setFeatureActivated(f, v, true);
 			} else {
-				simulationAccessor.setFeatureActivated(f, null, false);
+				responder.setFeatureActivated(f, null, false);
 			}
-
+			
+			elapseRealTime(responder);
 			return true;
 		} else if (action instanceof GetRealTimeAction) {
 			long currentRealTime = System.currentTimeMillis();
 			long elapsed = currentRealTime
 					- lastRealTime;
-			lastRealTime = currentRealTime;
 			
 			long hint = ((GetRealTimeAction) action).getTimeHint();
 			
@@ -147,7 +152,7 @@ public class ManualAutomation implements ISimulationAutomation {
 				e.printStackTrace();
 			}
 			
-			simulationAccessor.elapseRealTime(Math.max(hint, elapsed));
+			elapseRealTime(responder);
 			return true;
 		} else {
 			class DialogRun implements Runnable {
@@ -169,11 +174,24 @@ public class ManualAutomation implements ISimulationAutomation {
 
 			if (run.result == 2)
 				throw new RuntimeException("Test execution canceled!");
-			else if (run.result != 0)
+			else if (run.result != 0){
+				elapseRealTime(responder);
 				return false;
-			else
+			}
+			else {
+				elapseRealTime(responder);
 				return true;
+			}
 		}
+	}
+	
+	protected void elapseRealTime(ISimulationResponder responder){
+		long currentRealTime = System.currentTimeMillis();
+		long elapsed = currentRealTime
+				- lastRealTime;
+		
+		responder.elapseRealTime(elapsed);
+		lastRealTime = currentRealTime;
 	}
 
 	@Override
@@ -186,15 +204,11 @@ public class ManualAutomation implements ISimulationAutomation {
 	}
 
 	@Override
-	public void startTestSuite(TestSuite suite) {
-		// TODO Auto-generated method stub
-		
+	public void startTestSuite(TestSuite suite) {	
 	}
 
 	@Override
 	public void startTestCase(TestCase _case) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

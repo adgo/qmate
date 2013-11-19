@@ -23,51 +23,59 @@ import org.tud.inf.st.mbt.test.Verdict;
 public class ReportUtil {
 	private static final TestFactory F = TestFactory.eINSTANCE;
 
-	public static TestReport report(List<State> cs,String id) {
+	public static TestReport report(List<State> cs, String id) {
 		TestReport report = F.createTestReport();
 		report.setId(id);
 		report.setName(report.getId());
-		report.setSuite(trace(cs,TestSuite.class));
-		
-		for(int i=0;i<cs.size();i++){
-			report.getRuns().add(reportRun(cs.get(i),id+"_"+i));
+		report.setSuite(trace(cs, TestSuite.class));
+
+		for (int i = 0; i < cs.size(); i++) {
+			report.getRuns().add(reportRun(cs.get(i), id + "_" + i));
 		}
-		
-		if(report.getSuite()!=null)report.getTraceableTo().add(report.getSuite());
-		
-		return report;	
+
+		if (report.getSuite() != null)
+			report.getTraceableTo().add(report.getSuite());
+
+		return report;
 	}
-	
-	public static TestRun reportRun(State s,String id){
+
+	public static TestRun reportRun(State s, String id) {
 		List<State> path = flattenPath(s);
 		TestRun run = F.createTestRun();
 		run.setId(id);
 		run.setName(run.getId());
-		run.set_case(trace(s,TestCase.class));
-		if(run.get_case()!=null)run.getTraceableTo().add(run.get_case());
-		
-		for(int i=0;i<path.size();i++)
-			run.getStepRuns().add(reportStep(path.get(i),id+"_"+i));
-		
-		return run;		
+		run.set_case(trace(s, TestCase.class));
+		if (run.get_case() != null)
+			run.getTraceableTo().add(run.get_case());
+
+		for (int i = 0; i < path.size(); i++)
+			if (path.get(i).getActions() != null
+					&& path.get(i).getActions().getActions().size() > 0)
+				run.getStepRuns().add(reportStep(path.get(i), id + "_" + i));
+
+		return run;
 	}
-	
-	public static TestStepRun reportStep(State s,String id){
+
+	public static TestStepRun reportStep(State s, String id) {
 		TestStepRun tsr = F.createTestStepRun();
 		tsr.setId(id);
 		tsr.setName(tsr.getId());
-		tsr.setStep(trace(s,TestStep.class));
-		for(Predicate p:s.getPropositions())
-			if(p instanceof Atom)tsr.getState().add(EcoreUtil.copy((Atom) p));
-		
-		if(tsr.getStep()!=null)tsr.getTraceableTo().add(tsr.getStep());
-		
-		Verdict v= F.createVerdict();
-		if(s.isFailed())v.setName("FAIL");
-		else v.setName("PASS");
+		tsr.setStep(trace(s, TestStep.class));
+		for (Predicate p : s.getPropositions())
+			if (p instanceof Atom)
+				tsr.getState().add(EcoreUtil.copy((Atom) p));
+
+		if (tsr.getStep() != null)
+			tsr.getTraceableTo().add(tsr.getStep());
+
+		Verdict v = F.createVerdict();
+		if (s.isFailed())
+			v.setName("FAIL");
+		else
+			v.setName("PASS");
 		tsr.setVerdict(v);
 		tsr.setAction(EcoreUtil.copy(s.getActions()));
-		
+
 		return tsr;
 	}
 

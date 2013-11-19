@@ -114,6 +114,8 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="place" lowerBound="1"
           eType="ecore:EClass guigraph.ecore#//Place"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instancePath" upperBound="-1"
+          eType="ecore:EClass guigraph.ecore#//PageTransition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstructionPointerAtom" eSuperTypes="#//rules/Atom">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" lowerBound="1"
@@ -124,6 +126,8 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="context" upperBound="-1"
           eType="#//rules/ContextEntry" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instancePath" upperBound="-1"
+          eType="ecore:EClass guigraph.ecore#//PageTransition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConfigurationAtom" eSuperTypes="#//rules/Atom">
       <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
@@ -146,6 +150,8 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="consumer" lowerBound="1"
           eType="#//rules/IRealTimeConsumer"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instancePath" upperBound="-1"
+          eType="ecore:EClass guigraph.ecore#//PageTransition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ContextEntry">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

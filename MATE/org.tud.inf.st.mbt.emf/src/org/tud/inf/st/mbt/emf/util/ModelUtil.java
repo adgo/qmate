@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.tud.inf.st.mbt.actions.ActionsFactory;
-import org.tud.inf.st.mbt.actions.PreGenerationAction;
 import org.tud.inf.st.mbt.actions.PreGenerationSequence;
 import org.tud.inf.st.mbt.actions.TermAction;
 import org.tud.inf.st.mbt.core.IContextVariable;
@@ -110,6 +109,7 @@ import org.tud.inf.st.mbt.test.TestRun;
 import org.tud.inf.st.mbt.test.TestStep;
 import org.tud.inf.st.mbt.test.TestStepRun;
 import org.tud.inf.st.mbt.test.TestSuite;
+import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 
 public class ModelUtil {
@@ -300,6 +300,17 @@ public class ModelUtil {
 		return a;
 	}
 
+	public static TokenAtom atom(Place p, int count,Collection<PageTransition> instance) {
+		TokenAtom a = rFactory.createTokenAtom();
+		a.setCount(count);
+		a.setPlace(p);
+		if(instance!=null){
+			a.getInstancePath().clear();
+			a.getInstancePath().addAll(instance);
+		}
+		return a;
+	}
+	
 	public static BagElementAssignedAtom atom(DataBag b, int idx) {
 		BagElementAssignedAtom a = rFactory.createBagElementAssignedAtom();
 		a.setBag(b);
@@ -420,7 +431,8 @@ public class ModelUtil {
 				hc += hashCode(((LogicFunctionAtom) p).getFunction());
 			} else if (p instanceof TokenAtom) {
 				hc += ((TokenAtom) p).getPlace().hashCode();
-				hc *= ((TokenAtom) p).getCount();
+				hc *= ((TokenAtom) p).getCount()+1;
+				for(PageTransition pt:((TokenAtom) p).getInstancePath())hc+=pt.hashCode();
 			} else if (p instanceof ConfigurationAtom) {
 				hc += ((ConfigurationAtom) p).getConfiguration().hashCode();
 			} else if (p instanceof InstructionPointerAtom) {
@@ -431,12 +443,14 @@ public class ModelUtil {
 						.getContext()) {
 					hc += ce.getId().hashCode() * ce.getValue().hashCode();
 				}
+				for(PageTransition pt:((InstructionPointerAtom) p).getInstancePath())hc+=pt.hashCode();
 			} else if (p instanceof TimeAtom) {
 				hc += Math.pow(((TimeAtom) p).getTime(), 2);
 				hc += ((TimeAtom) p).getConsumer().hashCode();
 			} else if (p instanceof RealTimeAtom) {
 				hc += Long.valueOf(((RealTimeAtom) p).getTime()).hashCode();
 				hc += ((RealTimeAtom) p).getConsumer().hashCode();
+				for(PageTransition pt:((RealTimeAtom) p).getInstancePath())hc+=pt.hashCode();
 			} else if (p instanceof BagElementAssignedAtom) {
 				hc += ((BagElementAssignedAtom) p).getIdx();
 				hc += ((BagElementAssignedAtom) p).getBag().hashCode();
@@ -702,6 +716,20 @@ public class ModelUtil {
 			return i;
 		}
 		return 0;
+	}
+	
+	public static boolean collectionEquals(Collection<?> a,Collection<?> b){
+		if(a == null && b!=null)return false;
+		if(a!=null && b==null)return false;
+		if(a.size()!=b.size())return false;
+		
+		Object[] aArr = a.toArray();
+		Object[] bArr = b.toArray();
+		
+		for(int i=0;i<a.size();i++)
+			if(!aArr[i].equals(bArr[i]))return false;
+		
+		return true;					
 	}
 
 }

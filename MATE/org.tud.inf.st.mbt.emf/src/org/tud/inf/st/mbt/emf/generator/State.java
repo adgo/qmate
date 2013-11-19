@@ -166,19 +166,28 @@ public class State {
 			}
 		} else if (a instanceof TokenAtom) {
 			for (Object p : propositions.toArray()) {
-				if (p instanceof TokenAtom
-						&& ((TokenAtom) p).getPlace().equals(
-								((TokenAtom) a).getPlace())) {
-					propositions.remove((Predicate) p);
+				TokenAtom aClone = (TokenAtom) EcoreUtil.copy(a);
+				aClone.setCount(0);
+				if (p instanceof TokenAtom) {
+					TokenAtom pClone = (TokenAtom) EcoreUtil
+							.copy((TokenAtom) p);
+					pClone.setCount(0);
+					if (ModelUtil.hashCode(pClone) == ModelUtil
+							.hashCode(aClone))
+						propositions.remove((Predicate) p);
 				}
 			}
 			propositions.add(a);
 		} else if (a instanceof RealTimeAtom) {
+			RealTimeAtom aClone = (RealTimeAtom) EcoreUtil.copy(a);
+			aClone.setTime(0);
 			for (Object p : propositions.toArray()) {
-				if (p instanceof RealTimeAtom
-						&& ((RealTimeAtom) p).getConsumer().equals(
-								((RealTimeAtom) a).getConsumer())) {
-					propositions.remove((Predicate) p);
+				if (p instanceof RealTimeAtom) {
+					RealTimeAtom pClone = EcoreUtil.copy((RealTimeAtom) p);
+					pClone.setTime(0);
+					if (ModelUtil.hashCode(pClone) == ModelUtil
+							.hashCode(aClone))
+						propositions.remove((Predicate) p);
 				}
 			}
 			propositions.add(a);
@@ -482,19 +491,10 @@ public class State {
 
 				if (t.getTimingType().equals(TimingType.INTERVAL)) {
 					if (rta.getTime() >= t.getTimeMin()) {
-						if (t.getTimeMax() >= t.getTimeMin()
-								&& rta.getTime() <= t.getTimeMax())
-							min = Math.max(
-									0,
-									Math.min(min,
-											t.getTimeMin() - rta.getTime()));
-						if(t.getTimeMax()<t.getTimeMin())
-							min = 0;
+						min = Math.min(min,1);
 					} else {
-						min = Math.max(
-								0,
-								Math.min(min,
-										t.getTimeMin() - rta.getTime()));
+						min = Math.max(0,
+								Math.min(min, t.getTimeMin() - rta.getTime()));
 					}
 				} else if (t.getTimingType().equals(
 						TimingType.DELAY_UNTIL_START)) {

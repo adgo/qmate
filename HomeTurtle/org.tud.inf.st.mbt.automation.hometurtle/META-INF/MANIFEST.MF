@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Hometurtle
+Bundle-SymbolicName: org.tud.inf.st.mbt.automation.hometurtle
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.tud.inf.st.mbt.automation.hometurtle.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.tud.inf.st.mbt.automation;bundle-version="1.0.0",
+ org.tud.inf.st.mbt.emf;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: lib/service.jar,
+ .

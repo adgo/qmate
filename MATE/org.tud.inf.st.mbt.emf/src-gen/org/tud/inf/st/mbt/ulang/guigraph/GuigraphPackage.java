@@ -150,6 +150,97 @@ public interface GuigraphPackage extends EPackage {
 	int GUI_GRAPH_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PageImpl <em>Page</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.PageImpl
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPage()
+	 * @generated
+	 */
+	int PAGE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE__NOTE = GUI_GRAPH__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE__ID = GUI_GRAPH__ID;
+
+	/**
+	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE__TRACEABLE_TO = GUI_GRAPH__TRACEABLE_TO;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE__NAME = GUI_GRAPH__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Arcs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE__ARCS = GUI_GRAPH__ARCS;
+
+	/**
+	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE__NODES = GUI_GRAPH__NODES;
+
+	/**
+	 * The feature id for the '<em><b>Invariant</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE__INVARIANT = GUI_GRAPH__INVARIANT;
+
+	/**
+	 * The feature id for the '<em><b>Invariant Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE__INVARIANT_TEXT = GUI_GRAPH__INVARIANT_TEXT;
+
+	/**
+	 * The number of structural features of the '<em>Page</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_FEATURE_COUNT = GUI_GRAPH_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.WidgetImpl <em>Widget</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,7 +248,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getWidget()
 	 * @generated
 	 */
-	int WIDGET = 1;
+	int WIDGET = 2;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -230,7 +321,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getGuiGraphNode()
 	 * @generated
 	 */
-	int GUI_GRAPH_NODE = 4;
+	int GUI_GRAPH_NODE = 5;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.FormImpl <em>Form</em>}' class.
@@ -240,7 +331,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getForm()
 	 * @generated
 	 */
-	int FORM = 2;
+	int FORM = 3;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -297,22 +388,13 @@ public interface GuigraphPackage extends EPackage {
 	int FORM__IMAGE = WIDGET__IMAGE;
 
 	/**
-	 * The feature id for the '<em><b>Map To Page</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORM__MAP_TO_PAGE = WIDGET_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Form</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORM_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
+	int FORM_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -367,7 +449,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getTransition()
 	 * @generated
 	 */
-	int TRANSITION = 3;
+	int TRANSITION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -485,7 +567,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPlace()
 	 * @generated
 	 */
-	int PLACE = 6;
+	int PLACE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -524,22 +606,13 @@ public interface GuigraphPackage extends EPackage {
 	int PLACE__NAME = GUI_GRAPH_NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Map To Page</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACE__MAP_TO_PAGE = GUI_GRAPH_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Place</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLACE_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 1;
+	int PLACE_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.NoWidgetNodeImpl <em>No Widget Node</em>}' class.
@@ -549,7 +622,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getNoWidgetNode()
 	 * @generated
 	 */
-	int NO_WIDGET_NODE = 5;
+	int NO_WIDGET_NODE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -588,15 +661,6 @@ public interface GuigraphPackage extends EPackage {
 	int NO_WIDGET_NODE__NAME = PLACE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Map To Page</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NO_WIDGET_NODE__MAP_TO_PAGE = PLACE__MAP_TO_PAGE;
-
-	/**
 	 * The feature id for the '<em><b>Initial Tokens</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -622,7 +686,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getConditionActionTransition()
 	 * @generated
 	 */
-	int CONDITION_ACTION_TRANSITION = 7;
+	int CONDITION_ACTION_TRANSITION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -776,7 +840,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getTimerTransition()
 	 * @generated
 	 */
-	int TIMER_TRANSITION = 8;
+	int TIMER_TRANSITION = 9;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -913,7 +977,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getArc()
 	 * @generated
 	 */
-	int ARC = 9;
+	int ARC = 10;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -986,7 +1050,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getStandardArc()
 	 * @generated
 	 */
-	int STANDARD_ARC = 10;
+	int STANDARD_ARC = 11;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -1068,7 +1132,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getInhibitorArc()
 	 * @generated
 	 */
-	int INHIBITOR_ARC = 11;
+	int INHIBITOR_ARC = 12;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -1141,7 +1205,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPageTransition()
 	 * @generated
 	 */
-	int PAGE_TRANSITION = 12;
+	int PAGE_TRANSITION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -1268,7 +1332,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getTimingType()
 	 * @generated
 	 */
-	int TIMING_TYPE = 13;
+	int TIMING_TYPE = 14;
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.GuiGraph <em>Gui Graph</em>}'.
@@ -1323,6 +1387,16 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGuiGraph_InvariantText();
+
+	/**
+	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.Page <em>Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Page</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.Page
+	 * @generated
+	 */
+	EClass getPage();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.Widget <em>Widget</em>}'.
@@ -1493,17 +1567,6 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPlace();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.Place#isMapToPage <em>Map To Page</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Map To Page</em>'.
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.Place#isMapToPage()
-	 * @see #getPlace()
-	 * @generated
-	 */
-	EAttribute getPlace_MapToPage();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.ConditionActionTransition <em>Condition Action Transition</em>}'.
@@ -1750,6 +1813,16 @@ public interface GuigraphPackage extends EPackage {
 		EAttribute GUI_GRAPH__INVARIANT_TEXT = eINSTANCE.getGuiGraph_InvariantText();
 
 		/**
+		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PageImpl <em>Page</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.PageImpl
+		 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPage()
+		 * @generated
+		 */
+		EClass PAGE = eINSTANCE.getPage();
+
+		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.WidgetImpl <em>Widget</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1888,14 +1961,6 @@ public interface GuigraphPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PLACE = eINSTANCE.getPlace();
-
-		/**
-		 * The meta object literal for the '<em><b>Map To Page</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLACE__MAP_TO_PAGE = eINSTANCE.getPlace_MapToPage();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.ConditionActionTransitionImpl <em>Condition Action Transition</em>}' class.

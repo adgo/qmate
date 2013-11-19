@@ -5,6 +5,7 @@ package org.tud.inf.st.mbt.rules;
 import org.eclipse.emf.common.util.EList;
 import org.tud.inf.st.mbt.actions.PreGenerationSequence;
 import org.tud.inf.st.mbt.ulang.guigraph.ConditionActionTransition;
+import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Transition;
 
 /**
@@ -19,6 +20,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.Transition;
  *   <li>{@link org.tud.inf.st.mbt.rules.InstructionPointerAtom#getInstruction <em>Instruction</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.rules.InstructionPointerAtom#getStackLevel <em>Stack Level</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.rules.InstructionPointerAtom#getContext <em>Context</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.rules.InstructionPointerAtom#getInstancePath <em>Instance Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -121,5 +123,21 @@ public interface InstructionPointerAtom extends Atom {
 	 * @generated
 	 */
 	EList<ContextEntry> getContext();
+
+	/**
+	 * Returns the value of the '<em><b>Instance Path</b></em>' reference list.
+	 * The list contents are of type {@link org.tud.inf.st.mbt.ulang.guigraph.PageTransition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instance Path</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance Path</em>' reference list.
+	 * @see org.tud.inf.st.mbt.rules.RulesPackage#getInstructionPointerAtom_InstancePath()
+	 * @model
+	 * @generated
+	 */
+	EList<PageTransition> getInstancePath();
 
 } // InstructionPointerAtom

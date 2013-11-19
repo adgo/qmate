@@ -2,6 +2,8 @@
  */
 package org.tud.inf.st.mbt.rules;
 
+import org.eclipse.emf.common.util.EList;
+import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 
 /**
@@ -14,6 +16,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.Place;
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.rules.TokenAtom#getCount <em>Count</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.rules.TokenAtom#getPlace <em>Place</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.rules.TokenAtom#getInstancePath <em>Instance Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,5 +76,21 @@ public interface TokenAtom extends Atom {
 	 * @generated
 	 */
 	void setPlace(Place value);
+
+	/**
+	 * Returns the value of the '<em><b>Instance Path</b></em>' reference list.
+	 * The list contents are of type {@link org.tud.inf.st.mbt.ulang.guigraph.PageTransition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instance Path</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance Path</em>' reference list.
+	 * @see org.tud.inf.st.mbt.rules.RulesPackage#getTokenAtom_InstancePath()
+	 * @model
+	 * @generated
+	 */
+	EList<PageTransition> getInstancePath();
 
 } // TokenAtom

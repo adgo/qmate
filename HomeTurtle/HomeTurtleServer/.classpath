@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_03 x64"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/IcleboDriver"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SmagCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SmagRE"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

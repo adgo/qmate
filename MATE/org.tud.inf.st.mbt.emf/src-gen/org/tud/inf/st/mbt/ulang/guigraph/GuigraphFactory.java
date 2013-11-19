@@ -31,6 +31,15 @@ public interface GuigraphFactory extends EFactory {
 	GuiGraph createGuiGraph();
 
 	/**
+	 * Returns a new object of class '<em>Page</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Page</em>'.
+	 * @generated
+	 */
+	Page createPage();
+
+	/**
 	 * Returns a new object of class '<em>Widget</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

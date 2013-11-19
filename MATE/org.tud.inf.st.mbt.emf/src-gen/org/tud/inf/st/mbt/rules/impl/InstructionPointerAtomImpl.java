@@ -3,6 +3,7 @@
 package org.tud.inf.st.mbt.rules.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -11,11 +12,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.tud.inf.st.mbt.actions.PreGenerationSequence;
 import org.tud.inf.st.mbt.rules.ContextEntry;
 import org.tud.inf.st.mbt.rules.InstructionPointerAtom;
 import org.tud.inf.st.mbt.rules.RulesPackage;
+import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +31,7 @@ import org.tud.inf.st.mbt.rules.RulesPackage;
  *   <li>{@link org.tud.inf.st.mbt.rules.impl.InstructionPointerAtomImpl#getInstruction <em>Instruction</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.rules.impl.InstructionPointerAtomImpl#getStackLevel <em>Stack Level</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.rules.impl.InstructionPointerAtomImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.rules.impl.InstructionPointerAtomImpl#getInstancePath <em>Instance Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,6 +97,16 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 	 * @ordered
 	 */
 	protected EList<ContextEntry> context;
+
+	/**
+	 * The cached value of the '{@link #getInstancePath() <em>Instance Path</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstancePath()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PageTransition> instancePath;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -210,6 +224,18 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<PageTransition> getInstancePath() {
+		if (instancePath == null) {
+			instancePath = new EObjectResolvingEList<PageTransition>(PageTransition.class, this, RulesPackage.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH);
+		}
+		return instancePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -236,6 +262,8 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 				return getStackLevel();
 			case RulesPackage.INSTRUCTION_POINTER_ATOM__CONTEXT:
 				return getContext();
+			case RulesPackage.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH:
+				return getInstancePath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -262,6 +290,10 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 				getContext().clear();
 				getContext().addAll((Collection<? extends ContextEntry>)newValue);
 				return;
+			case RulesPackage.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH:
+				getInstancePath().clear();
+				getInstancePath().addAll((Collection<? extends PageTransition>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -286,6 +318,9 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 			case RulesPackage.INSTRUCTION_POINTER_ATOM__CONTEXT:
 				getContext().clear();
 				return;
+			case RulesPackage.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH:
+				getInstancePath().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -306,6 +341,8 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 				return stackLevel != STACK_LEVEL_EDEFAULT;
 			case RulesPackage.INSTRUCTION_POINTER_ATOM__CONTEXT:
 				return context != null && !context.isEmpty();
+			case RulesPackage.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH:
+				return instancePath != null && !instancePath.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -316,7 +353,8 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 	 */
 	@Override
 	public String toString() {
-		return sequence+":L"+getStackLevel()+":I"+instruction;
+		String instance = instancePath!=null && instancePath.size()>0 ? "@"+instancePath : "";
+		return sequence+":L"+getStackLevel()+":I"+instruction+instance;
 	}
 
 } //InstructionPointerAtomImpl

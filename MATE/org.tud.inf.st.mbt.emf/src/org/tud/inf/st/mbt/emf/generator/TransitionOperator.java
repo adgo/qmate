@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.tud.inf.st.mbt.emf.transformations.Model2Logic;
@@ -22,6 +24,9 @@ import org.tud.inf.st.mbt.rules.TokenAtom;
 import org.tud.inf.st.mbt.ulang.guigraph.Arc;
 import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
 import org.tud.inf.st.mbt.ulang.guigraph.InhibitorArc;
+import org.tud.inf.st.mbt.ulang.guigraph.NoWidgetNode;
+import org.tud.inf.st.mbt.ulang.guigraph.Page;
+import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 import org.tud.inf.st.mbt.ulang.guigraph.StandardArc;
 import org.tud.inf.st.mbt.ulang.guigraph.Transition;
@@ -46,19 +51,23 @@ public abstract class TransitionOperator extends AbstractOperator {
 	private Map<Transition, List<PlaceWeight>> trans2consumed = new HashMap<>();
 	private Map<Transition, List<Place>> trans2inhibited = new HashMap<>();
 	private Map<Transition, List<PlaceWeight>> trans2produced = new HashMap<>();
+	private Map<Collection<PageTransition>, Page> path2Page = new HashMap<>();
 
 	private SAT sat;
 	private SATFoundation satFoundation;
 	private boolean ignoreRealtime = false;
+	private Set<PageTransition> pagesTrans;
+	private Set<Place> places;
 
-	public TransitionOperator(SATFoundation satFoundation, boolean ignoreRealTime) {
+	public TransitionOperator(SATFoundation satFoundation,
+			boolean ignoreRealTime) {
 		this.satFoundation = satFoundation;
 		this.ignoreRealtime = ignoreRealTime;
 
 		this.sat = satFoundation.buildSAT();
 
-		Collection<Place> places = getAllEObjectsOfSuperType(
-				satFoundation.getResourceSet(), Place.class);
+		places = getAllEObjectsOfSuperType(satFoundation.getResourceSet(),
+				Place.class);
 		Collection<Arc> arcs = getAllEObjectsOfSuperType(
 				satFoundation.getResourceSet(), Arc.class);
 		transitions = getAllEObjectsOfSuperType(satFoundation.getResourceSet(),
@@ -84,20 +93,42 @@ public abstract class TransitionOperator extends AbstractOperator {
 						wProduced.weight += ((StandardArc) e).getWeight();
 					}
 				}
-				consumed.add(wConsumed);
-				produced.add(wProduced);
+				if(wConsumed.weight>0)consumed.add(wConsumed);
+				if(wProduced.weight>0)produced.add(wProduced);
 			}
 
 			trans2consumed.put(t, consumed);
 			trans2inhibited.put(t, inhibited);
 			trans2produced.put(t, produced);
 		}
+
+		pagesTrans = getAllEObjectsOfSuperType(getSatFoundation()
+				.getResourceSet(), PageTransition.class);
+		//for (PageTransition p : pagesTrans)
+		//	path2Page.put(p, p.getPage());
+		//TODO
 	}
-	
+
+	@Override
+	public void contributeToInitialState(State s) {
+		for (Place pp : places) {
+			if (pp instanceof NoWidgetNode) {
+				NoWidgetNode p = (NoWidgetNode) pp;
+				if (p.getInitialTokens() > 0) {
+					if (p.eContainer() instanceof Page) {
+						//TODO
+					} else
+						s.configureProposition(atom(p, p.getInitialTokens()));
+				}
+			}
+		}
+		computeEnabledTransitions(s);
+	}
+
 	public void setIgnoreRealtime(boolean ignoreRealtime) {
 		this.ignoreRealtime = ignoreRealtime;
 	}
-	
+
 	public boolean isIgnoreRealtime() {
 		return ignoreRealtime;
 	}
@@ -110,15 +141,16 @@ public abstract class TransitionOperator extends AbstractOperator {
 		return satFoundation;
 	}
 
-	protected void consumeAndProduce(Transition t, State s) {
+	protected void consumeAndProduce(Transition t, State s,
+			Collection<PageTransition> instance) {
 		for (PlaceWeight w : trans2consumed.get(t))
-			changeTokenCount(s, w.place, -w.weight);
-		
+			changeTokenCount(s, w.place, -w.weight, instance);
+
 		computeEnabledTransitions(s);
-		
+
 		for (PlaceWeight w : trans2produced.get(t))
-			changeTokenCount(s, w.place, w.weight);
-		
+			changeTokenCount(s, w.place, w.weight, instance);
+
 		s.deconfigureProposition(ModelUtil.atom((IRealTimeConsumer) t, 0L));
 	}
 
@@ -139,8 +171,8 @@ public abstract class TransitionOperator extends AbstractOperator {
 					s.configureProposition(ModelUtil.atom(t, 0));
 				enabled.add(t);
 			} else {
-				if(timed.contains(t))
-					s.deconfigureProposition(ModelUtil.atom(t,0));
+				if (timed.contains(t))
+					s.deconfigureProposition(ModelUtil.atom(t, 0));
 			}
 		}
 
@@ -150,9 +182,11 @@ public abstract class TransitionOperator extends AbstractOperator {
 	@SuppressWarnings("unchecked")
 	protected List<Transition> computeActivatedTransitions(State s) {
 		List<Transition> enabled = computeEnabledTransitions(s);
-		if(ignoreRealtime)return enabled;
-		else return (List<Transition>) s
-				.getRealTimeEnabledConsumers(Transition.class);
+		if (ignoreRealtime)
+			return enabled;
+		else
+			return (List<Transition>) s
+					.getRealTimeEnabledConsumers(Transition.class);
 	}
 
 	/**
@@ -184,21 +218,26 @@ public abstract class TransitionOperator extends AbstractOperator {
 		return true;
 	}
 
-	protected final static void changeTokenCount(State s, Place p, int d) {
+	protected final static void changeTokenCount(State s, Place p, int d,
+			Collection<PageTransition> instance) {
 		for (Predicate a : s.getPropositions().toArray()) {
-			if (a instanceof TokenAtom && ((TokenAtom) a).getPlace().equals(p)) {
+			if (a instanceof TokenAtom
+					&& ((TokenAtom) a).getPlace().equals(p)
+					&& ((((TokenAtom) a).getInstancePath() == null && instance == null) || ModelUtil
+							.collectionEquals(
+									((TokenAtom) a).getInstancePath(), instance))) {
 				TokenAtom ta = (TokenAtom) a;
 				if (ta.getCount() + d <= 0)
 					s.deconfigureProposition(ta);
 				else
 					s.configureProposition(atom(ta.getPlace(), ta.getCount()
-							+ d));
+							+ d, instance));
 				return;
 			}
 		}
 
 		// if no token existed before
-		Atom a = atom(p, d);
+		Atom a = atom(p, d,instance);
 		s.configureProposition(a);
 	}
 

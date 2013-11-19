@@ -591,13 +591,22 @@ public interface RulesPackage extends EPackage {
 	int TOKEN_ATOM__PLACE = ATOM_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Instance Path</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOKEN_ATOM__INSTANCE_PATH = ATOM_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Token Atom</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOKEN_ATOM_FEATURE_COUNT = ATOM_FEATURE_COUNT + 2;
+	int TOKEN_ATOM_FEATURE_COUNT = ATOM_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Sequence</b></em>' reference.
@@ -636,13 +645,22 @@ public interface RulesPackage extends EPackage {
 	int INSTRUCTION_POINTER_ATOM__CONTEXT = ATOM_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Instance Path</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTRUCTION_POINTER_ATOM__INSTANCE_PATH = ATOM_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Instruction Pointer Atom</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTRUCTION_POINTER_ATOM_FEATURE_COUNT = ATOM_FEATURE_COUNT + 4;
+	int INSTRUCTION_POINTER_ATOM_FEATURE_COUNT = ATOM_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' reference.
@@ -763,13 +781,22 @@ public interface RulesPackage extends EPackage {
 	int REAL_TIME_ATOM__CONSUMER = ATOM_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Instance Path</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_TIME_ATOM__INSTANCE_PATH = ATOM_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Real Time Atom</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REAL_TIME_ATOM_FEATURE_COUNT = ATOM_FEATURE_COUNT + 2;
+	int REAL_TIME_ATOM_FEATURE_COUNT = ATOM_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.rules.impl.ContextEntryImpl <em>Context Entry</em>}' class.
@@ -1048,6 +1075,17 @@ public interface RulesPackage extends EPackage {
 	EReference getTokenAtom_Place();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.tud.inf.st.mbt.rules.TokenAtom#getInstancePath <em>Instance Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Instance Path</em>'.
+	 * @see org.tud.inf.st.mbt.rules.TokenAtom#getInstancePath()
+	 * @see #getTokenAtom()
+	 * @generated
+	 */
+	EReference getTokenAtom_InstancePath();
+
+	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.rules.InstructionPointerAtom <em>Instruction Pointer Atom</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1100,6 +1138,17 @@ public interface RulesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getInstructionPointerAtom_Context();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.tud.inf.st.mbt.rules.InstructionPointerAtom#getInstancePath <em>Instance Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Instance Path</em>'.
+	 * @see org.tud.inf.st.mbt.rules.InstructionPointerAtom#getInstancePath()
+	 * @see #getInstructionPointerAtom()
+	 * @generated
+	 */
+	EReference getInstructionPointerAtom_InstancePath();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.rules.TimeAtom <em>Time Atom</em>}'.
@@ -1174,6 +1223,17 @@ public interface RulesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRealTimeAtom_Consumer();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.tud.inf.st.mbt.rules.RealTimeAtom#getInstancePath <em>Instance Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Instance Path</em>'.
+	 * @see org.tud.inf.st.mbt.rules.RealTimeAtom#getInstancePath()
+	 * @see #getRealTimeAtom()
+	 * @generated
+	 */
+	EReference getRealTimeAtom_InstancePath();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.rules.ConfigurationAtom <em>Configuration Atom</em>}'.
@@ -1550,6 +1610,14 @@ public interface RulesPackage extends EPackage {
 		EReference TOKEN_ATOM__PLACE = eINSTANCE.getTokenAtom_Place();
 
 		/**
+		 * The meta object literal for the '<em><b>Instance Path</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOKEN_ATOM__INSTANCE_PATH = eINSTANCE.getTokenAtom_InstancePath();
+
+		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.rules.impl.InstructionPointerAtomImpl <em>Instruction Pointer Atom</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1590,6 +1658,14 @@ public interface RulesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INSTRUCTION_POINTER_ATOM__CONTEXT = eINSTANCE.getInstructionPointerAtom_Context();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Path</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTRUCTION_POINTER_ATOM__INSTANCE_PATH = eINSTANCE.getInstructionPointerAtom_InstancePath();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.rules.impl.TimeAtomImpl <em>Time Atom</em>}' class.
@@ -1652,6 +1728,14 @@ public interface RulesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REAL_TIME_ATOM__CONSUMER = eINSTANCE.getRealTimeAtom_Consumer();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Path</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REAL_TIME_ATOM__INSTANCE_PATH = eINSTANCE.getRealTimeAtom_InstancePath();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.rules.impl.ConfigurationAtomImpl <em>Configuration Atom</em>}' class.
