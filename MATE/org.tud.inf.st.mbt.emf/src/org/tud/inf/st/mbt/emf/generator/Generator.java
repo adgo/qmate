@@ -103,16 +103,12 @@ public class Generator implements Iterator<GeneratorState> {
 	private TestCase buildCase(State s) {
 		if (s.getParent() == null) {
 			TestCase c = TestFactory.eINSTANCE.createTestCase();
-			c.setId(suite.getId() + "-case-" + suite.getCases().size() + 1);
-			c.setName(c.getId());
 			c.setRiskReduction(0);
 			return c;
 		} else {
 			//TODO empty steps?
 			TestCase c = buildCase(s.getParent());
 			TestStep ts = TestFactory.eINSTANCE.createTestStep();
-			ts.setId(c.getId() + "-step-" + c.getSteps().size() + 1);
-			ts.setName(ts.getId());
 			c.setRiskReduction(c.getRiskReduction() + s.getPriority());
 			if (s.getTraceableTo() != null && s.getTraceableTo().length > 0)
 				ts.setNote(s.getTraceableTo()[0].getNote());
@@ -139,13 +135,15 @@ public class Generator implements Iterator<GeneratorState> {
 	private void renameElements() {
 		int cn = 1;
 		for (TestCase tc : suite.getCases()) {
-			tc.setId(suite.getId() + "_case_" + cn++);
-			tc.setName(tc.getId());
+			tc.setId(suite.getId() + "_case_" + cn);
+			tc.setName(suite.getName()!=null ? suite.getName() + "-case-" + cn : tc.getId());
 			int sn = 1;
 			for (TestStep ts : tc.getSteps()) {
-				ts.setId(tc.getId() + "_step_" + sn++);
-				ts.setName(ts.getId());
+				ts.setId(tc.getId() + "_step_" + sn);
+				ts.setName(tc.getName()+ "_step_" + sn);
+				sn++;
 			}
+			cn++;
 		}
 	}
 

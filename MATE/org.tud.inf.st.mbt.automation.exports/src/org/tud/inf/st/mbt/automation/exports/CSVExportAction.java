@@ -133,8 +133,8 @@ public class CSVExportAction extends ActionDelegate {
 			}
 		}
 
-		os.print(testSuiteID + ";" + testSuiteName + ";" + testCaseID + ";"
-				+ testCaseName + ";" + testStepID + ";" + testStepName + ";"
+		os.print( testSuiteName + ";" 
+				+ testCaseName + ";" + testStepName + ";"
 				+ ts.getAction()+"\n");
 	}
 
