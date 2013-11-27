@@ -64,8 +64,8 @@ public class EMFGraphicalLayouter {
 
 		@Override
 		public int compare(GraphicalNodeDefinition a, GraphicalNodeDefinition b) {
-			return distance(a, new HashSet<GraphicalNodeDefinition>())
-					- distance(b, new HashSet<GraphicalNodeDefinition>());
+			return distance(b, new HashSet<GraphicalNodeDefinition>())
+					- distance(a, new HashSet<GraphicalNodeDefinition>());
 		}
 
 		public int distance(GraphicalNodeDefinition node,
@@ -265,6 +265,19 @@ public class EMFGraphicalLayouter {
 			gnd.setX(free.x * fieldSize);
 			gnd.setY(free.y * fieldSize);
 		}
+	}
+	
+	private int measureArcLengths(GraphicalDescription gd, EndpointProvider ep){
+		int result = 0;
+		for(Object o:gd.getConnections()){
+			if(o instanceof GraphicalConnectionDefinition){
+				GraphicalConnectionDefinition gcd = (GraphicalConnectionDefinition)o;
+				GraphicalNodeDefinition source = getGND(ep.getSourceID(gcd.getReferenceId()),gd);
+				GraphicalNodeDefinition target = getGND(ep.getTargetID(gcd.getReferenceId()),gd);
+				result += Math.abs(source.getX()-target.getX())+Math.abs(source.getY()-target.getY());
+			}
+		}
+		return result;
 	}
 
 	public void layoutGraphicalDesicription_old3(GraphicalDescription gd,

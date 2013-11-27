@@ -53,6 +53,7 @@ import org.tud.inf.st.mbt.actions.DependentAction;
 import org.tud.inf.st.mbt.actions.PostGenerationAction;
 import org.tud.inf.st.mbt.automation.AbstractConnectorType;
 import org.tud.inf.st.mbt.automation.IAutomationConstants;
+import org.tud.inf.st.mbt.automation.IConnector;
 import org.tud.inf.st.mbt.automation.execute.ISimulationResponder;
 import org.tud.inf.st.mbt.automation.execute.ISimulationAutomation;
 import org.tud.inf.st.mbt.core.AbstractModelElement;
@@ -351,13 +352,15 @@ public class SimulationView extends ViewPart {
 	private boolean ignoreRealtime;
 	private AbstractConnectorType connectorType;
 	private Button btnConnection;
+	private boolean autoRedrawTree = true;
+	private Map<State, List<State>> upperStateCache = new HashMap<>();
 
 	@Override
 	public void createPartControl(Composite outer) {
 
 		Composite parent = new Composite(outer, SWT.None);
 
-		GridLayout layout = new GridLayout(3, false);
+		GridLayout layout = new GridLayout(4, false);
 		parent.setLayout(layout);
 
 		Label l = new Label(parent, SWT.NONE);
@@ -366,7 +369,7 @@ public class SimulationView extends ViewPart {
 
 		lblConnection = new Label(parent, SWT.None);
 		lblConnection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				false, 1, 1));
+				false, 2, 1));
 		lblConnection.setText("<no connection selected>");
 
 		btnConnection = new Button(parent, SWT.NONE);
@@ -391,7 +394,7 @@ public class SimulationView extends ViewPart {
 
 		traversalCombo = new ComboViewer(parent);
 		traversalCombo.getControl().setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
+				new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 		traversalCombo.add("<no traversal>");
 		for (AbstractTraversalType tt : TraversalManager.getInstance()
 				.getTraversalTypes())
@@ -429,8 +432,9 @@ public class SimulationView extends ViewPart {
 		});
 
 		l = new Label(parent, SWT.None);
+		
 		final Button btnVis = new Button(parent, SWT.CHECK);
-		btnVis.setText("Visualize in editors");
+		btnVis.setText("visualize in editors");
 		btnVis.addSelectionListener(new SelectionListener() {
 
 			@Override
@@ -447,9 +451,28 @@ public class SimulationView extends ViewPart {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
+		
+		final Button btnRedraw = new Button(parent, SWT.CHECK);
+		btnRedraw.setText("automatically redraw tree");
+		btnRedraw.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (btnRedraw.getSelection())
+					SimulationView.this.autoRedrawTree = true;
+				else {
+					SimulationView.this.autoRedrawTree = false;
+				}
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		});
+		btnRedraw.setSelection(true);
 
 		SashForm sash = new SashForm(parent, SWT.HORIZONTAL);
-		sash.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
+		sash.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 4, 1));
 
 		stepViewer = new StepTreeViewer(sash, SWT.SINGLE);
 
@@ -558,10 +581,12 @@ public class SimulationView extends ViewPart {
 	private List<State> getAllUpperStates(State s) {
 		if (s == null)
 			return Collections.emptyList();
+		else if(upperStateCache.containsKey(s))return upperStateCache.get(s);
 		else {
 			LinkedList<State> l = new LinkedList<State>();
 			l.addAll(getAllUpperStates(s.getParent()));
 			l.add(s);
+			upperStateCache.put(s, l);
 			return l;
 		}
 	}
@@ -584,11 +609,13 @@ public class SimulationView extends ViewPart {
 		this.ignoreRealtime = ignoreRealtime;
 		failed.clear();
 		conf2initial.clear();
+		upperStateCache.clear();
 		satFoundation = new SATFoundation(rs, maxTokens, maxTime);
 
 		Display.getDefault().syncExec(new Runnable() {			
 			@Override
 			public void run() {
+				stepViewer.setInput(null);
 				stepViewer.setInput(confs);
 				cancelTraversal();
 				checkTraversalEnabled();				
@@ -660,27 +687,37 @@ public class SimulationView extends ViewPart {
 						if (o instanceof State)
 							stateChoices.add((State) o);
 				}
+				
+				Display.getDefault().syncExec(new Runnable() {
+					@Override
+					public void run() {
+						stepViewer.getTree().setEnabled(false);
+						if(!autoRedrawTree)stepViewer.getTree().setRedraw(false);
+					}
+				});
 
 				do {
 					final State next = tt.determineNext(stateChoices);
-
+					
 					Display.getDefault().syncExec(new Runnable() {
 						@Override
 						public void run() {
 							details.setInput(next);
 							details.expandAll();
+														
 							stepViewer.expandToLevel(next.getParent(), 1);
 						}
 					});
+					
+					try {
+						automate(next);
+					} catch (Exception e) {
+						jobCancelled = true;
+					}
 
 					Display.getDefault().syncExec(new Runnable() {
 						@Override
 						public void run() {
-							try {
-								automate(next);
-							} catch (Exception e) {
-								jobCancelled = true;
-							}
 							if (visualize)
 								next.activate();
 						}
@@ -698,6 +735,9 @@ public class SimulationView extends ViewPart {
 								@Override
 								public void run() {
 									cancelTraversal();
+									stepViewer.getTree().setEnabled(true);
+									stepViewer.getTree().setRedraw(true);
+									stepViewer.reveal(lastExecuted);
 								}
 							});
 							traversationJob = null;
@@ -741,11 +781,23 @@ public class SimulationView extends ViewPart {
 		state.setFailed(true);
 	}
 
-	private void automate(State selected) {
+	private void automate(final State selected) {
 		if (connectorType == null)
 			return;
 
-		Object as = connectorType.getConnector(lblConnection.getText());
+		class Getter implements Runnable{
+			public IConnector connector;
+			
+			@Override
+			public void run() {
+				connector = connectorType.getConnector(lblConnection.getText());				
+			}
+		}
+		Getter getter = new Getter();
+		
+		Display.getDefault().syncExec(getter);
+		
+		IConnector as = getter.connector;
 
 		if (!(as instanceof ISimulationAutomation))
 			return;
@@ -788,35 +840,45 @@ public class SimulationView extends ViewPart {
 
 			downloaded.add(lastExecuted);
 
-			stepViewer.add(lastExecuted, ((ITreeContentProvider) stepViewer
-					.getContentProvider()).getChildren(selected));
+			Display.getDefault().syncExec(new Runnable(){
+				@Override
+				public void run() {
+					stepViewer.add(lastExecuted, ((ITreeContentProvider) stepViewer
+							.getContentProvider()).getChildren(selected));				}
+			});
 		}
+		
+		Display.getDefault().syncExec(new Runnable(){
+			@Override
+			public void run() {
+				TreeItem selectedItem = (TreeItem) stepViewer.find(selected);
+				stepViewer.getTree().showItem(selectedItem);
+				List<TreeItem> upperItems = getAllUpperItems(selectedItem);
+				for (TreeItem ti : upperItems) {
+					if (ti.getData() instanceof Configuration) {
+						Configuration c = (Configuration) ti.getData();
+						if (getAllUpperStates(lastExecuted).contains(
+								conf2initial.get(c))) {
+							ti.setBackground(Display.getDefault().getSystemColor(
+									SWT.COLOR_BLUE));
+							ti.setForeground(Display.getDefault().getSystemColor(
+									SWT.COLOR_WHITE));
+						}
+					} else if (lastExecuted == ti.getData()
+							|| getAllUpperStates(lastExecuted).contains(ti.getData())) {
+						ti.setBackground(Display.getDefault().getSystemColor(
+								SWT.COLOR_BLUE));
+						ti.setForeground(Display.getDefault().getSystemColor(
+								SWT.COLOR_WHITE));
+					}
+					if (ti.getData() instanceof State && failed.contains(ti.getData())) {
+						ti.setBackground(Display.getDefault().getSystemColor(
+								SWT.COLOR_RED));
+					}
+				}			}
+		});
 
-		TreeItem selectedItem = (TreeItem) stepViewer.find(selected);
-		stepViewer.getTree().showItem(selectedItem);
-		List<TreeItem> upperItems = getAllUpperItems(selectedItem);
-		for (TreeItem ti : upperItems) {
-			if (ti.getData() instanceof Configuration) {
-				Configuration c = (Configuration) ti.getData();
-				if (getAllUpperStates(lastExecuted).contains(
-						conf2initial.get(c))) {
-					ti.setBackground(Display.getDefault().getSystemColor(
-							SWT.COLOR_BLUE));
-					ti.setForeground(Display.getDefault().getSystemColor(
-							SWT.COLOR_WHITE));
-				}
-			} else if (lastExecuted == ti.getData()
-					|| getAllUpperStates(lastExecuted).contains(ti.getData())) {
-				ti.setBackground(Display.getDefault().getSystemColor(
-						SWT.COLOR_BLUE));
-				ti.setForeground(Display.getDefault().getSystemColor(
-						SWT.COLOR_WHITE));
-			}
-			if (ti.getData() instanceof State && failed.contains(ti.getData())) {
-				ti.setBackground(Display.getDefault().getSystemColor(
-						SWT.COLOR_RED));
-			}
-		}
+
 	}
 
 	private void cancelTraversal() {

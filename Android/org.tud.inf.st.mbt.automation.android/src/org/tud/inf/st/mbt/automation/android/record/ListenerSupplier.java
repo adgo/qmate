@@ -16,6 +16,7 @@ import java.util.Random;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.json.simple.JSONObject;
+import org.tud.inf.st.mbt.actions.PostGenerationAction;
 import org.tud.inf.st.mbt.actions.PreGenerationAction;
 import org.tud.inf.st.mbt.actions.TermAction;
 import org.tud.inf.st.mbt.android.recorder.RecorderConstants;
@@ -83,9 +84,9 @@ public class ListenerSupplier {
 	}
 
 	private static class AndroidEventQueue {
-		private List<JSONObject> events = new LinkedList<>();
+		private List<Object> events = new LinkedList<>();
 
-		public void add(JSONObject event) {
+		public void add(Object event) {
 			events.add(event);
 		}
 
@@ -93,16 +94,21 @@ public class ListenerSupplier {
 			List<PreGenerationAction> actions = new ArrayList<>();
 
 			for (Counter i = new Counter(); i.value < events.size(); i.value++) {
-				JSONObject json = events.get(i.value);
-				int type = Integer.parseInt(json
-						.get(RecorderConstants.EVENT_TYPE) + "");
-				if (type == AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED) {
-					PreGenerationAction pga = buildType(i);
-					if(pga!=null)actions.add(pga);
-				} else {
-					PreGenerationAction pga = event2Action(json);
-					if (pga != null)
-						actions.add(pga);
+				if (events.get(i.value) instanceof JSONObject) {
+					JSONObject json = (JSONObject) events.get(i.value);
+					int type = Integer.parseInt(json
+							.get(RecorderConstants.EVENT_TYPE) + "");
+					if (type == AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED) {
+						PreGenerationAction pga = buildType(i);
+						if (pga != null)
+							actions.add(pga);
+					} else {
+						PreGenerationAction pga = event2Action(json);
+						if (pga != null)
+							actions.add(pga);
+					}
+				} else if (events.get(i.value) instanceof PreGenerationAction) {
+					actions.add((PreGenerationAction) events.get(i.value));
 				}
 			}
 
@@ -116,13 +122,15 @@ public class ListenerSupplier {
 		private TermAction buildType(Counter i) {
 
 			while (i.value < events.size()) {
-				JSONObject json = events.get(i.value);
+				JSONObject json = (JSONObject) events.get(i.value);
 				String txt = json.get(RecorderConstants.EVENT_TEXT) + "";
 				int type = Integer.parseInt(json
 						.get(RecorderConstants.EVENT_TYPE) + "");
 
-				if (type != AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED) {
-					return ModelUtil.functorAction(IAutomationConstants.FUNCTOR_TYPE, txt);
+				if (type != AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED
+						|| !(events.get(i.value + 1) instanceof JSONObject)) {
+					return ModelUtil.functorAction(
+							IAutomationConstants.FUNCTOR_TYPE, txt);
 				} else {
 					i.value++;
 				}
@@ -165,7 +173,8 @@ public class ListenerSupplier {
 					+ "");
 
 			if (type == AccessibilityEvent.TYPE_VIEW_CLICKED) {
-				return ModelUtil.functorAction(IAutomationConstants.FUNCTOR_TAP, txt,
+				return ModelUtil.functorAction(
+						IAutomationConstants.FUNCTOR_TAP, txt,
 						bounds.getCenterX(), bounds.getCenterY());
 			}
 
@@ -239,6 +248,18 @@ public class ListenerSupplier {
 		}
 	}
 
+	public void simulateAction(PreGenerationAction action) {
+		eventActionsQueue.add(action);
+		listener.updateEventActions(eventActionsQueue.toActions());
+	}
+
+	public void induceValidation(PreGenerationAction action) {
+		if (this.validationActions == null)
+			this.validationActions = new ArrayList<>(1);
+		validationActions.add(action);
+		listener.updateValidationActions(this.validationActions);
+	}
+
 	private void updateSimilarStatesList() {
 		Collections.sort(states, new JSONUIComparator(currentPostJSON));
 		listener.updateSimilarStatesList(states);
@@ -254,7 +275,7 @@ public class ListenerSupplier {
 
 	// build completely new state
 	public void buildState(PreGenerationAction action) {
-		if (currentPostJSON == null){
+		if (currentPostJSON == null) {
 			System.err.println("No state was received yet!");
 			return;// no state was received yet
 		}
@@ -268,28 +289,29 @@ public class ListenerSupplier {
 
 		JSONUIState s = new JSONUIState(currentPostJSON, f);
 		s.setImg(new Image(currentImg.getDevice(), currentImg, SWT.IMAGE_COPY));
-		
-		if (lastState == null){
+
+		if (lastState == null) {
 			NoWidgetNode start = factoryGG.createNoWidgetNode();
 			start.setId(id());
-			start.setName("start_"+start.getId());
+			start.setName("start_" + start.getId());
 			start.setInitialTokens(1);
 			listener.getGraph().getNodes().add(start);
 			lastState = new JSONUIState(currentPostJSON, null, start);
 		}
 
 		if (lastState != null) {
-			if(lastTransition!=null)lastTransition.setTerminates(false);
-			
+			if (lastTransition != null)
+				lastTransition.setTerminates(false);
+
 			ConditionActionTransition cat = factoryGG
 					.createConditionActionTransition();
 			cat.setApplicationConditionText("true");
 			cat.setTerminates(true);
 			lastTransition = cat;
-			
-			String actions = action+"";
-			actions = actions.replaceAll(";", ";\n");
-			
+
+			String actions = action + "";
+			actions = actions.replaceAll(";", ";\n\r");
+
 			cat.setActionsText(action + "");
 			cat.setId(id());
 			listener.getGraph().getNodes().add(cat);
@@ -327,8 +349,9 @@ public class ListenerSupplier {
 		if (s == null || !(s instanceof JSONUIState))
 			return;
 
-		if(lastTransition!=null)lastTransition.setTerminates(false);
-		
+		if (lastTransition != null)
+			lastTransition.setTerminates(false);
+
 		ConditionActionTransition cat = factoryGG
 				.createConditionActionTransition();
 		cat.setApplicationConditionText("true");

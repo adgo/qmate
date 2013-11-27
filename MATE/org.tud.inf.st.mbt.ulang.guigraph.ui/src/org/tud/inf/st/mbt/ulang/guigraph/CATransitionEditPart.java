@@ -28,6 +28,7 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFDirectEditPolicy;
 import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFGraphicalNodeEditPolicy;
 import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFXYLayoutEditPolicy;
 import org.tud.inf.st.mbt.emf.util.ModelUtil;
+import org.tud.inf.st.mbt.ulang.guigraph.commands.GUIGraphCommandFactory;
 import org.tud.inf.st.pccs.ConcreteSyntax;
 import org.tud.inf.st.pceditor.emf.PCCSResourceSetImpl;
 import org.tud.inf.st.pceditor.interpreter.Util;

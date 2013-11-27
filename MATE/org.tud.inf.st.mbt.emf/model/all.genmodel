@@ -118,10 +118,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/timingType"/>
     </genClasses>
     <genClasses image="false" ecoreClass="guigraph.ecore#//GuiGraphNode"/>
-    <genClasses ecoreClass="guigraph.ecore#//NoWidgetNode">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//NoWidgetNode/initialTokens"/>
+    <genClasses ecoreClass="guigraph.ecore#//NoWidgetNode"/>
+    <genClasses image="false" ecoreClass="guigraph.ecore#//Place">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Place/initialTokens"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="guigraph.ecore#//Place"/>
     <genClasses ecoreClass="guigraph.ecore#//ConditionActionTransition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//ConditionActionTransition/applicationCondition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//ConditionActionTransition/actions"/>

@@ -1,4 +1,4 @@
-package org.tud.inf.st.mbt.ulang.guigraph;
+package org.tud.inf.st.mbt.ulang.guigraph.commands;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -15,6 +15,11 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.layout.EMFGraphicalLayouter;
 import org.tud.inf.st.mbt.graphical.GraphicalConnectionDefinition;
 import org.tud.inf.st.mbt.graphical.GraphicalDescription;
 import org.tud.inf.st.mbt.graphical.GraphicalNodeDefinition;
+import org.tud.inf.st.mbt.ulang.guigraph.Arc;
+import org.tud.inf.st.mbt.ulang.guigraph.ConditionActionTransition;
+import org.tud.inf.st.mbt.ulang.guigraph.Form;
+import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
+import org.tud.inf.st.mbt.ulang.guigraph.GuiGraphNode;
 
 public class LayoutCommand extends Command {
 	private Map<String, Rectangle> nodesBackup = new HashMap<>();

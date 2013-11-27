@@ -108,6 +108,7 @@ public class Generator implements Iterator<GeneratorState> {
 			c.setRiskReduction(0);
 			return c;
 		} else {
+			//TODO empty steps?
 			TestCase c = buildCase(s.getParent());
 			TestStep ts = TestFactory.eINSTANCE.createTestStep();
 			ts.setId(c.getId() + "-step-" + c.getSteps().size() + 1);

@@ -465,8 +465,8 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNoWidgetNode_InitialTokens() {
-		return (EAttribute)noWidgetNodeEClass.getEStructuralFeatures().get(0);
+	public EClass getPlace() {
+		return placeEClass;
 	}
 
 	/**
@@ -474,8 +474,8 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPlace() {
-		return placeEClass;
+	public EAttribute getPlace_InitialTokens() {
+		return (EAttribute)placeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -685,9 +685,9 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		guiGraphNodeEClass = createEClass(GUI_GRAPH_NODE);
 
 		noWidgetNodeEClass = createEClass(NO_WIDGET_NODE);
-		createEAttribute(noWidgetNodeEClass, NO_WIDGET_NODE__INITIAL_TOKENS);
 
 		placeEClass = createEClass(PLACE);
+		createEAttribute(placeEClass, PLACE__INITIAL_TOKENS);
 
 		conditionActionTransitionEClass = createEClass(CONDITION_ACTION_TRANSITION);
 		createEReference(conditionActionTransitionEClass, CONDITION_ACTION_TRANSITION__APPLICATION_CONDITION);
@@ -792,9 +792,9 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		initEClass(guiGraphNodeEClass, GuiGraphNode.class, "GuiGraphNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(noWidgetNodeEClass, NoWidgetNode.class, "NoWidgetNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNoWidgetNode_InitialTokens(), ecorePackage.getEInt(), "initialTokens", "0", 1, 1, NoWidgetNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(placeEClass, Place.class, "Place", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPlace_InitialTokens(), ecorePackage.getEInt(), "initialTokens", "0", 1, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionActionTransitionEClass, ConditionActionTransition.class, "ConditionActionTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionActionTransition_ApplicationCondition(), theRulesPackage.getPredicate(), null, "applicationCondition", null, 1, 1, ConditionActionTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

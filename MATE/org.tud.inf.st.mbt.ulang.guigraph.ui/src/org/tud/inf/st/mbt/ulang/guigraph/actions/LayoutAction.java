@@ -4,17 +4,17 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFSelectionAction;
 import org.tud.inf.st.mbt.emf.graphicaleditor.GraphicalEMFEditor;
 import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
-import org.tud.inf.st.mbt.ulang.guigraph.LayoutCommand;
+import org.tud.inf.st.mbt.ulang.guigraph.commands.LayoutCommand;
 
 public class LayoutAction extends EMFSelectionAction {
+
+	public static final String ID = "org.tud.inf.st.mbt.ulang.guigraph.actions.layout";
 
 	public LayoutAction(IWorkbenchPart part) {
 		super(part);
 		setId(ID);
 		setText("Layout");
 	}
-
-	public static final String ID = "org.tud.inf.st.mbt.ulang.guigraph.actions.layout";
 
 	@Override
 	protected boolean calculateEnabled() {

@@ -388,13 +388,22 @@ public interface GuigraphPackage extends EPackage {
 	int FORM__IMAGE = WIDGET__IMAGE;
 
 	/**
+	 * The feature id for the '<em><b>Initial Tokens</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORM__INITIAL_TOKENS = WIDGET_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Form</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORM_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 0;
+	int FORM_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -606,13 +615,22 @@ public interface GuigraphPackage extends EPackage {
 	int PLACE__NAME = GUI_GRAPH_NODE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Initial Tokens</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACE__INITIAL_TOKENS = GUI_GRAPH_NODE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Place</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLACE_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 0;
+	int PLACE_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.NoWidgetNodeImpl <em>No Widget Node</em>}' class.
@@ -667,7 +685,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NO_WIDGET_NODE__INITIAL_TOKENS = PLACE_FEATURE_COUNT + 0;
+	int NO_WIDGET_NODE__INITIAL_TOKENS = PLACE__INITIAL_TOKENS;
 
 	/**
 	 * The number of structural features of the '<em>No Widget Node</em>' class.
@@ -676,7 +694,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NO_WIDGET_NODE_FEATURE_COUNT = PLACE_FEATURE_COUNT + 1;
+	int NO_WIDGET_NODE_FEATURE_COUNT = PLACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.ConditionActionTransitionImpl <em>Condition Action Transition</em>}' class.
@@ -1548,17 +1566,6 @@ public interface GuigraphPackage extends EPackage {
 	EClass getNoWidgetNode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.NoWidgetNode#getInitialTokens <em>Initial Tokens</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Initial Tokens</em>'.
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.NoWidgetNode#getInitialTokens()
-	 * @see #getNoWidgetNode()
-	 * @generated
-	 */
-	EAttribute getNoWidgetNode_InitialTokens();
-
-	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.Place <em>Place</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1567,6 +1574,17 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPlace();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.Place#getInitialTokens <em>Initial Tokens</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Initial Tokens</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.Place#getInitialTokens()
+	 * @see #getPlace()
+	 * @generated
+	 */
+	EAttribute getPlace_InitialTokens();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.ConditionActionTransition <em>Condition Action Transition</em>}'.
@@ -1945,14 +1963,6 @@ public interface GuigraphPackage extends EPackage {
 		EClass NO_WIDGET_NODE = eINSTANCE.getNoWidgetNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Initial Tokens</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NO_WIDGET_NODE__INITIAL_TOKENS = eINSTANCE.getNoWidgetNode_InitialTokens();
-
-		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PlaceImpl <em>Place</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1961,6 +1971,14 @@ public interface GuigraphPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PLACE = eINSTANCE.getPlace();
+
+		/**
+		 * The meta object literal for the '<em><b>Initial Tokens</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLACE__INITIAL_TOKENS = eINSTANCE.getPlace_InitialTokens();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.ConditionActionTransitionImpl <em>Condition Action Transition</em>}' class.

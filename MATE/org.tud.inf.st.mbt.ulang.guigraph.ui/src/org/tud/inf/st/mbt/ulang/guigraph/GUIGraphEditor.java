@@ -53,9 +53,12 @@ import org.tud.inf.st.mbt.rules.provider.RulesItemProviderAdapterFactory;
 import org.tud.inf.st.mbt.scenario.provider.ScenarioItemProviderAdapterFactory;
 import org.tud.inf.st.mbt.terms.provider.TermsItemProviderAdapterFactory;
 import org.tud.inf.st.mbt.test.provider.TestItemProviderAdapterFactory;
+import org.tud.inf.st.mbt.ulang.guigraph.actions.DuplicateNodeAction;
 import org.tud.inf.st.mbt.ulang.guigraph.actions.EditImportsAction;
 import org.tud.inf.st.mbt.ulang.guigraph.actions.LayoutAction;
+import org.tud.inf.st.mbt.ulang.guigraph.actions.MergePlacesAction;
 import org.tud.inf.st.mbt.ulang.guigraph.actions.RecordAction;
+import org.tud.inf.st.mbt.ulang.guigraph.actions.SplitTransitionAction;
 import org.tud.inf.st.mbt.ulang.guigraph.provider.GuigraphItemProviderAdapterFactory;
 
 public class GUIGraphEditor extends GraphicalEMFEditor implements
@@ -91,6 +94,12 @@ public class GUIGraphEditor extends GraphicalEMFEditor implements
 						GUIGraphEditor.this));
 				menu.appendToGroup("MODEL", new RecordAction(
 						GUIGraphEditor.this));
+				menu.appendToGroup("MODEL", new MergePlacesAction(
+						GUIGraphEditor.this));
+				menu.appendToGroup("MODEL", new SplitTransitionAction(
+						GUIGraphEditor.this,getEditPartFactory().getGraphics()));
+				menu.appendToGroup("MODEL", new DuplicateNodeAction(
+						GUIGraphEditor.this,getEditPartFactory().getGraphics()));
 			}
 		};
 	}

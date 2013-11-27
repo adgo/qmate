@@ -7,6 +7,7 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.EMFContainerEditPart;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFEditPartFactory;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFGraphics;
 import org.tud.inf.st.mbt.emf.graphicaleditor.GraphicalEMFEditor;
+import org.tud.inf.st.mbt.ulang.guigraph.commands.GUIGraphCommandFactory;
 
 public class GUIGraphEditPartFactory extends EMFEditPartFactory {
 

@@ -204,11 +204,45 @@ public class ManualAutomation implements ISimulationAutomation {
 	}
 
 	@Override
-	public void startTestSuite(TestSuite suite) {	
+	public void startTestSuite(final TestSuite suite) {	
+		class DialogRun implements Runnable {
+
+			int result = -1;
+
+			@Override
+			public void run() {
+				result = new MessageDialog(Display.getDefault()
+						.getActiveShell(), "Test Progress Information", null,
+						"New test suite " + suite+ " started. Configuration: "+suite.getConfiguration(),
+						MessageDialog.INFORMATION, new String[] { "&OK",
+								"&Cancel" }, 0).open();
+			}
+
+		}
+		DialogRun run = new DialogRun();
+		Display.getDefault().syncExec(run);
+		if(run.result!=0)throw new RuntimeException("User cancelled test suite execution.");
 	}
 
 	@Override
-	public void startTestCase(TestCase _case) {
+	public void startTestCase(final TestCase _case) {
+		class DialogRun implements Runnable {
+
+			int result = -1;
+
+			@Override
+			public void run() {
+				result = new MessageDialog(Display.getDefault()
+						.getActiveShell(), "Test Progress Information", null,
+						"New test case " + _case+ " started.",
+						MessageDialog.INFORMATION, new String[] { "&OK",
+								"&Cancel" }, 0).open();
+			}
+
+		}
+		DialogRun run = new DialogRun();
+		Display.getDefault().syncExec(run);
+		if(run.result!=0)throw new RuntimeException("User cancelled test case execution.");
 	}
 
 }

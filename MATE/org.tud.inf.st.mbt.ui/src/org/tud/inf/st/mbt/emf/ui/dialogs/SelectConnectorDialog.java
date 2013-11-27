@@ -11,8 +11,11 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -36,7 +39,7 @@ public class SelectConnectorDialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		GridLayout layout = new GridLayout();
-		layout.numColumns = 2;
+		layout.numColumns = 3;
 
 		parent.setLayout(layout);
 
@@ -44,7 +47,7 @@ public class SelectConnectorDialog extends TitleAreaDialog {
 		l.setText("Connector Type:");
 		cbType = new ComboViewer(parent);
 		cbType.getControl().setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, false));
+				new GridData(SWT.FILL, SWT.FILL, true, false,2,1));
 		cbType.setLabelProvider(new LabelProvider());
 		cbType.setContentProvider(new IStructuredContentProvider() {
 			@Override
@@ -100,6 +103,21 @@ public class SelectConnectorDialog extends TitleAreaDialog {
 			
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
+				if(!((IStructuredSelection)cbType.getSelection()).isEmpty()){
+					IStructuredSelection s = (IStructuredSelection)cbType.getSelection();
+					type = (AbstractConnectorType)s.getFirstElement();
+					cbConnection.setInput(type.getAvailableConnections());					
+				} else {
+					cbConnection.setInput(new String[0]);
+				}
+			}
+		});
+		
+		Button refresh = new Button(parent,SWT.NONE);
+		refresh.setText("Refresh");
+		refresh.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
 				if(!((IStructuredSelection)cbType.getSelection()).isEmpty()){
 					IStructuredSelection s = (IStructuredSelection)cbType.getSelection();
 					type = (AbstractConnectorType)s.getFirstElement();

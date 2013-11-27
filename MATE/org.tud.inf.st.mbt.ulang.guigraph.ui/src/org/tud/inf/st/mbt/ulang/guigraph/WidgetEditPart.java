@@ -18,6 +18,7 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFComponentEditPolicy;
 import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFGraphicalNodeEditPolicy;
 import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFXYLayoutEditPolicy;
 import org.tud.inf.st.mbt.emf.util.ModelUtil;
+import org.tud.inf.st.mbt.ulang.guigraph.commands.GUIGraphCommandFactory;
 
 public class WidgetEditPart extends PlaceEditPart {
 
@@ -44,16 +45,25 @@ public class WidgetEditPart extends PlaceEditPart {
 
 					public boolean canConnect(EObject source, EObject target,
 							EClass connType) {
-						if(!(source instanceof Transition && !(target instanceof Transition))
-								&& !(target instanceof Transition && !(source instanceof Transition)))return false;
-						
-						for(Arc a:ModelUtil.getAllEObjectsOfSuperType(getModel().eContainer(), Arc.class)){
-							if(a.getSource().equals(source) && a.getTarget().equals(target)){
-								if(connType.equals(GuigraphPackage.eINSTANCE.getStandardArc()) && a instanceof StandardArc)return false;
-								if(connType.equals(GuigraphPackage.eINSTANCE.getInhibitorArc()) && a instanceof InhibitorArc)return false;								
+						if (!(source instanceof Transition && !(target instanceof Transition))
+								&& !(target instanceof Transition && !(source instanceof Transition)))
+							return false;
+
+						for (Arc a : ModelUtil.getAllEObjectsOfSuperType(
+								getModel().eContainer(), Arc.class)) {
+							if (a.getSource().equals(source)
+									&& a.getTarget().equals(target)) {
+								if (connType.equals(GuigraphPackage.eINSTANCE
+										.getStandardArc())
+										&& a instanceof StandardArc)
+									return false;
+								if (connType.equals(GuigraphPackage.eINSTANCE
+										.getInhibitorArc())
+										&& a instanceof InhibitorArc)
+									return false;
 							}
 						}
-						
+
 						return true;
 					}
 
@@ -110,19 +120,31 @@ public class WidgetEditPart extends PlaceEditPart {
 
 		fig.setFocus(focus);
 
-		Widget state = getModel();
-		fig.getLabel().setText(
-				(getSimulationTokens() > 0 ? "<" + getSimulationTokens() + ">" : "")
-						+ getGraphics().getTextProvider().getText(
-								state,
-								CorePackage.eINSTANCE
-										.getAbstractModelElement_Name()));
-		fig.setActive(getSimulationTokens() > 0);
+		Widget model = getModel();
+		if (model instanceof Place) {
+
+			String tokenStr = "";
+			if (getSimulationTokens() == GUIGraphEditor.NOSIM) {
+				if (((Place) model).getInitialTokens() > 0)
+					tokenStr = "<" + ((Place) model).getInitialTokens() + "> ";
+			} else {
+				tokenStr = "<" + getSimulationTokens() + "> ";
+			}
+
+			fig.getLabel().setText(
+					tokenStr
+							+ getGraphics().getTextProvider().getText(
+									model,
+									CorePackage.eINSTANCE
+											.getAbstractModelElement_Name()));
+			fig.setActive(getSimulationTokens() > 0);
+		}
 
 		setConstraint(new Rectangle(getGraphics().getObjectConstraint(
 				getModel())));
 
-		fig.setImagePath(ResourcesPlugin.getWorkspace().getRoot().getLocation()+"/"+state.getImage());
+		fig.setImagePath(ResourcesPlugin.getWorkspace().getRoot().getLocation()
+				+ "/" + model.getImage());
 
 		refreshChildren();
 	}

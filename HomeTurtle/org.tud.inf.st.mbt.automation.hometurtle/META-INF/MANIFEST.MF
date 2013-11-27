@@ -6,8 +6,22 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.tud.inf.st.mbt.automation.hometurtle.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.tud.inf.st.mbt.automation;bundle-version="1.0.0",
- org.tud.inf.st.mbt.emf;bundle-version="1.0.0"
+ org.tud.inf.st.mbt.emf;bundle-version="1.0.0",
+ org.eclipse.jetty.server;bundle-version="8.1.10",
+ org.eclipse.jetty.http;bundle-version="8.1.10",
+ org.eclipse.jetty.util;bundle-version="8.1.10",
+ javax.servlet;bundle-version="3.0.0",
+ org.eclipse.emf.common;bundle-version="2.9.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: lib/service.jar,
- .
+Bundle-ClassPath: .,
+ lib/gson-1.4.jar,
+ lib/jsonrpc-1.0-client.jar,
+ lib/jsonrpc-1.0-javadoc.jar,
+ lib/jsonrpc-1.0-server.jar,
+ lib/jsonrpc-1.0-sources.jar,
+ lib/jsonrpc-1.0.jar,
+ lib/slf4j-api-1.5.8.jar,
+ lib/hometurtle.jar,
+ lib/slf4j-nop-1.5.8.jar,
+ lib/slf4j-simple-1.5.8.jar

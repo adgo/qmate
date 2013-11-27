@@ -1,4 +1,4 @@
-package org.tud.inf.st.mbt.ulang.guigraph;
+package org.tud.inf.st.mbt.ulang.guigraph.commands;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -8,6 +8,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFGraphics;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFGraphicsUtil;
+import org.tud.inf.st.mbt.ulang.guigraph.ConditionActionTransition;
+import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
+import org.tud.inf.st.mbt.ulang.guigraph.GuiGraphNode;
+import org.tud.inf.st.mbt.ulang.guigraph.GuigraphFactory;
+import org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage;
+import org.tud.inf.st.mbt.ulang.guigraph.Widget;
 
 public class GUIGraphCreateCommand extends Command {
 

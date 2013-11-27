@@ -17,27 +17,10 @@ import org.tud.inf.st.mbt.test.TestReport;
 import org.tud.inf.st.mbt.test.TestRun;
 import org.tud.inf.st.mbt.test.TestStep;
 import org.tud.inf.st.mbt.test.TestStepRun;
-import org.tud.inf.st.mbt.test.TestSuite;
 import org.tud.inf.st.mbt.test.Verdict;
 
 public class ReportUtil {
 	private static final TestFactory F = TestFactory.eINSTANCE;
-
-	public static TestReport report(List<State> cs, String id) {
-		TestReport report = F.createTestReport();
-		report.setId(id);
-		report.setName(report.getId());
-		report.setSuite(trace(cs, TestSuite.class));
-
-		for (int i = 0; i < cs.size(); i++) {
-			report.getRuns().add(reportRun(cs.get(i), id + "_" + i));
-		}
-
-		if (report.getSuite() != null)
-			report.getTraceableTo().add(report.getSuite());
-
-		return report;
-	}
 
 	public static TestRun reportRun(State s, String id) {
 		List<State> path = flattenPath(s);
@@ -48,10 +31,11 @@ public class ReportUtil {
 		if (run.get_case() != null)
 			run.getTraceableTo().add(run.get_case());
 
+		int num = 1;
 		for (int i = 0; i < path.size(); i++)
 			if (path.get(i).getActions() != null
 					&& path.get(i).getActions().getActions().size() > 0)
-				run.getStepRuns().add(reportStep(path.get(i), id + "_" + i));
+				run.getStepRuns().add(reportStep(path.get(i), id + "_" + (num++)));
 
 		return run;
 	}

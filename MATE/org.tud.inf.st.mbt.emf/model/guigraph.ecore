@@ -40,11 +40,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GuiGraphNode" abstract="true" interface="true"
       eSuperTypes="mbt.ecore#//core/AbstractModelElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NoWidgetNode" eSuperTypes="#//Place">
+  <eClassifiers xsi:type="ecore:EClass" name="NoWidgetNode" eSuperTypes="#//Place"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Place" abstract="true" eSuperTypes="#//GuiGraphNode">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialTokens" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Place" abstract="true" eSuperTypes="#//GuiGraphNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionActionTransition" eSuperTypes="#//Transition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="applicationCondition" lowerBound="1"
         eType="ecore:EClass mbt.ecore#//rules/Predicate" containment="true"/>

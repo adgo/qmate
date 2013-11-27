@@ -50,4 +50,11 @@ public abstract class AbstractRecorder implements IConnector{
 	public void simulateTextInput(String txt){
 		
 	}
+	
+	public void simulateAction(PreGenerationAction action){
+	}
+	
+	public void induceValidation(PreGenerationAction action){
+		
+	}
 }

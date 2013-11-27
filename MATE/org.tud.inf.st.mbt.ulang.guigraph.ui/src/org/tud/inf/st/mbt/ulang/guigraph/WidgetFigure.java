@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Display;
 public class WidgetFigure extends Figure{
 	private ImageFigure image;
 	private Label label;
-	private RectangleFigure rect;
+	private RectangleFigure rect,labelBg;
 	private String imagePath;
 	private Dimension lastSize = new Dimension(0,0);
 	
@@ -33,6 +33,8 @@ public class WidgetFigure extends Figure{
 		rect = new RectangleFigure();
 		rect.setBackgroundColor(ColorConstants.lightGray);
 
+		labelBg = new RectangleFigure();
+		labelBg.setBorder(new LineBorder(ColorConstants.white,1));
 		label = new Label();
 
 		image.setLayoutManager(new XYLayout());
@@ -43,16 +45,17 @@ public class WidgetFigure extends Figure{
 		
 		add(rect);
 		add(image);
+		add(labelBg);
 		add(label);
 	}
 	
 	public void setActive(boolean active){
 		if(active){
-			((LineBorder)getBorder()).setWidth(5);
-			((LineBorder)getBorder()).setColor(ColorConstants.blue);	
+			labelBg.setBackgroundColor(ColorConstants.blue);
+			label.setForegroundColor(ColorConstants.white);
 		} else{
-			((LineBorder)getBorder()).setWidth(1);
-			((LineBorder)getBorder()).setColor(ColorConstants.black);	
+			labelBg.setBackgroundColor(ColorConstants.white);	
+			label.setForegroundColor(ColorConstants.black);
 		}
 	}
 
@@ -78,11 +81,14 @@ public class WidgetFigure extends Figure{
 		
 		setConstraint(image, new Rectangle(new Point(0, 0), size));
 
+		setConstraint(labelBg, new Rectangle(new Point(0, 0), new Dimension(
+				size.width, 17)));
 		setConstraint(label, new Rectangle(new Point(1, 1), new Dimension(
 				size.width, 15)));
 
 		rect.invalidate();
 		image.invalidate();
+		labelBg.invalidate();
 		label.invalidate();
 
 		resetImage(false);

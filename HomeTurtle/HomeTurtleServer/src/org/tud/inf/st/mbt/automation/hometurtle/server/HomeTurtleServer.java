@@ -1,5 +1,6 @@
 package org.tud.inf.st.mbt.automation.hometurtle.server;
 
+import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -21,6 +22,8 @@ public class HomeTurtleServer implements IHomeTurtleTestDriver{
 	public static void main(String[] args) {
 		if(args.length!=1)throw new RuntimeException("First and only argument must be the registry server host name!");
 		try{
+			//System.setSecurityManager(new RMISecurityManager());
+			
 			HomeTurtleServer server = new HomeTurtleServer();
 			IHomeTurtleTestDriver stub = (IHomeTurtleTestDriver) UnicastRemoteObject.exportObject(server);
 			Registry registry = LocateRegistry.getRegistry(args[0]);

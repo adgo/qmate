@@ -136,7 +136,12 @@ public class WindowAnalyzer {
 	}
 
 	public static int measureSimilarity(JSONObject s1, JSONObject s2) {
-		return -diff(s1, s2).size();
+		try{
+			return -diff(s1, s2).size();
+		} catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 	public static List<WindowDiff> diff(JSONObject before, JSONObject after) {

@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -24,7 +23,6 @@ import org.tud.inf.st.mbt.rules.TokenAtom;
 import org.tud.inf.st.mbt.ulang.guigraph.Arc;
 import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
 import org.tud.inf.st.mbt.ulang.guigraph.InhibitorArc;
-import org.tud.inf.st.mbt.ulang.guigraph.NoWidgetNode;
 import org.tud.inf.st.mbt.ulang.guigraph.Page;
 import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
@@ -93,8 +91,10 @@ public abstract class TransitionOperator extends AbstractOperator {
 						wProduced.weight += ((StandardArc) e).getWeight();
 					}
 				}
-				if(wConsumed.weight>0)consumed.add(wConsumed);
-				if(wProduced.weight>0)produced.add(wProduced);
+				if (wConsumed.weight > 0)
+					consumed.add(wConsumed);
+				if (wProduced.weight > 0)
+					produced.add(wProduced);
 			}
 
 			trans2consumed.put(t, consumed);
@@ -104,23 +104,21 @@ public abstract class TransitionOperator extends AbstractOperator {
 
 		pagesTrans = getAllEObjectsOfSuperType(getSatFoundation()
 				.getResourceSet(), PageTransition.class);
-		//for (PageTransition p : pagesTrans)
-		//	path2Page.put(p, p.getPage());
-		//TODO
+		// for (PageTransition p : pagesTrans)
+		// path2Page.put(p, p.getPage());
+		// TODO
 	}
 
 	@Override
 	public void contributeToInitialState(State s) {
-		for (Place pp : places) {
-			if (pp instanceof NoWidgetNode) {
-				NoWidgetNode p = (NoWidgetNode) pp;
-				if (p.getInitialTokens() > 0) {
-					if (p.eContainer() instanceof Page) {
-						//TODO
-					} else
-						s.configureProposition(atom(p, p.getInitialTokens()));
-				}
+		for (Place p : places) {
+			if (p.getInitialTokens() > 0) {
+				if (p.eContainer() instanceof Page) {
+					// TODO
+				} else
+					s.configureProposition(atom(p, p.getInitialTokens()));
 			}
+
 		}
 		computeEnabledTransitions(s);
 	}
@@ -237,7 +235,7 @@ public abstract class TransitionOperator extends AbstractOperator {
 		}
 
 		// if no token existed before
-		Atom a = atom(p, d,instance);
+		Atom a = atom(p, d, instance);
 		s.configureProposition(a);
 	}
 

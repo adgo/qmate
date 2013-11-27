@@ -17,6 +17,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.tud.inf.st.mbt.actions.PostGenerationAction;
 import org.tud.inf.st.mbt.actions.PreGenerationAction;
 import org.tud.inf.st.mbt.android.recorder.RecorderConstants;
 import org.tud.inf.st.mbt.automation.record.AbstractRecorder;
@@ -180,6 +181,20 @@ public class AndroidRecorder extends AbstractRecorder {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void simulateAction(PreGenerationAction action){
+		for (AbstractRecorderListener l : getListeners()) {
+			ListenerSupplier s = suppliers.get(l);
+			s.simulateAction(action);
+		}
+	}
+	
+	public void induceValidation(PreGenerationAction action){
+		for (AbstractRecorderListener l : getListeners()) {
+			ListenerSupplier s = suppliers.get(l);
+			s.induceValidation(action);
 		}
 	}
 

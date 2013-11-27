@@ -1,4 +1,4 @@
-package org.tud.inf.st.mbt.ulang.guigraph;
+package org.tud.inf.st.mbt.ulang.guigraph.commands;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +14,12 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.EMFGraphicsUtil;
 import org.tud.inf.st.mbt.emf.graphicaleditor.commands.EMFCommandFactory;
 import org.tud.inf.st.mbt.emf.graphicaleditor.commands.EMFConnectionCommand;
 import org.tud.inf.st.mbt.emf.graphicaleditor.commands.EMFReconnectCommand;
+import org.tud.inf.st.mbt.ulang.guigraph.Arc;
+import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
+import org.tud.inf.st.mbt.ulang.guigraph.GuiGraphNode;
+import org.tud.inf.st.mbt.ulang.guigraph.GuigraphFactory;
+import org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage;
+import org.tud.inf.st.mbt.ulang.guigraph.Widget;
 
 public class GUIGraphCommandFactory implements EMFCommandFactory {
 

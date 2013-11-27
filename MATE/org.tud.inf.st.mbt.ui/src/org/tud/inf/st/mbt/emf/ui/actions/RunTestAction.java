@@ -60,21 +60,21 @@ public class RunTestAction extends ActionDelegate {
 
 		@Override
 		public void setProperty(DataLeaf leaf, DataElement value) {
-			throw new UnsupportedOperationException(
-					"Test model cannot be accessed from generated tests.");
+			System.err
+					.println("Test model cannot be accessed from generated tests.");
 		}
 
 		@Override
 		public void setFeatureActivated(IFeature f, FeatureVersion v,
 				boolean activated) {
-			throw new UnsupportedOperationException(
-					"Test model cannot be accessed from generated tests.");
+			System.err
+					.println("Test model cannot be accessed from generated tests.");
 		}
 
 		@Override
 		public void elapseRealTime(long realTime) {
-			throw new UnsupportedOperationException(
-					"Test model cannot be accessed from generated tests.");
+			System.err
+					.println("Generated test cases cannot be executed in real time.");
 		}
 	};
 
@@ -194,10 +194,15 @@ public class RunTestAction extends ActionDelegate {
 					if (e.getId() == null)
 						e.setId("id_" + Math.abs(new Random().nextInt()));
 					if (!finished.contains(e)) {
-						results.getContents()
-								.add(execute(e, monitor, finished));
-						finished.addAll(ModelUtil.getAllEObjectsOfSuperType(e,
-								TestExecutable.class, false));
+						finished.addAll(ModelUtil
+								.getAllEObjectsOfSuperType(e,
+										TestExecutable.class, false));
+						try {
+							results.getContents().add(
+									execute(e, monitor, finished));
+						} catch (RuntimeException re) {
+							re.printStackTrace();
+						}
 					}
 					Display.getDefault().syncExec(new Runnable() {
 						public void run() {

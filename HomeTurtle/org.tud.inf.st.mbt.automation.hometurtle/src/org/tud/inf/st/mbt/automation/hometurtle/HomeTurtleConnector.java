@@ -74,13 +74,4 @@ public class HomeTurtleConnector extends ManualAutomation implements
 		else
 			return -1;
 	}
-
-	@Override
-	public void startTestSuite(TestSuite suite) {
-	}
-
-	@Override
-	public void startTestCase(TestCase _case) {
-	}
-
 }

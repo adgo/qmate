@@ -1,0 +1,8 @@
+import "platform:/plugin/org.tud.inf.st.mbt.emf/syntax/actions.pccs";
+
+syntax actionsSingle a:"http://st.inf.tud.org/mbt/actions";
+operators{}
+keywords{}
+parsers{
+	delegate ::= actions.paction;
+} start delegate

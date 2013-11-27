@@ -15,6 +15,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -48,21 +49,50 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 import org.tud.inf.st.mbt.actions.ActionsFactory;
 import org.tud.inf.st.mbt.actions.PreGenerationAction;
 import org.tud.inf.st.mbt.actions.PreGenerationSequence;
+import org.tud.inf.st.mbt.actions.TermAction;
 import org.tud.inf.st.mbt.automation.record.AbstractRecorder;
 import org.tud.inf.st.mbt.automation.record.AbstractRecorderListener;
 import org.tud.inf.st.mbt.automation.record.ImageTool;
 import org.tud.inf.st.mbt.automation.record.UIState;
 import org.tud.inf.st.mbt.emf.graphicaleditor.GraphicalEMFEditor;
+import org.tud.inf.st.mbt.terms.StringTerm;
+import org.tud.inf.st.mbt.terms.TermsFactory;
 import org.tud.inf.st.mbt.ulang.guigraph.Form;
 import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
 import org.tud.inf.st.mbt.ulang.guigraph.GuigraphFactory;
-import org.tud.inf.st.mbt.ulang.guigraph.LayoutCommand;
 import org.tud.inf.st.mbt.ulang.guigraph.NoWidgetNode;
+import org.tud.inf.st.mbt.ulang.guigraph.commands.LayoutCommand;
+import org.tud.inf.st.pccs.ConcreteSyntax;
+import org.tud.inf.st.pceditor.emf.PCCSResourceSetImpl;
+import org.tud.inf.st.pceditor.emf.PCCSResourceFactoryImpl.PCCSResourceImpl;
+import org.tud.inf.st.pceditor.interpreter.PCCSInterpreter;
+import org.tud.inf.st.pceditor.interpreter.ParserResult;
+import org.tud.inf.st.pceditor.interpreter.ParserWrapper;
+import org.tud.inf.st.pceditor.interpreter.Util;
 
 public class RecordingDialog extends TitleAreaDialog {
+
+	private static ParserWrapper actionParser;
+
+	static {
+		PCCSResourceSetImpl rs = new PCCSResourceSetImpl();
+		rs.createResource(URI
+				.createURI("platform:/plugin/org.tud.inf.st.mbt.emf/syntax/actions_single.pccs"));
+		rs.resolveImports();
+		rs.computeReferenceErrors();
+		ConcreteSyntax[] ueSyntax = Util.filterConcreteSyntax(rs);
+
+		PCCSResourceSetImpl rsContent = new PCCSResourceSetImpl();
+
+		actionParser = PCCSInterpreter.interpret(ueSyntax,
+				(PCCSResourceImpl) rsContent.createResource(
+						URI.createURI("temp://action.parser.resource"),
+						PCCSResourceSetImpl.CONTENT_TYPE_MANUAL));
+	}
 
 	private class MouseMonitor implements MouseListener, KeyListener {
 
@@ -126,6 +156,29 @@ public class RecordingDialog extends TitleAreaDialog {
 	private TreeViewer tvStates;
 	private Button contBtn, pauseBtn;
 	private ProgressBar bar;
+	private IStructuredContentProvider termListCP = new IStructuredContentProvider() {
+
+		@Override
+		public void dispose() {
+		}
+
+		@Override
+		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		}
+
+		@Override
+		public Object[] getElements(Object inputElement) {
+			if (inputElement == null)
+				return new Object[0];
+			if (inputElement instanceof Collection<?>) {
+				return ((Collection<?>) inputElement).toArray();
+			}
+			if (inputElement instanceof Object[]) {
+				return (Object[]) inputElement;
+			}
+			return new Object[] { inputElement };
+		}
+	};
 
 	public RecordingDialog(Shell parentShell, AbstractRecorder recorder,
 			GraphicalEMFEditor ged, IPath imageFolder) {
@@ -186,78 +239,7 @@ public class RecordingDialog extends TitleAreaDialog {
 		actions.setLayout(new FillLayout(SWT.VERTICAL));
 		actions.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
-		IStructuredContentProvider termListCP = new IStructuredContentProvider() {
-
-			@Override
-			public void dispose() {
-			}
-
-			@Override
-			public void inputChanged(Viewer viewer, Object oldInput,
-					Object newInput) {
-			}
-
-			@Override
-			public Object[] getElements(Object inputElement) {
-				if (inputElement == null)
-					return new Object[0];
-				if (inputElement instanceof Collection<?>) {
-					return ((Collection<?>) inputElement).toArray();
-				}
-				if (inputElement instanceof Object[]) {
-					return (Object[]) inputElement;
-				}
-				return new Object[] { inputElement };
-			}
-		};
-
-		Group grpEvents = new Group(actions, SWT.None);
-		grpEvents.setText("Events");
-		grpEvents.setLayout(new GridLayout(1,true));
-		final Button btnEvents = new Button(grpEvents,SWT.None);
-		btnEvents.setText("Non/All");
-		btnEvents.addSelectionListener(new SelectionAdapter() {
-			boolean all = true;
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				if(all){
-					all = false;
-					lstEvents.getList().deselectAll();
-				} else {
-					all = true;
-					lstEvents.getList().selectAll();
-				}
-			}
-		});
-		btnEvents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		lstEvents = new ListViewer(grpEvents, SWT.MULTI | SWT.V_SCROLL);
-		lstEvents.setContentProvider(termListCP);
-		lstEvents.setLabelProvider(new LabelProvider());
-		lstEvents.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
-		Group grpValidations = new Group(actions, SWT.None);
-		grpValidations.setText("Validations");
-		grpValidations.setLayout(new GridLayout(1,true));
-		final Button btnValidations = new Button(grpValidations,SWT.None);
-		btnValidations.setText("Non/All");
-		btnValidations.addSelectionListener(new SelectionAdapter() {
-			boolean all = false;
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				if(all){
-					all = false;
-					lstValidations.getList().deselectAll();
-				} else {
-					all = true;
-					lstValidations.getList().selectAll();
-				}
-			}
-		});
-		btnValidations.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		lstValidations = new ListViewer(grpValidations, SWT.MULTI | SWT.V_SCROLL);
-		lstValidations.setContentProvider(termListCP);
-		lstValidations.setLabelProvider(new LabelProvider());
-		lstValidations.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		createActionArea(actions);
 
 		Group grpStates = new Group(parent, SWT.None);
 		grpStates.setText("States");
@@ -357,29 +339,29 @@ public class RecordingDialog extends TitleAreaDialog {
 			}
 		});
 
-//		final Button chkAutomate = new Button(parent, SWT.TOGGLE);
-//		chkAutomate.setText("Activate complete automation");
-//		chkAutomate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true,
-//				2, 1));
-//		chkAutomate.addListener(SWT.Selection, new Listener() {
-//
-//			@Override
-//			public void handleEvent(Event event) {
-//				if (automationFlag) {
-//					automationFlag = false;
-//					chkAutomate.setText("Activate automated recording");
-//				} else {
-//					automationFlag = true;
-//					chkAutomate.setText("Deactivate automated recording");
-//				}
-//				chkAutomate.setSelection(automationFlag);
-//			}
-//		});
-		
-		Label l = new Label(parent,SWT.None);
+		// final Button chkAutomate = new Button(parent, SWT.TOGGLE);
+		// chkAutomate.setText("Activate complete automation");
+		// chkAutomate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+		// true,
+		// 2, 1));
+		// chkAutomate.addListener(SWT.Selection, new Listener() {
+		//
+		// @Override
+		// public void handleEvent(Event event) {
+		// if (automationFlag) {
+		// automationFlag = false;
+		// chkAutomate.setText("Activate automated recording");
+		// } else {
+		// automationFlag = true;
+		// chkAutomate.setText("Deactivate automated recording");
+		// }
+		// chkAutomate.setSelection(automationFlag);
+		// }
+		// });
+
+		Label l = new Label(parent, SWT.None);
 		l.setText("");
-		l.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-				true, 2, 1));
+		l.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
 		Button btnIdentifyState = new Button(parent, SWT.None);
 		btnIdentifyState.setText("Identify with selected state");
@@ -556,6 +538,132 @@ public class RecordingDialog extends TitleAreaDialog {
 		setMessage("Recording from " + recorder.getConnection());
 
 		return outer;
+	}
+
+	private void createActionArea(Composite actions) {
+		Group grpEvents = new Group(actions, SWT.None);
+		grpEvents.setText("Events");
+		grpEvents.setLayout(new GridLayout(2, true));
+		final Button btnEvents = new Button(grpEvents, SWT.None);
+		btnEvents.setText("Non/All");
+		btnEvents.addSelectionListener(new SelectionAdapter() {
+			boolean all = true;
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (all) {
+					all = false;
+					lstEvents.getList().deselectAll();
+				} else {
+					all = true;
+					lstEvents.getList().selectAll();
+				}
+			}
+		});
+		btnEvents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
+				2, 1));
+		lstEvents = new ListViewer(grpEvents, SWT.MULTI | SWT.V_SCROLL);
+		lstEvents.setContentProvider(termListCP);
+		lstEvents.setLabelProvider(new LabelProvider());
+		lstEvents.getControl().setLayoutData(
+				new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+
+		{
+			final Text txtTerm = new Text(grpEvents, SWT.NONE);
+			txtTerm.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
+					1, 1));
+			Button btnTerm = new Button(grpEvents, SWT.NONE);
+			btnTerm.setText("Add");
+			btnTerm.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
+					1, 1));
+			btnTerm.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					String toParse = txtTerm.getText();
+					if(toParse.trim().length()==0)return;
+					actionParser.reset();
+					ParserResult r = actionParser.parse(toParse);
+					PreGenerationAction action = null;
+					if (r.getErrors().size()>0 || r.getObjects() == null
+							|| r.getObjects().isEmpty()
+							|| !(r.getObjects().get(0) instanceof PreGenerationAction)) {
+						if (toParse != null && toParse.length() > 0) {
+							StringTerm str = TermsFactory.eINSTANCE
+									.createStringTerm();
+							str.setValue(toParse);
+							action = ActionsFactory.eINSTANCE
+									.createTermAction();
+							((TermAction) action).setTerm(str);
+						}
+					} else
+						action = (PreGenerationAction) r.getObjects().get(0);
+					recorder.simulateAction(action);
+					txtTerm.setText("");
+				}
+			});
+		}
+
+		Group grpValidations = new Group(actions, SWT.None);
+		grpValidations.setText("Validations");
+		grpValidations.setLayout(new GridLayout(2, true));
+		final Button btnValidations = new Button(grpValidations, SWT.None);
+		btnValidations.setText("Non/All");
+		btnValidations.addSelectionListener(new SelectionAdapter() {
+			boolean all = false;
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (all) {
+					all = false;
+					lstValidations.getList().deselectAll();
+				} else {
+					all = true;
+					lstValidations.getList().selectAll();
+				}
+			}
+		});
+		btnValidations.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+				false, 2, 1));
+		lstValidations = new ListViewer(grpValidations, SWT.MULTI
+				| SWT.V_SCROLL);
+		lstValidations.setContentProvider(termListCP);
+		lstValidations.setLabelProvider(new LabelProvider());
+		lstValidations.getControl().setLayoutData(
+				new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		{
+			final Text txtTerm = new Text(grpValidations, SWT.NONE);
+			txtTerm.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
+					1, 1));
+			Button btnTerm = new Button(grpValidations, SWT.NONE);
+			btnTerm.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
+					1, 1));
+			btnTerm.setText("Add");
+			btnTerm.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					String toParse = txtTerm.getText();
+					if(toParse.trim().length()==0)return;
+					actionParser.reset();
+					ParserResult r = actionParser.parse(toParse);
+					PreGenerationAction action = null;
+					if (r.getErrors().size()>0 || r.getObjects() == null
+							|| r.getObjects().isEmpty()
+							|| !(r.getObjects().get(0) instanceof PreGenerationAction)) {
+						if (toParse != null && toParse.length() > 0) {
+							StringTerm str = TermsFactory.eINSTANCE
+									.createStringTerm();
+							str.setValue(toParse);
+							action = ActionsFactory.eINSTANCE
+									.createTermAction();
+							((TermAction) action).setTerm(str);
+						}
+					} else
+						action = (PreGenerationAction) r.getObjects().get(0);
+					recorder.induceValidation(action);
+					txtTerm.setText("");
+				}
+			});
+		}
 	}
 
 	@Override
