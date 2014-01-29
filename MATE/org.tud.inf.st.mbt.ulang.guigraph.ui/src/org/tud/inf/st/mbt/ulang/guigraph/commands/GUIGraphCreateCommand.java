@@ -52,6 +52,8 @@ public class GUIGraphCreateCommand extends Command {
 			} else if (childType.equals(GuigraphPackage.eINSTANCE
 					.getNoWidgetNode())) {
 				child = GuigraphFactory.eINSTANCE.createNoWidgetNode();
+			} else if(childType.equals(GuigraphPackage.eINSTANCE.getPageTransition())){
+				child = GuigraphFactory.eINSTANCE.createPageTransition();
 			}
 			((GuiGraph) parent).getNodes().add((GuiGraphNode) child);
 		} else if (GuigraphPackage.eINSTANCE.getWidget().isSuperTypeOf(

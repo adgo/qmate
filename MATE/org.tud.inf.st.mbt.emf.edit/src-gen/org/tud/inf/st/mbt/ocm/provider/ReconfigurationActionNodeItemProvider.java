@@ -179,6 +179,11 @@ public class ReconfigurationActionNodeItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(OcmPackage.Literals.RECONFIGURATION_ACTION_NODE__ACTIONS,
+				 ActionsFactory.eINSTANCE.createTermAction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OcmPackage.Literals.RECONFIGURATION_ACTION_NODE__ACTIONS,
 				 ActionsFactory.eINSTANCE.createSetDataAction()));
 
 		newChildDescriptors.add

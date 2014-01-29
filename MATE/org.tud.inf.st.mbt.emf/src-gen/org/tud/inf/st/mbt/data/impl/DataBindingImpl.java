@@ -217,7 +217,7 @@ public class DataBindingImpl extends EObjectImpl implements DataBinding {
 	
 	@Override
 	public String toString() {
-		return getLeaf()+"="+getValue();
+		return getLeaf()+" = "+getValue();
 	}
 
 } //DataBindingImpl

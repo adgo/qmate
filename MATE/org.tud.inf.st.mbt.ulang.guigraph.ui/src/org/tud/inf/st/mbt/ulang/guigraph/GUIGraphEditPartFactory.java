@@ -42,6 +42,8 @@ public class GUIGraphEditPartFactory extends EMFEditPartFactory {
 					(TimerTransition) model, graphics);
 		} else if (model instanceof NoWidgetNode) {
 			result = new NoWidgetNodeEditPart((NoWidgetNode) model, graphics);
+		} else if (model instanceof PageTransition) {
+			result = new PageTransitionEditPart((PageTransition) model, graphics);
 		}
 
 		return result;

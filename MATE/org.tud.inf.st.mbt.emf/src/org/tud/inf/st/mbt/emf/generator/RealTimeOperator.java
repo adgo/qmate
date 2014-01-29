@@ -9,11 +9,8 @@ import org.tud.inf.st.mbt.actions.GetRealTimeAction;
 
 public class RealTimeOperator extends TransitionOperator {
 
-	private ActionProcessor actionProcessor;
-
 	public RealTimeOperator(SATFoundation satFoundation, boolean ignoreRealTime) {
 		super(satFoundation, ignoreRealTime);
-		this.actionProcessor = new ActionProcessor(satFoundation);
 	}
 
 	@Override
@@ -29,7 +26,7 @@ public class RealTimeOperator extends TransitionOperator {
 			long hint = s.getMinTimeToElapse();
 			if (hint != Long.MAX_VALUE && hint!=0) {
 				grta.setTimeHint(hint);
-				next.addAll(actionProcessor.executeAction(s, grta,
+				next.addAll(getSatFoundation().getActionProcessor().executeAction(s, grta,
 						Collections.<String, Object> emptyMap()));
 			}
 		}

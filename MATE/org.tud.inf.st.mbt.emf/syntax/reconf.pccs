@@ -5,5 +5,5 @@ operators{}
 keywords{}
 parsers{
 	sequence ::= ((reconf^a ";")*=>a) => a:PreGenerationSequence(actions = this);
-    reconf ::= or(("{" sequence^s "}")=>s psetdata pgetdata prembag pactivate pdeactivate);
+    reconf ::= or(("{" sequence^s "}")=>s psetdata pgetdata prembag pactivate pdeactivate ptermaction);
 } start sequence

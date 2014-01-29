@@ -58,7 +58,6 @@ public class RealTimeAtomItemProvider extends ItemProviderAdapter implements
 
 			addTimePropertyDescriptor(object);
 			addConsumerPropertyDescriptor(object);
-			addInstancePathPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -99,28 +98,6 @@ public class RealTimeAtomItemProvider extends ItemProviderAdapter implements
 				 getString("_UI_RealTimeAtom_consumer_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RealTimeAtom_consumer_feature", "_UI_RealTimeAtom_type"),
 				 RulesPackage.Literals.REAL_TIME_ATOM__CONSUMER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Instance Path feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInstancePathPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RealTimeAtom_instancePath_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RealTimeAtom_instancePath_feature", "_UI_RealTimeAtom_type"),
-				 RulesPackage.Literals.REAL_TIME_ATOM__INSTANCE_PATH,
 				 true,
 				 false,
 				 true,

@@ -138,14 +138,10 @@ public class TreeFeatureItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TreeFeature)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_TreeFeature_type") :
-			getString("_UI_TreeFeature_type") + " " + label;
+		return object+"";
 	}
 
 	/**

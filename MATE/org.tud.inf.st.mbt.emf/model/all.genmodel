@@ -102,16 +102,13 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference guigraph.ecore#//GuiGraph/invariant"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//GuiGraph/invariantText"/>
     </genClasses>
-    <genClasses ecoreClass="guigraph.ecore#//Page"/>
     <genClasses ecoreClass="guigraph.ecore#//Widget">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//Widget/children"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Widget/image"/>
     </genClasses>
     <genClasses ecoreClass="guigraph.ecore#//Form"/>
     <genClasses ecoreClass="guigraph.ecore#//Transition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/rate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/faultImpact"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/faultProbability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/risk"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/terminates"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/timeMin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Transition/timeMax"/>
@@ -121,6 +118,7 @@
     <genClasses ecoreClass="guigraph.ecore#//NoWidgetNode"/>
     <genClasses image="false" ecoreClass="guigraph.ecore#//Place">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Place/initialTokens"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute guigraph.ecore#//Place/provideAsInterface"/>
     </genClasses>
     <genClasses ecoreClass="guigraph.ecore#//ConditionActionTransition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference guigraph.ecore#//ConditionActionTransition/applicationCondition"/>
@@ -142,6 +140,9 @@
     <genClasses ecoreClass="guigraph.ecore#//InhibitorArc"/>
     <genClasses ecoreClass="guigraph.ecore#//PageTransition">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference guigraph.ecore#//PageTransition/page"/>
+    </genClasses>
+    <genClasses ecoreClass="guigraph.ecore#//PageMappingArc">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference guigraph.ecore#//PageMappingArc/mapping"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Mbt" basePackage="org.tud.inf.st" disposableProviderFactory="true"
@@ -242,8 +243,6 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/TokenAtom/count"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mbt.ecore#//rules/TokenAtom/place"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mbt.ecore#//rules/TokenAtom/instancePath"/>
       </genClasses>
       <genClasses ecoreClass="mbt.ecore#//rules/InstructionPointerAtom">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -252,7 +251,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/InstructionPointerAtom/stackLevel"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference mbt.ecore#//rules/InstructionPointerAtom/context"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mbt.ecore#//rules/InstructionPointerAtom/instancePath"/>
+            ecoreFeature="ecore:EReference mbt.ecore#//rules/InstructionPointerAtom/fallBack"/>
       </genClasses>
       <genClasses ecoreClass="mbt.ecore#//rules/ConfigurationAtom">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -274,8 +273,6 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/RealTimeAtom/time"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference mbt.ecore#//rules/RealTimeAtom/consumer"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference mbt.ecore#//rules/RealTimeAtom/instancePath"/>
       </genClasses>
       <genClasses ecoreClass="mbt.ecore#//rules/ContextEntry">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute mbt.ecore#//rules/ContextEntry/id"/>

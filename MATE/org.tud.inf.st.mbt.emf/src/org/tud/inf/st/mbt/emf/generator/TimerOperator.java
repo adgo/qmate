@@ -23,8 +23,6 @@ public class TimerOperator extends TransitionOperator {
 	@Override
 	public State[] operate(State s) {
 		List<State> next = new LinkedList<>();
-		if (s.isTopInstructionSequenceFinishing())
-			return next.toArray(new State[0]);
 
 		List<Transition> activated = computeActivatedTransitions(s);
 
@@ -36,13 +34,13 @@ public class TimerOperator extends TransitionOperator {
 
 				if (tt.getConsumer() == null) {
 					List<OperationalConfigurationModel> ocms = (List<OperationalConfigurationModel>) getAllEObjectsOfSuperType(
-							getSatFoundation().getResourceSet(),
+							getSatFoundation().getCache(),getSatFoundation().getResourceSet(),
 							OperationalConfigurationModel.class);
 					for (OperationalConfigurationModel ocm : ocms)
 						nextLocal.addAll(Arrays.asList(new OCMOperator(
 								getSatFoundation(), ocm, tt.getDuration(),isIgnoreRealtime())
 								.operate(s)));
-					List<DataScenario> dss = (List<DataScenario>) getAllEObjectsOfSuperType(
+					List<DataScenario> dss = (List<DataScenario>) getAllEObjectsOfSuperType(getSatFoundation().getCache(),
 							getSatFoundation().getResourceSet(),
 							DataScenario.class);
 					for (DataScenario ds : dss)
@@ -68,14 +66,11 @@ public class TimerOperator extends TransitionOperator {
 				}
 
 				for (State n : nextLocal) {
-					consumeAndProduce(tt, n, null);//TODO instance
+					consumeAndProduce(tt, n);
 					n.setTerminating(tt.isTerminates());
-					n.setPriority(tt.getFaultImpact()
-							* tt.getFaultProbability() * tt.getRate());
+					n.setPriority(tt.getRisk());
 				}
 				
-				tt.setRate(Math.max(tt.getRate() - 1, 0));
-
 				next.addAll(nextLocal);
 			}
 

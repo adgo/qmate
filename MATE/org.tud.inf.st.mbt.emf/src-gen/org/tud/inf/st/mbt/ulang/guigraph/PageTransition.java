@@ -19,7 +19,7 @@ package org.tud.inf.st.mbt.ulang.guigraph;
  * @model
  * @generated
  */
-public interface PageTransition extends Transition {
+public interface PageTransition extends GuiGraphNode {
 
 	/**
 	 * Returns the value of the '<em><b>Page</b></em>' reference.
@@ -30,12 +30,12 @@ public interface PageTransition extends Transition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Page</em>' reference.
-	 * @see #setPage(Page)
+	 * @see #setPage(GuiGraph)
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage#getPageTransition_Page()
 	 * @model required="true"
 	 * @generated
 	 */
-	Page getPage();
+	GuiGraph getPage();
 
 	/**
 	 * Sets the value of the '{@link org.tud.inf.st.mbt.ulang.guigraph.PageTransition#getPage <em>Page</em>}' reference.
@@ -45,5 +45,5 @@ public interface PageTransition extends Transition {
 	 * @see #getPage()
 	 * @generated
 	 */
-	void setPage(Page value);
+	void setPage(GuiGraph value);
 } // PageTransition

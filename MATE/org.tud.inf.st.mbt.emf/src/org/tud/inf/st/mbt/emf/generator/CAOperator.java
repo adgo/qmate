@@ -4,23 +4,18 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.tud.inf.st.mbt.actions.ActionsFactory;
-import org.tud.inf.st.mbt.actions.GetRealTimeAction;
 import org.tud.inf.st.mbt.emf.util.FunctionProcessor;
 import org.tud.inf.st.mbt.ulang.guigraph.ConditionActionTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
-import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.TimingType;
 import org.tud.inf.st.mbt.ulang.guigraph.Transition;
 
 public class CAOperator extends TransitionOperator {
-	private ActionProcessor actionProcessor;
 	private TimingType timingType;
 
 	public CAOperator(SATFoundation sf, boolean ignoreRealTime,
 			TimingType timingType) {
 		super(sf, ignoreRealTime);
-		actionProcessor = new ActionProcessor(sf);
 		this.timingType = timingType;
 	}
 
@@ -53,21 +48,17 @@ public class CAOperator extends TransitionOperator {
 					State n = new State(s, null, false, new PredicateList(
 							s.getPropositions()), cat);
 					n.setTerminating(cat.isTerminates());
-					consumeAndProduce(cat, n,Collections.<PageTransition>emptyList());//TODO instance
-					n.setPriority(cat.getRate() * cat.getFaultImpact()
-							* cat.getFaultProbability());
+					consumeAndProduce(cat, n);
+					n.setPriority(cat.getRisk());
 					next.add(n);
-				} else {//TODO instance
-					List<State> postAction = actionProcessor.executeAction(s,
+				} else {
+					List<State> postAction = getSatFoundation().getActionProcessor().executeAction(cat,s,
 							cat.getActions(),
 							Collections.<String, Object> emptyMap(), cat);
 					for (State pa : postAction)
-						pa.setPriority(cat.getRate() * cat.getFaultImpact()
-								* cat.getFaultProbability());
+						pa.setPriority(cat.getRisk());
 					next.addAll(postAction);
 				}
-
-				cat.setRate(Math.max(cat.getRate() - 1, 0));
 
 			}
 

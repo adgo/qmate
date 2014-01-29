@@ -4,31 +4,27 @@ import org.tud.inf.st.mbt.ulang.guigraph.ConditionActionTransition;
 
 public class InstructionsOperator extends TransitionOperator {
 
-	private ActionProcessor actionProcessor;
-
 	public InstructionsOperator(SATFoundation satFoundation,
 			boolean ignoreRealTime) {
-		super(satFoundation, ignoreRealTime);
-		this.actionProcessor = new ActionProcessor(satFoundation);
-	}
+		super(satFoundation, ignoreRealTime);	}
 
 	@Override
 	public State[] operate(State s) {
 		if (s.isTopInstructionSequenceRunning()) {
-			return actionProcessor.operateTopInstructionSequence(s);
+			return getSatFoundation().getActionProcessor().operateTopInstructionSequence(s);
 		}
 		if (s.isTopInstructionSequenceFinishing()
-				&& s.getTopInstructionContainer() instanceof ConditionActionTransition) {
+				&& s.getTopInstructionFallBack() instanceof ConditionActionTransition) {
 			ConditionActionTransition cat = (ConditionActionTransition) s
-					.getTopInstructionContainer();
+					.getTopInstructionFallBack();
 			State n = new State(s, null, cat.isTerminates(), new PredicateList(
 					s.getPropositions()), cat);
 			n.deconfigureProposition(n.getTopInstructionPointerAtom());
-			consumeAndProduce(cat, n,s.getTopInstructionPointerAtom().getInstancePath());
+			consumeAndProduce(cat, n);
 			return new State[] { n };
 		}
 		if (s.isTopInstructionSequenceFinishing()
-				&& s.getTopInstructionContainer() == null) {
+				&& s.getTopInstructionFallBack() == null) {
 			State n = new State(s, null, false, new PredicateList(
 					s.getPropositions()));
 			n.deconfigureProposition(n.getTopInstructionPointerAtom());

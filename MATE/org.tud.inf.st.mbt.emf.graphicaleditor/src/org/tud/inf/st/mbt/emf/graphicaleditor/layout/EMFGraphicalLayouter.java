@@ -48,12 +48,13 @@ public class EMFGraphicalLayouter {
 		Dimension getSizeHint(String nodeID);
 	}
 
-	private static class DistanceComparator implements
+	private class DistanceComparator implements
 			Comparator<GraphicalNodeDefinition> {
 
 		private GraphicalNodeDefinition origin;
 		private GraphicalDescription desc;
 		private EndpointProvider endpoints;
+		private Map<Integer, Integer> hash2Distance = new HashMap<>();
 
 		public DistanceComparator(GraphicalNodeDefinition origin,
 				GraphicalDescription desc, EndpointProvider endpoints) {
@@ -64,8 +65,15 @@ public class EMFGraphicalLayouter {
 
 		@Override
 		public int compare(GraphicalNodeDefinition a, GraphicalNodeDefinition b) {
-			return distance(b, new HashSet<GraphicalNodeDefinition>())
-					- distance(a, new HashSet<GraphicalNodeDefinition>());
+			if (hash2Distance.containsKey(a.hashCode() + b.hashCode())) {
+				return hash2Distance.get(a.hashCode() + b.hashCode());
+			} else {
+				int distance = distance(b,
+						new HashSet<GraphicalNodeDefinition>())
+						- distance(a, new HashSet<GraphicalNodeDefinition>());
+				hash2Distance.put(a.hashCode() + b.hashCode(), distance);
+				return distance;
+			}
 		}
 
 		public int distance(GraphicalNodeDefinition node,
@@ -114,14 +122,22 @@ public class EMFGraphicalLayouter {
 
 	}
 
-	private static GraphicalNodeDefinition getGND(String id,
-			GraphicalDescription desc) {
-		for (Object o : desc.getNodes())
-			if (o instanceof GraphicalNodeDefinition
-					&& ((GraphicalNodeDefinition) o).getReferenceId()
-							.equals(id))
-				return (GraphicalNodeDefinition) o;
-		return null;
+	private GraphicalNodeDefinition getGND(String id, GraphicalDescription desc) {
+		if (id2DescCache.containsKey(id)) {
+			return id2DescCache.get(id);
+		} else {
+			GraphicalNodeDefinition result = null;
+
+			for (Object o : desc.getNodes())
+				if (o instanceof GraphicalNodeDefinition
+						&& ((GraphicalNodeDefinition) o).getReferenceId()
+								.equals(id)) {
+					result = (GraphicalNodeDefinition) o;
+					break;
+				}
+			id2DescCache.put(id, result);
+			return result;
+		}
 	}
 
 	private static Point nearestFreePosition(
@@ -188,6 +204,7 @@ public class EMFGraphicalLayouter {
 	}
 
 	private static Random rand = new Random();
+	private Map<String, GraphicalNodeDefinition> id2DescCache = new HashMap<>();
 
 	private SimpleNode getEntityByNodeID(List<SimpleNode> entities, String id) {
 		for (SimpleNode e : entities) {
@@ -202,6 +219,7 @@ public class EMFGraphicalLayouter {
 			EndpointProvider endpoints) {
 		if (gd.getNodes().isEmpty())
 			return;
+		id2DescCache.clear();
 
 		// delete bendpoints
 		for (Object o : gd.getConnections()) {
@@ -213,7 +231,8 @@ public class EMFGraphicalLayouter {
 		List<GraphicalNodeDefinition> todo = new ArrayList<>();
 		for (Object o : gd.getNodes())
 			if (o instanceof GraphicalNodeDefinition) {
-				if(((GraphicalNodeDefinition) o).getReferenceId()==null)continue;
+				if (((GraphicalNodeDefinition) o).getReferenceId() == null)
+					continue;
 				int surface = (int) ((float) endpoints
 						.getSizeHint(((GraphicalNodeDefinition) o)
 								.getReferenceId()).width * (float) endpoints
@@ -255,26 +274,49 @@ public class EMFGraphicalLayouter {
 		raster[free.x][free.y] = gnd;
 		gnd.setX(free.x * fieldSize);
 		gnd.setY(free.y * fieldSize);
+		
+		Map<GraphicalNodeDefinition, List<GraphicalNodeDefinition>> neighbours = new HashMap<>();
+		for(Object o:gd.getConnections()){
+			GraphicalConnectionDefinition gcd = (GraphicalConnectionDefinition) o;
+			GraphicalNodeDefinition source = getGND(endpoints.getSourceID(gcd.getReferenceId()), gd);
+			GraphicalNodeDefinition target = getGND(endpoints.getTargetID(gcd.getReferenceId()), gd);
+			List<GraphicalNodeDefinition> l = neighbours.get(source);
+			if(l == null){
+				l = new ArrayList<>();
+				neighbours.put(source, l);
+			}
+			l.add(target);
+			l = neighbours.get(target);
+			if(l == null){
+				l = new ArrayList<>();
+				neighbours.put(target, l);
+			}
+			l.add(source);
+		}
 
 		// find nearest neighbour
 		while (!todo.isEmpty()) {
-			Collections.sort(todo, new DistanceComparator(gnd, gd, endpoints));
-			gnd = todo.remove(0);
+			if(neighbours.containsKey(gnd) && !neighbours.get(gnd).isEmpty())
+				gnd = neighbours.get(gnd).remove(0);
+			else gnd = todo.remove(0);
 			free = nearestFreePosition(raster, free);
 			raster[free.x][free.y] = gnd;
 			gnd.setX(free.x * fieldSize);
 			gnd.setY(free.y * fieldSize);
 		}
 	}
-	
-	private int measureArcLengths(GraphicalDescription gd, EndpointProvider ep){
+
+	private int measureArcLengths(GraphicalDescription gd, EndpointProvider ep) {
 		int result = 0;
-		for(Object o:gd.getConnections()){
-			if(o instanceof GraphicalConnectionDefinition){
-				GraphicalConnectionDefinition gcd = (GraphicalConnectionDefinition)o;
-				GraphicalNodeDefinition source = getGND(ep.getSourceID(gcd.getReferenceId()),gd);
-				GraphicalNodeDefinition target = getGND(ep.getTargetID(gcd.getReferenceId()),gd);
-				result += Math.abs(source.getX()-target.getX())+Math.abs(source.getY()-target.getY());
+		for (Object o : gd.getConnections()) {
+			if (o instanceof GraphicalConnectionDefinition) {
+				GraphicalConnectionDefinition gcd = (GraphicalConnectionDefinition) o;
+				GraphicalNodeDefinition source = getGND(
+						ep.getSourceID(gcd.getReferenceId()), gd);
+				GraphicalNodeDefinition target = getGND(
+						ep.getTargetID(gcd.getReferenceId()), gd);
+				result += Math.abs(source.getX() - target.getX())
+						+ Math.abs(source.getY() - target.getY());
 			}
 		}
 		return result;

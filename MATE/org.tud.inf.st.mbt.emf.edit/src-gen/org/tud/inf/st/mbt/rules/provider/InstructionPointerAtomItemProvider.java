@@ -65,7 +65,7 @@ public class InstructionPointerAtomItemProvider
 			addSequencePropertyDescriptor(object);
 			addInstructionPropertyDescriptor(object);
 			addStackLevelPropertyDescriptor(object);
-			addInstancePathPropertyDescriptor(object);
+			addFallBackPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -137,19 +137,19 @@ public class InstructionPointerAtomItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Instance Path feature.
+	 * This adds a property descriptor for the Fall Back feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInstancePathPropertyDescriptor(Object object) {
+	protected void addFallBackPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_InstructionPointerAtom_instancePath_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_InstructionPointerAtom_instancePath_feature", "_UI_InstructionPointerAtom_type"),
-				 RulesPackage.Literals.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH,
+				 getString("_UI_InstructionPointerAtom_fallBack_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InstructionPointerAtom_fallBack_feature", "_UI_InstructionPointerAtom_type"),
+				 RulesPackage.Literals.INSTRUCTION_POINTER_ATOM__FALL_BACK,
 				 true,
 				 false,
 				 true,

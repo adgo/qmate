@@ -20,7 +20,7 @@ import org.tud.inf.st.mbt.terms.Term;
  * @model
  * @generated
  */
-public interface TermAction extends PostGenerationAction, PreGenerationAction {
+public interface TermAction extends PostGenerationAction, PreGenerationAction, ReconfigurationAction {
 	/**
 	 * Returns the value of the '<em><b>Term</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

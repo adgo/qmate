@@ -123,10 +123,10 @@ public class RunTestAction extends ActionDelegate {
 
 					EcoreUtil.resolveAll(rs);
 
-					int stepCount = ModelUtil.getAllEObjectsOfSuperType(rs,
+					int stepCount = ModelUtil.getAllEObjectsOfSuperType(new HashMap<Integer, Set<?>>(),rs,
 							TestStep.class, false).size();
 					final int stepSum = stepCount
-							+ ModelUtil.getAllEObjectsOfSuperType(rs,
+							+ ModelUtil.getAllEObjectsOfSuperType(new HashMap<Integer, Set<?>>(),rs,
 									TestStepRun.class, false).size();
 
 					monitor.beginTask("Executing test steps in " + f.getName()
@@ -195,7 +195,7 @@ public class RunTestAction extends ActionDelegate {
 						e.setId("id_" + Math.abs(new Random().nextInt()));
 					if (!finished.contains(e)) {
 						finished.addAll(ModelUtil
-								.getAllEObjectsOfSuperType(e,
+								.getAllEObjectsOfSuperType(new HashMap<Integer, Set<?>>(),e,
 										TestExecutable.class, false));
 						try {
 							results.getContents().add(

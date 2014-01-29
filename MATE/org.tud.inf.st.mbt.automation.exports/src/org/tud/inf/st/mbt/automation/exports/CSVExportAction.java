@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -96,16 +97,16 @@ public class CSVExportAction extends ActionDelegate {
 
 				Set<EObject> exported = new HashSet<>();
 				
-				for(TestSuite suite:ModelUtil.getAllEObjectsOfSuperType(rs, TestSuite.class))
+				for(TestSuite suite:ModelUtil.getAllEObjectsOfSuperType(new HashMap<Integer, Set<?>>(),rs, TestSuite.class))
 					if(exported.add(suite))for(TestCase c:suite.getCases())
 						if(exported.add(c))for(TestStep s:c.getSteps())
 							if(exported.add(s))out(s);
 				
-				for(TestCase c:ModelUtil.getAllEObjectsOfSuperType(rs, TestCase.class))
+				for(TestCase c:ModelUtil.getAllEObjectsOfSuperType(new HashMap<Integer, Set<?>>(),rs, TestCase.class))
 					if(exported.add(c))for(TestStep s:c.getSteps())
 						if(exported.add(s))out(s);
 				
-				for (TestStep ts : ModelUtil.getAllEObjectsOfSuperType(rs,
+				for (TestStep ts : ModelUtil.getAllEObjectsOfSuperType(new HashMap<Integer, Set<?>>(),rs,
 						TestStep.class))
 					if(exported.add(ts))out(ts);
 

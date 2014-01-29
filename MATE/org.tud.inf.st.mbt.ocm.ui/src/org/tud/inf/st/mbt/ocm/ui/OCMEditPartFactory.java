@@ -4,7 +4,9 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.EditPart;
+import org.tud.inf.st.mbt.core.AbstractModelElement;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFContainerEditPart;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFEditPartFactory;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFGraphics;
@@ -52,7 +54,16 @@ public class OCMEditPartFactory extends EMFEditPartFactory {
 				@Override
 				public void refreshVisuals() {
 					LabeledRectangle fig = (LabeledRectangle) getFigure();
-					fig.getLabel(null).setText("" + getModel());
+					StandardConfigurationNode scn = (StandardConfigurationNode) getModel();
+					String txt = scn.getConfiguration() == null
+							|| scn.getConfiguration().getName() == null
+							|| scn.getConfiguration().getName().length() == 0 ? scn.getConfiguration()
+							.getId() + ""
+							: scn.getConfiguration().getName();
+					if (scn.getPostConfEventID() != null
+							&& scn.getPostConfEventID().trim().length() > 0)
+						txt += "/" + scn.getPostConfEventID();
+					fig.getLabel(null).setText(txt);
 					super.refreshVisuals();
 				}
 			};

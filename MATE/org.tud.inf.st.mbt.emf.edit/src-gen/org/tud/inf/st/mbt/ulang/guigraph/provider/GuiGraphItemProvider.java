@@ -218,6 +218,11 @@ public class GuiGraphItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(GuigraphPackage.Literals.GUI_GRAPH__ARCS,
+				 GuigraphFactory.eINSTANCE.createPageMappingArc()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(GuigraphPackage.Literals.GUI_GRAPH__NODES,
 				 GuigraphFactory.eINSTANCE.createForm()));
 

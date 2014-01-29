@@ -38,18 +38,17 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.ui.actions.ActionRegistry;
-import org.eclipse.gef.ui.actions.Clipboard;
+import org.eclipse.gef.ui.actions.CopyTemplateAction;
+import org.eclipse.gef.ui.actions.PasteTemplateAction;
 import org.eclipse.gef.ui.actions.ToggleGridAction;
 import org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction;
 import org.eclipse.gef.ui.actions.ZoomInAction;
 import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.gef.ui.properties.UndoablePropertySheetEntry;
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -58,6 +57,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.commands.ActionHandler;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.part.FileEditorInput;
@@ -168,6 +168,7 @@ public abstract class GraphicalEMFEditor extends
 		super.init(site, input);
 
 		factory = createEditPartFactory();
+		factory.getGraphics().cleanup();
 	}
 
 	protected abstract ResourceSet createResourceSet();
@@ -284,7 +285,8 @@ public abstract class GraphicalEMFEditor extends
 		super.configureGraphicalViewer();
 		GraphicalViewer viewer = getGraphicalViewer();
 
-		viewer.getControl().setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WHITE));
+		viewer.getControl().setBackground(
+				Display.getDefault().getSystemColor(SWT.COLOR_WHITE));
 		viewer.setRootEditPart(new ScalableFreeformRootEditPart());
 		viewer.setEditPartFactory(getEditPartFactory());
 
@@ -323,18 +325,11 @@ public abstract class GraphicalEMFEditor extends
 		getActionRegistry().registerAction(toggleGrid);
 		getActionRegistry().registerAction(toggleSnap);
 
-		IAction copy = new Action() {
-			@Override
-			public void run() {
-				Clipboard.getDefault().setContents(
-						getGraphicalViewer().getSelectedEditParts());
-			}
+		IAction copy = new CopyTemplateAction(this);
+		IAction paste = new PasteTemplateAction(this);
 
-			@Override
-			public boolean isEnabled() {
-				return true;
-			}
-		};
+		getActionRegistry().registerAction(copy);
+		getActionRegistry().registerAction(paste);
 
 		IHandlerService service = (IHandlerService) getEditorSite().getService(
 				IHandlerService.class);
@@ -344,9 +339,11 @@ public abstract class GraphicalEMFEditor extends
 				new ActionHandler(zoomOut));
 		service.activateHandler(toggleSnap.getActionDefinitionId(),
 				new ActionHandler(toggleSnap));
-		service.activateHandler(
-				org.eclipse.ui.actions.ActionFactory.COPY.getCommandId(),
-				new ActionHandler(copy));
+		service.activateHandler(ActionFactory.COPY.getId(), new ActionHandler(
+				copy));
+		service.activateHandler(ActionFactory.PASTE.getId(), new ActionHandler(
+				paste));
+		
 	}
 
 	@Override
@@ -368,7 +365,6 @@ public abstract class GraphicalEMFEditor extends
 	}
 
 	public void validate() {
-		getEditPartFactory().getGraphics().cleanup();
 	};
 
 	@Override
@@ -422,8 +418,8 @@ public abstract class GraphicalEMFEditor extends
 			if (outline == null) {
 				outline = new EMFOutlinePage(getAdapterFactory(getGraph()
 						.eClass()), getGraph());
-			
-				getGraph().eAdapters().add(new AdapterImpl(){
+
+				getGraph().eAdapters().add(new AdapterImpl() {
 					@Override
 					public void notifyChanged(Notification msg) {
 						outline.setInput(getGraph());

@@ -329,6 +329,11 @@ public class ActionReferenceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ActionsPackage.Literals.ACTION_REFERENCE__PARAMETERS,
+				 GuigraphFactory.eINSTANCE.createPageMappingArc()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActionsPackage.Literals.ACTION_REFERENCE__PARAMETERS,
 				 CoreFactory.eINSTANCE.createGenericModelContainer()));
 
 		newChildDescriptors.add

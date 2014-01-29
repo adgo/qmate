@@ -2,7 +2,9 @@ package org.tud.inf.st.mbt.ulang.guigraph;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.EllipseAnchor;
@@ -37,8 +39,8 @@ public class TimerEditPart extends BasicNodeEditPart implements NodeEditPart,
 						getGraphics())) {
 					public boolean canSource(EObject source, EClass connType) {
 						return source instanceof GuiGraphNode
-								&& !connType.equals(GuigraphPackage.eINSTANCE
-										.getInhibitorArc());
+								&& connType.equals(GuigraphPackage.eINSTANCE
+										.getStandardArc());
 					}
 
 					public boolean canConnect(EObject source, EObject target,
@@ -46,7 +48,7 @@ public class TimerEditPart extends BasicNodeEditPart implements NodeEditPart,
 						if(!(source instanceof Transition && !(target instanceof Transition))
 								&& !(target instanceof Transition && !(source instanceof Transition)))return false;
 						
-						for(Arc a:ModelUtil.getAllEObjectsOfSuperType(getModel().eContainer(), Arc.class)){
+						for(Arc a:ModelUtil.getAllEObjectsOfSuperType(new HashMap<Integer, Set<?>>(),getModel().eContainer(), Arc.class)){
 							if(a.getSource().equals(source) && a.getTarget().equals(target)){
 								if(connType.equals(GuigraphPackage.eINSTANCE.getStandardArc()) && a instanceof StandardArc)return false;
 								if(connType.equals(GuigraphPackage.eINSTANCE.getInhibitorArc()) && a instanceof InhibitorArc)return false;								

@@ -147,7 +147,7 @@ public class CATransitionFigure extends RoundedRectangle implements
 	public void paintFigure(Graphics graphics) {
 		Dimension size = getBounds().getSize();
 
-		Dimension upper = new Dimension(size.width, MBTConstants.IS_MOBILE ? 0
+		Dimension upper = new Dimension(size.width, !MBTConstants.USE_REALTIME && !MBTConstants.USE_VARIABILITY  ? 0
 				: 17);
 
 		Dimension lower = new Dimension(size.width, 20);
@@ -156,17 +156,24 @@ public class CATransitionFigure extends RoundedRectangle implements
 
 		Point topLeft = new Point(0, 0);
 
+		int acwidth = 0;
+		if(MBTConstants.USE_VARIABILITY){
+			if(MBTConstants.USE_REALTIME)acwidth = (int) (upper.width*0.7);
+			else acwidth = upper.width;
+		}
+		
+		
 		setConstraint(ac, new Rectangle(new Point(topLeft), new Dimension(
-				(int) (upper.width * 0.7), upper.height)));
+				acwidth, upper.height)));
 		setConstraint(ac_label, new Rectangle(new Point(topLeft),
-				new Dimension((int) (upper.width * 0.7), upper.height)));
+				new Dimension(acwidth, upper.height)));
 
 		setConstraint(time, new Rectangle(new Point(
-				(int) (upper.width * 0.7) + 1, topLeft.y), new Dimension(
-				(int) (upper.width * 0.3) - 1, upper.height)));
+				(int) (acwidth) + 1, topLeft.y), new Dimension(
+				(int) (upper.width -acwidth) - 1, upper.height)));
 		setConstraint(time_label, new Rectangle(new Point(
-				(int) (upper.width * 0.7) + 1, topLeft.y), new Dimension(
-				(int) (upper.width * 0.3) - 1, upper.height)));
+				(int) (acwidth) + 1, topLeft.y), new Dimension(
+				(int) (upper.width -acwidth) - 1, upper.height)));
 
 		setConstraint(ue,
 				new Rectangle(

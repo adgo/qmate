@@ -934,6 +934,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		throwActionEClass.getESuperTypes().add(this.getPreGenerationAction());
 		termActionEClass.getESuperTypes().add(this.getPostGenerationAction());
 		termActionEClass.getESuperTypes().add(this.getPreGenerationAction());
+		termActionEClass.getESuperTypes().add(this.getReconfigurationAction());
 		reconfigurationActionEClass.getESuperTypes().add(this.getPreGenerationAction());
 		setDataActionEClass.getESuperTypes().add(this.getReconfigurationAction());
 		getDataActionEClass.getESuperTypes().add(this.getPreGenerationAction());

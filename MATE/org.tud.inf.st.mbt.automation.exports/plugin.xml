@@ -10,8 +10,16 @@
             objectClass="org.eclipse.core.resources.IFile">
          <action
                class="org.tud.inf.st.mbt.automation.exports.CSVExportAction"
+               icon="icons/export.png"
                id="org.tud.inf.st.mbt.automation.export.csv.action"
                label="Export to CSV..."
+               menubarPath="group.generate">
+         </action>
+         <action
+               class="org.tud.inf.st.mbt.automation.exports.ExperitestExportAction"
+               icon="icons/export.png"
+               id="org.tud.inf.st.mbt.automation.export.experitest.action"
+               label="Export Experitest Java..."
                menubarPath="group.generate">
          </action>
       </objectContribution>

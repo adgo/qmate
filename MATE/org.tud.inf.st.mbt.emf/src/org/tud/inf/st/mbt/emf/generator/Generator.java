@@ -1,10 +1,8 @@
 package org.tud.inf.st.mbt.emf.generator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -39,6 +37,7 @@ public class Generator implements Iterator<GeneratorState> {
 
 	public Generator(Configuration config, ResourceSet rs, int maxTokens,
 			int maxTime, AbstractTraversalType traversalType) {
+		
 		satFoundation = new SATFoundation(rs, maxTokens, maxTime);
 		this.traversalType = traversalType;
 

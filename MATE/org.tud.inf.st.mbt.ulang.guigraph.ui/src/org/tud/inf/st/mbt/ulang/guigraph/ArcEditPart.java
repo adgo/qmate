@@ -2,14 +2,9 @@ package org.tud.inf.st.mbt.ulang.guigraph;
 
 import java.util.Observer;
 
-import org.eclipse.draw2d.BendpointConnectionRouter;
-import org.eclipse.draw2d.FanRouter;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.ManhattanConnectionRouter;
 import org.eclipse.draw2d.ShortestPathConnectionRouter;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFContainerEditPart;
 import org.tud.inf.st.mbt.emf.graphicaleditor.EMFGraphics;
@@ -55,6 +50,7 @@ public class ArcEditPart extends BasicEdgeEditPart implements
 		ArcFigure fig = (ArcFigure) getFigure();
 		
 		fig.setInhibitor(model instanceof InhibitorArc);
+		fig.setPageMapping(model instanceof PageMappingArc);
 		if(model instanceof StandardArc)fig.setWeight(((StandardArc) model).getWeight());
 		
 		super.refreshVisuals();

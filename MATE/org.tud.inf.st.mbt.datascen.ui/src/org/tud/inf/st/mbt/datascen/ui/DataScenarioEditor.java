@@ -381,7 +381,7 @@ public class DataScenarioEditor extends EditorPart implements
 					if (ce instanceof DataValue)
 						elements.add(ce);
 					else
-						elements.addAll(getAllPossibleElements((DataClass) ce));
+						elements.addAll(getAllPossibleElements((DataElement) ce));
 				}
 			}
 		} else

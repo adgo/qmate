@@ -18,11 +18,11 @@ import org.tud.inf.st.mbt.emf.graphicaleditor.policies.EMFXYLayoutEditPolicy;
 import org.tud.inf.st.mbt.emf.util.ModelUtil;
 import org.tud.inf.st.mbt.ulang.guigraph.commands.GUIGraphCommandFactory;
 
-public class NoWidgetNodeEditPart extends PlaceEditPart{
-		
+public class NoWidgetNodeEditPart extends PlaceEditPart {
+
 	public NoWidgetNodeEditPart(NoWidgetNode model, EMFGraphics graphics) {
 		super(model, graphics, null);
-	}	
+	}
 
 	@Override
 	protected IFigure createFigure() {
@@ -40,16 +40,32 @@ public class NoWidgetNodeEditPart extends PlaceEditPart{
 
 					public boolean canConnect(EObject source, EObject target,
 							EClass connType) {
-						if(!(source instanceof Transition && !(target instanceof Transition))
-								&& !(target instanceof Transition && !(source instanceof Transition)))return false;
-						
-						for(Arc a:ModelUtil.getAllEObjectsOfSuperType(getModel().eContainer(), Arc.class)){
-							if(a.getSource().equals(source) && a.getTarget().equals(target)){
-								if(connType.equals(GuigraphPackage.eINSTANCE.getStandardArc()) && a instanceof StandardArc)return false;
-								if(connType.equals(GuigraphPackage.eINSTANCE.getInhibitorArc()) && a instanceof InhibitorArc)return false;								
+						if (connType.equals(GuigraphPackage.eINSTANCE
+								.getStandardArc())
+								&& !(source instanceof Transition && !(target instanceof Transition))
+								&& !(target instanceof Transition && !(source instanceof Transition)))
+							return false;
+
+						if (target instanceof PageTransition
+								&& !connType.equals(GuigraphPackage.eINSTANCE
+										.getPageMappingArc()))
+							return false;
+
+						for (Arc a : ModelUtil.getAllEObjectsOfSuperType(
+								getModel().eContainer(), Arc.class)) {
+							if (a.getSource().equals(source)
+									&& a.getTarget().equals(target)) {
+								if (connType.equals(GuigraphPackage.eINSTANCE
+										.getStandardArc())
+										&& a instanceof StandardArc)
+									return false;
+								if (connType.equals(GuigraphPackage.eINSTANCE
+										.getInhibitorArc())
+										&& a instanceof InhibitorArc)
+									return false;
 							}
 						}
-						
+
 						return true;
 					}
 
@@ -101,14 +117,13 @@ public class NoWidgetNodeEditPart extends PlaceEditPart{
 	public void refreshVisuals() {
 		NoWidgetNodeFigure fig = (NoWidgetNodeFigure) getFigure();
 
-		if(getSimulationTokens()>=0){
-			fig.setTokens(getSimulationTokens(),true);
+		if (getSimulationTokens() >= 0) {
+			fig.setTokens(getSimulationTokens(), true);
 		} else {
-			fig.setTokens(getModel().getInitialTokens(),false);
-		}		
-		
-		fig.setText(getModel().getName() == null ? ""
-				: getModel().getName());
+			fig.setTokens(getModel().getInitialTokens(), false);
+		}
+
+		fig.setText(getModel().getName() == null ? "" : getModel().getName());
 
 		setConstraint(new Rectangle(getGraphics().getObjectConstraint(
 				getModel()).getLocation(), getGraphics().getStandardDimension(
@@ -124,7 +139,7 @@ public class NoWidgetNodeEditPart extends PlaceEditPart{
 	public String getLabel(Object o) {
 		return "Non-Widget Node";
 	}
-	
+
 	@Override
 	protected AbstractConnectionAnchor createAnchor() {
 		return new EllipseAnchor(getFigure());

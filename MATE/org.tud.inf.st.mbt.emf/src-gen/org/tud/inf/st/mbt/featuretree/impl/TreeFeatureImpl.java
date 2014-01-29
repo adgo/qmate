@@ -206,9 +206,7 @@ public class TreeFeatureImpl extends FeatureImpl implements TreeFeature {
 		String str = "<feature>";
 		if(name != null)str = name;
 		else if(id != null)str = id;
-		if(eContainer instanceof TreeFeature){
-			str = eContainer+"."+str;
-		}
+		if(isMandatory())str+=" (mandatory)";
 		return str;
 	}
 

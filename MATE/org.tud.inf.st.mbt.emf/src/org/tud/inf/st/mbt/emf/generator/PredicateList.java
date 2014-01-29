@@ -10,6 +10,7 @@ import org.tud.inf.st.mbt.rules.Predicate;
 public class PredicateList implements Iterable<Predicate> {
 
 	private List<Predicate> list = new ArrayList<Predicate>();
+	private List<Integer> hashs = new ArrayList<>();
 
 	public PredicateList() {
 		super();
@@ -39,10 +40,7 @@ public class PredicateList implements Iterable<Predicate> {
 
 	public boolean contains(Object o) {
 		if (o instanceof Predicate) {
-			int hash = ModelUtil.hashCode((Predicate) o);
-			for (Predicate p : this)
-				if (ModelUtil.hashCode(p) == hash)
-					return true;
+			return hashs.contains(ModelUtil.hashCode((Predicate) o));
 		}
 		return false;
 	}
@@ -62,8 +60,8 @@ public class PredicateList implements Iterable<Predicate> {
 	@Override
 	public int hashCode() {
 		int hc = Clause.class.hashCode();
-		for (Predicate p : this) {
-			hc += ModelUtil.hashCode(p);
+		for (Integer h : hashs) {
+			hc += h;
 		}
 		return hc;
 	}
@@ -74,8 +72,10 @@ public class PredicateList implements Iterable<Predicate> {
 	}
 
 	public void add(Predicate p) {
-		if (!contains(p))
+		if (!contains(p)) {
 			list.add(p);
+			hashs.add(ModelUtil.hashCode(p));
+		}
 	}
 
 	public void addAll(Iterable<? extends Predicate> from) {
@@ -97,5 +97,6 @@ public class PredicateList implements Iterable<Predicate> {
 
 	public void remove(Predicate p) {
 		list.remove(p);
+		hashs.remove((Object)ModelUtil.hashCode(p));
 	}
 }

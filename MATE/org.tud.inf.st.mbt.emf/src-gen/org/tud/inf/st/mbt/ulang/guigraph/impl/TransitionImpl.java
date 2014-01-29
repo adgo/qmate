@@ -17,9 +17,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.Transition;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getRate <em>Rate</em>}</li>
- *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getFaultImpact <em>Fault Impact</em>}</li>
- *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getFaultProbability <em>Fault Probability</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getRisk <em>Risk</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#isTerminates <em>Terminates</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getTimeMin <em>Time Min</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.TransitionImpl#getTimeMax <em>Time Max</em>}</li>
@@ -31,64 +29,24 @@ import org.tud.inf.st.mbt.ulang.guigraph.Transition;
  */
 public abstract class TransitionImpl extends AbstractModelElementImpl implements Transition {
 	/**
-	 * The default value of the '{@link #getRate() <em>Rate</em>}' attribute.
+	 * The default value of the '{@link #getRisk() <em>Risk</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRate()
+	 * @see #getRisk()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int RATE_EDEFAULT = 1;
+	protected static final double RISK_EDEFAULT = 1.0;
 
 	/**
-	 * The cached value of the '{@link #getRate() <em>Rate</em>}' attribute.
+	 * The cached value of the '{@link #getRisk() <em>Risk</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRate()
+	 * @see #getRisk()
 	 * @generated
 	 * @ordered
 	 */
-	protected int rate = RATE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getFaultImpact() <em>Fault Impact</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFaultImpact()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final double FAULT_IMPACT_EDEFAULT = 1.0;
-
-	/**
-	 * The cached value of the '{@link #getFaultImpact() <em>Fault Impact</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFaultImpact()
-	 * @generated
-	 * @ordered
-	 */
-	protected double faultImpact = FAULT_IMPACT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getFaultProbability() <em>Fault Probability</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFaultProbability()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final double FAULT_PROBABILITY_EDEFAULT = 1.0;
-
-	/**
-	 * The cached value of the '{@link #getFaultProbability() <em>Fault Probability</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFaultProbability()
-	 * @generated
-	 * @ordered
-	 */
-	protected double faultProbability = FAULT_PROBABILITY_EDEFAULT;
+	protected double risk = RISK_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isTerminates() <em>Terminates</em>}' attribute.
@@ -194,8 +152,8 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getRate() {
-		return rate;
+	public double getRisk() {
+		return risk;
 	}
 
 	/**
@@ -203,53 +161,11 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRate(int newRate) {
-		int oldRate = rate;
-		rate = newRate;
+	public void setRisk(double newRisk) {
+		double oldRisk = risk;
+		risk = newRisk;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__RATE, oldRate, rate));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public double getFaultImpact() {
-		return faultImpact;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFaultImpact(double newFaultImpact) {
-		double oldFaultImpact = faultImpact;
-		faultImpact = newFaultImpact;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__FAULT_IMPACT, oldFaultImpact, faultImpact));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public double getFaultProbability() {
-		return faultProbability;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFaultProbability(double newFaultProbability) {
-		double oldFaultProbability = faultProbability;
-		faultProbability = newFaultProbability;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__FAULT_PROBABILITY, oldFaultProbability, faultProbability));
+			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.TRANSITION__RISK, oldRisk, risk));
 	}
 
 	/**
@@ -344,12 +260,8 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GuigraphPackage.TRANSITION__RATE:
-				return getRate();
-			case GuigraphPackage.TRANSITION__FAULT_IMPACT:
-				return getFaultImpact();
-			case GuigraphPackage.TRANSITION__FAULT_PROBABILITY:
-				return getFaultProbability();
+			case GuigraphPackage.TRANSITION__RISK:
+				return getRisk();
 			case GuigraphPackage.TRANSITION__TERMINATES:
 				return isTerminates();
 			case GuigraphPackage.TRANSITION__TIME_MIN:
@@ -370,14 +282,8 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GuigraphPackage.TRANSITION__RATE:
-				setRate((Integer)newValue);
-				return;
-			case GuigraphPackage.TRANSITION__FAULT_IMPACT:
-				setFaultImpact((Double)newValue);
-				return;
-			case GuigraphPackage.TRANSITION__FAULT_PROBABILITY:
-				setFaultProbability((Double)newValue);
+			case GuigraphPackage.TRANSITION__RISK:
+				setRisk((Double)newValue);
 				return;
 			case GuigraphPackage.TRANSITION__TERMINATES:
 				setTerminates((Boolean)newValue);
@@ -403,14 +309,8 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GuigraphPackage.TRANSITION__RATE:
-				setRate(RATE_EDEFAULT);
-				return;
-			case GuigraphPackage.TRANSITION__FAULT_IMPACT:
-				setFaultImpact(FAULT_IMPACT_EDEFAULT);
-				return;
-			case GuigraphPackage.TRANSITION__FAULT_PROBABILITY:
-				setFaultProbability(FAULT_PROBABILITY_EDEFAULT);
+			case GuigraphPackage.TRANSITION__RISK:
+				setRisk(RISK_EDEFAULT);
 				return;
 			case GuigraphPackage.TRANSITION__TERMINATES:
 				setTerminates(TERMINATES_EDEFAULT);
@@ -436,12 +336,8 @@ public abstract class TransitionImpl extends AbstractModelElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GuigraphPackage.TRANSITION__RATE:
-				return rate != RATE_EDEFAULT;
-			case GuigraphPackage.TRANSITION__FAULT_IMPACT:
-				return faultImpact != FAULT_IMPACT_EDEFAULT;
-			case GuigraphPackage.TRANSITION__FAULT_PROBABILITY:
-				return faultProbability != FAULT_PROBABILITY_EDEFAULT;
+			case GuigraphPackage.TRANSITION__RISK:
+				return risk != RISK_EDEFAULT;
 			case GuigraphPackage.TRANSITION__TERMINATES:
 				return terminates != TERMINATES_EDEFAULT;
 			case GuigraphPackage.TRANSITION__TIME_MIN:

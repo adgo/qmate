@@ -63,7 +63,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.GuigraphFactory;
 import org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage;
 import org.tud.inf.st.mbt.ulang.guigraph.InhibitorArc;
 import org.tud.inf.st.mbt.ulang.guigraph.NoWidgetNode;
-import org.tud.inf.st.mbt.ulang.guigraph.Page;
+import org.tud.inf.st.mbt.ulang.guigraph.PageMappingArc;
 import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 import org.tud.inf.st.mbt.ulang.guigraph.StandardArc;
@@ -85,13 +85,6 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * @generated
 	 */
 	private EClass guiGraphEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass pageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,6 +169,13 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * @generated
 	 */
 	private EClass pageTransitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pageMappingArcEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -330,15 +330,6 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPage() {
-		return pageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getWidget() {
 		return widgetEClass;
 	}
@@ -384,7 +375,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransition_Rate() {
+	public EAttribute getTransition_Risk() {
 		return (EAttribute)transitionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -393,7 +384,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransition_FaultImpact() {
+	public EAttribute getTransition_Terminates() {
 		return (EAttribute)transitionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -402,7 +393,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransition_FaultProbability() {
+	public EAttribute getTransition_TimeMin() {
 		return (EAttribute)transitionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -411,7 +402,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransition_Terminates() {
+	public EAttribute getTransition_TimeMax() {
 		return (EAttribute)transitionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -420,26 +411,8 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransition_TimeMin() {
-		return (EAttribute)transitionEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTransition_TimeMax() {
-		return (EAttribute)transitionEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getTransition_TimingType() {
-		return (EAttribute)transitionEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)transitionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -476,6 +449,15 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 */
 	public EAttribute getPlace_InitialTokens() {
 		return (EAttribute)placeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPlace_ProvideAsInterface() {
+		return (EAttribute)placeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -627,6 +609,24 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPageMappingArc() {
+		return pageMappingArcEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPageMappingArc_Mapping() {
+		return (EReference)pageMappingArcEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getTimingType() {
 		return timingTypeEEnum;
 	}
@@ -665,8 +665,6 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		createEReference(guiGraphEClass, GUI_GRAPH__INVARIANT);
 		createEAttribute(guiGraphEClass, GUI_GRAPH__INVARIANT_TEXT);
 
-		pageEClass = createEClass(PAGE);
-
 		widgetEClass = createEClass(WIDGET);
 		createEReference(widgetEClass, WIDGET__CHILDREN);
 		createEAttribute(widgetEClass, WIDGET__IMAGE);
@@ -674,9 +672,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		formEClass = createEClass(FORM);
 
 		transitionEClass = createEClass(TRANSITION);
-		createEAttribute(transitionEClass, TRANSITION__RATE);
-		createEAttribute(transitionEClass, TRANSITION__FAULT_IMPACT);
-		createEAttribute(transitionEClass, TRANSITION__FAULT_PROBABILITY);
+		createEAttribute(transitionEClass, TRANSITION__RISK);
 		createEAttribute(transitionEClass, TRANSITION__TERMINATES);
 		createEAttribute(transitionEClass, TRANSITION__TIME_MIN);
 		createEAttribute(transitionEClass, TRANSITION__TIME_MAX);
@@ -688,6 +684,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 
 		placeEClass = createEClass(PLACE);
 		createEAttribute(placeEClass, PLACE__INITIAL_TOKENS);
+		createEAttribute(placeEClass, PLACE__PROVIDE_AS_INTERFACE);
 
 		conditionActionTransitionEClass = createEClass(CONDITION_ACTION_TRANSITION);
 		createEReference(conditionActionTransitionEClass, CONDITION_ACTION_TRANSITION__APPLICATION_CONDITION);
@@ -710,6 +707,9 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 
 		pageTransitionEClass = createEClass(PAGE_TRANSITION);
 		createEReference(pageTransitionEClass, PAGE_TRANSITION__PAGE);
+
+		pageMappingArcEClass = createEClass(PAGE_MAPPING_ARC);
+		createEReference(pageMappingArcEClass, PAGE_MAPPING_ARC__MAPPING);
 
 		// Create enums
 		timingTypeEEnum = createEEnum(TIMING_TYPE);
@@ -749,7 +749,6 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 
 		// Add supertypes to classes
 		guiGraphEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
-		pageEClass.getESuperTypes().add(this.getGuiGraph());
 		widgetEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
 		formEClass.getESuperTypes().add(this.getWidget());
 		formEClass.getESuperTypes().add(this.getPlace());
@@ -763,7 +762,8 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		arcEClass.getESuperTypes().add(theCorePackage.getAbstractModelElement());
 		standardArcEClass.getESuperTypes().add(this.getArc());
 		inhibitorArcEClass.getESuperTypes().add(this.getArc());
-		pageTransitionEClass.getESuperTypes().add(this.getTransition());
+		pageTransitionEClass.getESuperTypes().add(this.getGuiGraphNode());
+		pageMappingArcEClass.getESuperTypes().add(this.getArc());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(guiGraphEClass, GuiGraph.class, "GuiGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -772,8 +772,6 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		initEReference(getGuiGraph_Invariant(), theRulesPackage.getPredicate(), null, "invariant", null, 0, 1, GuiGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGuiGraph_InvariantText(), ecorePackage.getEString(), "invariantText", "true", 0, 1, GuiGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pageEClass, Page.class, "Page", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(widgetEClass, Widget.class, "Widget", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWidget_Children(), this.getWidget(), null, "children", null, 0, -1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWidget_Image(), ecorePackage.getEString(), "image", null, 1, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -781,9 +779,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		initEClass(formEClass, Form.class, "Form", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(transitionEClass, Transition.class, "Transition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTransition_Rate(), ecorePackage.getEInt(), "rate", "1", 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTransition_FaultImpact(), ecorePackage.getEDouble(), "faultImpact", "1", 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTransition_FaultProbability(), ecorePackage.getEDouble(), "faultProbability", "1", 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransition_Risk(), ecorePackage.getEDouble(), "risk", "1", 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransition_Terminates(), ecorePackage.getEBoolean(), "terminates", null, 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransition_TimeMin(), ecorePackage.getELong(), "timeMin", "0", 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransition_TimeMax(), ecorePackage.getELong(), "timeMax", "-1", 1, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -795,6 +791,7 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 
 		initEClass(placeEClass, Place.class, "Place", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPlace_InitialTokens(), ecorePackage.getEInt(), "initialTokens", "0", 1, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPlace_ProvideAsInterface(), ecorePackage.getEBoolean(), "provideAsInterface", "false", 1, 1, Place.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionActionTransitionEClass, ConditionActionTransition.class, "ConditionActionTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionActionTransition_ApplicationCondition(), theRulesPackage.getPredicate(), null, "applicationCondition", null, 1, 1, ConditionActionTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -816,7 +813,10 @@ public class GuigraphPackageImpl extends EPackageImpl implements GuigraphPackage
 		initEClass(inhibitorArcEClass, InhibitorArc.class, "InhibitorArc", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(pageTransitionEClass, PageTransition.class, "PageTransition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPageTransition_Page(), this.getPage(), null, "page", null, 1, 1, PageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPageTransition_Page(), this.getGuiGraph(), null, "page", null, 1, 1, PageTransition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pageMappingArcEClass, PageMappingArc.class, "PageMappingArc", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPageMappingArc_Mapping(), this.getPlace(), null, "mapping", null, 0, 1, PageMappingArc.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(timingTypeEEnum, TimingType.class, "TimingType");

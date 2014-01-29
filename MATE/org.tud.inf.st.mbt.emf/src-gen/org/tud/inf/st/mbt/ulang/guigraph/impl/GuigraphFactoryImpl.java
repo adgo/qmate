@@ -58,7 +58,6 @@ public class GuigraphFactoryImpl extends EFactoryImpl implements GuigraphFactory
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case GuigraphPackage.GUI_GRAPH: return createGuiGraph();
-			case GuigraphPackage.PAGE: return createPage();
 			case GuigraphPackage.WIDGET: return createWidget();
 			case GuigraphPackage.FORM: return createForm();
 			case GuigraphPackage.NO_WIDGET_NODE: return createNoWidgetNode();
@@ -67,6 +66,7 @@ public class GuigraphFactoryImpl extends EFactoryImpl implements GuigraphFactory
 			case GuigraphPackage.STANDARD_ARC: return createStandardArc();
 			case GuigraphPackage.INHIBITOR_ARC: return createInhibitorArc();
 			case GuigraphPackage.PAGE_TRANSITION: return createPageTransition();
+			case GuigraphPackage.PAGE_MAPPING_ARC: return createPageMappingArc();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -110,16 +110,6 @@ public class GuigraphFactoryImpl extends EFactoryImpl implements GuigraphFactory
 	public GuiGraph createGuiGraph() {
 		GuiGraphImpl guiGraph = new GuiGraphImpl();
 		return guiGraph;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Page createPage() {
-		PageImpl page = new PageImpl();
-		return page;
 	}
 
 	/**
@@ -200,6 +190,16 @@ public class GuigraphFactoryImpl extends EFactoryImpl implements GuigraphFactory
 	public PageTransition createPageTransition() {
 		PageTransitionImpl pageTransition = new PageTransitionImpl();
 		return pageTransition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PageMappingArc createPageMappingArc() {
+		PageMappingArcImpl pageMappingArc = new PageMappingArcImpl();
+		return pageMappingArc;
 	}
 
 	/**

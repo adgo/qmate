@@ -59,6 +59,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.actions.LayoutAction;
 import org.tud.inf.st.mbt.ulang.guigraph.actions.MergePlacesAction;
 import org.tud.inf.st.mbt.ulang.guigraph.actions.RecordAction;
 import org.tud.inf.st.mbt.ulang.guigraph.actions.SplitTransitionAction;
+import org.tud.inf.st.mbt.ulang.guigraph.actions.UnfoldInterfaceAction;
 import org.tud.inf.st.mbt.ulang.guigraph.provider.GuigraphItemProviderAdapterFactory;
 
 public class GUIGraphEditor extends GraphicalEMFEditor implements
@@ -99,6 +100,8 @@ public class GUIGraphEditor extends GraphicalEMFEditor implements
 				menu.appendToGroup("MODEL", new SplitTransitionAction(
 						GUIGraphEditor.this,getEditPartFactory().getGraphics()));
 				menu.appendToGroup("MODEL", new DuplicateNodeAction(
+						GUIGraphEditor.this,getEditPartFactory().getGraphics()));
+				menu.appendToGroup("MODEL", new UnfoldInterfaceAction(
 						GUIGraphEditor.this,getEditPartFactory().getGraphics()));
 			}
 		};
@@ -188,6 +191,9 @@ public class GUIGraphEditor extends GraphicalEMFEditor implements
 					return new Dimension(100, 100);
 				} else if (type.equals(GuigraphPackage.eINSTANCE
 						.getNoWidgetNode())) {
+					return new Dimension(100, 40);
+				} else if (type.equals(GuigraphPackage.eINSTANCE
+						.getPageTransition())) {
 					return new Dimension(100, 40);
 				}
 

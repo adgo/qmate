@@ -95,29 +95,6 @@ public class GuigraphItemProviderAdapterFactory extends GuigraphAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.tud.inf.st.mbt.ulang.guigraph.Page} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PageItemProvider pageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.tud.inf.st.mbt.ulang.guigraph.Page}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPageAdapter() {
-		if (pageItemProvider == null) {
-			pageItemProvider = new PageItemProvider(this);
-		}
-
-		return pageItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.tud.inf.st.mbt.ulang.guigraph.Widget} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -302,6 +279,29 @@ public class GuigraphItemProviderAdapterFactory extends GuigraphAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.tud.inf.st.mbt.ulang.guigraph.PageMappingArc} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PageMappingArcItemProvider pageMappingArcItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.tud.inf.st.mbt.ulang.guigraph.PageMappingArc}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPageMappingArcAdapter() {
+		if (pageMappingArcItemProvider == null) {
+			pageMappingArcItemProvider = new PageMappingArcItemProvider(this);
+		}
+
+		return pageMappingArcItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -401,7 +401,6 @@ public class GuigraphItemProviderAdapterFactory extends GuigraphAdapterFactory i
 	 */
 	public void dispose() {
 		if (guiGraphItemProvider != null) guiGraphItemProvider.dispose();
-		if (pageItemProvider != null) pageItemProvider.dispose();
 		if (widgetItemProvider != null) widgetItemProvider.dispose();
 		if (formItemProvider != null) formItemProvider.dispose();
 		if (noWidgetNodeItemProvider != null) noWidgetNodeItemProvider.dispose();
@@ -410,6 +409,7 @@ public class GuigraphItemProviderAdapterFactory extends GuigraphAdapterFactory i
 		if (standardArcItemProvider != null) standardArcItemProvider.dispose();
 		if (inhibitorArcItemProvider != null) inhibitorArcItemProvider.dispose();
 		if (pageTransitionItemProvider != null) pageTransitionItemProvider.dispose();
+		if (pageMappingArcItemProvider != null) pageMappingArcItemProvider.dispose();
 	}
 
 }

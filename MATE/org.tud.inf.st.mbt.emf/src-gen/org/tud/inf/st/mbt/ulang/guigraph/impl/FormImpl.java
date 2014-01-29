@@ -33,6 +33,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.Widget;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.FormImpl#getInitialTokens <em>Initial Tokens</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.FormImpl#isProvideAsInterface <em>Provide As Interface</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,6 +58,25 @@ public class FormImpl extends WidgetImpl implements Form {
 	 * @ordered
 	 */
 	protected int initialTokens = INITIAL_TOKENS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isProvideAsInterface() <em>Provide As Interface</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isProvideAsInterface()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean PROVIDE_AS_INTERFACE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isProvideAsInterface() <em>Provide As Interface</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isProvideAsInterface()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean provideAsInterface = PROVIDE_AS_INTERFACE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -103,11 +123,34 @@ public class FormImpl extends WidgetImpl implements Form {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isProvideAsInterface() {
+		return provideAsInterface;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProvideAsInterface(boolean newProvideAsInterface) {
+		boolean oldProvideAsInterface = provideAsInterface;
+		provideAsInterface = newProvideAsInterface;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.FORM__PROVIDE_AS_INTERFACE, oldProvideAsInterface, provideAsInterface));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case GuigraphPackage.FORM__INITIAL_TOKENS:
 				return getInitialTokens();
+			case GuigraphPackage.FORM__PROVIDE_AS_INTERFACE:
+				return isProvideAsInterface();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,6 +165,9 @@ public class FormImpl extends WidgetImpl implements Form {
 		switch (featureID) {
 			case GuigraphPackage.FORM__INITIAL_TOKENS:
 				setInitialTokens((Integer)newValue);
+				return;
+			case GuigraphPackage.FORM__PROVIDE_AS_INTERFACE:
+				setProvideAsInterface((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -138,6 +184,9 @@ public class FormImpl extends WidgetImpl implements Form {
 			case GuigraphPackage.FORM__INITIAL_TOKENS:
 				setInitialTokens(INITIAL_TOKENS_EDEFAULT);
 				return;
+			case GuigraphPackage.FORM__PROVIDE_AS_INTERFACE:
+				setProvideAsInterface(PROVIDE_AS_INTERFACE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,6 +201,8 @@ public class FormImpl extends WidgetImpl implements Form {
 		switch (featureID) {
 			case GuigraphPackage.FORM__INITIAL_TOKENS:
 				return initialTokens != INITIAL_TOKENS_EDEFAULT;
+			case GuigraphPackage.FORM__PROVIDE_AS_INTERFACE:
+				return provideAsInterface != PROVIDE_AS_INTERFACE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -171,6 +222,7 @@ public class FormImpl extends WidgetImpl implements Form {
 		if (baseClass == Place.class) {
 			switch (derivedFeatureID) {
 				case GuigraphPackage.FORM__INITIAL_TOKENS: return GuigraphPackage.PLACE__INITIAL_TOKENS;
+				case GuigraphPackage.FORM__PROVIDE_AS_INTERFACE: return GuigraphPackage.PLACE__PROVIDE_AS_INTERFACE;
 				default: return -1;
 			}
 		}
@@ -192,6 +244,7 @@ public class FormImpl extends WidgetImpl implements Form {
 		if (baseClass == Place.class) {
 			switch (baseFeatureID) {
 				case GuigraphPackage.PLACE__INITIAL_TOKENS: return GuigraphPackage.FORM__INITIAL_TOKENS;
+				case GuigraphPackage.PLACE__PROVIDE_AS_INTERFACE: return GuigraphPackage.FORM__PROVIDE_AS_INTERFACE;
 				default: return -1;
 			}
 		}
@@ -210,6 +263,8 @@ public class FormImpl extends WidgetImpl implements Form {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (initialTokens: ");
 		result.append(initialTokens);
+		result.append(", provideAsInterface: ");
+		result.append(provideAsInterface);
 		result.append(')');
 		return result.toString();
 	}

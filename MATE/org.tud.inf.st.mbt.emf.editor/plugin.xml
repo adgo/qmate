@@ -16,17 +16,6 @@
             name="%_UI_CoreEditor_label">
       </editor>
    </extension>
-   <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            class="org.tud.inf.st.mbt.core.presentation.CoreEditor"
-            contributorClass="org.tud.inf.st.mbt.core.presentation.CoreActionBarContributor"
-            extensions="core,model,generic,test,report,data"
-            icon="icons/full/obj16/CoreModelFile.gif"
-            id="org.tud.inf.st.mbt.core.presentation.CoreEditorID"
-            name="%_UI_CoreEditor_label">
-      </editor>
-   </extension>
 
 
 
@@ -130,4 +119,17 @@ null
 
 null
 null
-null</plugin>
+null
+
+
+
+
+
+
+
+
+
+
+
+
+</plugin>

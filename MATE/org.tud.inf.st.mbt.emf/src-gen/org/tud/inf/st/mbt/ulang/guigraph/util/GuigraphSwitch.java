@@ -76,14 +76,6 @@ public class GuigraphSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GuigraphPackage.PAGE: {
-				Page page = (Page)theEObject;
-				T result = casePage(page);
-				if (result == null) result = caseGuiGraph(page);
-				if (result == null) result = caseAbstractModelElement(page);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case GuigraphPackage.WIDGET: {
 				Widget widget = (Widget)theEObject;
 				T result = caseWidget(widget);
@@ -180,10 +172,16 @@ public class GuigraphSwitch<T> extends Switch<T> {
 			case GuigraphPackage.PAGE_TRANSITION: {
 				PageTransition pageTransition = (PageTransition)theEObject;
 				T result = casePageTransition(pageTransition);
-				if (result == null) result = caseTransition(pageTransition);
 				if (result == null) result = caseGuiGraphNode(pageTransition);
-				if (result == null) result = caseIRealTimeConsumer(pageTransition);
 				if (result == null) result = caseAbstractModelElement(pageTransition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GuigraphPackage.PAGE_MAPPING_ARC: {
+				PageMappingArc pageMappingArc = (PageMappingArc)theEObject;
+				T result = casePageMappingArc(pageMappingArc);
+				if (result == null) result = caseArc(pageMappingArc);
+				if (result == null) result = caseAbstractModelElement(pageMappingArc);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -203,21 +201,6 @@ public class GuigraphSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGuiGraph(GuiGraph object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Page</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Page</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePage(Page object) {
 		return null;
 	}
 
@@ -398,6 +381,21 @@ public class GuigraphSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePageTransition(PageTransition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Page Mapping Arc</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Page Mapping Arc</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePageMappingArc(PageMappingArc object) {
 		return null;
 	}
 

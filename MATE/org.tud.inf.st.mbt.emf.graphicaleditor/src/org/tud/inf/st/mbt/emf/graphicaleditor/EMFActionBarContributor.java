@@ -3,6 +3,7 @@ package org.tud.inf.st.mbt.emf.graphicaleditor;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
+import org.eclipse.gef.ui.actions.CopyRetargetAction;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.RedoRetargetAction;
@@ -20,6 +21,8 @@ public class EMFActionBarContributor extends ActionBarContributor {
 
 	@Override
 	protected void buildActions() {
+		addGlobalActionKey(ActionFactory.COPY.getId());
+		
 		addRetargetAction(new UndoRetargetAction());
 		addRetargetAction(new RedoRetargetAction());
 		addRetargetAction(new DeleteRetargetAction());
@@ -34,11 +37,13 @@ public class EMFActionBarContributor extends ActionBarContributor {
 				.find(GraphicalEMFEditorActivator.getDefault().getBundle(), new Path("icons/grid.gif"), null));
 		grid.setImageDescriptor(gridImg);
 		addRetargetAction(grid);
+		
 	}
 
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
 		super.contributeToToolBar(toolBarManager);
+			
 		toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
 		toolBarManager.add(getAction(ActionFactory.REDO.getId()));
 		toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
@@ -50,10 +55,12 @@ public class EMFActionBarContributor extends ActionBarContributor {
 
 		toolBarManager
 				.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
+		
 	}
 
 	@Override
 	protected void declareGlobalActionKeys() {
+		
 	}
 
 }

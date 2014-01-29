@@ -78,8 +78,8 @@ public class CATransitionEditPart extends BasicNodeEditPart implements Markable 
 						getGraphics())) {
 					public boolean canSource(EObject source, EClass connType) {
 						return source instanceof GuiGraphNode
-								&& !connType.equals(GuigraphPackage.eINSTANCE
-										.getInhibitorArc());
+								&& connType.equals(GuigraphPackage.eINSTANCE
+										.getStandardArc());
 					}
 
 					public boolean canConnect(EObject source, EObject target,

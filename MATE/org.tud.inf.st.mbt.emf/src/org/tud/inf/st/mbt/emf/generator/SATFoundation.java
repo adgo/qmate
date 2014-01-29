@@ -40,11 +40,22 @@ public class SATFoundation {
 	private int maxTokens, maxTime;
 	private PredicateList logicFunctionAtoms;
 	private Map<GuiGraph, Conjunction> invariants = new HashMap<GuiGraph, Conjunction>();
+	private Map<Integer,Set<?>> cache = new HashMap<Integer, Set<?>>();
+	private ActionProcessor actionProcessor;
 
 	public SATFoundation(ResourceSet rs, int maxTokens, int maxTime) {
 		this.rs = rs;
 		this.maxTime = maxTime;
 		this.maxTokens = maxTokens;
+		this.actionProcessor = new ActionProcessor(this);
+	}
+	
+	public ActionProcessor getActionProcessor() {
+		return actionProcessor;
+	}
+	
+	public Map<Integer, Set<?>> getCache() {
+		return cache;
 	}
 
 	public PredicateList getBase() {
@@ -82,11 +93,11 @@ public class SATFoundation {
 	public SAT buildSAT() {
 		base = new PredicateList();
 
-		Collection<DataBag> bags = getAllEObjectsOfSuperType(rs, DataBag.class);
+		Collection<DataBag> bags = getAllEObjectsOfSuperType(cache,rs, DataBag.class);
 		for (DataBag b : bags) {
 			b.organize();
 		}
-		Collection<DataLeaf> leafs = getAllEObjectsOfSuperType(rs,
+		Collection<DataLeaf> leafs = getAllEObjectsOfSuperType(cache,rs,
 				DataLeaf.class);
 		for (DataLeaf l : leafs) {
 			for (DataElement e : getAllLowerElements(l.getDomain())) {
@@ -102,7 +113,7 @@ public class SATFoundation {
 		// }
 		// }
 
-		features = getAllEObjectsOfSuperType(rs, IFeature.class);
+		features = getAllEObjectsOfSuperType(cache,rs, IFeature.class);
 		for (IFeature f : features) {
 			base.addAll(atoms(f));
 		}
@@ -118,13 +129,13 @@ public class SATFoundation {
 		Set<LogicFunctionAtom> logicFunctionAtoms_unNormalized = new HashSet<LogicFunctionAtom>();
 		Set<IFunction> actionFunctionsNormalized = new HashSet<IFunction>();
 
-		Collection<GuiGraph> ggs = getAllEObjectsOfSuperType(rs, GuiGraph.class);
+		Collection<GuiGraph> ggs = getAllEObjectsOfSuperType(cache,rs, GuiGraph.class);
 		for (GuiGraph gg : ggs) {
-			logicFunctionAtoms_unNormalized.addAll(getAllEObjectsOfSuperType(
+			logicFunctionAtoms_unNormalized.addAll(getAllEObjectsOfSuperType(cache,
 					gg.getInvariant(), LogicFunctionAtom.class, false));
 		}
 
-		Collection<ConditionActionTransition> cats = getAllEObjectsOfSuperType(
+		Collection<ConditionActionTransition> cats = getAllEObjectsOfSuperType(cache,
 				rs, ConditionActionTransition.class);
 		for (ConditionActionTransition cat : cats) {
 			// if (cat.getActions() != null
@@ -135,31 +146,31 @@ public class SATFoundation {
 			// }
 			// }
 
-			logicFunctionAtoms_unNormalized.addAll(getAllEObjectsOfSuperType(
+			logicFunctionAtoms_unNormalized.addAll(getAllEObjectsOfSuperType(cache,
 					cat.getApplicationCondition(), LogicFunctionAtom.class,
 					false));
-			PreGenerationAction pga_normalized = ActionProcessor.normalize(
+			PreGenerationAction pga_normalized = actionProcessor.normalize(
 					cat.getActions(), features, new HashMap<String, Object>());
-			actionFunctionsNormalized.addAll(getAllEObjectsOfSuperType(
+			actionFunctionsNormalized.addAll(getAllEObjectsOfSuperType(cache,
 					pga_normalized, ILogicFunction.class, false));
 
 		}
 
-		for (ReconfigurationActionNode ran : getAllEObjectsOfSuperType(rs,
+		for (ReconfigurationActionNode ran : getAllEObjectsOfSuperType(cache,rs,
 				ReconfigurationActionNode.class, false)) {
 			for (PreGenerationAction pga : ran.getActions()) {
-				PreGenerationAction pga_normalized = ActionProcessor.normalize(
+				PreGenerationAction pga_normalized = actionProcessor.normalize(
 						pga, features, new HashMap<String, Object>());
-				actionFunctionsNormalized.addAll(getAllEObjectsOfSuperType(
+				actionFunctionsNormalized.addAll(getAllEObjectsOfSuperType(cache,
 						pga_normalized, ILogicFunction.class, false));
 			}
 		}
 
-		for (TimedConditionAction tca : getAllEObjectsOfSuperType(rs,
+		for (TimedConditionAction tca : getAllEObjectsOfSuperType(cache,rs,
 				TimedConditionAction.class, false)) {
-			PreGenerationAction pga_normalized = ActionProcessor.normalize(
+			PreGenerationAction pga_normalized = actionProcessor.normalize(
 					tca.getAction(), features, new HashMap<String, Object>());
-			actionFunctionsNormalized.addAll(getAllEObjectsOfSuperType(
+			actionFunctionsNormalized.addAll(getAllEObjectsOfSuperType(cache,
 					pga_normalized, ILogicFunction.class, false));
 			ILogicFunction pNormal = (ILogicFunction) FunctionProcessor
 					.normalize(tca.getCondition(), features,
@@ -201,8 +212,8 @@ public class SATFoundation {
 	}
 
 	private void buildInvariants() {
-		Collection<GuiGraph> ggs = getAllEObjectsOfSuperType(rs, GuiGraph.class);
-		Collection<IFeature> fl = getAllEObjectsOfSuperType(rs, IFeature.class);
+		Collection<GuiGraph> ggs = getAllEObjectsOfSuperType(cache,rs, GuiGraph.class);
+		Collection<IFeature> fl = getAllEObjectsOfSuperType(cache,rs, IFeature.class);
 		for (GuiGraph gg : ggs) {
 			if (gg.getInvariant() != null) {
 				Predicate fcp = Model2Logic.normalize(gg.getInvariant(), fl,

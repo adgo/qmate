@@ -17,8 +17,8 @@ parsers{
 	
 	standalone_action ::= ("action" #^id "(" contextvariable*^params ")" "=" paction^a) 
 				=> a:StandAloneAction(parameters=params id=id name=id action=a);	
-	tc_action ::= ("timer" #^id "(" contextvariable*^params ")" "@" $i^f "if" pflog^c "=" paction^a) 
-				=> a:TimedConditionAction(parameters=params id=id name=id action=a condition=c frequency=f);
+	tc_action ::= ("timer" #^id "@" $i^f "if" pflog^c "=" paction^a) 
+				=> a:TimedConditionAction(id=id name=id action=a condition=c frequency=f);
 	standalone_farith ::= ("arithmetric" #^id "(" contextvariable*^params ")" "=" pfarith^f) 
 				=> f:ArithmetricStandAloneFunction(parameters=params id=id name=id function=f);
 	standalone_fnode ::= ("datanode" #^id "(" contextvariable*^params ")" "=" pfnode^f) 

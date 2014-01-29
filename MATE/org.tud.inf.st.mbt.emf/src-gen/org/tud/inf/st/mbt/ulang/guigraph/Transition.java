@@ -13,9 +13,7 @@ import org.tud.inf.st.mbt.rules.IRealTimeConsumer;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getRate <em>Rate</em>}</li>
- *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getFaultImpact <em>Fault Impact</em>}</li>
- *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getFaultProbability <em>Fault Probability</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getRisk <em>Risk</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#isTerminates <em>Terminates</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getTimeMin <em>Time Min</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getTimeMax <em>Time Max</em>}</li>
@@ -29,85 +27,31 @@ import org.tud.inf.st.mbt.rules.IRealTimeConsumer;
  */
 public interface Transition extends GuiGraphNode, IRealTimeConsumer {
 	/**
-	 * Returns the value of the '<em><b>Rate</b></em>' attribute.
+	 * Returns the value of the '<em><b>Risk</b></em>' attribute.
 	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Rate</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Risk</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Rate</em>' attribute.
-	 * @see #setRate(int)
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage#getTransition_Rate()
+	 * @return the value of the '<em>Risk</em>' attribute.
+	 * @see #setRisk(double)
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage#getTransition_Risk()
 	 * @model default="1" required="true"
 	 * @generated
 	 */
-	int getRate();
+	double getRisk();
 
 	/**
-	 * Sets the value of the '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getRate <em>Rate</em>}' attribute.
+	 * Sets the value of the '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getRisk <em>Risk</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rate</em>' attribute.
-	 * @see #getRate()
+	 * @param value the new value of the '<em>Risk</em>' attribute.
+	 * @see #getRisk()
 	 * @generated
 	 */
-	void setRate(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Fault Impact</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Fault Impact</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Fault Impact</em>' attribute.
-	 * @see #setFaultImpact(double)
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage#getTransition_FaultImpact()
-	 * @model default="1" required="true"
-	 * @generated
-	 */
-	double getFaultImpact();
-
-	/**
-	 * Sets the value of the '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getFaultImpact <em>Fault Impact</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Fault Impact</em>' attribute.
-	 * @see #getFaultImpact()
-	 * @generated
-	 */
-	void setFaultImpact(double value);
-
-	/**
-	 * Returns the value of the '<em><b>Fault Probability</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Fault Probability</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Fault Probability</em>' attribute.
-	 * @see #setFaultProbability(double)
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.GuigraphPackage#getTransition_FaultProbability()
-	 * @model default="1" required="true"
-	 * @generated
-	 */
-	double getFaultProbability();
-
-	/**
-	 * Sets the value of the '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getFaultProbability <em>Fault Probability</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Fault Probability</em>' attribute.
-	 * @see #getFaultProbability()
-	 * @generated
-	 */
-	void setFaultProbability(double value);
+	void setRisk(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Terminates</b></em>' attribute.

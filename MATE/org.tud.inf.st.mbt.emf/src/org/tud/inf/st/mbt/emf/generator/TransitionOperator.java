@@ -7,6 +7,7 @@ import static org.tud.inf.st.mbt.emf.util.ModelUtil.not;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,7 +24,7 @@ import org.tud.inf.st.mbt.rules.TokenAtom;
 import org.tud.inf.st.mbt.ulang.guigraph.Arc;
 import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
 import org.tud.inf.st.mbt.ulang.guigraph.InhibitorArc;
-import org.tud.inf.st.mbt.ulang.guigraph.Page;
+import org.tud.inf.st.mbt.ulang.guigraph.PageMappingArc;
 import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 import org.tud.inf.st.mbt.ulang.guigraph.StandardArc;
@@ -31,7 +32,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.Transition;
 
 public abstract class TransitionOperator extends AbstractOperator {
 
-	private static class PlaceWeight {
+	protected static class PlaceWeight {
 		public int weight = 0;
 		public Place place;
 
@@ -45,16 +46,58 @@ public abstract class TransitionOperator extends AbstractOperator {
 		}
 	}
 
+	private static class PlaceMappingRelation {
+		private static class Pair {
+			Place a, b;
+
+			public Pair(Place a, Place b) {
+				this.a = a;
+				this.b = b;
+			}
+			
+			@Override
+			public String toString() {
+				return "("+a+","+b+")";
+			}
+		}
+
+		private List<Pair> pairs = new ArrayList<>();
+
+		public void add(Place top, Place bottom) {
+			pairs.add(new Pair(top, bottom));
+		}
+
+		public Set<Place> getMappings(Place p) {
+			Set<Place> result = new HashSet<>();
+			boolean foundSth = false;
+			result.add(p);
+			do {
+				foundSth = false;
+				for (Pair pair : pairs) {
+					if (result.contains(pair.a) && result.add(pair.b))
+						foundSth = true;
+					if(result.contains(pair.b) && result.add(pair.a))
+						foundSth = true;
+				}
+			} while (foundSth);
+			return result;
+		}
+		
+		@Override
+		public String toString() {
+			return pairs.toString();
+		}
+	}
+
 	private Collection<Transition> transitions;
 	private Map<Transition, List<PlaceWeight>> trans2consumed = new HashMap<>();
 	private Map<Transition, List<Place>> trans2inhibited = new HashMap<>();
 	private Map<Transition, List<PlaceWeight>> trans2produced = new HashMap<>();
-	private Map<Collection<PageTransition>, Page> path2Page = new HashMap<>();
+	private PlaceMappingRelation mappings = new PlaceMappingRelation();
 
 	private SAT sat;
 	private SATFoundation satFoundation;
 	private boolean ignoreRealtime = false;
-	private Set<PageTransition> pagesTrans;
 	private Set<Place> places;
 
 	public TransitionOperator(SATFoundation satFoundation,
@@ -64,11 +107,31 @@ public abstract class TransitionOperator extends AbstractOperator {
 
 		this.sat = satFoundation.buildSAT();
 
-		places = getAllEObjectsOfSuperType(satFoundation.getResourceSet(),
+		Collection<PageMappingArc> marcs = getAllEObjectsOfSuperType(satFoundation.getCache(),
+				satFoundation.getResourceSet(), PageMappingArc.class, true);
+
+		for (PageMappingArc marc : marcs) {
+			Place top = null;
+			GuiGraph page = null;
+			if (marc.getSource() instanceof PageTransition
+					&& marc.getTarget() instanceof Place) {
+				page = ((PageTransition) marc.getSource()).getPage();
+				top = (Place) marc.getTarget();
+			} else if (marc.getTarget() instanceof PageTransition
+					&& marc.getSource() instanceof Place) {
+				page = ((PageTransition) marc.getTarget()).getPage();
+				top = (Place) marc.getSource();
+			}
+			if (marc.getMapping().eContainer().equals(page)) {
+				mappings.add(top, marc.getMapping());
+			}
+		}
+
+		places = getAllEObjectsOfSuperType(satFoundation.getCache(),satFoundation.getResourceSet(),
 				Place.class);
-		Collection<Arc> arcs = getAllEObjectsOfSuperType(
+		Collection<Arc> arcs = getAllEObjectsOfSuperType(satFoundation.getCache(),
 				satFoundation.getResourceSet(), Arc.class);
-		transitions = getAllEObjectsOfSuperType(satFoundation.getResourceSet(),
+		transitions = getAllEObjectsOfSuperType(satFoundation.getCache(),satFoundation.getResourceSet(),
 				Transition.class);
 
 		for (Transition t : transitions) {
@@ -84,7 +147,7 @@ public abstract class TransitionOperator extends AbstractOperator {
 					if (e.getTarget().equals(t) && e.getSource().equals(p)) {
 						if (e instanceof InhibitorArc)
 							inhibited.add(p);
-						else
+						else if (e instanceof StandardArc)
 							wConsumed.weight += ((StandardArc) e).getWeight();
 					}
 					if (e.getSource().equals(t) && e.getTarget().equals(p)) {
@@ -101,22 +164,13 @@ public abstract class TransitionOperator extends AbstractOperator {
 			trans2inhibited.put(t, inhibited);
 			trans2produced.put(t, produced);
 		}
-
-		pagesTrans = getAllEObjectsOfSuperType(getSatFoundation()
-				.getResourceSet(), PageTransition.class);
-		// for (PageTransition p : pagesTrans)
-		// path2Page.put(p, p.getPage());
-		// TODO
 	}
 
 	@Override
 	public void contributeToInitialState(State s) {
 		for (Place p : places) {
-			if (p.getInitialTokens() > 0) {
-				if (p.eContainer() instanceof Page) {
-					// TODO
-				} else
-					s.configureProposition(atom(p, p.getInitialTokens()));
+			if (p.getInitialTokens() > 0 && s.getTokenCount(p) == 0) {
+				changeTokenCount(s, p, p.getInitialTokens());
 			}
 
 		}
@@ -139,15 +193,14 @@ public abstract class TransitionOperator extends AbstractOperator {
 		return satFoundation;
 	}
 
-	protected void consumeAndProduce(Transition t, State s,
-			Collection<PageTransition> instance) {
+	protected void consumeAndProduce(Transition t, State s) {
 		for (PlaceWeight w : trans2consumed.get(t))
-			changeTokenCount(s, w.place, -w.weight, instance);
+			changeTokenCount(s, w.place, -w.weight);
 
 		computeEnabledTransitions(s);
 
 		for (PlaceWeight w : trans2produced.get(t))
-			changeTokenCount(s, w.place, w.weight, instance);
+			changeTokenCount(s, w.place, w.weight);
 
 		s.deconfigureProposition(ModelUtil.atom((IRealTimeConsumer) t, 0L));
 	}
@@ -216,27 +269,27 @@ public abstract class TransitionOperator extends AbstractOperator {
 		return true;
 	}
 
-	protected final static void changeTokenCount(State s, Place p, int d,
-			Collection<PageTransition> instance) {
-		for (Predicate a : s.getPropositions().toArray()) {
-			if (a instanceof TokenAtom
-					&& ((TokenAtom) a).getPlace().equals(p)
-					&& ((((TokenAtom) a).getInstancePath() == null && instance == null) || ModelUtil
-							.collectionEquals(
-									((TokenAtom) a).getInstancePath(), instance))) {
-				TokenAtom ta = (TokenAtom) a;
-				if (ta.getCount() + d <= 0)
-					s.deconfigureProposition(ta);
-				else
-					s.configureProposition(atom(ta.getPlace(), ta.getCount()
-							+ d, instance));
-				return;
-			}
-		}
+	protected final void changeTokenCount(State s, Place place, int d) {
+		Set<Place> places = mappings.getMappings(place);
 
-		// if no token existed before
-		Atom a = atom(p, d, instance);
-		s.configureProposition(a);
+		PLACE:for (Place p : places) {
+			for (Predicate a : s.getPropositions().toArray()) {
+				if (a instanceof TokenAtom
+						&& ((TokenAtom) a).getPlace().equals(p)) {
+					TokenAtom ta = (TokenAtom) a;
+					if (ta.getCount() + d <= 0)
+						s.deconfigureProposition(ta);
+					else
+						s.configureProposition(atom(ta.getPlace(),
+								ta.getCount() + d));
+					continue PLACE;
+				}
+			}
+
+			// if no token existed before
+			Atom a = atom(p, d);
+			s.configureProposition(a);
+		}
 	}
 
 	protected boolean conditionHolds(State s, Predicate p, GuiGraph gg) {

@@ -71,7 +71,17 @@ public class ReconfigurationActionEditPart extends BasicOCMNodeEditPart
 	@Override
 	public void refreshVisuals() {
 		LabeledRectangle fig = (LabeledRectangle) getFigure();
-		fig.getLabel(null).setText(getModel().getActionsText());
+		String txt = "";
+
+		if (!getModel().getActions().isEmpty()) {
+			String[] arr = getModel().getActionsText().split(";");
+			for (String l : arr)
+				txt += l + ";\n";
+		}
+		if (getModel().getPostConfEventID() != null
+				&& getModel().getPostConfEventID().length() > 0)
+			txt += "/" + getModel().getPostConfEventID();
+		fig.getLabel(null).setText(txt);
 		super.refreshVisuals();
 	}
 

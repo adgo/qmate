@@ -395,11 +395,11 @@ public class State {
 		return 0;
 	}
 
-	public EObject getTopInstructionContainer() {
+	public EObject getTopInstructionFallBack() {
 		if (isTopInstructionSequenceRunning()
 				|| isTopInstructionSequenceFinishing()) {
 			InstructionPointerAtom ipa = getTopInstructionPointerAtom();
-			return ipa.getSequence().eContainer();
+			return ipa.getFallBack();
 		} else
 			return null;
 	}

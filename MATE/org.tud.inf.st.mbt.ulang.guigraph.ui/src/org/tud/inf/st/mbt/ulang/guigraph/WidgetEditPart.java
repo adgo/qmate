@@ -2,7 +2,9 @@ package org.tud.inf.st.mbt.ulang.guigraph;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -49,7 +51,12 @@ public class WidgetEditPart extends PlaceEditPart {
 								&& !(target instanceof Transition && !(source instanceof Transition)))
 							return false;
 
-						for (Arc a : ModelUtil.getAllEObjectsOfSuperType(
+						if (target instanceof PageTransition
+								&& !connType.equals(GuigraphPackage.eINSTANCE
+										.getPageMappingArc()))
+							return false;
+
+						for (Arc a : ModelUtil.getAllEObjectsOfSuperType(new HashMap<Integer, Set<?>>(),
 								getModel().eContainer(), Arc.class)) {
 							if (a.getSource().equals(source)
 									&& a.getTarget().equals(target)) {

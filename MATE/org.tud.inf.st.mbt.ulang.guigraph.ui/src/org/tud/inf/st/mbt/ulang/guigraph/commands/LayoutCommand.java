@@ -7,7 +7,6 @@ import java.util.Map;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.swt.graphics.ImageData;
 import org.tud.inf.st.mbt.emf.graphicaleditor.GraphicalEMFEditor;
@@ -33,13 +32,18 @@ public class LayoutCommand extends Command {
 		private final Dimension nodeMax = new Dimension(300, 250);
 		private Dimension screenSize = null;
 		private final Map<String, GuiGraphNode> id2node = new HashMap<>();
+		private final Map<String, String> sourceMap = new HashMap<>();
+		private final Map<String, String> targetMap = new HashMap<>();
 
 		public GGEndpointProvider() {
-			for (GuiGraphNode node : guiGraph.getNodes().toArray(new GuiGraphNode[0])) {
+			for (GuiGraphNode node : guiGraph.getNodes().toArray(
+					new GuiGraphNode[0])) {
 				id2node.put(node.getId(), node);
 				if (screenSize == null && node instanceof Form
 						&& ((Form) node).getImage() != null) {
-					String path = ResourcesPlugin.getWorkspace().getRoot().getLocation()+((Form) node).getImage();
+					String path = ResourcesPlugin.getWorkspace().getRoot()
+							.getLocation()
+							+ ((Form) node).getImage();
 					ImageData img = new ImageData(path);
 					screenSize = new Dimension(img.width, img.height);
 
@@ -52,44 +56,62 @@ public class LayoutCommand extends Command {
 					screenSize = screenSize.scale(scale);
 				}
 			}
-			if(screenSize == null){
+			if (screenSize == null) {
 				screenSize = nodeMax;
 			}
 		}
 
 		@Override
 		public String getSourceID(String conID) {
-			for (Arc e : guiGraph.getArcs()) {
-				if (e.getId().equals(conID))
-					return e.getSource().getId();
+			if (sourceMap.containsKey(conID))
+				return sourceMap.get(conID);
+			else {
+				String result = null;
+				for (Arc e : guiGraph.getArcs()) {
+					if (e.getId().equals(conID)) {
+						result = e.getSource().getId();
+						break;
+					}
+				}
+				sourceMap.put(conID, result);
+				return result;
 			}
-			return null;
 		}
 
 		@Override
 		public String getTargetID(String conID) {
-			for (Arc e : guiGraph.getArcs()) {
-				if (e.getId().equals(conID))
-					return e.getTarget().getId();
+			if (targetMap.containsKey(conID))
+				return targetMap.get(conID);
+			else {
+				String result = null;
+				for (Arc e : guiGraph.getArcs()) {
+					if (e.getId().equals(conID)) {
+						result = e.getTarget().getId();
+						break;
+					}
+				}
+				targetMap.put(conID, result);
+				return result;
 			}
-			return null;
 		}
 
 		@Override
 		public Dimension getSizeHint(String nodeID) {
 			GuiGraphNode node = id2node.get(nodeID);
-			if(node instanceof Form){
+			if (node instanceof Form) {
 				return screenSize;
 			} else if (node instanceof ConditionActionTransition) {
-				String text = ((ConditionActionTransition) node).getActionsText();
-				if(text != null){
+				String text = ((ConditionActionTransition) node)
+						.getActionsText();
+				if (text != null) {
 					String[] lines = text.split("\n");
-					return new Dimension(nodeMax.width, (int) ((1+lines.length)*15+60));					
+					return new Dimension(nodeMax.width,
+							(int) ((1 + lines.length) * 15 + 60));
 				}
 				return nodeMax;
-			} else if(nodesBackup.get(nodeID)!=null)
-					return nodesBackup.get(nodeID).getSize();
-			return new Dimension(50,50);
+			} else if (nodesBackup.get(nodeID) != null)
+				return nodesBackup.get(nodeID).getSize();
+			return new Dimension(50, 50);
 		}
 	}
 

@@ -75,10 +75,6 @@ public class GuigraphAdapterFactory extends AdapterFactoryImpl {
 				return createGuiGraphAdapter();
 			}
 			@Override
-			public Adapter casePage(Page object) {
-				return createPageAdapter();
-			}
-			@Override
 			public Adapter caseWidget(Widget object) {
 				return createWidgetAdapter();
 			}
@@ -127,6 +123,10 @@ public class GuigraphAdapterFactory extends AdapterFactoryImpl {
 				return createPageTransitionAdapter();
 			}
 			@Override
+			public Adapter casePageMappingArc(PageMappingArc object) {
+				return createPageMappingArcAdapter();
+			}
+			@Override
 			public Adapter caseAbstractModelElement(AbstractModelElement object) {
 				return createAbstractModelElementAdapter();
 			}
@@ -165,20 +165,6 @@ public class GuigraphAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGuiGraphAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.tud.inf.st.mbt.ulang.guigraph.Page <em>Page</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.Page
-	 * @generated
-	 */
-	public Adapter createPageAdapter() {
 		return null;
 	}
 
@@ -347,6 +333,20 @@ public class GuigraphAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPageTransitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.tud.inf.st.mbt.ulang.guigraph.PageMappingArc <em>Page Mapping Arc</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.PageMappingArc
+	 * @generated
+	 */
+	public Adapter createPageMappingArcAdapter() {
 		return null;
 	}
 

@@ -34,7 +34,7 @@ public class EMFOutlinePage extends ContentOutlinePage {
 	}
 	
 	public void setInput(EObject input){
-		contentOutlineViewer.setInput(input);
+		if(!contentOutlineViewer.getTree().isDisposed())contentOutlineViewer.setInput(input);
 	}
 	
 }

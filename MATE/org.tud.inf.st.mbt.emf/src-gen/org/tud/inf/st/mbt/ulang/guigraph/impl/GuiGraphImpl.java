@@ -305,17 +305,10 @@ public class GuiGraphImpl extends AbstractModelElementImpl implements GuiGraph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (invariantText: ");
-		result.append(invariantText);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 } //GuiGraphImpl

@@ -1,6 +1,5 @@
 package org.tud.inf.st.mbt.ulang.guigraph;
 
-import org.eclipse.core.runtime.IProduct;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
@@ -30,6 +29,12 @@ public class GUIGraphPaletteRoot extends EMFPaletteRoot {
 						.getConditionActionTransition()), Activator
 						.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
 								"icons/trans.png"), null));
+		scGroup.add(new CreationToolEntry("Page Transition",
+				"Create a new page transition.",
+				new EMFCreationFactory(GuigraphPackage.eINSTANCE
+						.getPageTransition()), Activator
+						.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+								"icons/page.png"), null));
 
 		if (!Platform.getProduct().getId().equals(MBTConstants.PRODUCT_MOBILE)) {
 			scGroup.add(new CreationToolEntry("Timer Transition",
@@ -49,6 +54,11 @@ public class GUIGraphPaletteRoot extends EMFPaletteRoot {
 						GuigraphPackage.eINSTANCE.getInhibitorArc()), Activator
 						.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
 								"icons/inhibitor.png"), null));
+		scGroup.add(new ConnectionCreationToolEntry("Page Mapping Arc",
+				"Create a new page mapping arc.", new EMFCreationFactory(
+						GuigraphPackage.eINSTANCE.getPageMappingArc()), Activator
+						.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+								"icons/arc.png"), null));
 
 		this.add(scGroup);
 	}

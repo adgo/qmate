@@ -8,17 +8,16 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.tud.inf.st.mbt.actions.PreGenerationSequence;
 import org.tud.inf.st.mbt.rules.ContextEntry;
 import org.tud.inf.st.mbt.rules.InstructionPointerAtom;
 import org.tud.inf.st.mbt.rules.RulesPackage;
-import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +30,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
  *   <li>{@link org.tud.inf.st.mbt.rules.impl.InstructionPointerAtomImpl#getInstruction <em>Instruction</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.rules.impl.InstructionPointerAtomImpl#getStackLevel <em>Stack Level</em>}</li>
  *   <li>{@link org.tud.inf.st.mbt.rules.impl.InstructionPointerAtomImpl#getContext <em>Context</em>}</li>
- *   <li>{@link org.tud.inf.st.mbt.rules.impl.InstructionPointerAtomImpl#getInstancePath <em>Instance Path</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.rules.impl.InstructionPointerAtomImpl#getFallBack <em>Fall Back</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,14 +98,14 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 	protected EList<ContextEntry> context;
 
 	/**
-	 * The cached value of the '{@link #getInstancePath() <em>Instance Path</em>}' reference list.
+	 * The cached value of the '{@link #getFallBack() <em>Fall Back</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInstancePath()
+	 * @see #getFallBack()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PageTransition> instancePath;
+	protected EObject fallBack;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -224,11 +223,37 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PageTransition> getInstancePath() {
-		if (instancePath == null) {
-			instancePath = new EObjectResolvingEList<PageTransition>(PageTransition.class, this, RulesPackage.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH);
+	public EObject getFallBack() {
+		if (fallBack != null && fallBack.eIsProxy()) {
+			InternalEObject oldFallBack = (InternalEObject)fallBack;
+			fallBack = eResolveProxy(oldFallBack);
+			if (fallBack != oldFallBack) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RulesPackage.INSTRUCTION_POINTER_ATOM__FALL_BACK, oldFallBack, fallBack));
+			}
 		}
-		return instancePath;
+		return fallBack;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject basicGetFallBack() {
+		return fallBack;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFallBack(EObject newFallBack) {
+		EObject oldFallBack = fallBack;
+		fallBack = newFallBack;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.INSTRUCTION_POINTER_ATOM__FALL_BACK, oldFallBack, fallBack));
 	}
 
 	/**
@@ -262,8 +287,9 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 				return getStackLevel();
 			case RulesPackage.INSTRUCTION_POINTER_ATOM__CONTEXT:
 				return getContext();
-			case RulesPackage.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH:
-				return getInstancePath();
+			case RulesPackage.INSTRUCTION_POINTER_ATOM__FALL_BACK:
+				if (resolve) return getFallBack();
+				return basicGetFallBack();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -290,9 +316,8 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 				getContext().clear();
 				getContext().addAll((Collection<? extends ContextEntry>)newValue);
 				return;
-			case RulesPackage.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH:
-				getInstancePath().clear();
-				getInstancePath().addAll((Collection<? extends PageTransition>)newValue);
+			case RulesPackage.INSTRUCTION_POINTER_ATOM__FALL_BACK:
+				setFallBack((EObject)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -318,8 +343,8 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 			case RulesPackage.INSTRUCTION_POINTER_ATOM__CONTEXT:
 				getContext().clear();
 				return;
-			case RulesPackage.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH:
-				getInstancePath().clear();
+			case RulesPackage.INSTRUCTION_POINTER_ATOM__FALL_BACK:
+				setFallBack((EObject)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -341,8 +366,8 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 				return stackLevel != STACK_LEVEL_EDEFAULT;
 			case RulesPackage.INSTRUCTION_POINTER_ATOM__CONTEXT:
 				return context != null && !context.isEmpty();
-			case RulesPackage.INSTRUCTION_POINTER_ATOM__INSTANCE_PATH:
-				return instancePath != null && !instancePath.isEmpty();
+			case RulesPackage.INSTRUCTION_POINTER_ATOM__FALL_BACK:
+				return fallBack != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -353,8 +378,7 @@ public class InstructionPointerAtomImpl extends EObjectImpl implements Instructi
 	 */
 	@Override
 	public String toString() {
-		String instance = instancePath!=null && instancePath.size()>0 ? "@"+instancePath : "";
-		return sequence+":L"+getStackLevel()+":I"+instruction+instance;
+		return sequence+":L"+getStackLevel()+":I"+instruction;
 	}
 
 } //InstructionPointerAtomImpl

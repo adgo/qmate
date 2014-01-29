@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.tud.inf.st.mbt.emf.util.ModelUtil;
 
 public final class ValidationManager  {
 	private static Map<IResource, ValidationManager> instances = new HashMap<>();
@@ -31,7 +32,7 @@ public final class ValidationManager  {
 
 	private static void init() {
 		addConstraint(new NoProxies());
-		addConstraint(new AllIDsSetConstraint());
+		addConstraint(new IDConstraint());
 		addConstraint(new ParsingConstraint());
 	}
 

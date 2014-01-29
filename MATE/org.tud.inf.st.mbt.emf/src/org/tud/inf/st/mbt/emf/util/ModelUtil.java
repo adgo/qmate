@@ -109,7 +109,8 @@ import org.tud.inf.st.mbt.test.TestRun;
 import org.tud.inf.st.mbt.test.TestStep;
 import org.tud.inf.st.mbt.test.TestStepRun;
 import org.tud.inf.st.mbt.test.TestSuite;
-import org.tud.inf.st.mbt.ulang.guigraph.PageTransition;
+import org.tud.inf.st.mbt.ulang.guigraph.GuiGraph;
+import org.tud.inf.st.mbt.ulang.guigraph.GuiGraphNode;
 import org.tud.inf.st.mbt.ulang.guigraph.Place;
 
 public class ModelUtil {
@@ -300,17 +301,6 @@ public class ModelUtil {
 		return a;
 	}
 
-	public static TokenAtom atom(Place p, int count,Collection<PageTransition> instance) {
-		TokenAtom a = rFactory.createTokenAtom();
-		a.setCount(count);
-		a.setPlace(p);
-		if(instance!=null){
-			a.getInstancePath().clear();
-			a.getInstancePath().addAll(instance);
-		}
-		return a;
-	}
-	
 	public static BagElementAssignedAtom atom(DataBag b, int idx) {
 		BagElementAssignedAtom a = rFactory.createBagElementAssignedAtom();
 		a.setBag(b);
@@ -431,8 +421,7 @@ public class ModelUtil {
 				hc += hashCode(((LogicFunctionAtom) p).getFunction());
 			} else if (p instanceof TokenAtom) {
 				hc += ((TokenAtom) p).getPlace().hashCode();
-				hc *= ((TokenAtom) p).getCount()+1;
-				for(PageTransition pt:((TokenAtom) p).getInstancePath())hc+=pt.hashCode();
+				hc *= ((TokenAtom) p).getCount() + 1;
 			} else if (p instanceof ConfigurationAtom) {
 				hc += ((ConfigurationAtom) p).getConfiguration().hashCode();
 			} else if (p instanceof InstructionPointerAtom) {
@@ -443,14 +432,12 @@ public class ModelUtil {
 						.getContext()) {
 					hc += ce.getId().hashCode() * ce.getValue().hashCode();
 				}
-				for(PageTransition pt:((InstructionPointerAtom) p).getInstancePath())hc+=pt.hashCode();
 			} else if (p instanceof TimeAtom) {
 				hc += Math.pow(((TimeAtom) p).getTime(), 2);
 				hc += ((TimeAtom) p).getConsumer().hashCode();
 			} else if (p instanceof RealTimeAtom) {
 				hc += Long.valueOf(((RealTimeAtom) p).getTime()).hashCode();
 				hc += ((RealTimeAtom) p).getConsumer().hashCode();
-				for(PageTransition pt:((RealTimeAtom) p).getInstancePath())hc+=pt.hashCode();
 			} else if (p instanceof BagElementAssignedAtom) {
 				hc += ((BagElementAssignedAtom) p).getIdx();
 				hc += ((BagElementAssignedAtom) p).getBag().hashCode();
@@ -564,26 +551,45 @@ public class ModelUtil {
 
 		return hc;
 	}
+	
+	
+	public static <T> Set<T> getAllEObjectsOfSuperType(Object o, Class<T> type) {
+		return getAllEObjectsOfSuperType(new HashMap<Integer,Set<?>>(), o, type, true);
+	}
+	
+	public static <T> Set<T> getAllEObjectsOfSuperType(Object o, Class<T> type, boolean withCrossRefs) {
+		return getAllEObjectsOfSuperType(new HashMap<Integer,Set<?>>(), o, type, withCrossRefs);
+	}
+	
+	public static <T> Set<T> getAllEObjectsOfSuperType(
+			Map<Integer, Set<?>> cache, Object o, Class<T> type) {
+		return getAllEObjectsOfSuperType(cache, o, type, true);
+	}
 
-	public static <T> Set<T> getAllEObjectsOfSuperType(Object o, Class<T> type,
+	@SuppressWarnings("unchecked")
+	public static <T> Set<T> getAllEObjectsOfSuperType(
+			Map<Integer, Set<?>> cache, Object o, Class<T> type,
 			boolean withCrossRefs) {
-		if (o instanceof ResourceSet)
-			return getAllEObjectsOfSuperType((ResourceSet) o, type,
-					withCrossRefs);
-		if (o instanceof Resource)
-			return getAllEObjectsOfSuperType((Resource) o, type, withCrossRefs);
-		if (o instanceof EObject)
-			return getAllEObjectsOfSuperType((EObject) o, type, withCrossRefs);
-
-		return null;
+		int hash = o.hashCode() + type.hashCode() * (withCrossRefs ? 1 : 2);
+		if (cache.containsKey(hash))
+			return (Set<T>) cache.get(hash);
+		else {
+			Set<T> result = null;
+			if (o instanceof ResourceSet)
+				result = getAllEObjectsOfSuperType((ResourceSet) o, type,
+						withCrossRefs);
+			if (o instanceof Resource)
+				result = getAllEObjectsOfSuperType((Resource) o, type,
+						withCrossRefs);
+			if (o instanceof EObject)
+				result = getAllEObjectsOfSuperType((EObject) o, type,
+						withCrossRefs);
+			cache.put(hash, result);
+			return result;
+		}
 	}
 
-	public static <T> Set<T> getAllEObjectsOfSuperType(ResourceSet rs,
-			Class<T> type) {
-		return getAllEObjectsOfSuperType(rs, type, true);
-	}
-
-	public static <T> Set<T> getAllEObjectsOfSuperType(ResourceSet rs,
+	private static <T> Set<T> getAllEObjectsOfSuperType(ResourceSet rs,
 			Class<T> type, boolean withCrossRefs) {
 		Set<T> out = new HashSet<>();
 
@@ -593,11 +599,7 @@ public class ModelUtil {
 		return out;
 	}
 
-	public static <T> Set<T> getAllEObjectsOfSuperType(Resource r, Class<T> type) {
-		return getAllEObjectsOfSuperType(r, type, true);
-	}
-
-	public static <T> Set<T> getAllEObjectsOfSuperType(Resource r,
+	private static <T> Set<T> getAllEObjectsOfSuperType(Resource r,
 			Class<T> type, boolean withCrossRefs) {
 		Set<T> out = new HashSet<>();
 
@@ -607,13 +609,8 @@ public class ModelUtil {
 		return out;
 	}
 
-	public static <T> Set<T> getAllEObjectsOfSuperType(EObject root,
-			Class<T> type) {
-		return getAllEObjectsOfSuperType(root, type, true);
-	}
-
 	@SuppressWarnings("unchecked")
-	public static <T> Set<T> getAllEObjectsOfSuperType(EObject root,
+	private static <T> Set<T> getAllEObjectsOfSuperType(EObject root,
 			Class<T> type, boolean withCrossRefs) {
 		Set<T> out = new HashSet<>();
 
@@ -664,8 +661,7 @@ public class ModelUtil {
 		return context;
 	}
 
-	public static TermAction functorAction(String functor,
-			Object... args) {
+	public static TermAction functorAction(String functor, Object... args) {
 		TermAction a = ActionsFactory.eINSTANCE.createTermAction();
 		FunctorTerm ft = TermsFactory.eINSTANCE.createFunctorTerm();
 		ft.setFunctor(functor);
@@ -700,36 +696,50 @@ public class ModelUtil {
 	}
 
 	public static int countSteps(TestExecutable executable) {
-		if (executable instanceof TestStep || executable instanceof TestStepRun)return 1;
-		if(executable instanceof TestCase)return ((TestCase) executable).getSteps().size();
-		if(executable instanceof TestRun)return ((TestRun) executable).getStepRuns().size();
-		if(executable instanceof TestSuite){
-			int i =0;
-			for(TestCase c:((TestSuite) executable).getCases())
-				i+= countSteps(c);
+		if (executable instanceof TestStep || executable instanceof TestStepRun)
+			return 1;
+		if (executable instanceof TestCase)
+			return ((TestCase) executable).getSteps().size();
+		if (executable instanceof TestRun)
+			return ((TestRun) executable).getStepRuns().size();
+		if (executable instanceof TestSuite) {
+			int i = 0;
+			for (TestCase c : ((TestSuite) executable).getCases())
+				i += countSteps(c);
 			return i;
 		}
-		if(executable instanceof TestReport){
-			int i =0;
-			for(TestRun c:((TestReport) executable).getRuns())
-				i+= countSteps(c);
+		if (executable instanceof TestReport) {
+			int i = 0;
+			for (TestRun c : ((TestReport) executable).getRuns())
+				i += countSteps(c);
 			return i;
 		}
 		return 0;
 	}
-	
-	public static boolean collectionEquals(Collection<?> a,Collection<?> b){
-		if(a == null && b!=null)return false;
-		if(a!=null && b==null)return false;
-		if(a.size()!=b.size())return false;
-		
+
+	public static boolean collectionEquals(Collection<?> a, Collection<?> b) {
+		if (a == null && b != null)
+			return false;
+		if (a != null && b == null)
+			return false;
+		if (a.size() != b.size())
+			return false;
+
 		Object[] aArr = a.toArray();
 		Object[] bArr = b.toArray();
-		
-		for(int i=0;i<a.size();i++)
-			if(!aArr[i].equals(bArr[i]))return false;
-		
-		return true;					
+
+		for (int i = 0; i < a.size(); i++)
+			if (!aArr[i].equals(bArr[i]))
+				return false;
+
+		return true;
+	}
+
+	public static GuiGraphNode getNodeByName(GuiGraph gg, String name) {
+		for (GuiGraphNode n : gg.getNodes())
+			if (n.getName().equals(name))
+				return n;
+		return null;
 	}
 
 }

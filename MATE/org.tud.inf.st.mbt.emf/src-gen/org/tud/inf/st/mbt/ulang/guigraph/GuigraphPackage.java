@@ -150,97 +150,6 @@ public interface GuigraphPackage extends EPackage {
 	int GUI_GRAPH_FEATURE_COUNT = CorePackage.ABSTRACT_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PageImpl <em>Page</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.PageImpl
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPage()
-	 * @generated
-	 */
-	int PAGE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Note</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE__NOTE = GUI_GRAPH__NOTE;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE__ID = GUI_GRAPH__ID;
-
-	/**
-	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE__TRACEABLE_TO = GUI_GRAPH__TRACEABLE_TO;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE__NAME = GUI_GRAPH__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Arcs</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE__ARCS = GUI_GRAPH__ARCS;
-
-	/**
-	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE__NODES = GUI_GRAPH__NODES;
-
-	/**
-	 * The feature id for the '<em><b>Invariant</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE__INVARIANT = GUI_GRAPH__INVARIANT;
-
-	/**
-	 * The feature id for the '<em><b>Invariant Text</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE__INVARIANT_TEXT = GUI_GRAPH__INVARIANT_TEXT;
-
-	/**
-	 * The number of structural features of the '<em>Page</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE_FEATURE_COUNT = GUI_GRAPH_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.WidgetImpl <em>Widget</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,7 +157,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getWidget()
 	 * @generated
 	 */
-	int WIDGET = 2;
+	int WIDGET = 1;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -321,7 +230,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getGuiGraphNode()
 	 * @generated
 	 */
-	int GUI_GRAPH_NODE = 5;
+	int GUI_GRAPH_NODE = 4;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.FormImpl <em>Form</em>}' class.
@@ -331,7 +240,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getForm()
 	 * @generated
 	 */
-	int FORM = 3;
+	int FORM = 2;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -397,13 +306,22 @@ public interface GuigraphPackage extends EPackage {
 	int FORM__INITIAL_TOKENS = WIDGET_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Provide As Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORM__PROVIDE_AS_INTERFACE = WIDGET_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Form</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORM_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
+	int FORM_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -458,7 +376,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getTransition()
 	 * @generated
 	 */
-	int TRANSITION = 4;
+	int TRANSITION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -497,31 +415,13 @@ public interface GuigraphPackage extends EPackage {
 	int TRANSITION__NAME = GUI_GRAPH_NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Rate</b></em>' attribute.
+	 * The feature id for the '<em><b>Risk</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__RATE = GUI_GRAPH_NODE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Fault Impact</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__FAULT_IMPACT = GUI_GRAPH_NODE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Fault Probability</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__FAULT_PROBABILITY = GUI_GRAPH_NODE_FEATURE_COUNT + 2;
+	int TRANSITION__RISK = GUI_GRAPH_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Terminates</b></em>' attribute.
@@ -530,7 +430,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__TERMINATES = GUI_GRAPH_NODE_FEATURE_COUNT + 3;
+	int TRANSITION__TERMINATES = GUI_GRAPH_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Time Min</b></em>' attribute.
@@ -539,7 +439,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__TIME_MIN = GUI_GRAPH_NODE_FEATURE_COUNT + 4;
+	int TRANSITION__TIME_MIN = GUI_GRAPH_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Time Max</b></em>' attribute.
@@ -548,7 +448,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__TIME_MAX = GUI_GRAPH_NODE_FEATURE_COUNT + 5;
+	int TRANSITION__TIME_MAX = GUI_GRAPH_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Timing Type</b></em>' attribute.
@@ -557,7 +457,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__TIMING_TYPE = GUI_GRAPH_NODE_FEATURE_COUNT + 6;
+	int TRANSITION__TIMING_TYPE = GUI_GRAPH_NODE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
@@ -566,7 +466,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 7;
+	int TRANSITION_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PlaceImpl <em>Place</em>}' class.
@@ -576,7 +476,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPlace()
 	 * @generated
 	 */
-	int PLACE = 7;
+	int PLACE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -624,13 +524,22 @@ public interface GuigraphPackage extends EPackage {
 	int PLACE__INITIAL_TOKENS = GUI_GRAPH_NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Provide As Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACE__PROVIDE_AS_INTERFACE = GUI_GRAPH_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Place</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLACE_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 1;
+	int PLACE_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.NoWidgetNodeImpl <em>No Widget Node</em>}' class.
@@ -640,7 +549,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getNoWidgetNode()
 	 * @generated
 	 */
-	int NO_WIDGET_NODE = 6;
+	int NO_WIDGET_NODE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -688,6 +597,15 @@ public interface GuigraphPackage extends EPackage {
 	int NO_WIDGET_NODE__INITIAL_TOKENS = PLACE__INITIAL_TOKENS;
 
 	/**
+	 * The feature id for the '<em><b>Provide As Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NO_WIDGET_NODE__PROVIDE_AS_INTERFACE = PLACE__PROVIDE_AS_INTERFACE;
+
+	/**
 	 * The number of structural features of the '<em>No Widget Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -704,7 +622,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getConditionActionTransition()
 	 * @generated
 	 */
-	int CONDITION_ACTION_TRANSITION = 8;
+	int CONDITION_ACTION_TRANSITION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -743,31 +661,13 @@ public interface GuigraphPackage extends EPackage {
 	int CONDITION_ACTION_TRANSITION__NAME = TRANSITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Rate</b></em>' attribute.
+	 * The feature id for the '<em><b>Risk</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_ACTION_TRANSITION__RATE = TRANSITION__RATE;
-
-	/**
-	 * The feature id for the '<em><b>Fault Impact</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION_ACTION_TRANSITION__FAULT_IMPACT = TRANSITION__FAULT_IMPACT;
-
-	/**
-	 * The feature id for the '<em><b>Fault Probability</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION_ACTION_TRANSITION__FAULT_PROBABILITY = TRANSITION__FAULT_PROBABILITY;
+	int CONDITION_ACTION_TRANSITION__RISK = TRANSITION__RISK;
 
 	/**
 	 * The feature id for the '<em><b>Terminates</b></em>' attribute.
@@ -858,7 +758,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getTimerTransition()
 	 * @generated
 	 */
-	int TIMER_TRANSITION = 9;
+	int TIMER_TRANSITION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -897,31 +797,13 @@ public interface GuigraphPackage extends EPackage {
 	int TIMER_TRANSITION__NAME = TRANSITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Rate</b></em>' attribute.
+	 * The feature id for the '<em><b>Risk</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TIMER_TRANSITION__RATE = TRANSITION__RATE;
-
-	/**
-	 * The feature id for the '<em><b>Fault Impact</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIMER_TRANSITION__FAULT_IMPACT = TRANSITION__FAULT_IMPACT;
-
-	/**
-	 * The feature id for the '<em><b>Fault Probability</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIMER_TRANSITION__FAULT_PROBABILITY = TRANSITION__FAULT_PROBABILITY;
+	int TIMER_TRANSITION__RISK = TRANSITION__RISK;
 
 	/**
 	 * The feature id for the '<em><b>Terminates</b></em>' attribute.
@@ -995,7 +877,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getArc()
 	 * @generated
 	 */
-	int ARC = 10;
+	int ARC = 9;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -1068,7 +950,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getStandardArc()
 	 * @generated
 	 */
-	int STANDARD_ARC = 11;
+	int STANDARD_ARC = 10;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -1150,7 +1032,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getInhibitorArc()
 	 * @generated
 	 */
-	int INHIBITOR_ARC = 12;
+	int INHIBITOR_ARC = 11;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -1223,7 +1105,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPageTransition()
 	 * @generated
 	 */
-	int PAGE_TRANSITION = 13;
+	int PAGE_TRANSITION = 12;
 
 	/**
 	 * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -1232,7 +1114,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_TRANSITION__NOTE = TRANSITION__NOTE;
+	int PAGE_TRANSITION__NOTE = GUI_GRAPH_NODE__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1241,7 +1123,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_TRANSITION__ID = TRANSITION__ID;
+	int PAGE_TRANSITION__ID = GUI_GRAPH_NODE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
@@ -1250,7 +1132,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_TRANSITION__TRACEABLE_TO = TRANSITION__TRACEABLE_TO;
+	int PAGE_TRANSITION__TRACEABLE_TO = GUI_GRAPH_NODE__TRACEABLE_TO;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1259,70 +1141,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_TRANSITION__NAME = TRANSITION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Rate</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE_TRANSITION__RATE = TRANSITION__RATE;
-
-	/**
-	 * The feature id for the '<em><b>Fault Impact</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE_TRANSITION__FAULT_IMPACT = TRANSITION__FAULT_IMPACT;
-
-	/**
-	 * The feature id for the '<em><b>Fault Probability</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE_TRANSITION__FAULT_PROBABILITY = TRANSITION__FAULT_PROBABILITY;
-
-	/**
-	 * The feature id for the '<em><b>Terminates</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE_TRANSITION__TERMINATES = TRANSITION__TERMINATES;
-
-	/**
-	 * The feature id for the '<em><b>Time Min</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE_TRANSITION__TIME_MIN = TRANSITION__TIME_MIN;
-
-	/**
-	 * The feature id for the '<em><b>Time Max</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE_TRANSITION__TIME_MAX = TRANSITION__TIME_MAX;
-
-	/**
-	 * The feature id for the '<em><b>Timing Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAGE_TRANSITION__TIMING_TYPE = TRANSITION__TIMING_TYPE;
+	int PAGE_TRANSITION__NAME = GUI_GRAPH_NODE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Page</b></em>' reference.
@@ -1331,7 +1150,7 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_TRANSITION__PAGE = TRANSITION_FEATURE_COUNT + 0;
+	int PAGE_TRANSITION__PAGE = GUI_GRAPH_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Page Transition</em>' class.
@@ -1340,7 +1159,89 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_TRANSITION_FEATURE_COUNT = TRANSITION_FEATURE_COUNT + 1;
+	int PAGE_TRANSITION_FEATURE_COUNT = GUI_GRAPH_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PageMappingArcImpl <em>Page Mapping Arc</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.PageMappingArcImpl
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPageMappingArc()
+	 * @generated
+	 */
+	int PAGE_MAPPING_ARC = 13;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_MAPPING_ARC__NOTE = ARC__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_MAPPING_ARC__ID = ARC__ID;
+
+	/**
+	 * The feature id for the '<em><b>Traceable To</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_MAPPING_ARC__TRACEABLE_TO = ARC__TRACEABLE_TO;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_MAPPING_ARC__NAME = ARC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_MAPPING_ARC__SOURCE = ARC__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_MAPPING_ARC__TARGET = ARC__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Mapping</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_MAPPING_ARC__MAPPING = ARC_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Page Mapping Arc</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_MAPPING_ARC_FEATURE_COUNT = ARC_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.tud.inf.st.mbt.ulang.guigraph.TimingType <em>Timing Type</em>}' enum.
@@ -1407,16 +1308,6 @@ public interface GuigraphPackage extends EPackage {
 	EAttribute getGuiGraph_InvariantText();
 
 	/**
-	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.Page <em>Page</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Page</em>'.
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.Page
-	 * @generated
-	 */
-	EClass getPage();
-
-	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.Widget <em>Widget</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1469,37 +1360,15 @@ public interface GuigraphPackage extends EPackage {
 	EClass getTransition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getRate <em>Rate</em>}'.
+	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getRisk <em>Risk</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Rate</em>'.
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.Transition#getRate()
+	 * @return the meta object for the attribute '<em>Risk</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.Transition#getRisk()
 	 * @see #getTransition()
 	 * @generated
 	 */
-	EAttribute getTransition_Rate();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getFaultImpact <em>Fault Impact</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Fault Impact</em>'.
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.Transition#getFaultImpact()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EAttribute getTransition_FaultImpact();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#getFaultProbability <em>Fault Probability</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Fault Probability</em>'.
-	 * @see org.tud.inf.st.mbt.ulang.guigraph.Transition#getFaultProbability()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EAttribute getTransition_FaultProbability();
+	EAttribute getTransition_Risk();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.Transition#isTerminates <em>Terminates</em>}'.
@@ -1585,6 +1454,17 @@ public interface GuigraphPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPlace_InitialTokens();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.tud.inf.st.mbt.ulang.guigraph.Place#isProvideAsInterface <em>Provide As Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Provide As Interface</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.Place#isProvideAsInterface()
+	 * @see #getPlace()
+	 * @generated
+	 */
+	EAttribute getPlace_ProvideAsInterface();
 
 	/**
 	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.ConditionActionTransition <em>Condition Action Transition</em>}'.
@@ -1757,6 +1637,27 @@ public interface GuigraphPackage extends EPackage {
 	EReference getPageTransition_Page();
 
 	/**
+	 * Returns the meta object for class '{@link org.tud.inf.st.mbt.ulang.guigraph.PageMappingArc <em>Page Mapping Arc</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Page Mapping Arc</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.PageMappingArc
+	 * @generated
+	 */
+	EClass getPageMappingArc();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.tud.inf.st.mbt.ulang.guigraph.PageMappingArc#getMapping <em>Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Mapping</em>'.
+	 * @see org.tud.inf.st.mbt.ulang.guigraph.PageMappingArc#getMapping()
+	 * @see #getPageMappingArc()
+	 * @generated
+	 */
+	EReference getPageMappingArc_Mapping();
+
+	/**
 	 * Returns the meta object for enum '{@link org.tud.inf.st.mbt.ulang.guigraph.TimingType <em>Timing Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1831,16 +1732,6 @@ public interface GuigraphPackage extends EPackage {
 		EAttribute GUI_GRAPH__INVARIANT_TEXT = eINSTANCE.getGuiGraph_InvariantText();
 
 		/**
-		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PageImpl <em>Page</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.PageImpl
-		 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPage()
-		 * @generated
-		 */
-		EClass PAGE = eINSTANCE.getPage();
-
-		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.WidgetImpl <em>Widget</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1887,28 +1778,12 @@ public interface GuigraphPackage extends EPackage {
 		EClass TRANSITION = eINSTANCE.getTransition();
 
 		/**
-		 * The meta object literal for the '<em><b>Rate</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Risk</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TRANSITION__RATE = eINSTANCE.getTransition_Rate();
-
-		/**
-		 * The meta object literal for the '<em><b>Fault Impact</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSITION__FAULT_IMPACT = eINSTANCE.getTransition_FaultImpact();
-
-		/**
-		 * The meta object literal for the '<em><b>Fault Probability</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSITION__FAULT_PROBABILITY = eINSTANCE.getTransition_FaultProbability();
+		EAttribute TRANSITION__RISK = eINSTANCE.getTransition_Risk();
 
 		/**
 		 * The meta object literal for the '<em><b>Terminates</b></em>' attribute feature.
@@ -1979,6 +1854,14 @@ public interface GuigraphPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLACE__INITIAL_TOKENS = eINSTANCE.getPlace_InitialTokens();
+
+		/**
+		 * The meta object literal for the '<em><b>Provide As Interface</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLACE__PROVIDE_AS_INTERFACE = eINSTANCE.getPlace_ProvideAsInterface();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.ConditionActionTransitionImpl <em>Condition Action Transition</em>}' class.
@@ -2119,6 +2002,24 @@ public interface GuigraphPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAGE_TRANSITION__PAGE = eINSTANCE.getPageTransition_Page();
+
+		/**
+		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PageMappingArcImpl <em>Page Mapping Arc</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.PageMappingArcImpl
+		 * @see org.tud.inf.st.mbt.ulang.guigraph.impl.GuigraphPackageImpl#getPageMappingArc()
+		 * @generated
+		 */
+		EClass PAGE_MAPPING_ARC = eINSTANCE.getPageMappingArc();
+
+		/**
+		 * The meta object literal for the '<em><b>Mapping</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAGE_MAPPING_ARC__MAPPING = eINSTANCE.getPageMappingArc_Mapping();
 
 		/**
 		 * The meta object literal for the '{@link org.tud.inf.st.mbt.ulang.guigraph.TimingType <em>Timing Type</em>}' enum.

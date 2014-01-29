@@ -19,6 +19,7 @@ import org.tud.inf.st.mbt.ulang.guigraph.Place;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PlaceImpl#getInitialTokens <em>Initial Tokens</em>}</li>
+ *   <li>{@link org.tud.inf.st.mbt.ulang.guigraph.impl.PlaceImpl#isProvideAsInterface <em>Provide As Interface</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,6 +44,25 @@ public abstract class PlaceImpl extends AbstractModelElementImpl implements Plac
 	 * @ordered
 	 */
 	protected int initialTokens = INITIAL_TOKENS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isProvideAsInterface() <em>Provide As Interface</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isProvideAsInterface()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean PROVIDE_AS_INTERFACE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isProvideAsInterface() <em>Provide As Interface</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isProvideAsInterface()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean provideAsInterface = PROVIDE_AS_INTERFACE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,11 +109,34 @@ public abstract class PlaceImpl extends AbstractModelElementImpl implements Plac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isProvideAsInterface() {
+		return provideAsInterface;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProvideAsInterface(boolean newProvideAsInterface) {
+		boolean oldProvideAsInterface = provideAsInterface;
+		provideAsInterface = newProvideAsInterface;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GuigraphPackage.PLACE__PROVIDE_AS_INTERFACE, oldProvideAsInterface, provideAsInterface));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case GuigraphPackage.PLACE__INITIAL_TOKENS:
 				return getInitialTokens();
+			case GuigraphPackage.PLACE__PROVIDE_AS_INTERFACE:
+				return isProvideAsInterface();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -108,6 +151,9 @@ public abstract class PlaceImpl extends AbstractModelElementImpl implements Plac
 		switch (featureID) {
 			case GuigraphPackage.PLACE__INITIAL_TOKENS:
 				setInitialTokens((Integer)newValue);
+				return;
+			case GuigraphPackage.PLACE__PROVIDE_AS_INTERFACE:
+				setProvideAsInterface((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -124,6 +170,9 @@ public abstract class PlaceImpl extends AbstractModelElementImpl implements Plac
 			case GuigraphPackage.PLACE__INITIAL_TOKENS:
 				setInitialTokens(INITIAL_TOKENS_EDEFAULT);
 				return;
+			case GuigraphPackage.PLACE__PROVIDE_AS_INTERFACE:
+				setProvideAsInterface(PROVIDE_AS_INTERFACE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -138,6 +187,8 @@ public abstract class PlaceImpl extends AbstractModelElementImpl implements Plac
 		switch (featureID) {
 			case GuigraphPackage.PLACE__INITIAL_TOKENS:
 				return initialTokens != INITIAL_TOKENS_EDEFAULT;
+			case GuigraphPackage.PLACE__PROVIDE_AS_INTERFACE:
+				return provideAsInterface != PROVIDE_AS_INTERFACE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

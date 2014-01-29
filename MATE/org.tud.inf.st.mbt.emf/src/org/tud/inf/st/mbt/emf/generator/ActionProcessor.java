@@ -9,8 +9,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.tud.inf.st.mbt.actions.ActionReference;
 import org.tud.inf.st.mbt.actions.ActionsFactory;
@@ -57,15 +59,19 @@ public class ActionProcessor {
 	private static final RulesFactory fRules = RulesFactory.eINSTANCE;
 
 	private SATFoundation satFoundation;
+	private HashMap<Integer, Set<?>> cache = new HashMap<Integer, Set<?>>();
+	private HashMap<Integer, PreGenerationAction> normalizationCache = new HashMap<Integer, PreGenerationAction>();
 
 	public ActionProcessor(SATFoundation sf) {
 		this.satFoundation = sf;
 	}
 
-	public static PreGenerationAction normalize(PreGenerationAction a,
+	public PreGenerationAction normalize(PreGenerationAction a,
 			Collection<IFeature> features, Map<String, Object> context) {
+		int hash = a.hashCode()+features.hashCode()+context.hashCode();
+		if(normalizationCache.containsKey(hash))return EcoreUtil.copy(normalizationCache.get(hash));
 		a = EcoreUtil.copy(a);
-
+		
 		if (a instanceof ActionReference) {
 			Map<String, Object> nextContext = new HashMap<String, Object>();
 			for (int i = 0; i < ((ActionReference) a).getParameters().size(); i++) {
@@ -105,6 +111,7 @@ public class ActionProcessor {
 					features, context));
 		}
 
+		normalizationCache.put(hash, a);
 		return a;
 	}
 
@@ -202,6 +209,11 @@ public class ActionProcessor {
 
 	public List<State> executeAction(State s, PreGenerationAction a,
 			Map<String, Object> context, AbstractModelElement... traceableTo) {
+		return executeAction(null, s, a, context, traceableTo);
+	}
+	
+	public List<State> executeAction(EObject caller, State s, PreGenerationAction a,
+				Map<String, Object> context, AbstractModelElement... traceableTo) {
 		if (traceableTo == null || traceableTo.length == 0
 				&& s.getParent() != null)
 			traceableTo = s.getParent().getTraceableTo();
@@ -251,7 +263,7 @@ public class ActionProcessor {
 		} else if (a instanceof ThrowAction) {
 			@SuppressWarnings("unchecked")
 			List<OperationalConfigurationModel> ocms = (List<OperationalConfigurationModel>) ModelUtil
-					.getAllEObjectsOfSuperType(satFoundation.getResourceSet(),
+					.getAllEObjectsOfSuperType(cache,satFoundation.getResourceSet(),
 							OperationalConfigurationModel.class);
 			for (OperationalConfigurationModel ocm : ocms)
 				next.addAll(Arrays.asList(new OCMOperator(satFoundation, ocm,
@@ -269,6 +281,7 @@ public class ActionProcessor {
 			ipa.setStackLevel(top != null ? s.getTopInstructionPointerAtom()
 					.getStackLevel() + 1 : 0);
 			ipa.setSequence((PreGenerationSequence) a);
+			ipa.setFallBack(caller);
 			ModelUtil.setContext(ipa, context);
 
 			State n = new State(s,
@@ -303,7 +316,7 @@ public class ActionProcessor {
 						satFoundation, (DataScenario) consumer, time,false)
 						.operate(s)));
 			} else {
-				for (ITimeConsumer tc : ModelUtil.getAllEObjectsOfSuperType(
+				for (ITimeConsumer tc : ModelUtil.getAllEObjectsOfSuperType(cache,
 						satFoundation.getResourceSet(), ITimeConsumer.class)) {
 					consumer = tc;
 					if (consumer instanceof OperationalConfigurationModel) {

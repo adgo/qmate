@@ -27,11 +27,9 @@ public class DataScenarioOperator extends TransitionOperator {
 
 	private int ticks = 0;
 	private DataScenario scenario;
-	private ActionProcessor actionProcessor;
 
 	public DataScenarioOperator(SATFoundation sf, DataScenario scen, int ticks, boolean ignoreRealTime) {
 		super(sf,ignoreRealTime);
-		this.actionProcessor = new ActionProcessor(sf);
 		this.scenario = scen;
 		this.ticks = ticks;
 	}
@@ -97,7 +95,7 @@ public class DataScenarioOperator extends TransitionOperator {
 				PreGenerationSequence pgs = fActions
 						.createPreGenerationSequence();
 				pgs.getActions().addAll(eventsToThrow);
-				nextSwap.addAll(actionProcessor.executeAction(n, pgs,
+				nextSwap.addAll(getSatFoundation().getActionProcessor().executeAction(scenario,n, pgs,
 						new HashMap<String, Object>(), scenario));
 			}
 		}

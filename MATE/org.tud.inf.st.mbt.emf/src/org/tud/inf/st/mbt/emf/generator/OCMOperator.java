@@ -46,12 +46,10 @@ public class OCMOperator extends TransitionOperator {
 	private Integer ticks = 0;
 	private String eventID;
 	private OperationalConfigurationModel ocm;
-	private ActionProcessor actionProcessor;
 
 	public OCMOperator(SATFoundation sf, OperationalConfigurationModel ocm,
 			int ticks, boolean ignoreRealTime) {
 		super(sf,ignoreRealTime);
-		this.actionProcessor = new ActionProcessor(sf);
 		this.ticks = ticks;
 		this.ocm = ocm;
 	}
@@ -101,7 +99,7 @@ public class OCMOperator extends TransitionOperator {
 						ee.getTarget())) {
 					List<State> nextLocal = new ArrayList<State>();
 					for (State nn : next) {
-						nextLocal.addAll(actionProcessor.executeAction(nn, a,
+						nextLocal.addAll(getSatFoundation().getActionProcessor().executeAction(ee.getTarget(),nn, a,
 								new HashMap<String, Object>()));
 					}
 					next.clear();
@@ -176,7 +174,7 @@ public class OCMOperator extends TransitionOperator {
 							s, te.getTarget())) {
 						List<State> nextMoreLocal = new ArrayList<State>();
 						for (State nn : nextLocal) {
-							nextMoreLocal.addAll(actionProcessor.executeAction(
+							nextMoreLocal.addAll(getSatFoundation().getActionProcessor().executeAction(te,
 									nn, a, new HashMap<String, Object>()));
 						}
 						nextLocal.clear();
@@ -229,7 +227,7 @@ public class OCMOperator extends TransitionOperator {
 					&& ca.getConfiguration().getPostConfEventID() != null) {
 				ThrowAction ta = ActionsFactory.eINSTANCE.createThrowAction();
 				ta.setEventID(ca.getConfiguration().getPostConfEventID());
-				next.addAll(actionProcessor.executeAction(s, ta,
+				next.addAll(getSatFoundation().getActionProcessor().executeAction(ocm,s, ta,
 						new HashMap<String, Object>(), ca.getConfiguration()));
 			} else
 				next.add(s);

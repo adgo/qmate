@@ -99,14 +99,10 @@ public class DataValueItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DataValue)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_DataValue_type") :
-			getString("_UI_DataValue_type") + " " + label;
+		return object+"";
 	}
 
 	/**

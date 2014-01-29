@@ -19,30 +19,29 @@ import org.tud.inf.st.mbt.rules.Predicate;
 
 public class TimedConditionActionOperator extends AbstractOperator {
 
-	private ActionProcessor actionProcessor;
 	private SATFoundation satFoundation;
 	private SAT sat;
 
 	public TimedConditionActionOperator(SATFoundation sf) {
 		this.satFoundation = sf;
 		this.sat = sf.buildSAT();
-		this.actionProcessor = new ActionProcessor(sf);
 	}
 
 	@Override
 	public State[] operate(State s) {
 		List<State> next = new ArrayList<>(5);
-		for (IRealTimeConsumer rcs : s.getRealTimeEnabledConsumers(TimedConditionAction.class)) {
-			TimedConditionAction tca = (TimedConditionAction)rcs;
+		for (IRealTimeConsumer rcs : s
+				.getRealTimeEnabledConsumers(TimedConditionAction.class)) {
+			TimedConditionAction tca = (TimedConditionAction) rcs;
 			List<State> nextLocal = new ArrayList<State>(5);
 
 			ILogicFunction cond = (ILogicFunction) FunctionProcessor.normalize(
 					tca.getCondition(), satFoundation.getFeatures(),
 					Collections.<String, Object> emptyMap());
 			if (conditionHolds(s, ModelUtil.atom(cond))) {
-				nextLocal.addAll(actionProcessor.executeAction(s,
-						tca.getAction(),
-						Collections.<String, Object> emptyMap(), tca));
+				nextLocal.addAll(satFoundation.getActionProcessor()
+						.executeAction(tca, s, tca.getAction(),
+								Collections.<String, Object> emptyMap(), tca));
 			} else {
 				State n = new State(s,
 						Collections.<PostGenerationAction> emptyList(), false,

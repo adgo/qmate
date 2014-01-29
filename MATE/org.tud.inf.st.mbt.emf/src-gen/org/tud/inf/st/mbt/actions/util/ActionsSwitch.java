@@ -142,8 +142,9 @@ public class ActionsSwitch<T> extends Switch<T> {
 				TermAction termAction = (TermAction)theEObject;
 				T result = caseTermAction(termAction);
 				if (result == null) result = casePostGenerationAction(termAction);
-				if (result == null) result = casePreGenerationAction(termAction);
+				if (result == null) result = caseReconfigurationAction(termAction);
 				if (result == null) result = caseAction(termAction);
+				if (result == null) result = casePreGenerationAction(termAction);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

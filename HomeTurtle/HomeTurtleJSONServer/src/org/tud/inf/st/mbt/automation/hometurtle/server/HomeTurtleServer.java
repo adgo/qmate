@@ -76,6 +76,7 @@ public class HomeTurtleServer implements IHomeTurtleTestDriver{
 			i.startIclebo(lister.getAllComPorts().get(0));
 			
 			drive = re.getRuntimeModel().getComponentByName(Initializer.Motion).as(ITickBasedDriving.class);
+			
 		} catch (Exception e){
 			e.printStackTrace();
 		}

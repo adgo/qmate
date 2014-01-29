@@ -64,6 +64,7 @@ public class PlaceItemProvider
 			super.getPropertyDescriptors(object);
 
 			addInitialTokensPropertyDescriptor(object);
+			addProvideAsInterfacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,6 +87,28 @@ public class PlaceItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Provide As Interface feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProvideAsInterfacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Place_provideAsInterface_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Place_provideAsInterface_feature", "_UI_Place_type"),
+				 GuigraphPackage.Literals.PLACE__PROVIDE_AS_INTERFACE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -117,6 +140,7 @@ public class PlaceItemProvider
 
 		switch (notification.getFeatureID(Place.class)) {
 			case GuigraphPackage.PLACE__INITIAL_TOKENS:
+			case GuigraphPackage.PLACE__PROVIDE_AS_INTERFACE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -19,17 +19,20 @@ import org.tud.inf.st.mbt.data.DataPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.tud.inf.st.mbt.data.impl.DataLeafImpl#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.tud.inf.st.mbt.data.impl.DataLeafImpl#getCausalLinkType <em>Causal Link Type</em>}</li>
+ * <li>{@link org.tud.inf.st.mbt.data.impl.DataLeafImpl#getDomain <em>Domain
+ * </em>}</li>
+ * <li>{@link org.tud.inf.st.mbt.data.impl.DataLeafImpl#getCausalLinkType <em>
+ * Causal Link Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 	/**
 	 * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDomain()
 	 * @generated
 	 * @ordered
@@ -37,18 +40,20 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 	protected DataElement domain;
 
 	/**
-	 * The default value of the '{@link #getCausalLinkType() <em>Causal Link Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCausalLinkType()
+	 * <em>Causal Link Type</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCausalLinkType()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final CausalLinkType CAUSAL_LINK_TYPE_EDEFAULT = CausalLinkType.VIRTUAL;
 	/**
-	 * The cached value of the '{@link #getCausalLinkType() <em>Causal Link Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCausalLinkType()
+	 * <em>Causal Link Type</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCausalLinkType()
 	 * @generated
 	 * @ordered
@@ -57,6 +62,7 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DataLeafImpl() {
@@ -65,6 +71,7 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,15 +81,17 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DataElement getDomain() {
 		if (domain != null && domain.eIsProxy()) {
-			InternalEObject oldDomain = (InternalEObject)domain;
-			domain = (DataElement)eResolveProxy(oldDomain);
+			InternalEObject oldDomain = (InternalEObject) domain;
+			domain = (DataElement) eResolveProxy(oldDomain);
 			if (domain != oldDomain) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataPackage.DATA_LEAF__DOMAIN, oldDomain, domain));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							DataPackage.DATA_LEAF__DOMAIN, oldDomain, domain));
 			}
 		}
 		return domain;
@@ -90,6 +99,7 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DataElement basicGetDomain() {
@@ -97,19 +107,21 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDomain(DataElement newDomain) {
 		DataElement oldDomain = domain;
 		domain = newDomain;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.DATA_LEAF__DOMAIN, oldDomain, domain));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DataPackage.DATA_LEAF__DOMAIN, oldDomain, domain));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CausalLinkType getCausalLinkType() {
@@ -118,76 +130,85 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCausalLinkType(CausalLinkType newCausalLinkType) {
 		CausalLinkType oldCausalLinkType = causalLinkType;
-		causalLinkType = newCausalLinkType == null ? CAUSAL_LINK_TYPE_EDEFAULT : newCausalLinkType;
+		causalLinkType = newCausalLinkType == null ? CAUSAL_LINK_TYPE_EDEFAULT
+				: newCausalLinkType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE, oldCausalLinkType, causalLinkType));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE, oldCausalLinkType,
+					causalLinkType));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DataPackage.DATA_LEAF__DOMAIN:
-				if (resolve) return getDomain();
-				return basicGetDomain();
-			case DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE:
-				return getCausalLinkType();
+		case DataPackage.DATA_LEAF__DOMAIN:
+			if (resolve)
+				return getDomain();
+			return basicGetDomain();
+		case DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE:
+			return getCausalLinkType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DataPackage.DATA_LEAF__DOMAIN:
-				setDomain((DataElement)newValue);
-				return;
-			case DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE:
-				setCausalLinkType((CausalLinkType)newValue);
-				return;
+		case DataPackage.DATA_LEAF__DOMAIN:
+			setDomain((DataElement) newValue);
+			return;
+		case DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE:
+			setCausalLinkType((CausalLinkType) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DataPackage.DATA_LEAF__DOMAIN:
-				setDomain((DataElement)null);
-				return;
-			case DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE:
-				setCausalLinkType(CAUSAL_LINK_TYPE_EDEFAULT);
-				return;
+		case DataPackage.DATA_LEAF__DOMAIN:
+			setDomain((DataElement) null);
+			return;
+		case DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE:
+			setCausalLinkType(CAUSAL_LINK_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DataPackage.DATA_LEAF__DOMAIN:
-				return domain != null;
-			case DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE:
-				return causalLinkType != CAUSAL_LINK_TYPE_EDEFAULT;
+		case DataPackage.DATA_LEAF__DOMAIN:
+			return domain != null;
+		case DataPackage.DATA_LEAF__CAUSAL_LINK_TYPE:
+			return causalLinkType != CAUSAL_LINK_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -206,9 +227,9 @@ public class DataLeafImpl extends DataStructureNodeImpl implements DataLeaf {
 			int idx = bag.getGeneratedElements().indexOf(this);
 			str += bag + "[" + idx + "]";
 		} else
-			str += (name == null ? id == null ? "_" : id : name) + ":"
-					+ (domain == null ? "undefined" : domain);
+			str += (name == null ? id == null ? "_" : id : name);
+			
+		str += ":" + (domain == null ? "undefined" : domain);
 		return str;
 	}
-
 } // DataLeafImpl

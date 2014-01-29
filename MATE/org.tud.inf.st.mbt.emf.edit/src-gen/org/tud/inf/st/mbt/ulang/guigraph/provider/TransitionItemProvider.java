@@ -63,9 +63,7 @@ public class TransitionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRatePropertyDescriptor(object);
-			addFaultImpactPropertyDescriptor(object);
-			addFaultProbabilityPropertyDescriptor(object);
+			addRiskPropertyDescriptor(object);
 			addTerminatesPropertyDescriptor(object);
 			addTimeMinPropertyDescriptor(object);
 			addTimeMaxPropertyDescriptor(object);
@@ -75,63 +73,19 @@ public class TransitionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Rate feature.
+	 * This adds a property descriptor for the Risk feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRatePropertyDescriptor(Object object) {
+	protected void addRiskPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Transition_rate_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Transition_rate_feature", "_UI_Transition_type"),
-				 GuigraphPackage.Literals.TRANSITION__RATE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Fault Impact feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFaultImpactPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Transition_faultImpact_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Transition_faultImpact_feature", "_UI_Transition_type"),
-				 GuigraphPackage.Literals.TRANSITION__FAULT_IMPACT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Fault Probability feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFaultProbabilityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Transition_faultProbability_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Transition_faultProbability_feature", "_UI_Transition_type"),
-				 GuigraphPackage.Literals.TRANSITION__FAULT_PROBABILITY,
+				 getString("_UI_Transition_risk_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Transition_risk_feature", "_UI_Transition_type"),
+				 GuigraphPackage.Literals.TRANSITION__RISK,
 				 true,
 				 false,
 				 false,
@@ -265,9 +219,7 @@ public class TransitionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Transition.class)) {
-			case GuigraphPackage.TRANSITION__RATE:
-			case GuigraphPackage.TRANSITION__FAULT_IMPACT:
-			case GuigraphPackage.TRANSITION__FAULT_PROBABILITY:
+			case GuigraphPackage.TRANSITION__RISK:
 			case GuigraphPackage.TRANSITION__TERMINATES:
 			case GuigraphPackage.TRANSITION__TIME_MIN:
 			case GuigraphPackage.TRANSITION__TIME_MAX:

@@ -38,7 +38,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="eventID" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TermAction" eSuperTypes="#//PostGenerationAction #//PreGenerationAction">
+  <eClassifiers xsi:type="ecore:EClass" name="TermAction" eSuperTypes="#//PostGenerationAction #//PreGenerationAction #//ReconfigurationAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="term" lowerBound="1" eType="ecore:EClass terms.ecore#//Term"
         containment="true"/>
   </eClassifiers>
