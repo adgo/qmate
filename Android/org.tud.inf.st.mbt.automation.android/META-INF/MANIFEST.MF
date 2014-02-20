@@ -8,13 +8,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.tud.inf.st.mbt.emf;bundle-version="1.0.0",
  org.tud.inf.st.mbt.automation,
  org.eclipse.ui;bundle-version="3.105.0",
- com.android.ide.eclipse.adt;bundle-version="22.2.1",
- com.android.ide.eclipse.base;bundle-version="22.2.1",
- com.android.ide.eclipse.ddms;bundle-version="22.2.1",
- com.android.ide.eclipse.hierarchyviewer;bundle-version="22.2.1",
- com.android.ide.eclipse.traceview;bundle-version="22.2.1",
  org.eclipse.core.resources;bundle-version="3.8.101",
- org.eclipse.emf.common;bundle-version="2.9.1"
+ org.eclipse.emf.common;bundle-version="2.9.1",
+ com.android.ide.eclipse.adt;bundle-version="22.3.0",
+ com.android.ide.eclipse.ddms;bundle-version="22.3.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ClassPath: lib/android-os-bins.jar,
  lib/colt-1.2.0.jar,
