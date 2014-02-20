@@ -220,7 +220,7 @@ public class ExperitestExportAction extends ActionDelegate {
 		os.println("import java.util.*;");
 		os.println("\n" + "public class Test" + i + " {\n"
 				+ "\tprivate String host= \"localhost\";\n"
-				+ "\tprivate int port = 8888;\n"
+				+ "\tprivate int port = 8889;\n"
 				+ "\tprivate String projectBaseDirectory = \"c:\\\\\";\n"
 				+ "\t//TODO private Type ctx = ?;\n"
 				+ "\tprotected Client client = null;\n" + "\n" + "\t@Before\n"

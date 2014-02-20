@@ -14,6 +14,7 @@
    </configIni>
 
    <launcherArgs>
+      <vmArgs>-Dmate.selenium.driverfolder=C:\Users\Georg\Dropbox\MATE</vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
@@ -261,6 +262,7 @@
       <plugin id="org.tud.inf.st.mbt.automation"/>
       <plugin id="org.tud.inf.st.mbt.automation.android"/>
       <plugin id="org.tud.inf.st.mbt.automation.exports"/>
+      <plugin id="org.tud.inf.st.mbt.automation.selenium"/>
       <plugin id="org.tud.inf.st.mbt.emf"/>
       <plugin id="org.tud.inf.st.mbt.emf.edit"/>
       <plugin id="org.tud.inf.st.mbt.emf.editor"/>
@@ -283,6 +285,7 @@
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="3" />
       <plugin id="org.tud.inf.st.mbt.automation" autoStart="true" startLevel="5" />
       <plugin id="org.tud.inf.st.mbt.automation.android" autoStart="true" startLevel="5" />
+      <plugin id="org.tud.inf.st.mbt.automation.selenium" autoStart="true" startLevel="5" />
       <property name="perspective" value="org.tud.inf.st.mbt.ui.perspective" />
    </configurations>
 
