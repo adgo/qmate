@@ -47,7 +47,8 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.core.resources;bundle-version="3.7.100";visibility:=reexport,
  org.eclipse.ui.editors;bundle-version="3.8.0";visibility:=reexport,
  org.tud.inf.st.pceditor;bundle-version="1.0.0",
- org.tud.inf.st.pceditor.ui;bundle-version="1.0.0"
+ org.tud.inf.st.pceditor.ui;bundle-version="1.0.0",
+ org.eclipse.zest.layouts;bundle-version="1.1.0"
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Import-Package: org.tud.inf.st.mbt.emf.ui.editors
