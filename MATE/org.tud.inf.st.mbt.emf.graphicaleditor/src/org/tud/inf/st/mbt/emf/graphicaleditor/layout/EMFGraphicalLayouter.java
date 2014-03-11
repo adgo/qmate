@@ -20,16 +20,6 @@ import math.geom2d.line.LinearShape2D;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.zest.layouts.InvalidLayoutConfiguration;
-import org.eclipse.zest.layouts.LayoutAlgorithm;
-import org.eclipse.zest.layouts.LayoutEntity;
-import org.eclipse.zest.layouts.LayoutRelationship;
-import org.eclipse.zest.layouts.LayoutStyles;
-import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
-import org.eclipse.zest.layouts.algorithms.CompositeLayoutAlgorithm;
-import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
-import org.eclipse.zest.layouts.exampleStructures.SimpleNode;
-import org.eclipse.zest.layouts.exampleStructures.SimpleRelationship;
 import org.tud.inf.st.mbt.graphical.GraphicalConnectionDefinition;
 import org.tud.inf.st.mbt.graphical.GraphicalDescription;
 import org.tud.inf.st.mbt.graphical.GraphicalNodeDefinition;
@@ -206,14 +196,6 @@ public class EMFGraphicalLayouter {
 	private static Random rand = new Random();
 	private Map<String, GraphicalNodeDefinition> id2DescCache = new HashMap<>();
 
-	private SimpleNode getEntityByNodeID(List<SimpleNode> entities, String id) {
-		for (SimpleNode e : entities) {
-			if (((GraphicalNodeDefinition) e.getRealObject()).getReferenceId()
-					.equals(id))
-				return e;
-		}
-		return null;
-	}
 
 	public void layoutGraphicalDesicription(GraphicalDescription gd,
 			EndpointProvider endpoints) {
@@ -508,142 +490,4 @@ public class EMFGraphicalLayouter {
 
 	}
 
-	public void layoutGraphicalDesicription_old(GraphicalDescription gd,
-			EndpointProvider endpoints) {
-		int maxWidth = 50, maxHeight = 50;
-
-		// create zest graph
-		List<SimpleNode> entities = new LinkedList<>();
-		List<SimpleRelationship> relationships = new LinkedList<>();
-		for (Object o : gd.getNodes()) {
-			GraphicalNodeDefinition node = (GraphicalNodeDefinition) o;
-			Dimension hint = endpoints.getSizeHint(node.getReferenceId());
-			node.setWidth(hint.width);
-			node.setHeight(hint.height);
-
-			maxWidth = Math.max(maxWidth, node.getWidth());
-			maxHeight = Math.max(maxHeight, node.getHeight());
-
-			SimpleNode entity = new SimpleNode(node);
-			entity.setSizeInLayout(node.getWidth(), node.getWidth());
-			entity.setLocationInLayout(node.getX(), node.getY());
-			entities.add(entity);
-
-		}
-		for (Object o : gd.getConnections()) {
-			GraphicalConnectionDefinition con = (GraphicalConnectionDefinition) o;
-			con.getBendpoints().clear();
-			SimpleRelationship rel = new SimpleRelationship(getEntityByNodeID(
-					entities, endpoints.getSourceID(con.getReferenceId())),
-					getEntityByNodeID(entities,
-							endpoints.getTargetID(con.getReferenceId())), false);
-			if (rel.getDestinationInLayout() != null
-					&& rel.getSourceInLayout() != null)
-				relationships.add(rel);
-		}
-
-		// apply layout
-		AbstractLayoutAlgorithm layout = new CompositeLayoutAlgorithm(
-				new LayoutAlgorithm[] { new SpringLayoutAlgorithm(
-						LayoutStyles.NO_LAYOUT_NODE_RESIZING) });
-
-		try {
-			layout.applyLayout(entities.toArray(new LayoutEntity[0]),
-					relationships.toArray(new LayoutRelationship[0]), 0, 0,
-					maxWidth * Math.log(entities.size()) / Math.log(2),
-					maxHeight * Math.log(entities.size()) / Math.log(2), false,
-					false);
-		} catch (InvalidLayoutConfiguration e) {
-			e.printStackTrace();
-		}
-
-		// zoom out until all intersections are gone
-		int w = 0, h = 0;
-		for (SimpleNode e : entities) {
-			w = (int) Math.max(e.getX() + e.getWidth(), w);
-			h = (int) Math.max(e.getY() + e.getHeight(), h);
-		}
-
-		scale: while (true) {
-			double scalingFactor = 1d;
-			retry: for (SimpleNode n1 : entities) {
-				for (SimpleNode n2 : entities) {
-					Rectangle r1 = new Rectangle((int) n1.getX(),
-							(int) n1.getY(), (int) n1.getWidth(),
-							(int) n1.getHeight());
-					Rectangle r2 = new Rectangle((int) n2.getX(),
-							(int) n2.getY(), (int) n2.getWidth(),
-							(int) n2.getHeight());
-					if (n1 != n2 && r1.intersects(r2)) {
-						scalingFactor = 1 + Math.max((r1.x >= r2.x ? (r1.x
-								+ r1.width - r2.x) : (r2.x + r2.width - r1.x))
-								/ (double) w,
-								(r1.y >= r2.y ? (r1.y + r1.height - r2.y)
-										: (r2.y + r2.height - r1.y))
-										/ (double) h);
-						break retry;
-					}
-				}
-			}
-			if (scalingFactor == 1d)
-				break scale;
-
-			for (SimpleNode n : entities) {
-				n.setLocation(n.getX() * scalingFactor, n.getY()
-						* scalingFactor);
-			}
-		}
-
-		// shift to diagram beginning
-		List<SimpleNode> reducedX = new ArrayList<SimpleNode>();
-		List<SimpleNode> reducedY = new ArrayList<SimpleNode>();
-		final int minDist = 50;
-		int minXLast = 0, minYLast = 0;
-
-		while (reducedX.size() < entities.size()
-				|| reducedY.size() < entities.size()) {
-
-			SimpleNode minNodeX = null, minNodeY = null;
-			int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE;
-
-			for (SimpleNode e : entities) {
-				if (!reducedX.contains(e) && e.getX() <= minX) {
-					minX = (int) e.getX();
-					minNodeX = e;
-				}
-				if (!reducedY.contains(e) && e.getY() <= minY) {
-					minY = (int) e.getY();
-					minNodeY = e;
-				}
-			}
-
-			minNodeX.setLocation(minXLast + minDist, minNodeX.getY());
-			minNodeY.setLocation(minNodeY.getX(), minYLast + minDist);
-
-			for (SimpleNode e : entities) {
-				if (!reducedX.contains(e) && e != minNodeX) {
-					e.setLocation(e.getX() - (minX - minXLast) + minDist
-							+ minNodeX.getWidth(), e.getY());
-				}
-				if (!reducedY.contains(e) && e != minNodeY) {
-					e.setLocation(e.getX(), e.getY() - (minY - minYLast)
-							+ minDist + minNodeY.getHeight());
-				}
-			}
-
-			reducedX.add(minNodeX);
-			reducedY.add(minNodeY);
-			minXLast = minX;
-			minYLast = minY;
-		}
-
-		// apply
-		for (SimpleNode e : entities) {
-			GraphicalNodeDefinition n = (GraphicalNodeDefinition) e
-					.getRealObject();
-			n.setX((int) e.getX());
-			n.setY((int) e.getY());
-		}
-
-	}
 }
