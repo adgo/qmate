@@ -21,12 +21,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.tud.inf.st.pceditor.ui;bundle-version="1.0.0",
  org.eclipse.ui.ide;bundle-version="3.7.0",
  org.eclipse.ui.editors;bundle-version="3.7.0",
- org.eclipse.emf.ecore.editor;bundle-version="2.7.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.7.0",
- org.eclipse.gmf.runtime.draw2d.ui.render,
  org.tud.inf.st.mbt.emf.edit;bundle-version="1.0.0",
  org.tud.inf.st.mbt.automation;bundle-version="1.0.0"
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.tud.inf.st.mbt.ulang.guigraph.Activator
 Import-Package: org.tud.inf.st.mbt.emf
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
