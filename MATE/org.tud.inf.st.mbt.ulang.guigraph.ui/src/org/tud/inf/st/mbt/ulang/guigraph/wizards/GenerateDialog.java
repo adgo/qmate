@@ -160,7 +160,7 @@ public class GenerateDialog extends TitleAreaDialog {
 					});
 		}
 
-		if (!MBTConstants.IS_MOBILE) {
+		if (MBTConstants.USE_REALTIME) {
 			l = new Label(parent, SWT.None);
 			l.setText("General maximal time per clock:");
 			l.setLayoutData(new GridData(GridData.FILL, SWT.CENTER, true, true));
@@ -201,7 +201,7 @@ public class GenerateDialog extends TitleAreaDialog {
 			}
 		});
 
-		if (!MBTConstants.IS_MOBILE) {
+		if (MBTConstants.USE_VARIABILITY) {
 			if (simulating) {
 				l = new Label(parent, SWT.None);
 				l.setText("Time variability:");
